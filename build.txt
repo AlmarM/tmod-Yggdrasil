@@ -1,0 +1,4 @@
+displayName = Yggdrasil
+author = resP & Lyker
+version = 0.1
+includePDB = true
