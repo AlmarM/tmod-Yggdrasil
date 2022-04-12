@@ -1,6 +1,5 @@
 using Terraria.ID;
 using Yggdrasil.Items.Runes.Normal;
-using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
@@ -10,8 +9,8 @@ public class MinorBerkanoRune : BerkanoRune
 
     public override string TooltipDescription => "A rune granting regeneration.";
 
-    protected override int LifeRegenAmount => 5;
-    protected override int ManaRegenAmount => 20;
+    protected override int lifeRegenAmount => 5;
+    protected override int manaRegenAmount => 20;
 
     public override void SetDefaults()
     {

@@ -1,5 +1,5 @@
 using Terraria.ID;
-using Yggdrasil.Players.Modifiers;
+using Yggdrasil.Players.Modifiers.Effects;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
@@ -11,8 +11,8 @@ public class BerkanoRune : Rune
 
     public override string TooltipDescription => "A rune granting regeneration.";
 
-    protected virtual int LifeRegenAmount => 10;
-    protected virtual int ManaRegenAmount => 40;
+    protected virtual int lifeRegenAmount => 10;
+    protected virtual int manaRegenAmount => 40;
 
     public override void SetDefaults()
     {
@@ -23,7 +23,7 @@ public class BerkanoRune : Rune
 
     protected override void SetModifiers()
     {
-        AddModifier(PlayerModifierType.LifeRegen, LifeRegenAmount);
-		AddModifier(PlayerModifierType.ManaRegen, ManaRegenAmount);
+        AddModifier(new LifeRegenModifier(lifeRegenAmount));
+        AddModifier(new ManaRegenModifier(manaRegenAmount));
     }
 }

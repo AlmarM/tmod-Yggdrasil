@@ -9,7 +9,7 @@ public class MinorAlgizRune : AlgizRune
 
     public override string TooltipDescription => "A minor rune granting defense.";
 
-    protected override int DefenseAmount => 1;
+    protected override int defenseAmount => 1;
 
     public override void SetDefaults()
     {

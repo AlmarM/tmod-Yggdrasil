@@ -9,7 +9,7 @@ public class MajorAlgizRune : AlgizRune
 
     public override string TooltipDescription => "A major rune granting defense.";
 
-    protected override int DefenseAmount => 3;
+    protected override int defenseAmount => 3;
 
     public override void SetDefaults()
     {

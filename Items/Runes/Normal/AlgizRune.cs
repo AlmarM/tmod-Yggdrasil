@@ -1,5 +1,5 @@
 using Terraria.ID;
-using Yggdrasil.Players.Modifiers;
+using Yggdrasil.Players.Modifiers.Effects;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
@@ -11,7 +11,7 @@ public class AlgizRune : Rune
 
     public override string TooltipDescription => "A rune granting defense.";
 
-    protected virtual int DefenseAmount => 2;
+    protected virtual int defenseAmount => 2;
 
     public override void SetDefaults()
     {
@@ -22,6 +22,6 @@ public class AlgizRune : Rune
 
     protected override void SetModifiers()
     {
-        AddModifier(PlayerModifierType.Defense, DefenseAmount);
+        AddModifier(new DefenseModifier(defenseAmount));
     }
 }
