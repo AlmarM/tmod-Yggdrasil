@@ -7,4 +7,5 @@ public static class PlayerModifierConfig
     public const string MaxManaDescription = "Grant +{0} mana";
     public const string LifeRegenDescription = "Grant +{0} life regen";
     public const string ManaRegenDescription = "Boost mana regen speed by {0}";
+	public const string RangeDmgDescription = "Grant +{0}% range damage";
 }

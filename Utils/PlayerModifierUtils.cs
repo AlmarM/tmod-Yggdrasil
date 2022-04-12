@@ -12,6 +12,8 @@ public static class PlayerModifierUtils
         {
             PlayerModifierType.Defense => FormatDescription(PlayerModifierConfig.DefenseDescription, amount),
             PlayerModifierType.MaxMana => FormatDescription(PlayerModifierConfig.MaxManaDescription, amount),
+	    PlayerModifierType.LifeRegen => FormatDescription(PlayerModifierConfig.LifeRegenDescription, amount),
+	    PlayerModifierType.ManaRegen => FormatDescription(PlayerModifierConfig.ManaRegenDescription, amount),
             _ => throw new ArgumentOutOfRangeException(nameof(modifierType))
         };
     }
