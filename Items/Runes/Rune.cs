@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Yggdrasil.Configs;
 using Yggdrasil.Extensions;
-using Yggdrasil.Players.Modifiers;
+using Yggdrasil.Players.Modifiers.Effects;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Items.Runes;
@@ -15,11 +15,11 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public abstract string TooltipDescription { get; }
 
-    private readonly ICollection<(PlayerModifierType, int)> _modifiers;
+    private readonly ICollection<IPlayerModifier> _modifiers;
 
     protected Rune()
     {
-        _modifiers = new List<(PlayerModifierType, int)>();
+        _modifiers = new List<IPlayerModifier>();
     }
 
     public override void SetStaticDefaults()
@@ -39,10 +39,9 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public override void UpdateInventory(Player player)
     {
-        foreach ((PlayerModifierType type, int amount) in _modifiers)
+        foreach (IPlayerModifier modifier in _modifiers)
         {
-            IPlayerModifier modifier = Instances.PlayerModifierCache.Get(type);
-            modifier.Update(player, amount);
+            modifier.Apply(player);
         }
     }
 
@@ -62,9 +61,9 @@ public abstract class Rune : YggdrasilItem, IRune
     {
         string description = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, TooltipDescription);
 
-        foreach ((PlayerModifierType type, int amount) in _modifiers)
+        foreach (IPlayerModifier modifier in _modifiers)
         {
-            description += $"\n{PlayerModifierUtils.GetDescription(type, amount)}";
+            description += $"\n{modifier.Description}";
         }
 
         return description;
@@ -72,8 +71,8 @@ public abstract class Rune : YggdrasilItem, IRune
 
     protected abstract void SetModifiers();
 
-    protected void AddModifier(PlayerModifierType type, int amount)
+    protected void AddModifier(IPlayerModifier modifier)
     {
-        _modifiers.Add((type, amount));
+        _modifiers.Add(modifier);
     }
 }

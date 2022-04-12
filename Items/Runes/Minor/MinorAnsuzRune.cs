@@ -1,6 +1,5 @@
 using Terraria.ID;
 using Yggdrasil.Items.Runes.Normal;
-using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Minor;
 

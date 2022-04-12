@@ -1,5 +1,5 @@
 using Terraria.ID;
-using Yggdrasil.Players.Modifiers;
+using Yggdrasil.Players.Modifiers.Effects;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
@@ -22,6 +22,6 @@ public class AnsuzRune : Rune
 
     protected override void SetModifiers()
     {
-        AddModifier(PlayerModifierType.MaxMana, ManaAmount);
+        AddModifier(new MaxManaModifier(ManaAmount));
     }
 }
