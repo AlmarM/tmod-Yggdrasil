@@ -11,6 +11,12 @@ public class MajorAlgizRune : AlgizRune
 
     protected override int DefenseAmount => 3;
 
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<AlgizRune>(3)
+        .AddIngredient(ItemID.PaladinsShield)
+        .AddIngredient(ItemID.BeetleHusk, 10)
+        .Register();
+
     public override void SetDefaults()
     {
         base.SetDefaults();

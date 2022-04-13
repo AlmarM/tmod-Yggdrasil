@@ -1,5 +1,6 @@
 using Terraria.ID;
-using Yggdrasil.Players.Modifiers.Effects;
+using Yggdrasil.Items.Runes.Minor;
+using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
@@ -19,6 +20,12 @@ public class AlgizRune : Rune
 
         Item.rare = ItemRarityID.Lime;
     }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<MinorAlgizRune>(3)
+        .AddIngredient(ItemID.HallowedBar, 10)
+        .AddIngredient(ItemID.TurtleShell)
+        .Register();
 
     protected override void SetModifiers()
     {
