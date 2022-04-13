@@ -1,6 +1,6 @@
 using Terraria;
 
-namespace Yggdrasil.Players.Modifiers.Effects;
+namespace Yggdrasil.Players.Modifiers;
 
 public interface IPlayerModifier
 {
