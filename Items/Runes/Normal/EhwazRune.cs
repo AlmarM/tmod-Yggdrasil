@@ -4,15 +4,15 @@ using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
-public class AnsuzRune : Rune
+public class EhwazRune : Rune
 {
-    public override string RuneName => "Ansuz";
+    public override string RuneName => "Ehwaz";
 
     public override RuneTier Tier => RuneTier.Normal;
 
-    public override string TooltipDescription => "A rune granting wisdom.";
+    public override string TooltipDescription => "A rune granting transportation.";
 
-    protected virtual int manaAmount => 20;
+    protected virtual float movSpeedAmount => 0.1f;
 
     public override void SetDefaults()
     {
@@ -22,13 +22,13 @@ public class AnsuzRune : Rune
     }
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorAnsuzRune>(3)
-        .AddIngredient(ItemID.NaturesGift)
-        .AddIngredient(ItemID.CrystalBall)
+        .AddIngredient<MinorEhwazRune>(3)
+        .AddIngredient(ItemID.AsphaltBlock, 50)
+        .AddIngredient(ItemID.SoulofFlight, 20)
         .Register();
 
     protected override void SetModifiers()
     {
-        AddModifier(new MaxManaModifier(manaAmount));
+        AddModifier(new MovSpeedModifier(movSpeedAmount));
     }
 }

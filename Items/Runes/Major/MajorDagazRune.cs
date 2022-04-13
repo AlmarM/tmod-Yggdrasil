@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Major;
 
-public class MajorAnsuzRune : AnsuzRune
+public class MajorDagazRune : DagazRune
 {
     public override RuneTier Tier => RuneTier.Major;
 
-    public override string TooltipDescription => "A major rune granting wisdom.";
+    public override string TooltipDescription => "A major rune granting awareness.";
 
-    protected override int manaAmount => 30;
+    protected override float rangeDmgAmount => 0.2f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<AnsuzRune>(3)
-        .AddIngredient(ItemID.Ectoplasm, 10)
-        .AddIngredient(ItemID.HallowedHeadgear)
+        .AddIngredient<DagazRune>(3)
+        .AddIngredient(ItemID.ShroomiteBar, 40)
+        .AddIngredient(ItemID.SniperScope)
         .Register();
 
     public override void SetDefaults()
@@ -23,5 +23,4 @@ public class MajorAnsuzRune : AnsuzRune
 
         Item.rare = ItemRarityID.Yellow;
     }
-	
 }

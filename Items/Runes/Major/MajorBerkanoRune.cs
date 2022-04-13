@@ -7,10 +7,16 @@ public class MajorBerkanoRune : BerkanoRune
 {
     public override RuneTier Tier => RuneTier.Major;
 
-    public override string TooltipDescription => "A rune granting regeneration.";
+    public override string TooltipDescription => "A major rune granting regeneration.";
 
     protected override int lifeRegenAmount => 20;
     protected override int manaRegenAmount => 80;
+	
+	public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<BerkanoRune>(3)
+        .AddIngredient(ItemID.SpectreMask)
+        .AddIngredient(ItemID.SunStone)
+        .Register();
 
     public override void SetDefaults()
     {

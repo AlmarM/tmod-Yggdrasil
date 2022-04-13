@@ -3,24 +3,24 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
-public class MinorAnsuzRune : AnsuzRune
+public class MinorEhwazRune : EhwazRune
 {
     public override RuneTier Tier => RuneTier.Minor;
 
-    public override string TooltipDescription => "A minor rune granting defense.";
+    public override string TooltipDescription => "A minor rune granting transportation.";
 
-    protected override int manaAmount => 10;
+    protected override float movSpeedAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
-        .AddIngredient(ItemID.ManaCrystal, 5)
-        .AddIngredient(ItemID.BandofStarpower)
+        .AddIngredient(ItemID.IceBlock, 30)
+        .AddIngredient(ItemID.SwiftnessPotion, 5)
         .Register();
 
     public override void SetDefaults()
     {
         base.SetDefaults();
 
-        Item.rare = ItemRarityID.Green;
+        Item.rare = ItemRarityID.Blue;
     }
 }

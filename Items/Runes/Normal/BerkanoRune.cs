@@ -1,4 +1,5 @@
 using Terraria.ID;
+using Yggdrasil.Items.Runes.Minor;
 using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
@@ -20,6 +21,12 @@ public class BerkanoRune : Rune
 
         Item.rare = ItemRarityID.Orange;
     }
+	
+	public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<MinorBerkanoRune>(3)
+        .AddIngredient(ItemID.MoonStone)
+        .AddIngredient(ItemID.LifeFruit, 2)
+        .Register();
 
     protected override void SetModifiers()
     {
