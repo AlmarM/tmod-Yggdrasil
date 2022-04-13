@@ -11,7 +11,7 @@ public class AnsuzRune : Rune
 
     public override string TooltipDescription => "A rune granting wisdom.";
 
-    protected virtual int ManaAmount => 20;
+    protected virtual int manaAmount => 20;
 
     public override void SetDefaults()
     {
@@ -22,6 +22,6 @@ public class AnsuzRune : Rune
 
     protected override void SetModifiers()
     {
-        AddModifier(new MaxManaModifier(ManaAmount));
+        AddModifier(new MaxManaModifier(manaAmount));
     }
 }

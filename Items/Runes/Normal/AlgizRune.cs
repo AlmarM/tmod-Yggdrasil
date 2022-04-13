@@ -12,7 +12,7 @@ public class AlgizRune : Rune
 
     public override string TooltipDescription => "A rune granting defense.";
 
-    protected virtual int DefenseAmount => 2;
+    protected virtual int defenseAmount => 2;
 
     public override void SetDefaults()
     {
@@ -29,6 +29,6 @@ public class AlgizRune : Rune
 
     protected override void SetModifiers()
     {
-        AddModifier(new DefenseModifier(DefenseAmount));
+        AddModifier(new DefenseModifier(defenseAmount));
     }
 }
