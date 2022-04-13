@@ -1,5 +1,5 @@
 using Terraria.ID;
-using Yggdrasil.Players.Modifiers.Effects;
+using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 

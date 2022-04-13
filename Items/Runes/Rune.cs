@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Yggdrasil.Configs;
 using Yggdrasil.Extensions;
-using Yggdrasil.Players.Modifiers.Effects;
+using Yggdrasil.Players.Modifiers;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Items.Runes;
