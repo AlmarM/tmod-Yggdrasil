@@ -3,7 +3,7 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Players.Modifiers;
 
-public class MaxManaModifier : PlayerModifier
+internal class MaxManaModifier : PlayerModifier
 {
     public override string Description => MakeDescription(PlayerModifierConfig.MaxManaDescription, _maxManaAmount);
 

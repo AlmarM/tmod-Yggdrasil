@@ -3,7 +3,7 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
-public class MinorBerkanoRune : BerkanoRune
+internal class MinorBerkanoRune : BerkanoRune
 {
     public override RuneTier Tier => RuneTier.Minor;
 

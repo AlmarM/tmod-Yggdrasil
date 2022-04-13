@@ -4,15 +4,16 @@ using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
-internal class AlgizRune : Rune
+internal class IsaRune : Rune
 {
-    public override string RuneName => "Algiz";
+    public override string RuneName => "Isa";
 
     public override RuneTier Tier => RuneTier.Normal;
 
-    public override string TooltipDescription => "A rune granting defense.";
+    public override string TooltipDescription => "A rune giving a challenge.";
 
-    protected virtual int defenseAmount => 2;
+    protected virtual float damageBonus => 0.03f;
+    protected virtual float healthThreshold => 0.1f;
 
     public override void SetDefaults()
     {
@@ -22,13 +23,12 @@ internal class AlgizRune : Rune
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorAlgizRune>(3)
-        .AddIngredient(ItemID.HallowedBar, 10)
-        .AddIngredient(ItemID.TurtleShell)
+        .AddIngredient<MinorIsaRune>(3)
+        .AddIngredient(ItemID.IlluminantBatBanner)
+        .AddIngredient(ItemID.PirateBanner)
         .Register();
 
     protected override void SetModifiers()
     {
-        AddModifier(new DefenseModifier(defenseAmount));
     }
 }

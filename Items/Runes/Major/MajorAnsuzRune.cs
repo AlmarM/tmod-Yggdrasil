@@ -3,7 +3,7 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Major;
 
-public class MajorAnsuzRune : AnsuzRune
+internal class MajorAnsuzRune : AnsuzRune
 {
     public override RuneTier Tier => RuneTier.Major;
 

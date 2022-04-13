@@ -3,7 +3,7 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Players.Modifiers;
 
-public class DefenseModifier : PlayerModifier
+internal class DefenseModifier : PlayerModifier
 {
     public override string Description => MakeDescription(PlayerModifierConfig.DefenseDescription, _defense);
 

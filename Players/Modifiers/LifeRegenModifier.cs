@@ -3,7 +3,7 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Players.Modifiers;
 
-public class LifeRegenModifier : PlayerModifier
+internal class LifeRegenModifier : PlayerModifier
 {
     public override string Description => MakeDescription(PlayerModifierConfig.LifeRegenDescription, _regenAmount);
 

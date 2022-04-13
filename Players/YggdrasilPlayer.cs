@@ -3,6 +3,6 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.Players;
 
-public class YggdrasilPlayer : ModPlayer
+internal class YggdrasilPlayer : ModPlayer
 {
 }

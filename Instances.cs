@@ -1,5 +1,5 @@
 ﻿namespace Yggdrasil;
-public class Instances
+internal class Instances
 {
     public static void Create()
     {

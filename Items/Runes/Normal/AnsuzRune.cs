@@ -3,7 +3,7 @@ using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
-public class AnsuzRune : Rune
+internal class AnsuzRune : Rune
 {
     public override string RuneName => "Ansuz";
 

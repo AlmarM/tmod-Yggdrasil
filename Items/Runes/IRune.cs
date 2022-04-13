@@ -1,6 +1,6 @@
 namespace Yggdrasil.Items.Runes;
 
-public interface IRune
+internal interface IRune
 {
     string RuneName { get; }
 
