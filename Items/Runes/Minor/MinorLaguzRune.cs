@@ -3,25 +3,24 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
-internal class MinorIsaRune : IsaRune
+internal class MinorLaguzRune : LaguzRune
 {
     public override RuneTier Tier => RuneTier.Minor;
 
-    public override string TooltipDescription => "A minor rune giving a challenge.";
+    public override string TooltipDescription => "A minor rune granting renewal.";
 
-    protected override float damageBonus => 0.25f;
-    protected override float healthThreshold => 0.1f;
+    protected override int health => 1;
 
     public override void SetDefaults()
     {
         base.SetDefaults();
 
-        Item.rare = ItemRarityID.Green;
+        Item.rare = ItemRarityID.Blue;
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
-        .AddIngredient(ItemID.SlimeBanner)
-        .AddIngredient(ItemID.BatBanner)
+        .AddIngredient(ItemID.HealingPotion, 20)
+        .AddIngredient(ItemID.CrispyHoneyBlock, 20)
         .Register();
 }

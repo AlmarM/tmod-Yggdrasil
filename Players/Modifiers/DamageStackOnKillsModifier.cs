@@ -5,21 +5,21 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Players.Modifiers;
 
-internal class DamageStackModifier : PlayerModifier
+internal class DamageStackOnKillsModifier : PlayerModifier
 {
     public override string Description
     {
         get
         {
             double percentage = Math.Round(_damageBonus * 100);
-            return MakeDescription(PlayerModifierConfig.DamageStackDescription, percentage, _maxStacks);
+            return MakeDescription(PlayerModifierConfig.DamageStackOnKillsDescription, percentage, _maxStacks);
         }
     }
 
     private float _damageBonus;
     private int _maxStacks;
 
-    public DamageStackModifier(float damageBonus, int maxStacks)
+    public DamageStackOnKillsModifier(float damageBonus, int maxStacks)
     {
         _damageBonus = damageBonus;
         _maxStacks = maxStacks;

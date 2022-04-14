@@ -12,8 +12,8 @@ internal class IsaRune : Rune
 
     public override string TooltipDescription => "A rune giving a challenge.";
 
-    protected virtual float damageBonus => 0.03f;
-    protected virtual float healthThreshold => 0.1f;
+    protected virtual float damageBonus => 0.5f;
+    protected virtual float healthThreshold => 0.12f;
 
     public override void SetDefaults()
     {
@@ -30,5 +30,6 @@ internal class IsaRune : Rune
 
     protected override void SetModifiers()
     {
+        AddModifier(new DamageBelowHealthModifier(damageBonus, healthThreshold));
     }
 }
