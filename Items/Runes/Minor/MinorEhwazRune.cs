@@ -9,12 +9,13 @@ public class MinorEhwazRune : EhwazRune
 
     public override string TooltipDescription => "A minor rune granting transportation.";
 
-    protected override float movSpeedAmount => 0.05f;
+    protected override float movementSpeedAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
         .AddIngredient(ItemID.IceBlock, 30)
         .AddIngredient(ItemID.SwiftnessPotion, 5)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

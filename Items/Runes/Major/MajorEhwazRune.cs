@@ -9,12 +9,13 @@ public class MajorEhwazRune : EhwazRune
 
     public override string TooltipDescription => "A major rune granting transportation.";
 
-    protected override float movSpeedAmount => 0.2f;
+    protected override float movementSpeedAmount => 0.2f;
 	
 	public override void AddRecipes() => CreateRecipe()
         .AddIngredient<EhwazRune>(3)
         .AddIngredient(ItemID.SpookyHook)
         .AddIngredient(ItemID.IlluminantHook)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

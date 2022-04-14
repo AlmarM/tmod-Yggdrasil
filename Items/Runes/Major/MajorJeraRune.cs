@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Major;
 
-public class MajorAlgizRune : AlgizRune
+public class MajorJeraRune : JeraRune
 {
     public override RuneTier Tier => RuneTier.Major;
 
-    public override string TooltipDescription => "A major rune granting defense.";
+    public override string TooltipDescription => "A major rune granting peace.";
 
-    protected override int defenseAmount => 3;
+    protected override int aggroAmount => 100;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<AlgizRune>(3)
-        .AddIngredient(ItemID.PaladinsShield)
-        .AddIngredient(ItemID.BeetleHusk, 10)
+        .AddIngredient<JeraRune>(3)
+        .AddIngredient(ItemID.PsychoKnife)
+        .AddIngredient(ItemID.ShroomiteBar, 10)
 		.AddTile(TileID.Anvils)
         .Register();
 

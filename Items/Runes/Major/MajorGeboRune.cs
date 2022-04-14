@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Major;
 
-public class MajorAnsuzRune : AnsuzRune
+public class MajorGeboRune : GeboRune
 {
     public override RuneTier Tier => RuneTier.Major;
 
-    public override string TooltipDescription => "A major rune granting wisdom.";
+    public override string TooltipDescription => "A major rune granting unity.";
 
-    protected override int manaAmount => 30;
+    protected override float minionDamageAmount => 0.2f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<AnsuzRune>(3)
-        .AddIngredient(ItemID.Ectoplasm, 10)
-        .AddIngredient(ItemID.HallowedHeadgear)
+        .AddIngredient<GeboRune>(3)
+        .AddIngredient(ItemID.SpookyWood, 400)
+        .AddIngredient(ItemID.PygmyNecklace)
 		.AddTile(TileID.Anvils)
         .Register();
 
@@ -24,5 +24,4 @@ public class MajorAnsuzRune : AnsuzRune
 
         Item.rare = ItemRarityID.Yellow;
     }
-	
 }

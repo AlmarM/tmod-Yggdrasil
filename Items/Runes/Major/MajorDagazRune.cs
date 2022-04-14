@@ -9,12 +9,13 @@ public class MajorDagazRune : DagazRune
 
     public override string TooltipDescription => "A major rune granting awareness.";
 
-    protected override float rangeDmgAmount => 0.2f;
+    protected override float rangeDamageAmount => 0.2f;
 	
 	public override void AddRecipes() => CreateRecipe()
         .AddIngredient<DagazRune>(3)
         .AddIngredient(ItemID.ShroomiteBar, 40)
         .AddIngredient(ItemID.SniperScope)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

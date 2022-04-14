@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Major;
 
-public class MajorAnsuzRune : AnsuzRune
+public class MajorIngwazRune : IngwazRune
 {
     public override RuneTier Tier => RuneTier.Major;
 
-    public override string TooltipDescription => "A major rune granting wisdom.";
+    public override string TooltipDescription => "A major rune granting internal growth.";
 
-    protected override int manaAmount => 30;
+    protected override int maxLifeAmount => 10;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<AnsuzRune>(3)
-        .AddIngredient(ItemID.Ectoplasm, 10)
-        .AddIngredient(ItemID.HallowedHeadgear)
+        .AddIngredient<IngwazRune>(3)
+        .AddIngredient(ItemID.SunStone)
+        .AddIngredient(ItemID.MoonStone)
 		.AddTile(TileID.Anvils)
         .Register();
 

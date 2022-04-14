@@ -25,6 +25,7 @@ public class AnsuzRune : Rune
         .AddIngredient<MinorAnsuzRune>(3)
         .AddIngredient(ItemID.NaturesGift)
         .AddIngredient(ItemID.CrystalBall)
+		.AddTile(TileID.Anvils)
         .Register();
 
     protected override void SetModifiers()

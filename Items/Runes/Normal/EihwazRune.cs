@@ -4,15 +4,15 @@ using Yggdrasil.Players.Modifiers;
 
 namespace Yggdrasil.Items.Runes.Normal;
 
-public class DagazRune : Rune
+public class EihwazRune : Rune
 {
-    public override string RuneName => "Dagaz";
+    public override string RuneName => "Eihwaz";
 
     public override RuneTier Tier => RuneTier.Normal;
 
-    public override string TooltipDescription => "A rune granting awareness.";
+    public override string TooltipDescription => "A rune granting strength.";
 
-    protected virtual float rangeDamageAmount => 0.1f;
+    protected virtual float meleeDamageAmount => 0.1f;
 
     public override void SetDefaults()
     {
@@ -22,14 +22,14 @@ public class DagazRune : Rune
     }
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorDagazRune>(3)
-        .AddIngredient(ItemID.RangerEmblem)
-        .AddIngredient(ItemID.MagicQuiver)
+        .AddIngredient<MinorEihwazRune>(3)
+        .AddIngredient(ItemID.WarriorEmblem)
+        .AddIngredient(ItemID.Chik)
 		.AddTile(TileID.Anvils)
         .Register();
 
     protected override void SetModifiers()
     {
-        AddModifier(new RangeDamageModifier(rangeDamageAmount));
+        AddModifier(new MeleeDamageModifier(meleeDamageAmount));
     }
 }

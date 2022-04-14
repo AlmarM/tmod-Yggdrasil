@@ -16,6 +16,7 @@ public class MinorBerkanoRune : BerkanoRune
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
         .AddIngredient(ItemID.StarinaBottle, 3)
         .AddIngredient(ItemID.HeartLantern, 3)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

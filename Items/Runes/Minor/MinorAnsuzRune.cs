@@ -15,6 +15,7 @@ public class MinorAnsuzRune : AnsuzRune
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
         .AddIngredient(ItemID.ManaCrystal, 5)
         .AddIngredient(ItemID.BandofStarpower)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

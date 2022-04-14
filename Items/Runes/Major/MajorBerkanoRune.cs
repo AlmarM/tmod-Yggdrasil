@@ -16,6 +16,7 @@ public class MajorBerkanoRune : BerkanoRune
         .AddIngredient<BerkanoRune>(3)
         .AddIngredient(ItemID.SpectreMask)
         .AddIngredient(ItemID.SunStone)
+		.AddTile(TileID.Anvils)
         .Register();
 
     public override void SetDefaults()

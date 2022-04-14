@@ -26,6 +26,7 @@ public class BerkanoRune : Rune
         .AddIngredient<MinorBerkanoRune>(3)
         .AddIngredient(ItemID.MoonStone)
         .AddIngredient(ItemID.LifeFruit, 2)
+		.AddTile(TileID.Anvils)
         .Register();
 
     protected override void SetModifiers()

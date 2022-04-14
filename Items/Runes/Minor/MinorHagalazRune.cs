@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
-public class MinorDagazRune : DagazRune
+public class MinorHagalazRune : HagalazRune
 {
     public override RuneTier Tier => RuneTier.Minor;
 
-    public override string TooltipDescription => "A minor rune granting awareness.";
+    public override string TooltipDescription => "A minor rune granting wrath.";
 
-    protected override float rangeDamageAmount => 0.05f;
+    protected override float magicDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
-        .AddIngredient(ItemID.FossilOre, 25)
-        .AddIngredient(ItemID.FlareGun)
+        .AddIngredient(ItemID.WizardHat)
+        .AddIngredient(ItemID.MagicMissile)
 		.AddTile(TileID.Anvils)
         .Register();
 
@@ -22,6 +22,6 @@ public class MinorDagazRune : DagazRune
     {
         base.SetDefaults();
 
-        Item.rare = ItemRarityID.Blue;
+        Item.rare = ItemRarityID.Green;
     }
 }

@@ -3,18 +3,18 @@ using Yggdrasil.Items.Runes.Normal;
 
 namespace Yggdrasil.Items.Runes.Minor;
 
-public class MinorAlgizRune : AlgizRune
+public class MinorJeraRune : JeraRune
 {
     public override RuneTier Tier => RuneTier.Minor;
 
-    public override string TooltipDescription => "A minor rune granting defense.";
+    public override string TooltipDescription => "A minor rune granting peace.";
 
-    protected override int defenseAmount => 1;
+    protected override int aggroAmount => 20;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10) // temporary
-        .AddIngredient(ItemID.Shackle)
-        .AddIngredient(ItemID.ObsidianSkull)
+        .AddIngredient(ItemID.InvisibilityPotion, 5)
+        .AddIngredient(ItemID.Shiverthorn, 5)
 		.AddTile(TileID.Anvils)
         .Register();
 

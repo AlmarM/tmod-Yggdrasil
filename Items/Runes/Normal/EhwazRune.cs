@@ -12,7 +12,7 @@ public class EhwazRune : Rune
 
     public override string TooltipDescription => "A rune granting transportation.";
 
-    protected virtual float movSpeedAmount => 0.1f;
+    protected virtual float movementSpeedAmount => 0.1f;
 
     public override void SetDefaults()
     {
@@ -25,10 +25,11 @@ public class EhwazRune : Rune
         .AddIngredient<MinorEhwazRune>(3)
         .AddIngredient(ItemID.AsphaltBlock, 50)
         .AddIngredient(ItemID.SoulofFlight, 20)
+		.AddTile(TileID.Anvils)
         .Register();
 
     protected override void SetModifiers()
     {
-        AddModifier(new MovSpeedModifier(movSpeedAmount));
+        AddModifier(new MovementSpeedModifier(movementSpeedAmount));
     }
 }
