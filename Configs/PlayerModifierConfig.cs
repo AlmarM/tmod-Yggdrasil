@@ -16,6 +16,14 @@ public static class PlayerModifierConfig
 	public const string MaxLifeDescription = "Increases maximum life by {0}";
 	public const string CriticalChanceDescription = "{0}% increased critical strike chance";
 	public const string DodgeChanceDescription = "{0}% change to dodge the next attack";
+	public const string ThrowingDamageDescription = "{0}% increased throwing damage";
+	public const string ArmorPenetrationDescription = "Increase armor penetration by {0}";
+	public const string MeleeSpeedDescription = "{0}% increased melee speed";
+	public const string DamageReductionDescription = "Reduce damage taken by {0}%";
+	
+	public const string ThornsDescription = 
+		"Attackers also take damage" +
+        "\nIncrease thorn by {0}%";
 	
 	public const string AggroDescription = 
 		"Enemies are less likely to target you" +
