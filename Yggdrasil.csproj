@@ -13,6 +13,7 @@
   <ItemGroup>
     <Folder Include="Assets\Items\Runes\Major" />
     <Folder Include="Assets\Items\Runes\Normal" />
+    <Folder Include="Assets\Items\Weapons" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
