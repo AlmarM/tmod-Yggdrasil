@@ -1,6 +1,6 @@
 namespace Yggdrasil.Utils;
 
-public class TimeUtils
+internal static class TimeUtils
 {
     private const int TicksPerSecond = 60;
     private const int TicksPerMinute = TicksPerSecond * 60;

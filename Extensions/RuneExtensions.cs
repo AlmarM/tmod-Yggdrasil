@@ -1,5 +1,5 @@
 using System;
-using Yggdrasil.Items.Runes;
+using Yggdrasil.Runes;
 
 namespace Yggdrasil.Extensions;
 

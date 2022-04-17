@@ -1,0 +1,32 @@
+using Terraria.ID;
+using Yggdrasil.Configs;
+using Yggdrasil.Content.Items.Runes.Normal;
+using Yggdrasil.Runes;
+using Yggdrasil.Runes.Effects;
+
+namespace Yggdrasil.Content.Items.Runes.Major;
+
+internal class MajorOthalaRune : Rune
+{
+    private const float ReduceAmmoConsumptionBonus = 0.2f;
+
+    public override string Label => OthalaRune.RuneName;
+
+    public override RuneTier Tier => RuneTier.Major;
+
+    public override string TooltipDescription => RuneEffectConfig.MajorOthalaDescription;
+
+    public override int Rarity => ItemRarityID.Yellow;
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<OthalaRune>(3)
+        .AddIngredient(ItemID.VenusMagnum)
+        .AddIngredient(ItemID.SnowballCannon)
+        .AddIngredient(ItemID.CandyCornRifle)
+        .Register();
+
+    protected override void AddEffects()
+    {
+        AddEffect(RuneEffects.Get<OthalaEffect>(), new OthalaEffect.Parameters(ReduceAmmoConsumptionBonus));
+    }
+}
