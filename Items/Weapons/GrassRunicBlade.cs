@@ -32,9 +32,13 @@ public class GrassRunicBlade : YggdrasilItem
         Item.UseSound = SoundID.Item1;
     }
 	
-	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
-			target.AddBuff(BuffID.Poisoned, 300);
+	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
+	{
+		if (Main.rand.NextFloat() < .25f)
+		{
+				target.AddBuff(BuffID.Poisoned, 300);
 		}
+	}
 
     public override void AddRecipes() => CreateRecipe()
 		.AddIngredient(ItemID.Stinger, 15)

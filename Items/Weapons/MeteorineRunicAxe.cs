@@ -33,9 +33,13 @@ public class MeteorineRunicAxe : YggdrasilItem
         Item.UseSound = SoundID.Item1;
     }
 	
-	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
+	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
+	{
+		if (Main.rand.NextFloat() < .25f)
+		{
 			target.AddBuff(BuffID.OnFire, 60);
 		}
+	}
 
     public override void AddRecipes() => CreateRecipe()
 		.AddIngredient(ItemID.MeteoriteBar, 12)

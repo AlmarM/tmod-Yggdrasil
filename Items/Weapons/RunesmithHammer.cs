@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 namespace Yggdrasil.Items.Weapons;
 
 // YggdrasilItem is only used for location our images in the Assets/ folder
-public class ChlorophyteRunicSword : YggdrasilItem
+public class RunesmithHammer : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Chlorophyte Runic Blade");
+        DisplayName.SetDefault("Runesmith Hammer");
 
         // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -21,30 +21,32 @@ public class ChlorophyteRunicSword : YggdrasilItem
         // Please adjust as needed
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 22;
-        Item.useAnimation = 22;
+        Item.useTime = 30;
+        Item.useAnimation = 30;
         Item.autoReuse = false;
-        Item.damage = 65;
-        Item.crit = 5;
-        Item.knockBack = 5;
-		Item.value = Item.buyPrice(0, 5, 52, 0);
-        Item.rare = ItemRarityID.Lime;
+        Item.damage = 9;
+        Item.crit = 4;
+        Item.knockBack = 10;
+		Item.hammer = 45;
+		Item.value = Item.buyPrice(0, 0, 5, 40);
+        Item.rare = ItemRarityID.White;
         Item.UseSound = SoundID.Item1;
     }
-	
-	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
-	{
-		if (Main.rand.NextFloat() < .5f)
-		{
-			target.AddBuff(BuffID.Poisoned, 600);
-		}
-	}
 
-    public override void AddRecipes() => CreateRecipe()
-		.AddIngredient(ItemID.ChlorophyteBar, 10)
-		.AddIngredient(ItemID.MeteoriteBar, 5)
+    public override void AddRecipes()
+	{
+		CreateRecipe()
+        .AddRecipeGroup(RecipeGroupID.Wood, 15)
+		.AddIngredient(ItemID.IronBar, 10)
 		.AddTile(TileID.Anvils)
         .Register();
+		
+		CreateRecipe()
+        .AddRecipeGroup(RecipeGroupID.Wood, 15)
+		.AddIngredient(ItemID.LeadBar, 10)
+		.AddTile(TileID.Anvils)
+        .Register();
+	}
 		
 
 }

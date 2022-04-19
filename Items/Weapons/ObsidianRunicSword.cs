@@ -32,9 +32,13 @@ public class ObsidianRunicSword : YggdrasilItem
         Item.UseSound = SoundID.Item1;
     }
 	
-	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
+	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
+	{
+		if (Main.rand.NextFloat() < .5f)
+		{
 			target.AddBuff(BuffID.OnFire, 120);
 		}
+	}
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.HellstoneBar, 20)

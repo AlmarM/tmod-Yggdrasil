@@ -3,14 +3,15 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Yggdrasil.Items.Weapons;
 
 // YggdrasilItem is only used for location our images in the Assets/ folder
-public class ChlorophyteRunicSword : YggdrasilItem
+public class FleshRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Chlorophyte Runic Blade");
+        DisplayName.SetDefault("Flesh Runic Axe");
 
         // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -21,30 +22,20 @@ public class ChlorophyteRunicSword : YggdrasilItem
         // Please adjust as needed
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 22;
-        Item.useAnimation = 22;
+        Item.useTime = 27;
+        Item.useAnimation = 27;
         Item.autoReuse = false;
-        Item.damage = 65;
-        Item.crit = 5;
-        Item.knockBack = 5;
-		Item.value = Item.buyPrice(0, 5, 52, 0);
-        Item.rare = ItemRarityID.Lime;
+        Item.damage = 36;
+        Item.crit = 10;
+        Item.knockBack = 7;
+		Item.axe = 14;
+		Item.value = Item.buyPrice(0, 1, 25, 0);
+        Item.rare = ItemRarityID.LightRed;
         Item.UseSound = SoundID.Item1;
     }
 	
-	public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
-	{
-		if (Main.rand.NextFloat() < .5f)
-		{
-			target.AddBuff(BuffID.Poisoned, 600);
-		}
-	}
 
-    public override void AddRecipes() => CreateRecipe()
-		.AddIngredient(ItemID.ChlorophyteBar, 10)
-		.AddIngredient(ItemID.MeteoriteBar, 5)
-		.AddTile(TileID.Anvils)
-        .Register();
+		//Dropped by Wall of Flesh
 		
 
 }
