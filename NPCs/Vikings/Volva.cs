@@ -4,6 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Microsoft.Xna.Framework;
+using Terraria.Audio;
 
 namespace Yggdrasil.NPCs.Vikings
 {
@@ -17,12 +19,13 @@ namespace Yggdrasil.NPCs.Vikings
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { // Influences how the NPC looks in the Bestiary
 				Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
 			};	
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value); 
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
 		}
 
 		public override void SetDefaults() 
 		{
-			NPC.CloneDefaults(NPCID.GoblinSorcerer); //goblin sorcerer
+			//NPC.CloneDefaults(NPCID.GoblinSorcerer); //goblin sorcerer
+			
 			NPC.width = 30;
 			NPC.height = 40;
 			NPC.damage = 35;
@@ -32,11 +35,11 @@ namespace Yggdrasil.NPCs.Vikings
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 200f;
 			NPC.knockBackResist = 0.3f;
-			NPC.aiStyle = 8;
+			//NPC.aiStyle = 8;
 			AIType = 29;
 			AnimationType = 29;
 			//Banner = Item.NPCtoBanner(NPCID.Zombie); 
-			//BannerItem = Item.BannerToItem(Banner); 
+			//BannerItem = Item.BannerToItem(Banner);
 		}
 
 		/* public override float SpawnChance(NPCSpawnInfo spawnInfo) 
@@ -49,9 +52,146 @@ namespace Yggdrasil.NPCs.Vikings
 		} */
 		
 		public override void AI()
-        {
-            NPC.TargetClosest(true);
-            NPC.netUpdate = true;
+		{
+			NPC.TargetClosest();
+			NPC.velocity.X *= 0.93f;
+			if ((double)NPC.velocity.X > -0.1 && (double)NPC.velocity.X < 0.1)
+			{
+				NPC.velocity.X = 0f;
+			}
+
+			if (NPC.ai[0] == 0f)
+			{
+				NPC.ai[0] = 500f;
+			}
+
+			if (NPC.ai[2] != 0f && NPC.ai[3] != 0f)
+			{
+				NPC.position += NPC.netOffset;
+				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+				for (int num69 = 0; num69 < 50; num69++)
+				{
+					int num70 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f,
+						100, default(Color), Main.rand.Next(1, 3));
+					Dust dust = Main.dust[num70];
+					dust.velocity *= 3f;
+					if (Main.dust[num70].scale > 1f)
+					{
+						Main.dust[num70].noGravity = true;
+					}
+				}
+
+				NPC.position -= NPC.netOffset;
+				NPC.position.X = NPC.ai[2] * 16f - (float)(NPC.width / 2) + 8f;
+				NPC.position.Y = NPC.ai[3] * 16f - (float)NPC.height;
+				NPC.netOffset *= 0f;
+				NPC.velocity.X = 0f;
+				NPC.velocity.Y = 0f;
+				NPC.ai[2] = 0f;
+				NPC.ai[3] = 0f;
+				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+				for (int num78 = 0; num78 < 50; num78++)
+				{
+					int num79 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f,
+						100, default(Color), Main.rand.Next(1, 3));
+					Dust dust = Main.dust[num79];
+					dust.velocity *= 3f;
+					if (Main.dust[num79].scale > 1f)
+					{
+						Main.dust[num79].noGravity = true;
+					}
+				}
+			}
+
+			NPC.ai[0] += 1f;
+
+			if (NPC.ai[0] == 100f || NPC.ai[0] == 200f || NPC.ai[0] == 300f)
+			{
+				NPC.ai[1] = 30f;
+				NPC.netUpdate = true;
+			}
+
+			if (NPC.ai[0] >= 650f && Main.netMode != 1)
+			{
+				NPC.ai[0] = 1f;
+				int num87 = (int)Main.player[NPC.target].position.X / 16;
+				int num88 = (int)Main.player[NPC.target].position.Y / 16;
+				int num89 = (int)NPC.position.X / 16;
+				int num90 = (int)NPC.position.Y / 16;
+				int num91 = 20;
+				int num92 = 0;
+				bool flag4 = false;
+				if (Math.Abs(NPC.position.X - Main.player[NPC.target].position.X) +
+					Math.Abs(NPC.position.Y - Main.player[NPC.target].position.Y) > 2000f)
+				{
+					num92 = 100;
+					flag4 = true;
+				}
+
+				while (!flag4 && num92 < 100)
+				{
+					num92++;
+					int num93 = Main.rand.Next(num87 - num91, num87 + num91);
+					int num94 = Main.rand.Next(num88 - num91, num88 + num91);
+					for (int num95 = num94; num95 < num88 + num91; num95++)
+					{
+						if ((num95 < num88 - 4 || num95 > num88 + 4 || num93 < num87 - 4 || num93 > num87 + 4) &&
+							(num95 < num90 - 1 || num95 > num90 + 1 || num93 < num89 - 1 || num93 > num89 + 1) &&
+							Main.tile[num93, num95].HasUnactuatedTile)
+						{
+							bool flag5 = true;
+							if ((NPC.type == 32 || (NPC.type >= 281 && NPC.type <= 286)) &&
+								!Main.wallDungeon[Main.tile[num93, num95 - 1].WallType])
+							{
+								flag5 = false;
+							}
+							else if (Main.tile[num93, num95 - 1].LiquidType == 1)
+							{
+								flag5 = false;
+							}
+
+							if (flag5 && Main.tileSolid[Main.tile[num93, num95].TileType] &&
+								!Collision.SolidTiles(num93 - 1, num93 + 1, num95 - 4, num95 - 1))
+							{
+								NPC.ai[1] = 20f;
+								NPC.ai[2] = num93;
+								NPC.ai[3] = num95;
+								flag4 = true;
+								break;
+							}
+						}
+					}
+				}
+
+				NPC.netUpdate = true;
+			}
+
+			if (NPC.ai[1] > 0f)
+			{
+				NPC.ai[1] -= 1f;
+
+				if (NPC.ai[1] == 25f)
+				{
+					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+					if (Main.netMode != 1)
+					{
+						NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)NPC.position.X + NPC.width / 2,
+							(int)NPC.position.Y - 8, ModContent.NPCType<ChaosBallTest>());
+					}
+				}
+			}
+
+			NPC.position += NPC.netOffset;
+			if (Main.rand.Next(5) == 0)
+			{
+				int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, 32,
+					NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default(Color), 1.5f);
+				Main.dust[num117].noGravity = true;
+				Main.dust[num117].velocity.X *= 0.5f;
+				Main.dust[num117].velocity.Y = -2f;
+			}
+
+			NPC.position -= NPC.netOffset;
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)

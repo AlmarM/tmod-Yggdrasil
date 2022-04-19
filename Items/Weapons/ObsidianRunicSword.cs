@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace Yggdrasil.Items.Weapons;
 
@@ -11,8 +12,8 @@ public class ObsidianRunicSword : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Obsidian Runic Sword");
+		Tooltip.SetDefault("Hot to the touch");
 
-        // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -38,6 +39,16 @@ public class ObsidianRunicSword : YggdrasilItem
 		{
 			target.AddBuff(BuffID.OnFire, 120);
 		}
+	}
+	
+	public override void MeleeEffects(Player player, Rectangle hitbox) 
+	{
+			int dustType = 127;
+			int dustIndex = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType);
+			Dust dust = Main.dust[dustIndex];
+			dust.velocity.X = dust.velocity.X + Main.rand.Next(-50, 51) * 0.01f;
+			dust.velocity.Y = dust.velocity.Y + Main.rand.Next(-50, 51) * 0.01f;
+			dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
 	}
 
     public override void AddRecipes() => CreateRecipe()
