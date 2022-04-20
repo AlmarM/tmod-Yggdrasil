@@ -11,6 +11,8 @@ public class FehuRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting luck.";
+	
+	public override int RunePower => 1;
 
     protected virtual int criticalChanceMeleeAmount => 2;
 	protected virtual int criticalChanceRangedAmount => 2;

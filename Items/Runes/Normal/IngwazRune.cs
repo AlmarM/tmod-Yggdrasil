@@ -11,6 +11,8 @@ public class IngwazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting internal growth.";
+	
+	public override int RunePower => 1;
 
     protected virtual int maxLifeAmount => 5;
 

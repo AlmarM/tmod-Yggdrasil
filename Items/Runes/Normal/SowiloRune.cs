@@ -11,6 +11,8 @@ public class SowiloRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting success.";
+	
+	public override int RunePower => 1;
 
     protected virtual int armorPenetration => 3;
 

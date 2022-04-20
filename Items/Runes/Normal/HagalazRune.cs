@@ -11,6 +11,8 @@ public class HagalazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting wrath.";
+	
+	public override int RunePower => 1;
 
     protected virtual float magicDamageAmount => 0.1f;
 

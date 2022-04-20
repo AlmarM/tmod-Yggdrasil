@@ -11,6 +11,8 @@ public class ThurisazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting spikes.";
+	
+	public override int RunePower => 1;
 
     protected virtual float thornsAmount => 0.25f;
 

@@ -11,6 +11,8 @@ public class KenazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A minor rune granting vision.";
+	
+	public override int RunePower => 1;
 
     protected virtual int dodgeChance => 2;
 

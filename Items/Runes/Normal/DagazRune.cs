@@ -11,6 +11,8 @@ public class DagazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting awareness.";
+	
+	public override int RunePower => 1;
 
     protected virtual float rangeDamageAmount => 0.1f;
 

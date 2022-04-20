@@ -11,6 +11,8 @@ public class UruzRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting speed.";
+	
+	public override int RunePower => 1;
 
     protected virtual float meleeSpeed => 0.1f;
 

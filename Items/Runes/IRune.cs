@@ -7,4 +7,6 @@ public interface IRune
     RuneTier Tier { get; }
 
     string TooltipDescription { get; }
+
+    int RunePower { get; }
 }

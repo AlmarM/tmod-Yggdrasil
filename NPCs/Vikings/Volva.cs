@@ -28,7 +28,7 @@ namespace Yggdrasil.NPCs.Vikings
 			
 			NPC.width = 30;
 			NPC.height = 40;
-			NPC.damage = 35;
+			NPC.damage = 20;
 			NPC.defense = 4;
 			NPC.lifeMax = 60;
 			NPC.HitSound = SoundID.NPCHit1;
@@ -51,7 +51,8 @@ namespace Yggdrasil.NPCs.Vikings
 			return 0f;
 		} */
 		
-		public override void AI()
+		
+		public override void AI() // This is a clone rework of the goblin sorcerer AI
 		{
 			NPC.TargetClosest();
 			NPC.velocity.X *= 0.93f;
@@ -65,13 +66,13 @@ namespace Yggdrasil.NPCs.Vikings
 				NPC.ai[0] = 500f;
 			}
 
-			if (NPC.ai[2] != 0f && NPC.ai[3] != 0f)
+			if (NPC.ai[2] != 0f && NPC.ai[3] != 0f) // That part is about the teleport
 			{
 				NPC.position += NPC.netOffset;
 				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				for (int num69 = 0; num69 < 50; num69++)
 				{
-					int num70 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f,
+					int num70 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f, //Dust left on former spot after teleport
 						100, default(Color), Main.rand.Next(1, 3));
 					Dust dust = Main.dust[num70];
 					dust.velocity *= 3f;
@@ -92,7 +93,7 @@ namespace Yggdrasil.NPCs.Vikings
 				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				for (int num78 = 0; num78 < 50; num78++)
 				{
-					int num79 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f,
+					int num79 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f, //Dust explosion after teleport
 						100, default(Color), Main.rand.Next(1, 3));
 					Dust dust = Main.dust[num79];
 					dust.velocity *= 3f;
@@ -111,7 +112,7 @@ namespace Yggdrasil.NPCs.Vikings
 				NPC.netUpdate = true;
 			}
 
-			if (NPC.ai[0] >= 650f && Main.netMode != 1)
+			if (NPC.ai[0] >= 650f && Main.netMode != 1) // Not sure what this part exacly does but without this, there's no attack
 			{
 				NPC.ai[0] = 1f;
 				int num87 = (int)Main.player[NPC.target].position.X / 16;
@@ -166,7 +167,7 @@ namespace Yggdrasil.NPCs.Vikings
 				NPC.netUpdate = true;
 			}
 
-			if (NPC.ai[1] > 0f)
+			if (NPC.ai[1] > 0f) // That's the attack section
 			{
 				NPC.ai[1] -= 1f;
 
@@ -175,23 +176,22 @@ namespace Yggdrasil.NPCs.Vikings
 					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 					if (Main.netMode != 1)
 					{
-						NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)NPC.position.X + NPC.width / 2,
-							(int)NPC.position.Y - 8, ModContent.NPCType<ChaosBallTest>());
+						NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y - 8, ModContent.NPCType<ChaosBallTest>());
 					}
 				}
 			}
 
-			NPC.position += NPC.netOffset;
-			if (Main.rand.Next(5) == 0)
+			/*NPC.position += NPC.netOffset;
+			if (Main.rand.Next(5) == 0) // Just the never ending sparkle of dusts
 			{
-				int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, 32,
+				int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, 32, //Dust sparkling over the character
 					NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default(Color), 1.5f);
 				Main.dust[num117].noGravity = true;
 				Main.dust[num117].velocity.X *= 0.5f;
 				Main.dust[num117].velocity.Y = -2f;
 			}
 
-			NPC.position -= NPC.netOffset;
+			NPC.position -= NPC.netOffset;*/
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)

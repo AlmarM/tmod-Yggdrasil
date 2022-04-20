@@ -11,6 +11,8 @@ public class GeboRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting unity.";
+	
+	public override int RunePower => 1;
 
     protected virtual float minionDamageAmount => 0.1f;
 

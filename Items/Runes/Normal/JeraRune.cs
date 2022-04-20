@@ -11,6 +11,8 @@ public class JeraRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting peace.";
+	
+	public override int RunePower => 1;
 
     protected virtual int aggroAmount => 50;
 

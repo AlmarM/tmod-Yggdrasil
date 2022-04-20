@@ -12,6 +12,8 @@ public class BerkanoRune : Rune
 
     public override string TooltipDescription => "A rune granting regeneration.";
 
+    public override int RunePower => 1;
+
     protected virtual int lifeRegenAmount => 10;
     protected virtual int manaRegenAmount => 40;
 

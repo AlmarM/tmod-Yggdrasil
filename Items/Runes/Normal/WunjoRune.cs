@@ -11,6 +11,8 @@ public class WunjoRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting comfort.";
+	
+	public override int RunePower => 1;
 
     protected virtual float damageReduction => 0.03f;
 

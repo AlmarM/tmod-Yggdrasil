@@ -11,6 +11,8 @@ public class EihwazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting strength.";
+	
+	public override int RunePower => 1;
 
     protected virtual float meleeDamageAmount => 0.1f;
 

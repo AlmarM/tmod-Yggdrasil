@@ -11,6 +11,8 @@ public class RaidhoRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting precision.";
+	
+	public override int RunePower => 1;
 
     protected virtual float throwingDamageAmount => 0.1f;
 

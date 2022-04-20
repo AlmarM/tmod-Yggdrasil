@@ -12,6 +12,8 @@ public class AlgizRune : Rune
 
     public override string TooltipDescription => "A rune granting defense.";
 
+    public override int RunePower => 1;
+
     protected virtual int defenseAmount => 2;
 
     public override void SetDefaults()

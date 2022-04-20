@@ -11,6 +11,8 @@ public class EhwazRune : Rune
     public override RuneTier Tier => RuneTier.Normal;
 
     public override string TooltipDescription => "A rune granting transportation.";
+	
+	public override int RunePower => 1;
 
     protected virtual float movementSpeedAmount => 0.1f;
 
