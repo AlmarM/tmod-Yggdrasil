@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Yggdrasil.Configs;
 using Yggdrasil.Extensions;
+using Yggdrasil.Players;
 using Yggdrasil.Players.Modifiers;
 using Yggdrasil.Utils;
 
@@ -14,6 +15,8 @@ public abstract class Rune : YggdrasilItem, IRune
     public abstract RuneTier Tier { get; }
 
     public abstract string TooltipDescription { get; }
+
+    public abstract int RunePower { get; }
 
     private readonly ICollection<IPlayerModifier> _modifiers;
 
@@ -43,6 +46,8 @@ public abstract class Rune : YggdrasilItem, IRune
         {
             modifier.Apply(player);
         }
+
+        player.GetModPlayer<YggdrasilPlayer>().RunePower += RunePower;
     }
 
     protected virtual string GetDisplayName()
