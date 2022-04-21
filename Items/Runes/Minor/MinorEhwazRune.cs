@@ -12,7 +12,7 @@ public class MinorEhwazRune : EhwazRune
     protected override float movementSpeedAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.IceBlock, 30)
         .AddIngredient(ItemID.SwiftnessPotion, 5)
 		.AddTile(TileID.Anvils)

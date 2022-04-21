@@ -13,7 +13,7 @@ public class MinorBerkanoRune : BerkanoRune
     protected override int manaRegenAmount => 20;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.StarinaBottle, 3)
         .AddIngredient(ItemID.HeartLantern, 3)
 		.AddTile(TileID.Anvils)

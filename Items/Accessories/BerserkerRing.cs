@@ -8,39 +8,43 @@ using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Items.Accessories
 {
-	public class ArmRing : YggdrasilItem
+	public class BerserkerRing : YggdrasilItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault ("Armring");
-			Tooltip.SetDefault("Increase [c/ae804f:runic] damage by 2");
+			DisplayName.SetDefault ("Berserker Ring");
+			Tooltip.SetDefault("10% increased [c/ae804f:runic] damage"+
+			"\n3% increased [c/ae804f:runic] critical strike chance");
 			
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() 
 		{
-			Item.rare = ItemRarityID.White;
+			Item.rare = ItemRarityID.Green;
 			Item.accessory = true;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			//player.GetDamage<RunicDamageClass>() += 2;
+			player.GetDamage<RunicDamageClass>() += 0.1f;
+			player.GetCritChance<RunicDamageClass>() += 3;
 		}
 		
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.IronBar, 2)
+			.AddIngredient(Mod, "ArmRing")
+			.AddIngredient(ItemID.VilePowder, 5)
 			.AddTile(TileID.Anvils)
 			.Register();
 			
 			CreateRecipe()
-			.AddIngredient(ItemID.LeadBar, 2)
+			.AddIngredient(Mod, "ArmRing")
+			.AddIngredient(ItemID.ViciousPowder, 5)
 			.AddTile(TileID.Anvils)
 			.Register();
-			
 		}
 		
 	}

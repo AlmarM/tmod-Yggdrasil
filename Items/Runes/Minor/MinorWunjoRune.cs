@@ -12,7 +12,7 @@ public class MinorWunjoRune : WunjoRune
     protected override float damageReduction => 0.01f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.SkeletronTrophy)
         .AddIngredient(ItemID.HellstoneBar, 20)
 		.AddTile(TileID.Anvils)

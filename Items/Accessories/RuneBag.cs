@@ -14,14 +14,14 @@ namespace Yggdrasil.Items.Accessories
 		{
 			DisplayName.SetDefault ("RuneBag");
 			Tooltip.SetDefault("2% increased [c/ae804f:runic] damage for every 3 [c/ae804f:Runic Power]"+
-				"\nDisplay[c/ae804f: Runic Power]");
+				"\nDisplays [c/ae804f:Runic Power]");
 				
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() 
 		{
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = ItemRarityID.Blue;
 			Item.accessory = true;
 			Item.value = Item.buyPrice(0, 2, 0, 0);
 		}

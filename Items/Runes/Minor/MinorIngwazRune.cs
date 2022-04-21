@@ -12,7 +12,7 @@ public class MinorIngwazRune : IngwazRune
     protected override int maxLifeAmount => 2;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.LifeCrystal)
         .AddIngredient(ItemID.HealingPotion, 5)
 		.AddTile(TileID.Anvils)

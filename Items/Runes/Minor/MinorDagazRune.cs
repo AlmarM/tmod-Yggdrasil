@@ -12,7 +12,7 @@ public class MinorDagazRune : DagazRune
     protected override float rangeDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.FossilOre, 25)
         .AddIngredient(ItemID.FlareGun)
 		.AddTile(TileID.Anvils)

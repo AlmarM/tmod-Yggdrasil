@@ -12,7 +12,7 @@ public class MinorHagalazRune : HagalazRune
     protected override float magicDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.WizardHat)
         .AddIngredient(ItemID.MagicMissile)
 		.AddTile(TileID.Anvils)

@@ -12,7 +12,7 @@ public class MinorSowiloRune : SowiloRune
     protected override int armorPenetration => 1;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.SharkToothNecklace)
         .AddIngredient(ItemID.Cactus, 15)
 		.AddTile(TileID.Anvils)

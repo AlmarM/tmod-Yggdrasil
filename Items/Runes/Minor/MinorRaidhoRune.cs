@@ -12,7 +12,7 @@ public class MinorRaidhoRune : RaidhoRune
     protected override float throwingDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.FossilOre, 25)
         .AddIngredient(ItemID.Javelin, 100)
 		.AddTile(TileID.Anvils)

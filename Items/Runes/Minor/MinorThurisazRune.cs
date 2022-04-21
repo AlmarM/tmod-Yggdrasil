@@ -12,7 +12,7 @@ public class MinorThurisazRune : ThurisazRune
     protected override float thornsAmount => 0.1f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.Cactus, 10)
         .AddIngredient(ItemID.Stinger, 2)
 		.AddTile(TileID.Anvils)

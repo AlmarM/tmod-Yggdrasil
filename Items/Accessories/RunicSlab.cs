@@ -13,7 +13,7 @@ namespace Yggdrasil.Items.Accessories
 		public override void SetStaticDefaults() 
 		{
 			DisplayName.SetDefault ("Runic Slab");
-			Tooltip.SetDefault("Display[c/ae804f: Runic Power]");
+			Tooltip.SetDefault("Displays [c/ae804f:Runic Power]");
 			
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

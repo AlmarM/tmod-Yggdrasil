@@ -12,7 +12,7 @@ public class MinorGeboRune : GeboRune
     protected override float minionDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.BeeWax, 30)
         .AddIngredient(ItemID.ImpStaff)
 		.AddTile(TileID.Anvils)

@@ -12,7 +12,7 @@ public class MinorAlgizRune : AlgizRune
     protected override int defenseAmount => 1;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.Shackle)
         .AddIngredient(ItemID.ObsidianSkull)
 		.AddTile(TileID.Anvils)

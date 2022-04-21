@@ -12,7 +12,7 @@ public class WoodenRunicSword : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Wooden Runic Sword");
-		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 runic damage");
+		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 [c/ae804f:runic] damage");
         // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

@@ -12,7 +12,7 @@ public class MinorUruzRune : UruzRune
     protected override float meleeSpeed => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.AntlionMandible, 10)
         .AddIngredient(ItemID.Blinkroot, 10)
 		.AddTile(TileID.Anvils)

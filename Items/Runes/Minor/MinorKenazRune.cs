@@ -12,7 +12,7 @@ public class MinorKenazRune : KenazRune
     protected override int dodgeChance => 1;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.NinjaHood)
         .AddIngredient(ItemID.InvisibilityPotion, 5)
 		.AddTile(TileID.Anvils)

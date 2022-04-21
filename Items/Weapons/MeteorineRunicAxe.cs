@@ -11,8 +11,8 @@ public class MeteorineRunicAxe : YggdrasilItem
 	public override void SetStaticDefaults()
 	{
 		DisplayName.SetDefault("Meteorite Runic Axe");
-		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 runic damage & has 25% chance to inflict OnFire! for 1 sec"+
-							"\n[c/ae804f:Runic Power 2+]: Grants +2 runic damage & adds 25% chance to inflict OnFire! for 2 more sec");
+		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 [c/ae804f:runic] damage & has 25% chance to inflict OnFire! for 1 sec"+
+							"\n[c/ae804f:Runic Power 2+]: Grants +2 [c/ae804f:runic] damage & adds 25% chance to inflict OnFire! for 2 more sec");
 
 		CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 	}

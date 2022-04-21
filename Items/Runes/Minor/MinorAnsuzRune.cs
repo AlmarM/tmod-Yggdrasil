@@ -12,7 +12,7 @@ public class MinorAnsuzRune : AnsuzRune
     protected override int manaAmount => 10;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.ManaCrystal, 5)
         .AddIngredient(ItemID.BandofStarpower)
 		.AddTile(TileID.Anvils)

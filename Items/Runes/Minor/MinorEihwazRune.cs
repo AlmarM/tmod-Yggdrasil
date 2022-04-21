@@ -12,7 +12,7 @@ public class MinorEihwazRune : EihwazRune
     protected override float meleeDamageAmount => 0.05f;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.WoodYoyo)
         .AddIngredient(ItemID.JungleYoyo)
 		.AddTile(TileID.Anvils)

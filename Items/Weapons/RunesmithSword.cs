@@ -12,12 +12,12 @@ public class RunesmithSword : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Runesmith Sword");
-		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 runic damage & increase attack speed");
+		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +1 [c/ae804f:runic] damage & increase attack speed");
         // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 	
-	int baseDamage = 9; //base weapon damage used by Item.Damage
+	
 	//int baseUseTime = 24;
 	//int baseUseAnimation = 24;
 	
@@ -29,7 +29,7 @@ public class RunesmithSword : YggdrasilItem
         Item.useTime = 24;
         Item.useAnimation = 24;
         Item.autoReuse = false;
-        Item.damage = baseDamage;
+        Item.damage = 9;
         Item.crit = 4;
         Item.knockBack = 5;
 		Item.value = Item.buyPrice(0, 0, 5, 40);
@@ -57,7 +57,7 @@ public class RunesmithSword : YggdrasilItem
 		var modPlayer = player.GetModPlayer<YggdrasilPlayer>();
 		if (modPlayer.RunePower >= 1)
         {
-            Item.damage = baseDamage += 1;
+            damage += 1;
         }
         
 	}

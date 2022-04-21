@@ -15,7 +15,7 @@ public class MinorFehuRune : FehuRune
 	protected override int criticalChanceThrowingAmount => 1;
 	
 	public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.JungleShirt)
         .AddIngredient(ItemID.Ale, 10)
 		.AddTile(TileID.Anvils)

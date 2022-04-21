@@ -12,7 +12,7 @@ public class MinorJeraRune : JeraRune
     protected override int aggroAmount => 20;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.StoneBlock, 10) // temporary
+        .AddIngredient(Mod, "BlankRune")
         .AddIngredient(ItemID.InvisibilityPotion, 5)
         .AddIngredient(ItemID.Shiverthorn, 5)
 		.AddTile(TileID.Anvils)
