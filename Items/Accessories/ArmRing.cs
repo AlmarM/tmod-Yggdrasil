@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Players;
+using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Items.Accessories
 {
@@ -12,7 +13,9 @@ namespace Yggdrasil.Items.Accessories
 		public override void SetStaticDefaults() 
 		{
 			DisplayName.SetDefault ("Armring");
-			Tooltip.SetDefault("Increase [c/ae804f: Runic] damage by 2");
+			Tooltip.SetDefault("Increase [c/ae804f: runic] damage by 2");
+			
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() 
@@ -27,18 +30,18 @@ namespace Yggdrasil.Items.Accessories
 		}
 		
 		public override void AddRecipes()
-	{
-		CreateRecipe()
-		.AddIngredient(ItemID.IronBar, 2)
-		.AddTile(TileID.Anvils)
-        .Register();
-		
-		CreateRecipe()
-		.AddIngredient(ItemID.LeadBar, 2)
-		.AddTile(TileID.Anvils)
-        .Register();
-		
-	}
+		{
+			CreateRecipe()
+			.AddIngredient(ItemID.IronBar, 2)
+			.AddTile(TileID.Anvils)
+			.Register();
+			
+			CreateRecipe()
+			.AddIngredient(ItemID.LeadBar, 2)
+			.AddTile(TileID.Anvils)
+			.Register();
+			
+		}
 		
 	}
 }*/

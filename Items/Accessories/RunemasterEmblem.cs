@@ -8,32 +8,27 @@ using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Items.Accessories
 {
-	public class WoodArmRing : YggdrasilItem
+	public class RunemasterEmblem : YggdrasilItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault ("Wooden Armring");
-			Tooltip.SetDefault("Grants +1[c/ae804f: Runic Power]");
+			DisplayName.SetDefault ("Runemaster Emblem");
+			Tooltip.SetDefault("15% increased [c/ae804f:runic] damage");
 			
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() 
 		{
-			Item.rare = ItemRarityID.White;
+			Item.rare = ItemRarityID.LightRed;
 			Item.accessory = true;
-			Item.value = Item.buyPrice(0, 0, 0, 50);
+			Item.value = Item.buyPrice(0, 2, 0, 0);
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<YggdrasilPlayer>().RunePower += 1;
+			player.GetDamage<RunicDamageClass>() += 0.15f;
 		}
-		
-		public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 10)
-		.AddTile(TileID.WorkBenches)
-        .Register();
-		
+			
 	}
 }
