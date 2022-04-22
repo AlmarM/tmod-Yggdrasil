@@ -2,17 +2,17 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Players;
 
 namespace Yggdrasil.Items.Weapons;
 
-// YggdrasilItem is only used for location our images in the Assets/ folder
 public class RunesmithHammer : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Runesmith Hammer");
-
-        // How many times we need to destroy this item before unlocking it for duplication in Journey mode
+		Tooltip.SetDefault("[c/ae804f:Runic Power 1+]: Grants +3 [c/ae804f:runic] damage");
+		
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -25,7 +25,7 @@ public class RunesmithHammer : YggdrasilItem
         Item.useAnimation = 30;
         Item.autoReuse = false;
         Item.damage = 9;
-        Item.crit = 4;
+        Item.crit = 0;
         Item.knockBack = 10;
 		Item.hammer = 45;
 		Item.value = Item.buyPrice(0, 0, 5, 40);
@@ -33,20 +33,20 @@ public class RunesmithHammer : YggdrasilItem
         Item.UseSound = SoundID.Item1;
     }
 
-    public override void AddRecipes()
+    public override void AddRecipes() => CreateRecipe()
+        .AddRecipeGroup(RecipeGroupID.Wood, 15)
+		.AddRecipeGroup(RecipeGroupID.IronBar, 10)
+		.AddTile(TileID.Anvils)
+        .Register();
+
+	public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
 	{
-		CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 15)
-		.AddIngredient(ItemID.IronBar, 10)
-		.AddTile(TileID.Anvils)
-        .Register();
-		
-		CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 15)
-		.AddIngredient(ItemID.LeadBar, 10)
-		.AddTile(TileID.Anvils)
-        .Register();
+		var modPlayer = player.GetModPlayer<YggdrasilPlayer>();
+		if (modPlayer.RunePower >= 1)
+        {
+            flat += 3;
+        }
+        
 	}
-		
 
 }
