@@ -14,7 +14,8 @@ namespace Yggdrasil.Items.Accessories
 		{
 			DisplayName.SetDefault ("Berserker Ring");
 			Tooltip.SetDefault("10% increased [c/ae804f:runic] damage"+
-			"\n3% increased [c/ae804f:runic] critical strike chance");
+			"\n3% increased [c/ae804f:runic] critical strike chance"+
+			"\n[c/ae804f:Runic Power 2+] 1% increased [c/ae804f:runic] critical strike chance");
 			
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -30,6 +31,12 @@ namespace Yggdrasil.Items.Accessories
 		{
 			player.GetDamage<RunicDamageClass>() += 0.1f;
 			player.GetCritChance<RunicDamageClass>() += 3;
+
+			var modPlayer = player.GetModPlayer<YggdrasilPlayer>();
+			if (modPlayer.RunePower >= 2)
+			{
+				player.GetCritChance<RunicDamageClass>() += 1;
+			}
 		}
 		
 		public override void AddRecipes()

@@ -14,7 +14,7 @@ namespace Yggdrasil.Items.Others
 		{
 			DisplayName.SetDefault ("Linnen");
 			Tooltip.SetDefault("A piece of fabric");
-			//CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 		}
 
 		public override void SetDefaults() 

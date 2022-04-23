@@ -72,7 +72,7 @@ namespace Yggdrasil.NPCs.Vikings
 				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				for (int num69 = 0; num69 < 50; num69++)
 				{
-					int num70 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f, //Dust left on former spot after teleport
+					int num70 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Sand, 0f, 0f, //Dust left on former spot after teleport
 						100, default(Color), Main.rand.Next(1, 3));
 					Dust dust = Main.dust[num70];
 					dust.velocity *= 3f;
@@ -93,7 +93,7 @@ namespace Yggdrasil.NPCs.Vikings
 				SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 				for (int num78 = 0; num78 < 50; num78++)
 				{
-					int num79 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, 32, 0f, 0f, //Dust explosion after teleport
+					int num79 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Sand, 0f, 0f, //Dust explosion after teleport
 						100, default(Color), Main.rand.Next(1, 3));
 					Dust dust = Main.dust[num79];
 					dust.velocity *= 3f;
@@ -112,7 +112,7 @@ namespace Yggdrasil.NPCs.Vikings
 				NPC.netUpdate = true;
 			}
 
-			if (NPC.ai[0] >= 650f && Main.netMode != 1) // Not sure what this part exacly does but without this, there's no attack
+			if (NPC.ai[0] >= 650f && Main.netMode != NetmodeID.MultiplayerClient) // Not sure what this part exacly does but without this, there's no attack
 			{
 				NPC.ai[0] = 1f;
 				int num87 = (int)Main.player[NPC.target].position.X / 16;
@@ -141,7 +141,7 @@ namespace Yggdrasil.NPCs.Vikings
 							Main.tile[num93, num95].HasUnactuatedTile)
 						{
 							bool flag5 = true;
-							if ((NPC.type == 32 || (NPC.type >= 281 && NPC.type <= 286)) &&
+							if ((NPC.type == NPCID.DarkCaster || (NPC.type >= NPCID.RaggedCaster && NPC.type <= 286)) &&
 								!Main.wallDungeon[Main.tile[num93, num95 - 1].WallType])
 							{
 								flag5 = false;
@@ -174,7 +174,7 @@ namespace Yggdrasil.NPCs.Vikings
 				if (NPC.ai[1] == 25f)
 				{
 					SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-					if (Main.netMode != 1)
+					if (Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y - 8, ModContent.NPCType<ChaosBallTest>());
 					}
