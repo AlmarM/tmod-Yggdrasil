@@ -4,35 +4,30 @@ using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Items.Placeable
 {
-	public class FrostCoreBar : YggdrasilItem
+	public class FrostCoreOre : YggdrasilItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Bar");
+			DisplayName.SetDefault("FrostCore Ore");
 			Tooltip.SetDefault("Really cold");
-			ItemID.Sets.SortingPriorityMaterials[Item.type] = 59;
+			ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
-			Item.value = 750;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.useTurn = true;
 			Item.useAnimation = 15;
 			Item.useTime = 10;
 			Item.autoReuse = true;
+			Item.maxStack = 999;
 			Item.consumable = true;
-			Item.createTile = ModContent.TileType<Tiles.FrostCoreBarTile>();
-			Item.placeStyle = 0;
+			Item.createTile = ModContent.TileType<Tiles.FrostCoreTile>();
+			Item.width = 12;
+			Item.height = 12;
+			Item.value = 200;
 			Item.rare = ItemRarityID.Blue;
 		}
-
-		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient(Mod, "FrostEssence")
-		.AddIngredient(Mod, "FrostCoreOre", 4)
-		.AddTile(TileID.Furnaces)
-		.Register();
 	}
 }

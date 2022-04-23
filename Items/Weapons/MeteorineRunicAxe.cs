@@ -71,7 +71,7 @@ public class MeteorineRunicAxe : YggdrasilItem
 		
 		if (modPlayer.RunePower >= 2)
 		{
-			onFireProcChance += .5f;
+			onFireProcChance += .25f;
 			onFireDuration *= 3;
 			
 			if (Main.rand.NextFloat() < onFireProcChance)
@@ -79,7 +79,7 @@ public class MeteorineRunicAxe : YggdrasilItem
 				target.AddBuff(BuffID.OnFire, onFireDuration);
 			}
 		}
-		
+		Main.NewText(onFireProcChance);
 	}
 
 	public override void AddRecipes() => CreateRecipe()

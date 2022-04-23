@@ -35,7 +35,7 @@ namespace Yggdrasil.NPCs.Snow
 		{
 			if(spawnInfo.player.ZoneSnow)
 			{
-				return SpawnCondition.Overworld.Chance * 0.25f;
+				return SpawnCondition.Overworld.Chance * 0.5f;
 			}
 			return 0f;
 		}

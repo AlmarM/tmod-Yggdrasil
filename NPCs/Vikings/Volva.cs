@@ -141,7 +141,7 @@ namespace Yggdrasil.NPCs.Vikings
 							Main.tile[num93, num95].HasUnactuatedTile)
 						{
 							bool flag5 = true;
-							if ((NPC.type == NPCID.DarkCaster || (NPC.type >= NPCID.RaggedCaster && NPC.type <= 286)) &&
+							if ((NPC.type == NPCID.DarkCaster || (NPC.type >= NPCID.RaggedCaster && NPC.type <= NPCID.DiabolistWhite)) &&
 								!Main.wallDungeon[Main.tile[num93, num95 - 1].WallType])
 							{
 								flag5 = false;

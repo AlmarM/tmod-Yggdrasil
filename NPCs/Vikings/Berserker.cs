@@ -68,7 +68,7 @@ namespace Yggdrasil.NPCs.Vikings
 				dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
 			}
 			
-			/*//Casting slash projectile while on low life
+			/*//Casting slash Projectile while on low life
 			float velocity = 7f;
 			float speedX = NPC.direction * velocity;
 			Vector2 shootPos = NPC.Center;

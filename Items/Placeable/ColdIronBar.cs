@@ -28,7 +28,7 @@ namespace Yggdrasil.Items.Placeable
 		}
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient(Mod, "FrostCoreBar", 2)
+		.AddIngredient(Mod, "ColdIronOre", 6)
 		.AddIngredient(ItemID.ChlorophyteBar)
 		.AddTile(TileID.Furnaces)
 		.Register();
