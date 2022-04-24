@@ -14,7 +14,7 @@ public class DemoniteRunicAxe : YggdrasilItem
     {
         DisplayName.SetDefault("Demonite Runic Axe");
         Tooltip.SetDefault("[c/ae804f:Runic Power 2+]: 5% increased [c/ae804f:runic] critical strike chance" +
-            "\n[c/ae804f:Runic Power 4+] Spawn an axe clone");
+            "\n[c/ae804f:Runic Power 4+] Spawn an axe clone on critical strike");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -30,7 +30,7 @@ public class DemoniteRunicAxe : YggdrasilItem
         Item.crit = 6;
         Item.knockBack = 6;
         Item.axe = 13;
-        Item.value = Item.buyPrice(silver: 27);
+        Item.value = Item.buyPrice(0, 0, 27, 0);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
