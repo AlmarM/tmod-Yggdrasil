@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -9,7 +10,9 @@ public class HagalazEffect : RuneEffect<HagalazEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters damageParams = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.HagalazEffectDescription, damageParams.MagicDamageBonus);
+        string percentage = TextUtils.GetPercentage(damageParams.MagicDamageBonus);
+
+        return MakeDescription(RuneEffectConfig.HagalazEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

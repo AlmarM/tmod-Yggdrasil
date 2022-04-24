@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -9,7 +10,9 @@ public class GeboEffect : RuneEffect<GeboEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters damageParams = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.GeboEffectDescription, damageParams.MinionDamageBonus);
+        string percentage = TextUtils.GetPercentage(damageParams.MinionDamageBonus);
+        
+        return MakeDescription(RuneEffectConfig.GeboEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

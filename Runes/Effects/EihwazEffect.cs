@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -9,7 +10,9 @@ public class EihwazEffect : RuneEffect<EihwazEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters damageParams = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.EihwazEffectDescription, damageParams.MeleeDamageBonus);
+        string percentage = TextUtils.GetPercentage(damageParams.MeleeDamageBonus);
+
+        return MakeDescription(RuneEffectConfig.EihwazEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

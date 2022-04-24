@@ -11,13 +11,15 @@ public class MannazEffect : RuneEffect<MannazEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters damageParameters = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.MannazEffectDescription, damageParameters.DamageBonus);
+        string percentage = TextUtils.GetPercentage(damageParameters.DamageBonus);
+
+        return MakeDescription(RuneEffectConfig.MannazEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters damageParameters = CastParameters(effectParameters);
-        
+
         if (!IsOneEnemyClose(player, damageParameters.Distance))
         {
             return;

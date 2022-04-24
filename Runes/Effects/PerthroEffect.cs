@@ -1,6 +1,7 @@
 using Terraria;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -9,9 +10,9 @@ public class PerthroEffect : RuneEffect<PerthroEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters buffParameters = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.PerthroEffectDescription, 
-            buffParameters.ApplyBuffChance,
-            buffParameters.BuffDuration);
+        string percentage = TextUtils.GetPercentage(buffParameters.ApplyBuffChance);
+
+        return MakeDescription(RuneEffectConfig.PerthroEffectDescription, percentage, buffParameters.BuffDuration);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

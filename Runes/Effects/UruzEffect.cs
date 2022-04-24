@@ -1,5 +1,6 @@
 using Terraria;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -8,7 +9,9 @@ public class UruzEffect : RuneEffect<UruzEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters speedParameters = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.UruzEffectDescription, speedParameters.MeleeSpeedBonus);
+        string percentage = TextUtils.GetPercentage(speedParameters.MeleeSpeedBonus);
+
+        return MakeDescription(RuneEffectConfig.UruzEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

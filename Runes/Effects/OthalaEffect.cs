@@ -1,6 +1,7 @@
 using Terraria;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -9,8 +10,9 @@ public class OthalaEffect : RuneEffect<OthalaEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters consumptionParameters = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.OthalaEffectDescription,
-            consumptionParameters.ReduceAmmoConsumptionBonus);
+        string percentage = TextUtils.GetPercentage(consumptionParameters.ReduceAmmoConsumptionBonus);
+        
+        return MakeDescription(RuneEffectConfig.OthalaEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

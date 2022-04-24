@@ -21,4 +21,9 @@ public static class TextUtils
     {
         return $"[c/{hex}:{text}]";
     }
+
+    public static string GetPercentage(float percentage)
+    {
+        return $"{(int)(percentage * 100f)}";
+    }
 }

@@ -1,5 +1,6 @@
 using Terraria;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -8,7 +9,9 @@ public class ThurisazEffect : RuneEffect<ThurisazEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters thornsParameters = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.ThurisazEffectDescription, thornsParameters.ThornsBonus);
+        string percentage = TextUtils.GetPercentage(thornsParameters.ThornsBonus);
+
+        return MakeDescription(RuneEffectConfig.ThurisazEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

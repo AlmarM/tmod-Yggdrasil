@@ -1,5 +1,6 @@
 using Terraria;
 using Yggdrasil.Configs;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 
@@ -8,7 +9,9 @@ public class EhwazEffect : RuneEffect<EhwazEffect.Parameters>
     public override string GetDescription(IRuneEffectParameters effectParameters)
     {
         Parameters speedParams = CastParameters(effectParameters);
-        return MakeDescription(RuneEffectConfig.EhwazEffectDescription, speedParams.MovementSpeedBonus);
+        string percentage = TextUtils.GetPercentage(speedParams.MovementSpeedBonus);
+
+        return MakeDescription(RuneEffectConfig.EhwazEffectDescription, percentage);
     }
 
     public override void Apply(Player player, IRuneEffectParameters effectParameters)

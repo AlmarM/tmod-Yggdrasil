@@ -2,6 +2,7 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
+using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -28,5 +29,6 @@ internal class PerthroRune : Rune
 
     protected override void AddEffects()
     {
+        AddEffect(RuneEffects.Get<PerthroEffect>(), new PerthroEffect.Parameters(ApplyBuffChance, BuffDuration));
     }
 }

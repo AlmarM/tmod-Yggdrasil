@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
+using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -28,5 +29,6 @@ internal class MinorPerthroRune : Rune
 
     protected override void AddEffects()
     {
+        AddEffect(RuneEffects.Get<PerthroEffect>(), new PerthroEffect.Parameters(ApplyBuffChance, BuffDuration));
     }
 }
