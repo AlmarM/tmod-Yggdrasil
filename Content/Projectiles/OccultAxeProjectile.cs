@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;

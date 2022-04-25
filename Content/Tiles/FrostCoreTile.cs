@@ -1,12 +1,8 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Tiles;
 
 namespace Yggdrasil.Content.Tiles;
 
