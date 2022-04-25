@@ -1,0 +1,43 @@
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.IO;
+using Terraria.ModLoader;
+using Terraria.WorldBuilding;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Tiles;
+
+namespace Yggdrasil.Content.Tiles;
+
+public class FrostCoreTile : YggdrasillTile
+{
+    public override void SetStaticDefaults()
+    {
+        // The tile will be affected by spelunker highlighting
+        Main.tileSpelunker[Type] = false;
+
+        // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
+        Main.tileOreFinderPriority[Type] = 400;
+
+        // How often tiny dust appear off this tile. Larger is less frequently
+        Main.tileShine[Type] = 975;
+        Main.tileMergeDirt[Type] = true;
+        Main.tileSolid[Type] = true;
+        Main.tileBlockLight[Type] = true;
+        //Main.tileShine2[Type] = false; // Modifies the draw color slightly.
+
+        TileID.Sets.Ore[Type] = true;
+
+        ModTranslation name = CreateMapEntryName();
+        name.SetDefault("Frostcore");
+
+        AddMapEntry(new Color(51, 255, 255), name);
+
+        DustType = DustID.Platinum;
+        ItemDrop = ModContent.ItemType<FrostCoreOre>();
+        SoundType = SoundID.Tink;
+        MinPick = 50;
+        MineResist = 1f;
+    }
+}

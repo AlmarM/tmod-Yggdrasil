@@ -5,8 +5,15 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Players;
 
+/// <summary>
+/// Class that handles all logic regarding runes and runic effects.
+/// </summary>
 internal class RunePlayer : ModPlayer
 {
+    public int RunePower { get; set; }
+
+    public bool ShowRunePower { get; set; }
+
     public float DodgeChance { get; set; }
 
     public float InvincibilityBonusTime { get; set; }
@@ -59,6 +66,9 @@ internal class RunePlayer : ModPlayer
 
     public override void ResetEffects()
     {
+        RunePower = 0;
+        ShowRunePower = false;
+
         DodgeChance = 0f;
         InvincibilityBonusTime = 0f;
         PreventAmmoConsumptionChance = 0f;

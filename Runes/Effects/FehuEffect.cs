@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
 

@@ -1,0 +1,18 @@
+using Terraria.ID;
+
+namespace Yggdrasil.Content.Items.Materials;
+
+public class OccultShard : YggdrasilItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Occult Shard");
+        Tooltip.SetDefault("A piece of evil");
+    }
+
+    public override void SetDefaults()
+    {
+        Item.maxStack = 999;
+        Item.rare = ItemRarityID.Green;
+    }
+}
