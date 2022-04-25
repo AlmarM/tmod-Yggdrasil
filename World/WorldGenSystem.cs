@@ -11,7 +11,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
 
-namespace Yggdrasil.WorldGen;
+namespace Yggdrasil.World;
 
 public class WorldGenSystem : ModSystem
 {
@@ -27,7 +27,7 @@ public class WorldGenSystem : ModSystem
     {
         if (JustPressed(Keys.D1))
         {
-
+              
         }
         
     }*/
@@ -43,6 +43,7 @@ public class WorldGenSystem : ModSystem
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
         int vikingChestIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Water Chests"));
+        int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Micro Biomes"));
 
         if (shiniesIndex != -1)
         {
@@ -54,6 +55,11 @@ public class WorldGenSystem : ModSystem
         {
             tasks.Insert(vikingChestIndex + 1, new PassLegacy("Viking Chest", VikingChestGen));
         }
+
+       // if (vikingHouseIndex != -1)
+       // {
+       //     tasks.Insert(vikingHouseIndex + 1, new PassLegacy("Viking House", VikingHouseGen));
+       // }
     }
 
     private void FrostCoreGen(GenerationProgress progress, GameConfiguration configuration)
@@ -168,4 +174,19 @@ public class WorldGenSystem : ModSystem
             }
         }
     }
+    private void VikingHouseGen(GenerationProgress progress, GameConfiguration configuration)
+    {
+        int attempts = 0;
+
+        while (true)
+        {
+            attempts++;
+            if (attempts > 20)
+                break;
+
+            progress.Message = "Adding Viking Houses...";
+            new VikingHouseGen().Generate();
+        }
+    }
+
 }
