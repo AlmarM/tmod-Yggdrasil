@@ -9,4 +9,6 @@ internal interface IRune
     string TooltipDescription { get; }
 
     int Rarity { get; }
+
+    int RunePower { get; }
 }

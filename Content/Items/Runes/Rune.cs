@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
@@ -26,6 +27,8 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public virtual int Rarity => ItemRarityID.White;
 
+    public virtual int RunePower => 1;
+
     public override void SetStaticDefaults()
     {
         AddEffects();
@@ -48,6 +51,8 @@ public abstract class Rune : YggdrasilItem, IRune
         {
             effect.Apply(player, parameters);
         }
+
+        player.GetModPlayer<RunePlayer>().RunePower += RunePower;
     }
 
     protected virtual string GetDisplayName()
