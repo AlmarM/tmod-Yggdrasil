@@ -22,7 +22,7 @@ public class DemoniteRunicAxe : YggdrasilItem
 
         DisplayName.SetDefault("Demonite Runic Axe");
         Tooltip.SetDefault($"{runicPowerTwoText}: 5% increased {runicText} critical strike chance" +
-                           $"\n{runicPowerFourText} Spawn an axe clone");
+                           $"\n{runicPowerFourText} Spawn an axe clone on critical strike");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -38,7 +38,7 @@ public class DemoniteRunicAxe : YggdrasilItem
         Item.crit = 6;
         Item.knockBack = 6;
         Item.axe = 13;
-        Item.value = Item.buyPrice(silver: 27);
+        Item.value = Item.buyPrice(0, 0, 27, 0);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
@@ -62,22 +62,26 @@ public class DemoniteRunicAxe : YggdrasilItem
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 4 && crit)
         {
-            // @todo clean up in the future
-            var radius = 200f;
-            var theta = Main.rand.NextFloat(0, MathF.PI * 2f);
-            var x = target.Center.X + MathF.Cos(theta) * radius;
-            var y = target.Center.Y + MathF.Sin(theta) * radius;
+            if (crit)
+            {
+                // @todo clean up in the future
+                var radius = 200f;
+                var theta = Main.rand.NextFloat(0, MathF.PI * 2f);
+                var x = target.Center.X + MathF.Cos(theta) * radius;
+                var y = target.Center.Y + MathF.Sin(theta) * radius;
 
-            var direction = target.Center - new Vector2(x, y);
-            direction.Normalize();
+                var direction = target.Center - new Vector2(x, y);
+                direction.Normalize();
 
-            var speed = 6f;
-            float speedX = direction.X * speed;
-            float speedY = direction.Y * speed;
-            int projectileType = ModContent.ProjectileType<DemoniteRunicAxeProjectile>();
-            int projectileDamage = Item.damage;
+                var speed = 6f;
+                float speedX = direction.X * speed;
+                float speedY = direction.Y * speed;
+                int projectileType = ModContent.ProjectileType<DemoniteRunicAxeProjectile>();
+                int projectileDamage = Item.damage;
 
-            Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, projectileDamage, 0, player.whoAmI);
+                Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, projectileDamage, 0,
+                    player.whoAmI);
+            }
         }
     }
 }

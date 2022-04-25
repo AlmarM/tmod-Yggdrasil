@@ -7,7 +7,7 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Tiles;
 
-public class ColdIronBarTile : YggdrasillTile
+public class ColdIronBarTile : YggdrasilTile
 {
     public override void SetStaticDefaults()
     {

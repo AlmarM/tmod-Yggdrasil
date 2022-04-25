@@ -5,7 +5,7 @@ using Terraria.ID;
 namespace Yggdrasil.Content.NPCs.Vikings;
 
 // @todo create an actual projectile for this
-public class ChaosBallTest : YggdrasillNPC
+public class ChaosBallTest : YggdrasilNPC
 {
     public override void SetDefaults()
     {

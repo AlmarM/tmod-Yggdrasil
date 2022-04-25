@@ -1,9 +1,9 @@
 using Terraria.ModLoader;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Projectiles;
+namespace Yggdrasil.Content.Tiles;
 
-public abstract class YggdrasillProjectile : ModProjectile
+public abstract class YggdrasilTile : ModTile
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 }

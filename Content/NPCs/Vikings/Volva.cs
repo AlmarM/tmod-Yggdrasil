@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
-public class Volva : YggdrasillNPC
+public class Volva : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {

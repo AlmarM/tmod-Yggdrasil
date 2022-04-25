@@ -1,9 +1,9 @@
 using Terraria.ModLoader;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Buffs;
+namespace Yggdrasil.Content.NPCs;
 
-public abstract class YggdrasillBuff : ModBuff
+public abstract class YggdrasilNPC : ModNPC
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 }

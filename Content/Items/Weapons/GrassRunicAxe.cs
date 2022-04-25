@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Configs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 
@@ -11,8 +13,15 @@ public class GrassRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        // @todo add effect description?
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+
         DisplayName.SetDefault("Grass Runic Axe");
+        Tooltip.SetDefault(
+            $"{runicPowerOneText}: Has 50% chance to inflict poison based on {runicPowerText}" +
+            $"\n{runicPowerTwoText} 5% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -24,8 +33,8 @@ public class GrassRunicAxe : YggdrasilItem
         Item.useTime = 27;
         Item.useAnimation = 27;
         Item.autoReuse = false;
-        Item.damage = 21;
-        Item.crit = 10;
+        Item.damage = 22;
+        Item.crit = 6;
         Item.knockBack = 6;
         Item.axe = 14;
         Item.value = Item.buyPrice(0, 0, 55);
@@ -35,9 +44,24 @@ public class GrassRunicAxe : YggdrasilItem
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
-        if (Main.rand.NextFloat() < 0.25f)
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        int poisonTime = runePlayer.RunePower * 60;
+
+        if (runePlayer.RunePower >= 1)
         {
-            target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
+            if (Main.rand.NextFloat() < .5f)
+            {
+                target.AddBuff(BuffID.Poisoned, poisonTime);
+            }
+        }
+    }
+
+    public override void ModifyWeaponCrit(Player player, ref int crit)
+    {
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 2)
+        {
+            crit += 5;
         }
     }
 

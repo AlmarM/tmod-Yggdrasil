@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Configs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 
@@ -11,8 +13,15 @@ public class GrassRunicBlade : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        // @todo add effect description?
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+
         DisplayName.SetDefault("Grass Runic Blade");
+        Tooltip.SetDefault(
+            $"{runicPowerOneText}: Has 50% chance to inflict poison based on {runicPowerText}" +
+            $"\n{runicPowerThreeText} Grants +3 {runicText} damage 2% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,7 +34,7 @@ public class GrassRunicBlade : YggdrasilItem
         Item.useAnimation = 25;
         Item.autoReuse = false;
         Item.damage = 23;
-        Item.crit = 4;
+        Item.crit = 0;
         Item.knockBack = 5;
         Item.value = Item.buyPrice(0, 0, 55);
         Item.rare = ItemRarityID.Orange;
@@ -34,9 +43,33 @@ public class GrassRunicBlade : YggdrasilItem
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
-        if (Main.rand.NextFloat() < 0.25f)
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        int poisonTime = runePlayer.RunePower * 60;
+
+        if (runePlayer.RunePower >= 1)
         {
-            target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
+            if (Main.rand.NextFloat() < 0.5f)
+            {
+                target.AddBuff(BuffID.Poisoned, poisonTime);
+            }
+        }
+    }
+
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    {
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 3)
+        {
+            flat += 3;
+        }
+    }
+
+    public override void ModifyWeaponCrit(Player player, ref int crit)
+    {
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 3)
+        {
+            crit += 2;
         }
     }
 

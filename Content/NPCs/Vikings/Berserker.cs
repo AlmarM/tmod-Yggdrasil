@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
-public class Berserker : YggdrasillNPC
+public class Berserker : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {

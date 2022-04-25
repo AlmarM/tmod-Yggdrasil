@@ -7,7 +7,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class OccultAxeProjectile : YggdrasillProjectile
+public class OccultAxeProjectile : YggdrasilProjectile
 {
     public override void SetDefaults()
     {

@@ -8,7 +8,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.NPCs.Snow;
 
-public class Draugr : YggdrasillNPC
+public class Draugr : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {

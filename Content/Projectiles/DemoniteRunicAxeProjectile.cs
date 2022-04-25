@@ -6,7 +6,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class DemoniteRunicAxeProjectile : YggdrasillProjectile
+public class DemoniteRunicAxeProjectile : YggdrasilProjectile
 {
     public override void SetStaticDefaults()
     {

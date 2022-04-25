@@ -4,7 +4,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Buffs;
 
-public class RunicBuff : YggdrasillBuff
+public class RunicBuff : YggdrasilBuff
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 

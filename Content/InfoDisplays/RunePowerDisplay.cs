@@ -3,7 +3,7 @@ using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.InfoDisplays;
 
-public class RunePowerDisplay : YggdrasillInfoDisplay
+public class RunePowerDisplay : YggdrasilInfoDisplay
 {
     public override void SetStaticDefaults()
     {

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
-public class VikingSwordMan : YggdrasillNPC
+public class VikingSwordMan : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {
