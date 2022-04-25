@@ -1,4 +1,4 @@
-using Terraria;
+ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
@@ -115,7 +115,7 @@ namespace YggdrasilWorld
 					{
 						//Main.NewText("GREAT");
 						Dust.QuickBox(new Vector2(resultPoint.X, resultPoint.Y) * 16, new Vector2(resultPoint.X + 1, resultPoint.Y + 1) * 16, 2, Color.YellowGreen, null);
-						int chestSpawn = WorldGen.PlaceChest(resultPoint.X, resultPoint.Y - 1, (ushort)ModContent.TileType<VikingChestTile>());
+						int chestSpawn = WorldGen.PlaceChest(resultPoint.X, resultPoint.Y - 1, (ushort)ModContent.TileType<VikingChestTile>(), true, style: 1);
 						success = chestSpawn != -1;
 						
 						int chestIndex = chestSpawn;
