@@ -11,9 +11,9 @@ public class FrostCoreOre : YggdrasilItem
     {
         DisplayName.SetDefault("FrostCore Ore");
         Tooltip.SetDefault("Really cold");
-        
+
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
-        
+
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
 

@@ -15,19 +15,19 @@ public class ColdIronTile : YggdrasillTile
 
         // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
         Main.tileOreFinderPriority[Type] = 700;
-        
+
         // How often tiny dust appear off this tile. Larger is less frequently
-        Main.tileShine[Type] = 975; 
+        Main.tileShine[Type] = 975;
         Main.tileMergeDirt[Type] = true;
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         //Main.tileShine2[Type] = false; // Modifies the draw color slightly.
 
         TileID.Sets.Ore[Type] = true;
-        
+
         ModTranslation name = CreateMapEntryName();
         name.SetDefault("Cold Iron");
-        
+
         AddMapEntry(new Color(119, 167, 178), name);
 
         DustType = DustID.Platinum;

@@ -63,7 +63,7 @@ public class VikingSpearman : YggdrasillNPC
         {
             int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             Dust dust = Main.dust[dustIndex];
-            
+
             dust.velocity.X += Main.rand.Next(-50, 51) * 0.01f;
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;

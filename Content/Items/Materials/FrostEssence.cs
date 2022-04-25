@@ -12,7 +12,7 @@ public class FrostEssence : YggdrasilItem
     {
         DisplayName.SetDefault("Frost Essence");
         Tooltip.SetDefault("The essence of a cold dead creature");
-        
+
         Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(24, 2));
         ItemID.Sets.ItemIconPulse[Item.type] = true;
         ItemID.Sets.ItemNoGravity[Item.type] = true;

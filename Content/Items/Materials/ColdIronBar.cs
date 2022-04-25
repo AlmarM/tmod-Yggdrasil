@@ -11,7 +11,7 @@ public class ColdIronBar : YggdrasilItem
     {
         // influences the inventory sort order. 59 is PlatinumBar, higher is more valuable.
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 59;
-        
+
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
 

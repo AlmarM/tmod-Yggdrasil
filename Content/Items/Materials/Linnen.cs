@@ -9,7 +9,7 @@ public class Linnen : YggdrasilItem
     {
         DisplayName.SetDefault("Linnen");
         Tooltip.SetDefault("A piece of fabric");
-        
+
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
 

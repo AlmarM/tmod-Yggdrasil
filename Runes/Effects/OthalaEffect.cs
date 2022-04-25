@@ -11,7 +11,7 @@ public class OthalaEffect : RuneEffect<OthalaEffect.Parameters>
     {
         Parameters consumptionParameters = CastParameters(effectParameters);
         string percentage = TextUtils.GetPercentage(consumptionParameters.ReduceAmmoConsumptionBonus);
-        
+
         return MakeDescription(RuneEffectConfig.OthalaEffectDescription, percentage);
     }
 

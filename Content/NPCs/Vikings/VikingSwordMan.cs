@@ -64,7 +64,7 @@ public class VikingSwordMan : YggdrasillNPC
         for (var i = 0; i < 10; i++)
         {
             int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
-            
+
             Dust dust = Main.dust[dustIndex];
             dust.velocity.X += Main.rand.Next(-50, 51) * 0.01f;
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;

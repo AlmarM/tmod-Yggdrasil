@@ -10,7 +10,7 @@ public class ColdIronOre : YggdrasilItem
     public override void SetStaticDefaults()
     {
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
-        
+
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
 

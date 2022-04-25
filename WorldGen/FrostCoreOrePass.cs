@@ -33,7 +33,7 @@ public class FrostCoreOrePass : GenPass
             // Then, we call WorldGen.TileRunner with random "strength" and random "steps", as well as the Tile we wish to place.
             // Feel free to experiment with strength and step to see the shape they generate.
             Tile tile = Framing.GetTileSafely(x, y);
-            
+
             if (tile.HasTile && tile.TileType == TileID.IceBlock)
             {
                 int strength = Terraria.WorldGen.genRand.Next(3, 8);

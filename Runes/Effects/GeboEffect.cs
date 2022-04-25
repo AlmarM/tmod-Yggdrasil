@@ -11,7 +11,7 @@ public class GeboEffect : RuneEffect<GeboEffect.Parameters>
     {
         Parameters damageParams = CastParameters(effectParameters);
         string percentage = TextUtils.GetPercentage(damageParams.MinionDamageBonus);
-        
+
         return MakeDescription(RuneEffectConfig.GeboEffectDescription, percentage);
     }
 
