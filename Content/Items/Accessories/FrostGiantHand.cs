@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;

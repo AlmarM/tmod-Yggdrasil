@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;

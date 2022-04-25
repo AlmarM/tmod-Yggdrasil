@@ -8,7 +8,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;

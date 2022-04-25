@@ -2,11 +2,10 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Items.Accessories;
+namespace Yggdrasil.Content.Items.Accessories;
 
 public class RunicSlab : YggdrasilItem
 {

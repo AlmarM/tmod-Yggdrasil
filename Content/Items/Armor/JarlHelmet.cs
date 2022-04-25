@@ -6,7 +6,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Armor;
@@ -16,13 +15,13 @@ public class JarlHelmet : YggdrasilItem
 {
     private string _runicText;
     private string _runicPowerText;
-    private string _runicPowerBonusText;
+    private string _runicPowerThreeText;
 
     public override void SetStaticDefaults()
     {
         _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        _runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
         DisplayName.SetDefault("Jarl Helmet");
         Tooltip.SetDefault($"4% increased {_runicText} damage");
@@ -47,7 +46,7 @@ public class JarlHelmet : YggdrasilItem
     {
         player.setBonus = $"4% increased {_runicText} damage" +
                           $"\nGrants +1 {_runicPowerText}" +
-                          $"\n{_runicPowerBonusText}: Slowly regenerate life ";
+                          $"\n{_runicPowerThreeText}: Slowly regenerate life ";
 
         player.GetDamage<RunicDamageClass>() += 0.04f;
 

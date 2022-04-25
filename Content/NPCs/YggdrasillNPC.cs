@@ -3,7 +3,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.NPCs;
 
-public class YggdrasillNPC : ModNPC
+public abstract class YggdrasillNPC : ModNPC
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 }

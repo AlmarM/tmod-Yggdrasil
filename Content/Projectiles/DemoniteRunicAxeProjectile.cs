@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Projectiles;

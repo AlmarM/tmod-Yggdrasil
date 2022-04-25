@@ -5,8 +5,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
-using Yggdrasil.Items.Accessories;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;

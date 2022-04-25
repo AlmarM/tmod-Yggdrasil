@@ -6,7 +6,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Items;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
@@ -68,34 +67,26 @@ public class FrostCoreRunicHammer : YggdrasilItem
         }
     }
 
-    int baseFrostburn = 60; //base Onfire time for the debuff 60 = 1sec
-    float baseFrostBurnChance = 0f;
-
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        float frostBurnProcChance = baseFrostBurnChance;
-
-        if (runePlayer.RunePower >= 1)
+        if (runePlayer.RunePower < 1)
         {
-            frostBurnProcChance += .5f;
-            if (Main.rand.NextFloat() < frostBurnProcChance)
-            {
-                target.AddBuff(BuffID.Frostburn, baseFrostburn);
-            }
+            return;
         }
 
-        int frostBurnDuration = baseFrostburn;
+        var frostBurnChance = 0.5f;
+        int frostBurnDuration = TimeUtils.SecondsToTicks(1);
 
         if (runePlayer.RunePower >= 2)
         {
-            frostBurnProcChance += .25f;
-            frostBurnDuration *= 3;
+            frostBurnChance += .25f;
+            frostBurnDuration += TimeUtils.SecondsToTicks(2);
+        }
 
-            if (Main.rand.NextFloat() < frostBurnProcChance)
-            {
-                target.AddBuff(BuffID.Frostburn, frostBurnDuration);
-            }
+        if (Main.rand.NextFloat() <= frostBurnChance)
+        {
+            target.AddBuff(BuffID.Frostburn, frostBurnDuration);
         }
     }
 }
