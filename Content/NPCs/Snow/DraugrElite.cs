@@ -1,17 +1,20 @@
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.NPCs.Vikings;
+namespace Yggdrasil.Content.NPCs.Snow;
 
-public class VikingSwordMan : YggdrasilNPC
+public class DraugrElite : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Viking Swordman");
+        DisplayName.SetDefault("Elite Draugr");
 
-        Main.npcFrameCount[Type] = Main.npcFrameCount[213];
+        Main.npcFrameCount[Type] = Main.npcFrameCount[276];
 
         // Influences how the NPC looks in the Bestiary
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -23,28 +26,25 @@ public class VikingSwordMan : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        //NPC.CloneDefaults(NPCID.GoblinWarrior);
-        NPC.width = 30;
-        NPC.height = 40;
-        NPC.damage = 25;
-        NPC.defense = 8;
-        NPC.lifeMax = 110;
-        NPC.HitSound = SoundID.NPCHit1;
-        NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.value = 150f;
-        NPC.knockBackResist = 0.5f;
-        NPC.aiStyle = 3;
-        AIType = NPCID.GoblinWarrior;
-        AnimationType = 213;
-        NPC.buffImmune[BuffID.Confused] = true;
+        NPC.CloneDefaults(276);
+        NPC.damage = 30; //Sword Blue Armored Bones
+        NPC.defense = 10;
+        NPC.lifeMax = 80;
+        NPC.value = 200f;
+        AIType = 276;
+        AnimationType = 276;
+        NPC.knockBackResist = 0.3f;
+        //npc.buffImmune[BuffID.Confused] = true;
+        NPC.buffImmune[BuffID.Frostburn] = true;
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
         if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * .25f;
+            return SpawnCondition.Underground.Chance * 0.25f;
         }
+
         return 0f;
     }
 
@@ -54,17 +54,21 @@ public class VikingSwordMan : YggdrasilNPC
         NPC.netUpdate = true;
     }
 
+    public override void OnHitPlayer(Player player, int damage, bool crit)
+    {
+        player.AddBuff(BuffID.Frostburn, TimeUtils.SecondsToTicks(3));
+    }
+
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingSword"), 100));
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("NorsemenShield"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostEssence>(), 2));
     }
 
     public override void HitEffect(int hitDirection, double damage)
     {
-        for (var i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
-            int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+            int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Electric);
 
             Dust dust = Main.dust[dustIndex];
             dust.velocity.X += Main.rand.Next(-50, 51) * 0.01f;

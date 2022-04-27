@@ -46,7 +46,7 @@ public class JarlHelmet : YggdrasilItem
     {
         player.setBonus = $"4% increased {_runicText} damage" +
                           $"\nGrants +1 {_runicPowerText}" +
-                          $"\n{_runicPowerThreeText}: Slowly regenerate life ";
+                          $"\n{_runicPowerThreeText}: Slowly regenerate life";
 
         player.GetDamage<RunicDamageClass>() += 0.04f;
 

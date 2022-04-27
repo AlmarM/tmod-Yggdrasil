@@ -15,6 +15,13 @@ public class Draugr : YggdrasilNPC
         DisplayName.SetDefault("Draugr");
 
         Main.npcFrameCount[Type] = Main.npcFrameCount[524];
+
+        // Influences how the NPC looks in the Bestiary
+        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+        {
+            // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            Velocity = 1f
+        });
     }
 
     public override void SetDefaults()
@@ -29,13 +36,14 @@ public class Draugr : YggdrasilNPC
         NPC.knockBackResist = 0.2f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
+
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
         if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * 0.5f;
+            return SpawnCondition.Underground.Chance * 0.25f;
         }
 
         return 0f;

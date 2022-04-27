@@ -38,6 +38,7 @@ public class RunicPotion : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.Shiverthorn)
+        .AddIngredient(ItemID.IceBlock, 50)
         .AddTile(TileID.Bottles)
         .Register();
 }

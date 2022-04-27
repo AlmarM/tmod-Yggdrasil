@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -22,7 +23,7 @@ public class FemaleVikingArcher : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GoblinArcher);
+        //NPC.CloneDefaults(NPCID.GoblinArcher);
         NPC.width = 18;
         NPC.height = 40;
         NPC.damage = 30;
@@ -37,14 +38,14 @@ public class FemaleVikingArcher : YggdrasilNPC
         AnimationType = NPCID.GoblinArcher;
     }
 
-    /*public override float SpawnChance(NPCSpawnInfo spawnInfo) 
+    public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if(YggdrasilWorld.vikingInvasionUp)
+        if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * 0.5f;
+            return SpawnCondition.Overworld.Chance * .25f;
         }
         return 0f;
-    }*/
+    }
 
     public override void AI()
     {
