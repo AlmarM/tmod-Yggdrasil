@@ -44,12 +44,12 @@ public class ShinyRunicAxe : YggdrasilItem
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient(ItemID.GoldBar, 10)
+            .AddIngredient(ItemID.GoldBar, 8)
             .AddTile(TileID.Anvils)
             .Register();
 
         CreateRecipe()
-            .AddIngredient(ItemID.PlatinumBar, 10)
+            .AddIngredient(ItemID.PlatinumBar, 8)
             .AddTile(TileID.Anvils)
             .Register();
     }

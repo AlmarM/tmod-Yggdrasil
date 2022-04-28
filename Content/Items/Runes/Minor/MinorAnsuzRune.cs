@@ -20,7 +20,7 @@ internal class MinorAnsuzRune : Rune
     public override int Rarity => ItemRarityID.Green;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.ManaCrystal, 5)
         .AddIngredient(ItemID.BandofStarpower)
         .Register();

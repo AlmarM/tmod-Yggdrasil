@@ -20,7 +20,7 @@ internal class MinorOthalaRune : Rune
     public override int Rarity => ItemRarityID.Green;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.Sandgun)
         .AddIngredient(ItemID.JestersArrow, 20)
         .Register();

@@ -21,7 +21,7 @@ internal class MinorEhwazRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.IceBlock, 30)
         .AddIngredient(ItemID.SwiftnessPotion, 5)
         .Register();

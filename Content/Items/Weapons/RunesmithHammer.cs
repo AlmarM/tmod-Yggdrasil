@@ -32,15 +32,15 @@ public class RunesmithHammer : YggdrasilItem
         Item.damage = 9;
         Item.crit = 0;
         Item.knockBack = 10;
-        Item.hammer = 45;
+        //Item.hammer = 45;
         Item.value = Item.buyPrice(0, 0, 5, 40);
         Item.rare = ItemRarityID.White;
         Item.UseSound = SoundID.Item1;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 15)
-        .AddRecipeGroup(RecipeGroupID.IronBar, 10)
+        .AddRecipeGroup(RecipeGroupID.Wood, 5)
+        .AddRecipeGroup(RecipeGroupID.IronBar, 8)
         .AddTile(TileID.Anvils)
         .Register();
 

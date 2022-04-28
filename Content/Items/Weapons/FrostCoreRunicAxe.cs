@@ -44,7 +44,7 @@ public class FrostCoreRunicAxe : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(12)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

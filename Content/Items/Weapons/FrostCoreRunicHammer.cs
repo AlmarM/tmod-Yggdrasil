@@ -36,14 +36,14 @@ public class FrostCoreRunicHammer : YggdrasilItem
         Item.damage = 18;
         Item.crit = 0;
         Item.knockBack = 10;
-        Item.hammer = 65;
+        //Item.hammer = 65;
         Item.value = Item.buyPrice(0, 0, 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(12)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

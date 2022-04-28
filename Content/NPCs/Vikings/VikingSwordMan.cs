@@ -2,6 +2,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Terraria.GameContent.ItemDropRules;
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons;
+using Yggdrasil.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -43,7 +47,7 @@ public class VikingSwordMan : YggdrasilNPC
     {
         if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * .25f;
+            return SpawnCondition.Overworld.Chance * 1f;
         }
         return 0f;
     }
@@ -56,8 +60,9 @@ public class VikingSwordMan : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingSword"), 100));
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("NorsemenShield"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 20));
     }
 
     public override void HitEffect(int hitDirection, double damage)

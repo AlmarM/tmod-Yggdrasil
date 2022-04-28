@@ -3,6 +3,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -11,34 +13,31 @@ public class ArmRing : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Armring");
-        Tooltip.SetDefault($"Increase {runicText} damage by 2");
+        Tooltip.SetDefault($"2% increase {runicText} damage"+
+                           $"\nGrants +1 {runicPowerText}");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.White;
+        Item.rare = ItemRarityID.Blue;
         Item.accessory = true;
+        Item.value = Item.buyPrice(0, 0, 10);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        //player.GetDamage<RunicDamageClass>() += 2;
+        player.GetDamage<RunicDamageClass>() += 0.02f;
+        player.GetModPlayer<RunePlayer>().RunePower += 1;
     }
 
-    public override void AddRecipes()
-    {
-        CreateRecipe()
-            .AddIngredient(ItemID.IronBar, 2)
-            .AddTile(TileID.Anvils)
-            .Register();
-
-        CreateRecipe()
-            .AddIngredient(ItemID.LeadBar, 2)
-            .AddTile(TileID.Anvils)
-            .Register();
-    }
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<WoodArmRing>()
+        .AddRecipeGroup(RecipeGroupID.IronBar, 2)
+        .AddTile(TileID.Anvils)
+        .Register();
 }

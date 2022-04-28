@@ -21,7 +21,7 @@ internal class MinorIsaRune : Rune
     public override int Rarity => ItemRarityID.Green;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.SlimeBanner)
         .AddIngredient(ItemID.BatBanner)
         .Register();

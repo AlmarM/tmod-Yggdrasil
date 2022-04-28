@@ -20,7 +20,7 @@ internal class MinorGeboRune : Rune
     public override int Rarity => ItemRarityID.Orange;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.BeeWax, 30)
         .AddIngredient(ItemID.ImpStaff)
         .Register();

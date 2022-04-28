@@ -8,19 +8,19 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
-public class BerserkerRing : YggdrasilItem
+public class RunicNecklace : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5+");
 
-        DisplayName.SetDefault("Berserker Ring");
+        DisplayName.SetDefault("Runic Necklace");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
-                           $"\n3% increased {runicText} critical strike chance" +
-                           $"\nGrants +1 {runicPowerText}" +
-                           $"\n{runicPower} 1% increased {runicText} critical strike chance");
+                           $"\n5% increased {runicText} critical strike chance" +
+                           $"\nGrants +2 {runicPowerText}" +
+                           $"\n{runicPower} Generate Light");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -39,24 +39,16 @@ public class BerserkerRing : YggdrasilItem
         player.GetModPlayer<RunePlayer>().RunePower += 1;
 
         var modPlayer = player.GetModPlayer<RunePlayer>();
-        if (modPlayer.RunePower >= 3)
+        if (modPlayer.RunePower >= 5)
         {
-            player.GetCritChance<RunicDamageClass>() += 1;
+            Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .5f, .8f, .8f);
         }
     }
 
-    public override void AddRecipes()
-    {
-        CreateRecipe()
-            .AddIngredient<ArmRing>()
-            .AddIngredient(ItemID.VilePowder, 5)
+    public override void AddRecipes() => CreateRecipe()
+            .AddIngredient<BerserkerRing>()
+            .AddIngredient(ItemID.Bell)
             .AddTile(TileID.Anvils)
             .Register();
-
-        CreateRecipe()
-            .AddIngredient<ArmRing>()
-            .AddIngredient(ItemID.ViciousPowder, 5)
-            .AddTile(TileID.Anvils)
-            .Register();
-    }
+    
 }

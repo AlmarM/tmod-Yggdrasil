@@ -20,7 +20,7 @@ internal class MinorKenazRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.NinjaHood)
         .AddIngredient(ItemID.InvisibilityPotion, 5)
         .Register();

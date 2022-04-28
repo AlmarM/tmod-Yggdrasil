@@ -1,5 +1,6 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Others;
 
@@ -16,6 +17,13 @@ public class VikingKey : YggdrasilItem
     public override void SetDefaults()
     {
         Item.maxStack = 999;
-        Item.rare = ItemRarityID.Yellow;
+        Item.rare = ItemRarityID.White;
     }
+
+    //Temporary
+    /*public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<FrostCoreBar>(5)
+        .AddIngredient(ItemID.IceBlock, 50)
+        .AddTile(TileID.Bottles)
+        .Register();*/
 }

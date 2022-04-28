@@ -1,0 +1,54 @@
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Yggdrasil.Configs;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Utils;
+
+namespace Yggdrasil.Content.Items.Tools;
+
+public class FrostCorePickaxe : YggdrasilItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("FrostCore Pickaxe");
+        Tooltip.SetDefault("50% chance to inflict frostburn for 2 sec");
+
+        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+    }
+
+    public override void SetDefaults()
+    {
+        Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
+        Item.useStyle = ItemUseStyleID.Swing;
+        Item.useTime = 26;
+        Item.useAnimation = 26;
+        Item.autoReuse = true;
+        Item.damage = 18;
+        Item.crit = 0;
+        Item.knockBack = 10;
+        Item.pick = 55;
+        Item.value = Item.buyPrice(0, 0, 23);
+        Item.rare = ItemRarityID.Blue;
+        Item.UseSound = SoundID.Item1;
+    }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<FrostCoreBar>(11)
+        .AddTile(TileID.Anvils)
+        .Register();
+
+
+
+    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+    {
+
+        if (Main.rand.NextFloat() <= .5f)
+        {
+            target.AddBuff(BuffID.Frostburn, 120);
+        }
+    }
+}

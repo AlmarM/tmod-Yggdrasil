@@ -30,10 +30,10 @@ public class FrostCoreTile : YggdrasilTile
 
         AddMapEntry(new Color(51, 255, 255), name);
 
-        DustType = DustID.Platinum;
+        DustType = DustID.NorthPole;
         ItemDrop = ModContent.ItemType<FrostCoreOre>();
         SoundType = SoundID.Tink;
-        MinPick = 50;
+        MinPick = 55;
         MineResist = 1f;
     }
 }

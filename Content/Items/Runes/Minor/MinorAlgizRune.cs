@@ -20,7 +20,7 @@ internal class MinorAlgizRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.Shackle)
         .AddIngredient(ItemID.ObsidianSkull)
         .Register();

@@ -42,7 +42,7 @@ public class DraugrElite : YggdrasilNPC
     {
         if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Underground.Chance * 0.25f;
+            return SpawnCondition.Underground.Chance * 0.5f;
         }
 
         return 0f;
@@ -61,7 +61,7 @@ public class DraugrElite : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostEssence>(), 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostEssence>()));
     }
 
     public override void HitEffect(int hitDirection, double damage)

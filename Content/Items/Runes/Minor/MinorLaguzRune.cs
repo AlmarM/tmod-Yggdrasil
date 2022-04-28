@@ -21,7 +21,7 @@ internal class MinorLaguzRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.HealingPotion, 20)
         .AddIngredient(ItemID.CrispyHoneyBlock, 20)
         .Register();

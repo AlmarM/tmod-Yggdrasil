@@ -21,7 +21,7 @@ internal class MinorBerkanoRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.StarinaBottle, 3)
         .AddIngredient(ItemID.HeartLantern, 3)
         .Register();

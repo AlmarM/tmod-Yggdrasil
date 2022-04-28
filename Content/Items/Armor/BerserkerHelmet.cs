@@ -15,7 +15,7 @@ public class BerserkerHelmet : YggdrasilItem
 {
     private string _runicText;
     private string _runicPowerText;
-    private string _runicPowerThreeText;
+    //private string _runicPowerThreeText;
 
     public override void SetStaticDefaults()
     {

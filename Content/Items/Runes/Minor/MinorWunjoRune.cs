@@ -20,7 +20,7 @@ internal class MinorWunjoRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.AncientNecroHelmet)
         .AddIngredient(ItemID.SkeletronTrophy)
         .AddIngredient(ItemID.HellstoneBar, 20)
