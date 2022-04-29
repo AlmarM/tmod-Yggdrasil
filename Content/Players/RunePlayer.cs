@@ -13,6 +13,7 @@ public class RunePlayer : ModPlayer
     public int RunePower { get; set; }
 
     public bool ShowRunePower { get; set; }
+    public bool OccultBuff { get; set; }
 
     public float DodgeChance { get; set; }
 
@@ -68,7 +69,7 @@ public class RunePlayer : ModPlayer
     {
         RunePower = 0;
         ShowRunePower = false;
-
+        OccultBuff = false;
         DodgeChance = 0f;
         InvincibilityBonusTime = 0f;
         PreventAmmoConsumptionChance = 0f;

@@ -17,7 +17,7 @@ public class MeteorineRunicAxe : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Meteorite Runic Axe");
+        DisplayName.SetDefault("Runic Meteorite Axe");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Grants +1 {runicText} damage & has 25% chance to inflict fire damage for 1 sec" +
             $"\n{runicPowerTwoText}: Grants +2 {runicText} damage & adds 25% chance to inflict fire damage for 2 more sec");

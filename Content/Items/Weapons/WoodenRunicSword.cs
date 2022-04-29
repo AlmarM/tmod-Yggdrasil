@@ -13,7 +13,7 @@ public class WoodenRunicSword : RunicItem
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Wooden Runic Sword");
+        DisplayName.SetDefault("Runic Wooden Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

@@ -10,7 +10,7 @@ public class PalladiumRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Palladium Runic Hamaxe");
+        DisplayName.SetDefault("Runic Palladium Warhamaxe");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -26,7 +26,7 @@ public class PalladiumRunicAxe : YggdrasilItem
         Item.crit = 10;
         Item.knockBack = 5;
         Item.axe = 15;
-        Item.hammer = 85;
+        //Item.hammer = 85;
         Item.value = Item.buyPrice(0, 1, 38);
         Item.rare = ItemRarityID.LightRed;
         Item.UseSound = SoundID.Item1;

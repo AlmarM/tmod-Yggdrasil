@@ -10,7 +10,7 @@ public class LuminiteRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Luminite Runic Sword");
+        DisplayName.SetDefault("Runic Luminite Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

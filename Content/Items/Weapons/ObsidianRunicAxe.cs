@@ -12,7 +12,7 @@ public class ObsidianRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Obsidian Runic Axe");
+        DisplayName.SetDefault("Runic Obsidian Axe");
         Tooltip.SetDefault("Hot to the touch");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

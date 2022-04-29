@@ -20,7 +20,7 @@ internal class MinorNauthizRune : Rune
     public override int Rarity => ItemRarityID.Green;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.HoneyComb)
         .AddIngredient(ItemID.GuideVoodooDoll)
         .Register();

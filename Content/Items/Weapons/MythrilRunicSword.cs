@@ -10,7 +10,7 @@ public class MythrilRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Mythril Runic Sword");
+        DisplayName.SetDefault("Runic Mythril Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

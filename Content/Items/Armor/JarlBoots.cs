@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Content.Items.Armor;
 
@@ -18,6 +19,7 @@ public class JarlBoots : YggdrasilItem
         DisplayName.SetDefault("Jarl Boots");
         Tooltip.SetDefault($"2% increased {runicText} damage" +
                            "\n8% increase movement speed");
+        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()

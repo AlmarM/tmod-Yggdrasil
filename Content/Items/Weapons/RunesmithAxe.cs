@@ -35,8 +35,8 @@ public class RunesmithAxe : RunicItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 15)
-        .AddRecipeGroup(RecipeGroupID.IronBar, 10)
+        .AddRecipeGroup(RecipeGroupID.Wood, 5)
+        .AddRecipeGroup(RecipeGroupID.IronBar, 8)
         .AddTile(TileID.Anvils)
         .Register();
 

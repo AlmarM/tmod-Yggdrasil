@@ -4,6 +4,7 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -39,6 +40,7 @@ public class FrostGiantHand : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.TitanGlove)
         .AddIngredient(ItemID.FrostDaggerfish)
+        .AddIngredient<FrostCoreBar>(30)
         .AddTile(TileID.WorkBenches)
         .Register();
 }

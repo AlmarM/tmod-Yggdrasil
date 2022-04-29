@@ -20,7 +20,7 @@ internal class MinorThurisazRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.Cactus, 10)
         .AddIngredient(ItemID.Stinger, 2)
         .Register();

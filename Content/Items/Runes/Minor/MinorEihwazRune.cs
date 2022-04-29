@@ -20,7 +20,7 @@ internal class MinorEihwazRune : Rune
     public override int Rarity => ItemRarityID.Orange;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.WoodYoyo)
         .AddIngredient(ItemID.JungleYoyo)
         .Register();

@@ -18,7 +18,7 @@ public class FrostCoreRunicHammer : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("FrostCore Runic Axe");
+        DisplayName.SetDefault("Runic FrostCore Warhammer");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
             $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
@@ -36,14 +36,14 @@ public class FrostCoreRunicHammer : YggdrasilItem
         Item.damage = 18;
         Item.crit = 0;
         Item.knockBack = 10;
-        Item.hammer = 65;
+        //Item.hammer = 65;
         Item.value = Item.buyPrice(0, 0, 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(12)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

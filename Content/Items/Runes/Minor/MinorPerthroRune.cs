@@ -21,7 +21,7 @@ internal class MinorPerthroRune : Rune
     public override int Rarity => ItemRarityID.LightRed;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.LavaBucket)
         .AddIngredient(ItemID.FlaskofFire, 10)
         .AddIngredient(ItemID.FlaskofPoison, 10)

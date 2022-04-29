@@ -18,7 +18,7 @@ public class FrostCoreRunicAxe : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("FrostCore Runic Axe");
+        DisplayName.SetDefault("Runic FrostCore Axe");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Grants +1 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
             $"\n{runicPowerTwoText}: Grants +1 {runicText} damage & 2% increased {runicText} critical strike chance" +
@@ -44,7 +44,7 @@ public class FrostCoreRunicAxe : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(12)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

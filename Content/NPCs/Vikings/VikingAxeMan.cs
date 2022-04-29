@@ -1,6 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
+using Terraria.GameContent.ItemDropRules;
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -22,7 +26,7 @@ public class VikingAxeMan : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.PirateCorsair);
+        //NPC.CloneDefaults(NPCID.PirateCorsair);
         NPC.width = 30;
         NPC.height = 40;
         NPC.damage = 30;
@@ -39,14 +43,14 @@ public class VikingAxeMan : YggdrasilNPC
         //BannerItem = Item.BannerToItem(Banner); 
     }
 
-    /* public override float SpawnChance(NPCSpawnInfo spawnInfo) 
+    public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if(YggdrasilWorld.vikingInvasionUp)
+        if (spawnInfo.player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * 0.5f;
+            return SpawnCondition.Overworld.Chance * 1f;
         }
         return 0f;
-    } */
+    }
 
     public override void AI()
     {
@@ -56,7 +60,8 @@ public class VikingAxeMan : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingDaneAxe"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

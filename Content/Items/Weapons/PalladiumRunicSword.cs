@@ -10,7 +10,7 @@ public class PalladiumRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Palladium Runic Sword");
+        DisplayName.SetDefault("Runic Palladium Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

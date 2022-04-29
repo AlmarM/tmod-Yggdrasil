@@ -20,7 +20,7 @@ internal class MinorFehuRune : Rune
     public override int Rarity => ItemRarityID.Orange;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.JungleShirt)
         .AddIngredient(ItemID.Ale, 10)
         .Register();

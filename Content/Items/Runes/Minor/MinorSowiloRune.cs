@@ -20,7 +20,7 @@ internal class MinorSowiloRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.SharkToothNecklace)
         .AddIngredient(ItemID.Cactus, 15)
         .Register();

@@ -18,7 +18,7 @@ public class OccultRunicAxe : YggdrasilItem
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
         string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
-        DisplayName.SetDefault("Occult Runic Axe");
+        DisplayName.SetDefault("Runic Occult Axe");
         Tooltip.SetDefault($"{runicPowerTwoText}: Increase attack speed" +
                            $"\n{runicPowerThreeText}: Can be thrown");
 

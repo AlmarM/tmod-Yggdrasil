@@ -20,7 +20,7 @@ internal class MinorDagazRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.FossilOre, 25)
         .AddIngredient(ItemID.FlareGun)
         .Register();

@@ -10,7 +10,7 @@ public class AdamantiteRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Adamantite Runic Sword");
+        DisplayName.SetDefault("Runic Adamantite Sword");
 
         // How many times we need to destroy this item before unlocking it for duplication in Journey mode
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

@@ -20,7 +20,7 @@ internal class MinorIngwazRune : Rune
     public override int Rarity => ItemRarityID.Green;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.LifeCrystal)
         .AddIngredient(ItemID.HealingPotion, 5)
         .Register();

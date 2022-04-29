@@ -20,7 +20,7 @@ public class Linnen : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.Cobweb, 7)
+        .AddIngredient(ItemID.Cobweb, 3)
         .AddTile(TileID.Loom)
         .Register();
 }

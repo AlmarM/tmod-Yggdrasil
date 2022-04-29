@@ -20,7 +20,7 @@ internal class MinorJeraRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.InvisibilityPotion, 5)
         .AddIngredient(ItemID.Shiverthorn, 5)
         .Register();

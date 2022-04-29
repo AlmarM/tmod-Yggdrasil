@@ -20,7 +20,7 @@ internal class MinorUruzRune : Rune
     public override int Rarity => ItemRarityID.Blue;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BlankRune>(10)
+        .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.AntlionMandible, 10)
         .AddIngredient(ItemID.Blinkroot, 10)
         .Register();

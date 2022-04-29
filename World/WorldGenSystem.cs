@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -11,26 +12,26 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
 
-namespace Yggdrasil.WorldGen;
+namespace Yggdrasil.World;
 
 public class WorldGenSystem : ModSystem
 {
     //*************************************
     //Super Duper Debugging stuff there there
     //*************************************
-    /*public static bool JustPressed(Keys key)
+    public static bool JustPressed(Keys key)
     {
         return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
     }
-    
+
     public override void PostUpdateEverything()
     {
         if (JustPressed(Keys.D1))
         {
-
+            new VikingHouseGen().Generate();
         }
-        
-    }*/
+
+    }
     //*************************************
     //Super Duper Debugging stuff there there
     //*************************************
@@ -43,6 +44,7 @@ public class WorldGenSystem : ModSystem
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
         int vikingChestIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Water Chests"));
+        int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Pyramids"));
 
         if (shiniesIndex != -1)
         {
@@ -53,6 +55,11 @@ public class WorldGenSystem : ModSystem
         if (vikingChestIndex != -1)
         {
             tasks.Insert(vikingChestIndex + 1, new PassLegacy("Viking Chest", VikingChestGen));
+        }
+
+        if (vikingHouseIndex != -1)
+        {
+            tasks.Insert(vikingHouseIndex + 1, new PassLegacy("Viking House", VikingHouseGen));
         }
     }
 
@@ -88,7 +95,7 @@ public class WorldGenSystem : ModSystem
 
     private void VikingChestGen(GenerationProgress progress, GameConfiguration configuration)
     {
-        progress.Message = "Viking Chests";
+        progress.Message = "Adding Viking Chests.....";
 
         for (int i = 0; i < 10; i++)
         {
@@ -117,14 +124,14 @@ public class WorldGenSystem : ModSystem
                     }), out resultPoint);
                 if (searchSuccessful)
                 {
-                    //Main.NewText("GREAT");
+                    
                     Dust.QuickBox(new Vector2(resultPoint.X, resultPoint.Y) * 16,
                         new Vector2(resultPoint.X + 1, resultPoint.Y + 1) * 16, 2, Color.YellowGreen, null);
-                    int chestSpawn = Terraria.WorldGen.PlaceChest(resultPoint.X, resultPoint.Y - 1,
+                    int chestSpawn = WorldGen.PlaceChest(resultPoint.X, resultPoint.Y - 1,
                         (ushort)ModContent.TileType<VikingChestTile>(), true, style: 1);
                     success = chestSpawn != -1;
 
-                    int chestIndex = chestSpawn;
+                    /*int chestIndex = chestSpawn;
 
                     if (chestIndex != -1)
                     {
@@ -163,9 +170,24 @@ public class WorldGenSystem : ModSystem
                             if (chestItemIndex >= 40)
                                 break; // Make sure not to exceed the capacity of the chest
                         }
-                    }
+                    }*/
                 }
             }
         }
     }
+    private void VikingHouseGen(GenerationProgress progress, GameConfiguration configuration)
+    {
+        int attempts = 0;
+
+        while (true)
+        {
+            attempts++;
+            if (attempts > 20)
+                break;
+
+            progress.Message = "Adding Viking Houses...";
+            new VikingHouseGen().Generate();
+        }
+    }
+
 }

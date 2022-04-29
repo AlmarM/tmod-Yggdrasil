@@ -10,7 +10,7 @@ public class TitaniumRunicBlade : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Titanium Runic Blade");
+        DisplayName.SetDefault("Runic Titanium Blade");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

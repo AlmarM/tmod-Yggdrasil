@@ -18,7 +18,7 @@ public class OccultRunicSword : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
-        DisplayName.SetDefault("Occult Runic Sword");
+        DisplayName.SetDefault("Runic Occult Sword");
         Tooltip.SetDefault($"{runicPowerOneText}: Enables auto swing & increase attack speed" +
                            $"\n{runicPowerThreeText}: Grants +2 {runicText} damage & 5% increased {runicText} critical strike chance");
 
