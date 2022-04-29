@@ -18,7 +18,7 @@ public class GrassRunicAxe : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Grass Runic Axe");
+        DisplayName.SetDefault("Runic Grass Axe");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Has 50% chance to inflict poison based on {runicPowerText}" +
             $"\n{runicPowerTwoText} 5% increased {runicText} critical strike chance");

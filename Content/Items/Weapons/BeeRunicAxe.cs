@@ -17,7 +17,7 @@ public class BeeRunicAxe : YggdrasilItem
         string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Queen Bee Runic Axe");
+        DisplayName.SetDefault("Runic Queen Bee Axe");
         Tooltip.SetDefault($"{runicPowerTwoText}: Apply Honey on hit for {runicPowerText} seconds" +
                            $"\nGrants +3 {runicText} damage");
 

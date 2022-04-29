@@ -10,7 +10,7 @@ public class ShroomiteRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Shroomite Runic Sword");
+        DisplayName.SetDefault("Runic Shroomite Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

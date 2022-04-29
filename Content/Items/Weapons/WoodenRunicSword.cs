@@ -16,7 +16,7 @@ public class WoodenRunicSword : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
 
-        DisplayName.SetDefault("Wooden Runic Sword");
+        DisplayName.SetDefault("Runic Wooden Sword");
         Tooltip.SetDefault($"{runicPowerOneText}: Grants +1 {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

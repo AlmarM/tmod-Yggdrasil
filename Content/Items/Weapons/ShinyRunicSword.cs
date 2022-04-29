@@ -17,7 +17,7 @@ public class ShinyRunicSword : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Shiny Runic Sword");
+        DisplayName.SetDefault("Runic Shiny Sword");
         Tooltip.SetDefault($"{runicPowerOneText}: Generate a faint light & Grants +2 {runicText} damage" +
                            $"\n{runicPowerTwoText} 2% increased {runicText} critical strike chance");
 

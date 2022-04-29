@@ -10,7 +10,7 @@ public class SpectreRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Spectre Runic Sword");
+        DisplayName.SetDefault("Runic Spectral Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

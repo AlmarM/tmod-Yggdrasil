@@ -19,7 +19,7 @@ public class CrimtaneRunicAxe : YggdrasilItem
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
         string runicPowerFourText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
 
-        DisplayName.SetDefault("Crimtane Runic Axe");
+        DisplayName.SetDefault("Runic Crimtane Axe");
         Tooltip.SetDefault($"{runicPowerTwoText}: 5% increased {runicText} critical strike chance" +
                            $"\n{runicPowerFourText} Heal for half {runicPowerText} on critical strike to a maximum of 5");
 

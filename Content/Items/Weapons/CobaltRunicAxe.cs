@@ -10,7 +10,7 @@ public class CobaltRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Cobalt Runic Hamaxe");
+        DisplayName.SetDefault("Runic Cobalt Hamaxe");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

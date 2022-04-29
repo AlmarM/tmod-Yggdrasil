@@ -16,7 +16,7 @@ public class RunesmithHammer : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
-        DisplayName.SetDefault("Runesmith Hammer");
+        DisplayName.SetDefault("Runesmith Warhammer");
         Tooltip.SetDefault($"{runicPowerThreeText}: Grants +3 {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

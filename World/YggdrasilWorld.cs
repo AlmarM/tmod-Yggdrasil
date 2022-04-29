@@ -60,21 +60,27 @@ namespace Yggdrasil.World
 					{
 						case 0:
 							itemsToAdd.Add((ModContent.ItemType<RunicPotion>(), Main.rand.Next(1, 2)));
-							itemsToAdd.Add((ItemID.GoldBar, Main.rand.Next(2, 5)));
+							itemsToAdd.Add((ModContent.ItemType<FrostCoreBar>(), Main.rand.Next(1, 3)));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(0, 2)));
+							itemsToAdd.Add((ItemID.MiningPotion, Main.rand.Next(1, 2)));
 							break;
 						case 1:
 							itemsToAdd.Add((ModContent.ItemType<RunicSlab>(), 1));
-							itemsToAdd.Add((ModContent.ItemType<BerserkerRing>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<ArmRing>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(15, 35)));
+							itemsToAdd.Add((ItemID.ClimbingClaws, Main.rand.Next(0, 1)));
+							itemsToAdd.Add((ItemID.RegenerationPotion, Main.rand.Next(1, 2)));
 							break;
 						case 2:
 							itemsToAdd.Add((ModContent.ItemType<VikingLeatherShirt>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<WoodArmRing>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(9, 18)));
+							itemsToAdd.Add((ItemID.MagicMirror, Main.rand.Next(0, 1)));
+							itemsToAdd.Add((ItemID.ShoeSpikes, Main.rand.Next(0, 1)));
 							break;
 					}
 

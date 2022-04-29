@@ -10,7 +10,7 @@ public class OrichalcumRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Orichalcum Runic Sword");
+        DisplayName.SetDefault("Runic Orichalcum Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

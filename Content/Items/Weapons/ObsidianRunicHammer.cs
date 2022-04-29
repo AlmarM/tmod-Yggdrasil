@@ -21,7 +21,7 @@ public class ObsidianRunicHammer : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
 
-        DisplayName.SetDefault("Obsidian Runic Hammer");
+        DisplayName.SetDefault("Runic Obsidian Warhammer");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Increase Size & 50% chance to inflict fire damage for 3 sec" +
             $"\n{runicPowerTwoText}: Generate fireballs on hit based on {runicPowerText}");

@@ -17,7 +17,7 @@ public class ShinyRunicAxe : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Shiny Runic Axe");
+        DisplayName.SetDefault("Runic Shiny Axe");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: Generate a faint light & 3% increased {runicText} critical strike chance" +
             $"\n{runicPowerTwoText} Increase attack speed");

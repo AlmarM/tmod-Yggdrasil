@@ -20,7 +20,7 @@ public class ObsidianRunicSword : YggdrasilItem
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
         string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5");
 
-        DisplayName.SetDefault("Obsidian Runic Sword");
+        DisplayName.SetDefault("Runic Obsidian Sword");
         Tooltip.SetDefault(
             $"{runicPowerOneText}: 50% chance to inflict fire damage for half {runicPowerText} sec" +
             $"\n{runicPowerTwoText}: Grants +5 {runicText} damage" +

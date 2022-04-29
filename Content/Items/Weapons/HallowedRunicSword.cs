@@ -10,7 +10,7 @@ public class HallowedRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Hallowed Runic Sword");
+        DisplayName.SetDefault("Runic Hallowed Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

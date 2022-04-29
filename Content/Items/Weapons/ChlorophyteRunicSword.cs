@@ -11,7 +11,7 @@ public class ChlorophyteRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Chlorophyte Runic Blade");
+        DisplayName.SetDefault("Runic Chlorophyte Blade");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

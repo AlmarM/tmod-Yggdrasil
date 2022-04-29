@@ -17,7 +17,7 @@ public class SilverRunicSword : YggdrasilItem
         string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Silver Runic Sword");
+        DisplayName.SetDefault("Runic Silver Sword");
         Tooltip.SetDefault($"{runicPowerOneText}: Grants +1 {runicText} damage" +
                            $"\n{runicPowerTwoText}: Enables auto swing");
 

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -58,6 +59,7 @@ public class FemaleVikingArcher : YggdrasilNPC
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingBow>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

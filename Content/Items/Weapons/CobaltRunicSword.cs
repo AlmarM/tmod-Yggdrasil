@@ -10,7 +10,7 @@ public class CobaltRunicSword : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Cobalt Runic Sword");
+        DisplayName.SetDefault("Runic Cobalt Sword");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

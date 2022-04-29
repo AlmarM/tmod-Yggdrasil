@@ -10,7 +10,7 @@ public class FleshRunicAxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Flesh Runic Axe");
+        DisplayName.SetDefault("Runic Fleshy Axe");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

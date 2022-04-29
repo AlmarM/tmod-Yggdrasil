@@ -21,7 +21,8 @@ namespace Yggdrasil.Content.Items.Weapons
 			Item.useTime = 25;
 			Item.useAnimation = 25;
 			Item.knockBack = 4;
-			Item.value = Item.sellPrice(0, 0, 0, 40);
+			Item.crit = 0;
+			Item.value = Item.sellPrice(0, 0, 0, 20);
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
