@@ -2,22 +2,18 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class WoodenRunicSword : YggdrasilItem
+public class WoodenRunicSword : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Wooden Runic Sword");
-        Tooltip.SetDefault($"{runicPowerOneText}: Grants +1 {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -42,12 +38,8 @@ public class WoodenRunicSword : YggdrasilItem
         .AddTile(TileID.WorkBenches)
         .Register();
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 1;
-        }
+        AddEffect(new FlatRunicDamageEffect(1, 1));
     }
 }

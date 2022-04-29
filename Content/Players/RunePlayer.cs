@@ -8,7 +8,7 @@ namespace Yggdrasil.Content.Players;
 /// <summary>
 /// Class that handles all logic regarding runes and runic effects.
 /// </summary>
-internal class RunePlayer : ModPlayer
+public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
 
