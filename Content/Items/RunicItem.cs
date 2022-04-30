@@ -46,17 +46,28 @@ public abstract class RunicItem : YggdrasilItem
         return speed;
     }
 
+    public override bool? CanAutoReuseItem(Player player)
+    {
+        RunePlayer runePlayer = GetRunePlayer(player);
+
+        if (AutoReuseEffect.Apply(GetEffects<AutoReuseEffect>(), runePlayer))
+        {
+            return true;
+        }
+
+        return null;
+    }
+
     public override void HoldItem(Player player)
     {
         RunePlayer runePlayer = GetRunePlayer(player);
 
-        AutoReuseEffect.Apply(GetEffects<AutoReuseEffect>(), runePlayer, Item);
         FaintLightEffect.Apply(GetEffects<FaintLightEffect>(), runePlayer);
 
         var size = 1f;
-        
+
         size += BiggerSizeEffect.Apply(GetEffects<BiggerSizeEffect>(), runePlayer, Item);
-        
+
         Item.scale = size;
     }
 

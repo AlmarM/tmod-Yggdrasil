@@ -8,21 +8,18 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class DemoniteRunicAxe : YggdrasilItem
+public class DemoniteRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-        string runicPowerFourText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Demonite Axe");
-        Tooltip.SetDefault($"{runicPowerTwoText}: 5% increased {runicText} critical strike chance" +
-                           $"\n{runicPowerFourText} Spawn an axe clone on critical strike");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -48,19 +45,26 @@ public class DemoniteRunicAxe : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-    public override void ModifyWeaponCrit(Player player, ref int crit)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            crit += 5;
-        }
+        AddEffect(new RunicCritChanceEffect(2, 5));
+    }
+
+    protected override string GetTooltip()
+    {
+        string tooltip = base.GetTooltip();
+        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Spawn an axe clone on critical strike";
+
+        return tooltip;
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 4 && crit)
+        if (runePlayer.RunePower >= 4)
         {
             if (crit)
             {

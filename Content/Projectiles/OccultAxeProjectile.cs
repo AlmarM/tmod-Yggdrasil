@@ -11,13 +11,13 @@ public class OccultAxeProjectile : YggdrasilProjectile
 {
     public override void SetDefaults()
     {
+        Projectile.CloneDefaults(ProjectileID.PaladinsHammerFriendly);
+
         // Can the Projectile collide with tiles?
         Projectile.tileCollide = false;
         Projectile.friendly = true;
         //Projectile.timeLeft = 600;
         Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-
-        Projectile.CloneDefaults(ProjectileID.PaladinsHammerFriendly);
 
         AIType = ProjectileID.PaladinsHammerFriendly;
     }

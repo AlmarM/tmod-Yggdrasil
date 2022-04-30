@@ -6,22 +6,18 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class CrimtaneRunicAxe : YggdrasilItem
+public class CrimtaneRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-        string runicPowerFourText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Crimtane Axe");
-        Tooltip.SetDefault($"{runicPowerTwoText}: 5% increased {runicText} critical strike chance" +
-                           $"\n{runicPowerFourText} Heal for half {runicPowerText} on critical strike to a maximum of 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -47,13 +43,21 @@ public class CrimtaneRunicAxe : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-    public override void ModifyWeaponCrit(Player player, ref int crit)
+    protected override string GetTooltip()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            crit += 5;
-        }
+        string tooltip = base.GetTooltip();
+        var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Heal for half {runicPowerText} on critical strike to a maximum of 5";
+
+        return tooltip;
+    }
+
+    protected override void AddEffects()
+    {
+        AddEffect(new RunicCritChanceEffect(2, 5));
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)

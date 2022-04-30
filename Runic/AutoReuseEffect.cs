@@ -1,5 +1,4 @@
 using System.Linq;
-using Terraria;
 using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Runic;
@@ -12,11 +11,11 @@ public class AutoReuseEffect : RunicEffect
 
     protected override string GetDescription()
     {
-        return $"Enables auto swing";
+        return "Enables auto swing";
     }
 
-    public static void Apply(AutoReuseEffect[] effects, RunePlayer runePlayer, Item item)
+    public static bool Apply(AutoReuseEffect[] effects, RunePlayer runePlayer)
     {
-        item.autoReuse = effects.Any(e => runePlayer.RunePower >= e.RunePowerRequired);
+        return effects.Any(e => runePlayer.RunePower >= e.RunePowerRequired);
     }
 }
