@@ -22,7 +22,7 @@ public class FrostCorePickaxe : YggdrasilItem
 
     public override void SetDefaults()
     {
-        Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
+        Item.DamageType = DamageClass.Melee;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.useTime = 26;
         Item.useAnimation = 26;

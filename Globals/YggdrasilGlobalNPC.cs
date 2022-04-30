@@ -18,14 +18,17 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BeeRunicAxe>(), 3));
                 break;
 
-            case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned
-                or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
+            case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OccultShard>(), 5));
                 break;
             case NPCID.WallofFlesh:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RunemasterEmblem>(), 4));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FleshRunicAxe>(), 4));
                 break;
+            case NPCID.BloodZombie or NPCID.Drippler:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 4));
+                break;
+
         }
     }
 }

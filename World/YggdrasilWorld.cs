@@ -81,6 +81,7 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(9, 18)));
 							itemsToAdd.Add((ItemID.MagicMirror, Main.rand.Next(0, 1)));
 							itemsToAdd.Add((ItemID.ShoeSpikes, Main.rand.Next(0, 1)));
+							itemsToAdd.Add((ItemID.SwiftnessPotion, Main.rand.Next(1, 2)));
 							break;
 					}
 

@@ -1,7 +1,11 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Yggdrasil.Utils;
+using System;
 
 namespace Yggdrasil.Content.Players;
 
@@ -14,6 +18,7 @@ internal class RunePlayer : ModPlayer
 
     public bool ShowRunePower { get; set; }
     public bool OccultBuff { get; set; }
+    public bool OdinsEye { get; set; }
 
     public float DodgeChance { get; set; }
 
@@ -41,6 +46,14 @@ internal class RunePlayer : ModPlayer
         if (damage > 0 && DodgeChance > 0f && Main.rand.NextFloat() <= DodgeChance)
         {
             Player.NinjaDodge();
+            return false;
+        }
+        if (OdinsEye && damage > Player.statLife && Main.rand.Next(100) < 10)
+        {
+            Player.NinjaDodge();
+            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * (0.2f));
+            SoundEngine.PlaySound(SoundID.Item4, Player.position);
+            Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (0.2f)));
             return false;
         }
 
@@ -75,5 +88,6 @@ internal class RunePlayer : ModPlayer
         PreventAmmoConsumptionChance = 0f;
         ApplyRandomBuffChance = 0f;
         RandomBuffDuration = 0f;
-    }
+        OdinsEye = false;
+}
 }

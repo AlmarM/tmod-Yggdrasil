@@ -36,7 +36,7 @@ public class RunicNecklace : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.GetModPlayer<RunePlayer>().RunePower += 2;
 
         var modPlayer = player.GetModPlayer<RunePlayer>();
         if (modPlayer.RunePower >= 5)

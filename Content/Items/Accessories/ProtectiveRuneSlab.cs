@@ -25,11 +25,11 @@ public class ProtectiveRuneSlab : YggdrasilItem
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Lime;
-        Item.accessory = false;
+        Item.accessory = true;
         Item.value = Item.buyPrice(0, 7);
     }
 
-    public override void UpdateInventory(Player player)
+    public override void UpdateAccessory(Player player, bool hideVisual)
     {
         var modPlayer = player.GetModPlayer<RunePlayer>();
         modPlayer.ShowRunePower = true;
