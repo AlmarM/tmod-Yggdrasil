@@ -2,27 +2,21 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class FrostCoreRunicAxe : YggdrasilItem
+public class FrostCoreRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic FrostCore Axe");
-        Tooltip.SetDefault(
-            $"{runicPowerOneText}: Grants +1 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
-            $"\n{runicPowerTwoText}: Grants +1 {runicText} damage & 2% increased {runicText} critical strike chance" +
-            "\nAdds 25% chance to inflict frostburn for 2 more sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -48,50 +42,12 @@ public class FrostCoreRunicAxe : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 1;
-        }
-
-        if (runePlayer.RunePower >= 2)
-        {
-            flat += 1;
-        }
-    }
-
-    public override void ModifyWeaponCrit(Player player, ref int crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            crit += 2;
-        }
-    }
-
-    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower < 1)
-        {
-            return;
-        }
-
-        var frostBurnChance = 0.5f;
-        int frostBurnDuration = TimeUtils.SecondsToTicks(1);
-
-        if (runePlayer.RunePower >= 2)
-        {
-            frostBurnChance += .25f;
-            frostBurnDuration += TimeUtils.SecondsToTicks(2);
-        }
-
-        if (Main.rand.NextFloat() <= frostBurnChance)
-        {
-            target.AddBuff(BuffID.Frostburn, frostBurnDuration);
-        }
+        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new InflictBuffEffect(1, BuffID.Frostburn, 1, "Frostburn", 0.5f, true));
+        AddEffect(new FlatRunicDamageEffect(2, 1));
+        AddEffect(new RunicCritChanceEffect(2, 2));
+        AddEffect(new InflictBuffEffect(2, BuffID.Frostburn, 2, "Frostburn", 0.25f, true));
     }
 }

@@ -2,24 +2,18 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class SilverRunicSword : YggdrasilItem
+public class SilverRunicSword : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Silver Sword");
-        Tooltip.SetDefault($"{runicPowerOneText}: Grants +1 {runicText} damage" +
-                           $"\n{runicPowerTwoText}: Enables auto swing");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -52,24 +46,9 @@ public class SilverRunicSword : YggdrasilItem
             .Register();
     }
 
-
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 1;
-        }
-    }
-
-    public override void HoldItem(Player player)
-    {
-        Item.autoReuse = false;
-
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            Item.autoReuse = true;
-        }
+        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new AutoReuseEffect(2));
     }
 }

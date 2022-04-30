@@ -24,49 +24,48 @@ public abstract class RunicItem : YggdrasilItem
 
     public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
     {
-        var flatDamageEffects = GetEffects<FlatRunicDamageEffect>();
         RunePlayer runePlayer = GetRunePlayer(player);
 
-        foreach (FlatRunicDamageEffect effect in flatDamageEffects)
-        {
-            if (runePlayer.RunePower >= effect.RunePowerRequired)
-            {
-                flat += effect.FlatDamage;
-            }
-        }
+        FlatRunicDamageEffect.Apply(GetEffects<FlatRunicDamageEffect>(), runePlayer, ref damage, ref flat);
     }
 
     public override void ModifyWeaponCrit(Player player, ref int crit)
     {
-        var critChanceEffects = GetEffects<RunicCritChanceEffect>();
         RunePlayer runePlayer = GetRunePlayer(player);
 
-        foreach (RunicCritChanceEffect effect in critChanceEffects)
-        {
-            if (runePlayer.RunePower >= effect.RunePowerRequired)
-            {
-                crit += effect.CritBonus;
-            }
-        }
+        RunicCritChanceEffect.Apply(GetEffects<RunicCritChanceEffect>(), runePlayer, ref crit);
     }
 
     public override float UseSpeedMultiplier(Player player)
     {
-        var speedBonus = 1f;
-        var attackSpeedEffects = GetEffects<AttackSpeedEffect>();
         RunePlayer runePlayer = GetRunePlayer(player);
+        var speed = 1f;
 
-        foreach (AttackSpeedEffect effect in attackSpeedEffects)
-        {
-            if (runePlayer.RunePower >= effect.RunePowerRequired)
-            {
-                speedBonus += effect.SpeedBonus;
-            }
-        }
+        speed += AttackSpeedEffect.Apply(GetEffects<AttackSpeedEffect>(), runePlayer);
 
-        return speedBonus;
+        return speed;
     }
 
+    public override void HoldItem(Player player)
+    {
+        RunePlayer runePlayer = GetRunePlayer(player);
+
+        AutoReuseEffect.Apply(GetEffects<AutoReuseEffect>(), runePlayer, Item);
+        FaintLightEffect.Apply(GetEffects<FaintLightEffect>(), runePlayer);
+
+        var size = 1f;
+        
+        size += BiggerSizeEffect.Apply(GetEffects<BiggerSizeEffect>(), runePlayer, Item);
+        
+        Item.scale = size;
+    }
+
+    public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+    {
+        RunePlayer runePlayer = GetRunePlayer(player);
+
+        InflictBuffEffect.Apply(GetEffects<InflictBuffEffect>(), runePlayer, target);
+    }
 
     protected virtual string GetTooltip()
     {

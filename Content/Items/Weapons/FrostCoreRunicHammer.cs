@@ -6,22 +6,25 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class FrostCoreRunicHammer : YggdrasilItem
+public class FrostCoreRunicHammer : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+        base.SetStaticDefaults();
+
+        // string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        // string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        // string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
         DisplayName.SetDefault("Runic FrostCore Warhammer");
-        Tooltip.SetDefault(
-            $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
-            $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
+        // Tooltip.SetDefault(
+        //     $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
+        //     $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -47,46 +50,11 @@ public class FrostCoreRunicHammer : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 3;
-        }
-    }
-
-    public override void HoldItem(Player player)
-    {
-        Item.scale = 1f;
-
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            Item.scale += 0.5f;
-        }
-    }
-
-    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower < 1)
-        {
-            return;
-        }
-
-        var frostBurnChance = 0.5f;
-        int frostBurnDuration = TimeUtils.SecondsToTicks(1);
-
-        if (runePlayer.RunePower >= 2)
-        {
-            frostBurnChance += .25f;
-            frostBurnDuration += TimeUtils.SecondsToTicks(2);
-        }
-
-        if (Main.rand.NextFloat() <= frostBurnChance)
-        {
-            target.AddBuff(BuffID.Frostburn, frostBurnDuration);
-        }
+        AddEffect(new FlatRunicDamageEffect(1, 3));
+        AddEffect(new InflictBuffEffect(1, BuffID.Frostburn, 1, "Frostburn", 0.5f, true));
+        AddEffect(new BiggerSizeEffect(2, 0.5f));
+        AddEffect(new InflictBuffEffect(2, BuffID.Frostburn, 2, "Frostburn", 0.25f, true));
     }
 }
