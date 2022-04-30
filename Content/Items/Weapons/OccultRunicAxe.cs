@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,20 +9,18 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class OccultRunicAxe : YggdrasilItem
+public class OccultRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-        string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Occult Axe");
-        Tooltip.SetDefault($"{runicPowerTwoText}: Increase attack speed" +
-                           $"\n{runicPowerThreeText}: Can be thrown");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -37,10 +37,10 @@ public class OccultRunicAxe : YggdrasilItem
         Item.useStyle = ItemUseStyleID.Swing;
         Item.value = Item.sellPrice(0, 1);
         Item.rare = ItemRarityID.Green;
-        //Item.shoot = ModContent.ProjectileType<OccultAxeProjectile>();
-        //Item.shootSpeed = 12f;
         Item.UseSound = SoundID.Item1;
         Item.autoReuse = false;
+        Item.shoot = ModContent.ProjectileType<OccultAxeProjectile>();
+        Item.shootSpeed = 12f;
     }
 
     public override bool AltFunctionUse(Player player)
@@ -49,43 +49,39 @@ public class OccultRunicAxe : YggdrasilItem
         return runePlayer.RunePower >= 3;
     }
 
-    public override bool CanUseItem(Player player)
+    public override bool? UseItem(Player player)
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 3)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
-                Item.useTime = 28;
-                Item.useAnimation = 28;
-                Item.noMelee = true;
-                Item.noUseGraphic = true;
-                Item.shoot = ModContent.ProjectileType<OccultAxeProjectile>();
-                Item.shootSpeed = 15f;
-            }
-            else
-            {
-                Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
-                Item.noUseGraphic = false;
-                Item.useTime = 28;
-                Item.useAnimation = 28;
-                Item.noMelee = false;
-                Item.shoot = ProjectileID.None;
-            }
-        }
+        Item.noUseGraphic = player.altFunctionUse == 2;
 
-        return true;
+        return base.UseItem(player);
     }
 
-    public override float UseSpeedMultiplier(Player player)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity,
+        int type,
+        int damage, float knockback)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        return runePlayer.RunePower >= 2 ? 1.25f : 1f;
+        return runePlayer.RunePower >= 3 && player.altFunctionUse == 2;
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<OccultShard>(10)
         .AddTile(TileID.Anvils)
         .Register();
+
+    protected override string GetTooltip()
+    {
+        string tooltip = base.GetTooltip();
+        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Spawn an axe clone on critical strike";
+
+        return tooltip;
+    }
+
+    protected override void AddEffects()
+    {
+        AddEffect(new AttackSpeedEffect(2, 0.25f));
+    }
 }

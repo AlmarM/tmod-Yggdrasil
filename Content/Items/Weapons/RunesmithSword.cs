@@ -2,22 +2,18 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class RunesmithSword : YggdrasilItem
+public class RunesmithSword : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runesmith Sword");
-        Tooltip.SetDefault($"{runicPowerOneText}: Grants +1 {runicText} damage & increase attack speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -43,19 +39,9 @@ public class RunesmithSword : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 1;
-        }
-    }
-
-    public override float UseSpeedMultiplier(Player player)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        return runePlayer.RunePower >= 1 ? 1.5f : 1f;
+        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new AttackSpeedEffect(1, 0.5f));
     }
 }

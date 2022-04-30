@@ -2,23 +2,18 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class RunesmithAxe : YggdrasilItem
+public class RunesmithAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runesmith Axe");
-        Tooltip.SetDefault(
-            $"{runicPowerOneText}: Grants +1 {runicText} damage & 2% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -45,21 +40,9 @@ public class RunesmithAxe : YggdrasilItem
         .AddTile(TileID.Anvils)
         .Register();
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            flat += 3;
-        }
-    }
-
-    public override void ModifyWeaponCrit(Player player, ref int crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            crit += 2;
-        }
+        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new RunicCritChanceEffect(1, 2));
     }
 }

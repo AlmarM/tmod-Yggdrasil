@@ -1,26 +1,21 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons;
 
-public class ShinyRunicAxe : YggdrasilItem
+public class ShinyRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Shiny Axe");
-        Tooltip.SetDefault(
-            $"{runicPowerOneText}: Generate a faint light & 3% increased {runicText} critical strike chance" +
-            $"\n{runicPowerTwoText} Increase attack speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -54,27 +49,10 @@ public class ShinyRunicAxe : YggdrasilItem
             .Register();
     }
 
-    public override void HoldItem(Player player)
+    protected override void AddEffects()
     {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, 0.4f, 0.4f, 0.1f);
-        }
-    }
-
-    public override void ModifyWeaponCrit(Player player, ref int crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 1)
-        {
-            crit += 3;
-        }
-    }
-
-    public override float UseSpeedMultiplier(Player player)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        return runePlayer.RunePower >= 2 ? 1.5f : 1f;
+        AddEffect(new FaintLightEffect(1, new Color(0.4f, 0.4f, 0.1f)));
+        AddEffect(new RunicCritChanceEffect(1, 3));
+        AddEffect(new AttackSpeedEffect(2, 0.5f));
     }
 }

@@ -7,7 +7,7 @@ public class RunicDamageClass : DamageClass
 {
     public override void SetStaticDefaults()
     {
-        ClassName.SetDefault($"{GlobalConfig.RunicDamageLabel} damage");
+        ClassName.SetDefault($"{RuneConfig.RunicDamageLabel} damage");
     }
 
     protected override float GetBenefitFrom(DamageClass damageClass)
