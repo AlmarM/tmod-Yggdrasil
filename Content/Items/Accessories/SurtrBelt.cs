@@ -27,10 +27,10 @@ public class SurtrBelt : YggdrasilItem
 
     public override void SetDefaults()
     {
-        Item.maxStack = 1;
         Item.accessory = true;
         Item.rare = ItemRarityID.Lime;
         Item.buffType = BuffID.Inferno;
+        Item.value = Item.buyPrice(0, 7);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

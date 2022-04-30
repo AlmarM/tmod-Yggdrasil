@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Others;
-using Yggdrasil.Content.Items.Weapons;
+using Yggdrasil.Content.Items.Weapons.Vikings;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 

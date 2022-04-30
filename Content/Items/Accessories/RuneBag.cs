@@ -27,7 +27,7 @@ public class RuneBag : YggdrasilItem
     {
         Item.rare = ItemRarityID.Blue;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 2);
+        Item.value = Item.buyPrice(0, 0, 25);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

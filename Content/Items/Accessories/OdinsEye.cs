@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Yggdrasil.Content.Items.Materials;
 
 
 using Yggdrasil.Content.Players;
@@ -16,9 +17,9 @@ namespace Yggdrasil.Content.Items.Accessories
 
 		public override void SetDefaults() 
 		{
-			Item.maxStack = 1;
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = ItemRarityID.Pink;
 			Item.accessory = true;
+			Item.value = Item.buyPrice(0, 4);
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)	
@@ -27,6 +28,12 @@ namespace Yggdrasil.Content.Items.Accessories
 			runePlayer.OdinsEye = true;
 			
 		}
-		
+
+		public override void AddRecipes() => CreateRecipe()
+		.AddIngredient<BloodDrops>(10)
+		.AddIngredient(ItemID.SoulofSight, 10)
+		.AddTile(TileID.WorkBenches)
+		.Register();
+
 	}
 }

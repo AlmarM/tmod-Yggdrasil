@@ -3,7 +3,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons;
+using Yggdrasil.Content.Items.Weapons.Runic;
 using Yggdrasil.Content.Items.Accessories;
 
 namespace Yggdrasil.Globals;
