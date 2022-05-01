@@ -43,7 +43,7 @@ public class VikingArcher : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.ZoneSnow)
+        if (spawnInfo.Player.ZoneSnow)
         {
             return SpawnCondition.Overworld.Chance * 1f;
         }

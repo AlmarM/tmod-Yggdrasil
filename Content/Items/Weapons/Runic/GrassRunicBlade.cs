@@ -55,16 +55,16 @@ public class GrassRunicBlade : YggdrasilItem
         }
     }
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 3)
         {
-            flat += 3;
+            damage.Flat += 3;
         }
     }
 
-    public override void ModifyWeaponCrit(Player player, ref int crit)
+    public override void ModifyWeaponCrit(Player player, ref float crit)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 3)

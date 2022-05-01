@@ -1,4 +1,3 @@
-using Terraria;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
@@ -19,14 +18,13 @@ public class FlatRunicDamageEffect : RunicEffect
         return $"Grants +{FlatDamage} {RuneConfig.RunicDamageTooltip} damage";
     }
 
-    public static void Apply(FlatRunicDamageEffect[] effects, RunePlayer runePlayer, ref StatModifier damage,
-        ref float flat)
+    public static void Apply(FlatRunicDamageEffect[] effects, RunePlayer runePlayer, ref StatModifier damage)
     {
         foreach (FlatRunicDamageEffect effect in effects)
         {
             if (runePlayer.RunePower >= effect.RunePowerRequired)
             {
-                flat += effect.FlatDamage;
+                damage.Flat += effect.FlatDamage;
             }
         }
     }

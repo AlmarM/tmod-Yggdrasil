@@ -40,7 +40,7 @@ public class DraugrElite : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.ZoneSnow)
+        if (spawnInfo.Player.ZoneSnow)
         {
             return SpawnCondition.Underground.Chance * 0.5f;
         }

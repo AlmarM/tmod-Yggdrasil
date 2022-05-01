@@ -39,7 +39,7 @@ public class Gubbe : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.ZoneJungle)
+        if (spawnInfo.Player.ZoneJungle)
         {
             return SpawnCondition.Overworld.Chance * .8f;
         }

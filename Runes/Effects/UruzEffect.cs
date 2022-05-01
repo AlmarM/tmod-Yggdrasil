@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 
@@ -17,7 +18,7 @@ public class UruzEffect : RuneEffect<UruzEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters speedParameters = CastParameters(effectParameters);
-        player.meleeSpeed += speedParameters.MeleeSpeedBonus;
+        player.GetAttackSpeed(DamageClass.Melee) += speedParameters.MeleeSpeedBonus;
     }
 
     public struct Parameters : IRuneEffectParameters
