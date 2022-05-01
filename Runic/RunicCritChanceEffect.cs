@@ -17,7 +17,7 @@ public class RunicCritChanceEffect : RunicEffect
         return $"Grants +{CritBonus}% {RuneConfig.RunicDamageTooltip} crit chance";
     }
 
-    public static void Apply(RunicCritChanceEffect[] effects, RunePlayer runePlayer, ref int crit)
+    public static void Apply(RunicCritChanceEffect[] effects, RunePlayer runePlayer, ref float crit)
     {
         foreach (RunicCritChanceEffect effect in effects)
         {

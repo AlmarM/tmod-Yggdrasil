@@ -188,7 +188,7 @@ public class Volva : YggdrasilNPC
                 SoundEngine.PlaySound(SoundID.Item8, NPC.position);
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)NPC.position.X + NPC.width / 2,
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + NPC.width / 2,
                         (int)NPC.position.Y - 8, ModContent.NPCType<ChaosBallTest>());
                 }
             }

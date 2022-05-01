@@ -56,7 +56,7 @@ public class GrassRunicAxe : YggdrasilItem
         }
     }
 
-    public override void ModifyWeaponCrit(Player player, ref int crit)
+    public override void ModifyWeaponCrit(Player player, ref float crit)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 2)

@@ -22,14 +22,14 @@ public abstract class RunicItem : YggdrasilItem
         Tooltip.SetDefault(GetTooltip());
     }
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
     {
         RunePlayer runePlayer = GetRunePlayer(player);
 
-        FlatRunicDamageEffect.Apply(GetEffects<FlatRunicDamageEffect>(), runePlayer, ref damage, ref flat);
+        FlatRunicDamageEffect.Apply(GetEffects<FlatRunicDamageEffect>(), runePlayer, ref damage);
     }
 
-    public override void ModifyWeaponCrit(Player player, ref int crit)
+    public override void ModifyWeaponCrit(Player player, ref float crit)
     {
         RunePlayer runePlayer = GetRunePlayer(player);
 

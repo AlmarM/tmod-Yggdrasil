@@ -50,12 +50,12 @@ public class BeeRunicAxe : YggdrasilItem
         }
     }
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage, ref float flat)
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 2)
         {
-            flat += 3;
+            damage.Flat += 3;
         }
     }
 }

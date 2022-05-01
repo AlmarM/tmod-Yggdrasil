@@ -9,9 +9,4 @@ public class RunicDamageClass : DamageClass
     {
         ClassName.SetDefault($"{RuneConfig.RunicDamageLabel} damage");
     }
-
-    protected override float GetBenefitFrom(DamageClass damageClass)
-    {
-        return damageClass == Generic ? 1f : 0f;
-    }
 }

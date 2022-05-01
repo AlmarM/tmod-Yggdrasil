@@ -36,12 +36,11 @@ public class Draugr : YggdrasilNPC
         NPC.knockBackResist = 0.2f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
-
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.ZoneSnow)
+        if (spawnInfo.Player.ZoneSnow)
         {
             return SpawnCondition.Underground.Chance * 2f;
         }

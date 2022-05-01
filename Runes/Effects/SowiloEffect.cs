@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 
 namespace Yggdrasil.Runes.Effects;
@@ -14,7 +15,7 @@ public class SowiloEffect : RuneEffect<SowiloEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters penetrationParameters = CastParameters(effectParameters);
-        player.armorPenetration += penetrationParameters.ArmorPenetrationBonus;
+        player.GetArmorPenetration(DamageClass.Generic) += penetrationParameters.ArmorPenetrationBonus;
     }
 
     public struct Parameters : IRuneEffectParameters
