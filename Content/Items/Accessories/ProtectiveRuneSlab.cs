@@ -34,11 +34,9 @@ public class ProtectiveRuneSlab : YggdrasilItem
         var modPlayer = player.GetModPlayer<RunePlayer>();
         modPlayer.ShowRunePower = true;
         player.statDefense += 3;
+        player.GetModPlayer<RunePlayer>().ProtectiveSlabEquip = true;
 
-        if (modPlayer.RunePower >= 15)
-        {
-            player.statDefense += 15;
-        }
+        
     }
 
     public override void AddRecipes() => CreateRecipe()

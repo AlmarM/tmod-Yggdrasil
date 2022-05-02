@@ -1,6 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Configs;
+using Yggdrasil.Utils;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Content.Players;
 
 
 using Yggdrasil.Content.Players;
@@ -11,8 +15,11 @@ namespace Yggdrasil.Content.Items.Accessories
 	{
 		public override void SetStaticDefaults() 
 		{
+			string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 10+");
+
 			DisplayName.SetDefault ("Odin's Eye");
-			Tooltip.SetDefault("Grants 10% to avoid a fatal blow and heal back to 20% life");
+			Tooltip.SetDefault("Grants 10% to avoid a fatal blow and heal back to 20% life" +
+							$"\n{runicPower} Heal back to 50% life instead");
 		}
 
 		public override void SetDefaults() 
@@ -24,9 +31,8 @@ namespace Yggdrasil.Content.Items.Accessories
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)	
 		{
-			var runePlayer = player.GetModPlayer<RunePlayer>();
-			runePlayer.OdinsEye = true;
-			
+			player.GetModPlayer<RunePlayer>().OdinsEyeEquip = true;
+
 		}
 
 		public override void AddRecipes() => CreateRecipe()

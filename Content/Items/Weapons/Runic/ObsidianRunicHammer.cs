@@ -34,7 +34,7 @@ public class ObsidianRunicHammer : RunicItem
         Item.damage = 30;
         Item.crit = 0;
         Item.knockBack = 10;
-        Item.hammer = 70;
+        //Item.hammer = 70;
         Item.value = Item.buyPrice(0, 0, 55);
         Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
@@ -81,8 +81,8 @@ public class ObsidianRunicHammer : RunicItem
     }
     protected override void AddEffects()
     {
+        //@todo the OnFire doesn't apply even tho' it's the same code as the Obisidian Runic Sword
         AddEffect(new BiggerSizeEffect(2, 0.5f));
-        AddEffect(new RunicCritChanceEffect(5, 10));
         AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true));
     }
 

@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -13,11 +14,12 @@ public class FrostGiantHand : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5+");
 
         DisplayName.SetDefault("Frost Giant Hand");
         Tooltip.SetDefault($"5% increased {runicText} critical strike chance" +
-                           $"\nCritical hit caused by {runicText} weapons release explosive frost sparks" +
-                           "\nGrants immunity to fire blocks ");
+                           $"\nGrants immunity to fire blocks" +
+                           $"\n{runicPower} Critical hit caused by {runicText} weapons releases many frost sparks");
 
         // @todo "weapons release explosive frost sparks" needs implementation!
 
@@ -35,6 +37,7 @@ public class FrostGiantHand : YggdrasilItem
     {
         player.GetCritChance<RunicDamageClass>() += 5;
         player.fireWalk = true;
+        player.GetModPlayer<RunePlayer>().FrostGiantHandEquip = true;
     }
 
     public override void AddRecipes() => CreateRecipe()

@@ -6,20 +6,17 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class BeeRunicAxe : YggdrasilItem
+public class BeeRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
+        base.SetStaticDefaults();
 
         DisplayName.SetDefault("Runic Queen Bee Axe");
-        Tooltip.SetDefault($"{runicPowerTwoText}: Apply Honey on hit for {runicPowerText} seconds" +
-                           $"\nGrants +3 {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -38,6 +35,21 @@ public class BeeRunicAxe : YggdrasilItem
         Item.value = Item.buyPrice(0, 1);
         Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
+    }
+
+    protected override void AddEffects()
+    {
+        AddEffect(new FlatRunicDamageEffect(2, 3));
+    }
+    protected override string GetTooltip() //Temporary
+    {
+        string tooltip = base.GetTooltip();
+        var runePower = string.Format(RuneConfig.RunePowerLabel, 2);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Apply Honey on hit for RunicPower sec"; 
+
+        return tooltip;
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)

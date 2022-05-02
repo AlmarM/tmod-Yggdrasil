@@ -3,6 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -11,10 +12,12 @@ public class DwarvenMedallion : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
         DisplayName.SetDefault("Dwarven Medallion");
         Tooltip.SetDefault("15% increased mining speed" +
-                           "\nGenerate Light");
+                           "\nGenerate Light" +
+                           $"\n{runicPower} Grants +1 defense");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -30,6 +33,8 @@ public class DwarvenMedallion : YggdrasilItem
     {
         player.pickSpeed -= .15f;
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .4f, .5f, .5f);
+        player.GetModPlayer<RunePlayer>().DwarvenMedallionEquip = true;
+
     }
     public override void AddRecipes()
     {

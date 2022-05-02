@@ -14,10 +14,12 @@ public class ArmRing : YggdrasilItem
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
         DisplayName.SetDefault("Armring");
         Tooltip.SetDefault($"2% increase {runicText} damage"+
-                           $"\nGrants +1 {runicPowerText}");
+                           $"\nGrants +1 {runicPowerText}"+
+                           $"\n{runicPower} 1% increase {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -33,6 +35,8 @@ public class ArmRing : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>() += 0.02f;
         player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.GetModPlayer<RunePlayer>().ArmRingEquip = true;
+
     }
 
     public override void AddRecipes() => CreateRecipe()

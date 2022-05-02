@@ -6,6 +6,9 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Yggdrasil.Utils;
 using System;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Content.Items;
+using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Content.Players;
 
@@ -18,8 +21,6 @@ public class RunePlayer : ModPlayer
 
     public bool ShowRunePower { get; set; }
     public bool OccultBuff { get; set; }
-    public bool OdinsEye { get; set; }
-
     public float DodgeChance { get; set; }
 
     public float InvincibilityBonusTime { get; set; }
@@ -29,6 +30,17 @@ public class RunePlayer : ModPlayer
     public float ApplyRandomBuffChance { get; set; }
 
     public float RandomBuffDuration { get; set; }
+
+    //Here comes all the equip check for runepower accessories
+    public bool SurtrEquip { get; set; }
+    public bool ProtectiveSlabEquip { get; set; }
+    public bool ArmRingEquip { get; set; }
+    public bool DwarvenMedallionEquip { get; set; }
+    public bool NorsemanShieldEquip { get; set; }
+    public bool RunemasterEmblemEquip { get; set; }
+    public bool FrostGiantHandEquip { get; set; }
+    public bool OdinsEyeEquip { get; set; }
+    public bool HelsNailEquip { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -50,10 +62,14 @@ public class RunePlayer : ModPlayer
         }
         if (OdinsEye && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
+            var healBack = 0.2f;
+            if (RunePower >= 10)
+                healBack = 0.5f;
+
             Player.NinjaDodge();
-            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * (0.2f));
+            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * (healBack));
             SoundEngine.PlaySound(SoundID.Item4, Player.position);
-            Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (0.2f)));
+            Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (healBack)));
             return false;
         }
 
@@ -76,7 +92,74 @@ public class RunePlayer : ModPlayer
             int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
             BuffUtils.ApplyRandomDebuff(target, duration);
         }
+        
+        if (crit && item.ModItem is RunicItem)
+        {
+            if (FrostGiantHandEquip && RunePower >=5)
+            {
+                int projectileCount = 12;
+
+                const float projectileSpeed = 6f;
+                const float radius = 25f;
+
+                float delta = MathF.PI * 2 / projectileCount;
+
+                for (var i = 0; i < projectileCount; i++)
+                {
+                    float theta = delta * i;
+                    var position = target.Center + Vector2.One.RotatedBy(theta) * radius;
+
+                    Vector2 direction = position - target.Center;
+                    direction = Vector2.Normalize(direction);
+                    direction = Vector2.Multiply(direction, projectileSpeed);
+
+                    Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
+                }
+            }
+        }
     }
+
+    //We check for runic power at the absolute end
+    //We make sure these gets activated both with rune and accessories potential +X runicpower
+    public override void PostUpdateEquips() 
+    {
+        if (SurtrEquip)
+
+            if (RunePower >= 6)
+            {
+                Player.AddBuff(BuffID.Inferno, 2);
+            }
+
+        if (ProtectiveSlabEquip)
+            if (RunePower >= 15)
+            {
+                Player.statDefense += 15;
+            }
+
+        if (ArmRingEquip)
+            if (RunePower >= 2)
+            {
+                Player.GetDamage<RunicDamageClass>() += 0.01f;
+            }
+        if (DwarvenMedallionEquip)
+            if (RunePower >= 2)
+            {
+                Player.statDefense += 1;
+            }
+
+        if (NorsemanShieldEquip)
+            if (RunePower >= 2)
+            {
+                Player.GetDamage<RunicDamageClass>() += 0.02f;
+            }
+
+        if (RunemasterEmblemEquip)
+            if (RunePower >= 5)
+            {
+                Player.GetCritChance<RunicDamageClass>() += 1;
+            }
+    }
+
 
     public override void ResetEffects()
     {
@@ -88,6 +171,16 @@ public class RunePlayer : ModPlayer
         PreventAmmoConsumptionChance = 0f;
         ApplyRandomBuffChance = 0f;
         RandomBuffDuration = 0f;
-        OdinsEye = false;
-}
+        OdinsEyeEquip = false;
+        FrostGiantHandEquip = false;
+        HelsNailEquip = false;
+        
+        //Runepower Accessories equip reset
+        SurtrEquip = false;
+        ProtectiveSlabEquip = false;
+        ArmRingEquip = false;
+        DwarvenMedallionEquip = false;
+        NorsemanShieldEquip = false;
+        RunemasterEmblemEquip = false;
+    }
 }

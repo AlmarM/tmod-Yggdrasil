@@ -36,6 +36,8 @@ public class SurtrBelt : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetDamage<RunicDamageClass>() += 0.15f;
+        player.GetModPlayer<RunePlayer>().SurtrEquip = true;
+
         player.lavaImmune = true;
         player.fireWalk = true;
         player.statLifeMax2 += 20;
@@ -45,11 +47,8 @@ public class SurtrBelt : YggdrasilItem
         player.buffImmune[BuffID.Frozen] = true;
         player.buffImmune[BuffID.ShadowFlame] = true;
         player.buffImmune[BuffID.Frostburn] = true;
+        
 
-        var modPlayer = player.GetModPlayer<RunePlayer>();
-        if (modPlayer.RunePower >= 6)
-        {
-            player.AddBuff(BuffID.Inferno, 2);
-        }
+
     }
 }
