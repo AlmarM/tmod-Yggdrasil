@@ -60,7 +60,8 @@ public class RunePlayer : ModPlayer
             Player.NinjaDodge();
             return false;
         }
-        if (OdinsEye && damage > Player.statLife && Main.rand.Next(100) < 10)
+
+        if (OdinsEyeEquip && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
             if (RunePower >= 10)
@@ -92,10 +93,10 @@ public class RunePlayer : ModPlayer
             int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
             BuffUtils.ApplyRandomDebuff(target, duration);
         }
-        
+
         if (crit && item.ModItem is RunicItem)
         {
-            if (FrostGiantHandEquip && RunePower >=5)
+            if (FrostGiantHandEquip && RunePower >= 5)
             {
                 int projectileCount = 12;
 
@@ -121,7 +122,7 @@ public class RunePlayer : ModPlayer
 
     //We check for runic power at the absolute end
     //We make sure these gets activated both with rune and accessories potential +X runicpower
-    public override void PostUpdateEquips() 
+    public override void PostUpdateEquips()
     {
         if (SurtrEquip)
 
@@ -141,6 +142,7 @@ public class RunePlayer : ModPlayer
             {
                 Player.GetDamage<RunicDamageClass>() += 0.01f;
             }
+
         if (DwarvenMedallionEquip)
             if (RunePower >= 2)
             {
@@ -174,7 +176,7 @@ public class RunePlayer : ModPlayer
         OdinsEyeEquip = false;
         FrostGiantHandEquip = false;
         HelsNailEquip = false;
-        
+
         //Runepower Accessories equip reset
         SurtrEquip = false;
         ProtectiveSlabEquip = false;

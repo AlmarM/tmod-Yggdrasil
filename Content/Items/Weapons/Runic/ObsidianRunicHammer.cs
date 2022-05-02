@@ -34,34 +34,23 @@ public class ObsidianRunicHammer : RunicItem
         Item.damage = 30;
         Item.crit = 0;
         Item.knockBack = 10;
-        //Item.hammer = 70;
         Item.value = Item.buyPrice(0, 0, 55);
         Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
     }
-    protected override string GetTooltip()
-    {
-        string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
-        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
-
-        tooltip += $"\n{runePowerColored}: Spawn fireballs on hit";
-
-        return tooltip;
-    }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
+        base.OnHitNPC(player, target, damage, knockback, crit);
+
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 4)
         {
-            int projectileCount = runePlayer.RunePower;
-            if (projectileCount >= 6)
-                projectileCount = 6;
-
             const float projectileSpeed = 6f;
             const float radius = 25f;
 
+            int projectileCount = (int)MathF.Min(runePlayer.RunePower, 6);
+            int projectileType = ModContent.ProjectileType<FireProjectile>();
             float delta = MathF.PI * 2 / projectileCount;
 
             for (var i = 0; i < projectileCount; i++)
@@ -73,12 +62,22 @@ public class ObsidianRunicHammer : RunicItem
                 direction = Vector2.Normalize(direction);
                 direction = Vector2.Multiply(direction, projectileSpeed);
 
-                Projectile.NewProjectile(null, position, direction, ModContent.ProjectileType<FireProjectile>(), 20, 2, player.whoAmI);
+                Projectile.NewProjectile(null, position, direction, projectileType, 20, 2, player.whoAmI);
             }
         }
-
-
     }
+
+    protected override string GetTooltip()
+    {
+        string tooltip = base.GetTooltip();
+        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Spawn fireballs on hit";
+
+        return tooltip;
+    }
+
     protected override void AddEffects()
     {
         //@todo the OnFire doesn't apply even tho' it's the same code as the Obisidian Runic Sword

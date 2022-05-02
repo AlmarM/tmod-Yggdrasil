@@ -4,7 +4,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
 using Yggdrasil.Runic;
@@ -35,15 +34,6 @@ public class ObsidianRunicSword : RunicItem
         Item.value = Item.buyPrice(0, 0, 55);
         Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
-    }
-
-    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            target.AddBuff(BuffID.OnFire, TimeUtils.SecondsToTicks(runePlayer.RunePower / 2));
-        }
     }
 
     protected override void AddEffects()
