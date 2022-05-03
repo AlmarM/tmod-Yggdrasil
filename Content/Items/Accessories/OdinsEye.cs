@@ -6,9 +6,6 @@ using Yggdrasil.Utils;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Players;
 
-
-using Yggdrasil.Content.Players;
-
 namespace Yggdrasil.Content.Items.Accessories
 {
 	public class OdinsEye : YggdrasilItem

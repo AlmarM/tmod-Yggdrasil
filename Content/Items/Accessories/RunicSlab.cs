@@ -23,6 +23,7 @@ public class RunicSlab : YggdrasilItem
     {
         Item.rare = ItemRarityID.Blue;
         Item.accessory = false;
+        Item.value = Item.buyPrice(0, 0, 2);
     }
 
     public override void UpdateInventory(Player player)

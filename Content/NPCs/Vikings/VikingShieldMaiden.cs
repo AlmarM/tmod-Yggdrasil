@@ -36,7 +36,7 @@ public class VikingShieldMaiden : YggdrasilNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = 150f;
-        NPC.knockBackResist = 0.5f;
+        NPC.knockBackResist = 0.7f;
         NPC.aiStyle = 3;
         AIType = 28;
         AnimationType = 213;

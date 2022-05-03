@@ -8,7 +8,7 @@ using Yggdrasil.Utils;
 using System;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Buffs;
 
 namespace Yggdrasil.Content.Players;
 
@@ -22,14 +22,11 @@ public class RunePlayer : ModPlayer
     public bool ShowRunePower { get; set; }
     public bool OccultBuff { get; set; }
     public float DodgeChance { get; set; }
-
     public float InvincibilityBonusTime { get; set; }
-
     public float PreventAmmoConsumptionChance { get; set; }
-
     public float ApplyRandomBuffChance { get; set; }
-
     public float RandomBuffDuration { get; set; }
+    public float SlowDebuffValue { get; set; }
 
     //Here comes all the equip check for runepower accessories
     public bool SurtrEquip { get; set; }
@@ -41,6 +38,9 @@ public class RunePlayer : ModPlayer
     public bool FrostGiantHandEquip { get; set; }
     public bool OdinsEyeEquip { get; set; }
     public bool HelsNailEquip { get; set; }
+    public bool TyrHandEquip { get; set; }
+    public bool RunemasterCrestEquip { get; set; }
+    public bool NiddhogToothEquip { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -60,7 +60,7 @@ public class RunePlayer : ModPlayer
             Player.NinjaDodge();
             return false;
         }
-        if (OdinsEye && damage > Player.statLife && Main.rand.Next(100) < 10)
+        if (OdinsEyeEquip && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
             if (RunePower >= 10)
@@ -117,6 +117,44 @@ public class RunePlayer : ModPlayer
                 }
             }
         }
+
+        if (item.ModItem is RunicItem)
+        {
+            int poisonTime = 300;
+            if (HelsNailEquip)
+            {
+                if (RunePower >= 4)
+                {
+                    poisonTime = 480;
+                }
+                target.AddBuff(BuffID.Poisoned, poisonTime);
+            }
+        }
+
+        if (item.ModItem is RunicItem && NiddhogToothEquip == true)
+        {
+            target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
+            if (RunePower >= 10)
+            {
+                target.AddBuff(BuffID.Venom, 180);
+            }
+        }
+    }
+
+    public override float UseSpeedMultiplier(Item item)
+    {
+        var speed = 1f;
+        if (item.ModItem is RunicItem && TyrHandEquip == true)
+        {
+            speed += 0.10f;
+        }
+
+        if (item.ModItem is RunicItem && RunemasterCrestEquip == true)
+        {
+            speed += 0.15f;
+        }
+
+        return speed;
     }
 
     //We check for runic power at the absolute end
@@ -158,8 +196,14 @@ public class RunePlayer : ModPlayer
             {
                 Player.GetCritChance<RunicDamageClass>() += 1;
             }
-    }
 
+        if (TyrHandEquip)
+            if (RunePower >= 4)
+            {
+                Player.GetDamage<RunicDamageClass>() += 0.05f;
+            }
+
+    }
 
     public override void ResetEffects()
     {
@@ -171,9 +215,8 @@ public class RunePlayer : ModPlayer
         PreventAmmoConsumptionChance = 0f;
         ApplyRandomBuffChance = 0f;
         RandomBuffDuration = 0f;
-        OdinsEyeEquip = false;
-        FrostGiantHandEquip = false;
-        HelsNailEquip = false;
+        SlowDebuffValue = 0f;
+
         
         //Runepower Accessories equip reset
         SurtrEquip = false;
@@ -182,5 +225,11 @@ public class RunePlayer : ModPlayer
         DwarvenMedallionEquip = false;
         NorsemanShieldEquip = false;
         RunemasterEmblemEquip = false;
+        TyrHandEquip = false;
+        OdinsEyeEquip = false;
+        FrostGiantHandEquip = false;
+        HelsNailEquip = false;
+        RunemasterCrestEquip = false;
+        NiddhogToothEquip = false;
     }
 }

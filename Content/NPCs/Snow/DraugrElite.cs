@@ -33,7 +33,7 @@ public class DraugrElite : YggdrasilNPC
         NPC.value = 200f;
         AIType = 276;
         AnimationType = 276;
-        NPC.knockBackResist = 0.3f;
+        NPC.knockBackResist = 0.4f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
     }

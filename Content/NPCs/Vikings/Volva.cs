@@ -34,7 +34,7 @@ public class Volva : YggdrasilNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = 200f;
-        NPC.knockBackResist = 0.3f;
+        NPC.knockBackResist = 0.2f;
         //NPC.aiStyle = 8;
         AIType = 29;
         AnimationType = 29;

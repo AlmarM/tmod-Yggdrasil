@@ -27,7 +27,7 @@ public class RunicNecklace : YggdrasilItem
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.Green;
+        Item.rare = ItemRarityID.Orange;
         Item.accessory = true;
         Item.value = Item.buyPrice(0, 1);
     }

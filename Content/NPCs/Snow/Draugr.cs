@@ -33,7 +33,7 @@ public class Draugr : YggdrasilNPC
         NPC.value = 200f;
         AIType = NPCID.DesertGhoul;
         AnimationType = NPCID.DesertGhoul;
-        NPC.knockBackResist = 0.2f;
+        NPC.knockBackResist = 0.3f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
     }
