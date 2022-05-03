@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.Vikings
             Item.UseSound = SoundID.Item5;
             Item.autoReuse = true;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 5f;
             Item.value = Item.sellPrice(0, 0, 80);
             Item.useAmmo = AmmoID.Arrow;
         }

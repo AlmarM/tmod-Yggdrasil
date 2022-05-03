@@ -4,6 +4,11 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
+using Terraria.GameContent.ItemDropRules;
+
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons.Vikings;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -42,14 +47,14 @@ public class Volva : YggdrasilNPC
         //BannerItem = Item.BannerToItem(Banner);
     }
 
-    /* public override float SpawnChance(NPCSpawnInfo spawnInfo) 
+    public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if(YggdrasilWorld.vikingInvasionUp)
+        if (spawnInfo.Player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * 0.5f;
+            return SpawnCondition.Overworld.Chance * .1f;
         }
         return 0f;
-    } */
+    }
 
     // @todo encapsulate behavior for composition
     public override void AI() // This is a clone rework of the goblin sorcerer AI
@@ -209,7 +214,8 @@ public class Volva : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingDistaff"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 10));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
     }
 
     public override void HitEffect(int hitDirection, double damage)

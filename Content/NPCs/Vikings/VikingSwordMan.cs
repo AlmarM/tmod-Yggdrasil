@@ -41,6 +41,9 @@ public class VikingSwordMan : YggdrasilNPC
         AIType = NPCID.GoblinWarrior;
         AnimationType = 213;
         NPC.buffImmune[BuffID.Confused] = true;
+
+        //Banner = Item.NPCtoBanner(ModContent.NPCType<VikingSwordMan>()); //Doesn't seem to work
+        //BannerItem = Item.BannerToItem(Banner);
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

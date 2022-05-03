@@ -5,16 +5,18 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class ObsidianRunicAxe : YggdrasilItem
+public class ObsidianRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Runic Obsidian Axe");
-        Tooltip.SetDefault("Hot to the touch");
+        base.SetStaticDefaults();
 
+        DisplayName.SetDefault("Runic Obsidian Axe");
+       
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -34,12 +36,10 @@ public class ObsidianRunicAxe : YggdrasilItem
         Item.UseSound = SoundID.Item1;
     }
 
-    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+    protected override void AddEffects()
     {
-        if (Main.rand.NextFloat() < 0.5f)
-        {
-            target.AddBuff(BuffID.OnFire, TimeUtils.SecondsToTicks(2));
-        }
+        AddEffect(new AutoReuseEffect(3));
+        AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 6, "OnFire", 1f, true)); 
     }
 
     public override void MeleeEffects(Player player, Rectangle hitbox)

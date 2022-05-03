@@ -40,7 +40,7 @@ public class ObsidianRunicSword : RunicItem
     {
         AddEffect(new FlatRunicDamageEffect(4, 5));
         AddEffect(new RunicCritChanceEffect(5, 10));
-        AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true)); //Temporary
+        AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true)); //Temporary need to check for half runicpower time
     }
 
     public override void MeleeEffects(Player player, Rectangle hitbox)

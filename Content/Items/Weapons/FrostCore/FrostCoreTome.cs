@@ -12,7 +12,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Frost Core Tome");
+			DisplayName.SetDefault("FrostCore Tome");
             Tooltip.SetDefault("It's really cold!");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
