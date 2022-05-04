@@ -7,6 +7,6 @@ public class RunicDamageClass : DamageClass
 {
     public override void SetStaticDefaults()
     {
-        ClassName.SetDefault($"{RuneConfig.RunicDamageLabel} damage");
+        ClassName.SetDefault($"{RuneConfig.RunicDamageTooltip} damage");
     }
 }

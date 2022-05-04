@@ -11,11 +11,8 @@ public class RunicBuff : YggdrasilBuff
 
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
         DisplayName.SetDefault("Runic Buff");
-        Description.SetDefault(
-            $"20% increased {runicText} damage");
+        Description.SetDefault($"20% increased {RuneConfig.RunicDamageTooltip} damage");
     }
 
     public override void Update(Player player, ref int buffIndex)

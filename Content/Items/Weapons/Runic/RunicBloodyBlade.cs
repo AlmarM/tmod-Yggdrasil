@@ -47,7 +47,7 @@ public class RunicBloodyBlade : RunicItem
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        
         var runePower = string.Format(RuneConfig.RunePowerLabel, 1);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 

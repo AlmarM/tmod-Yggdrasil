@@ -13,9 +13,8 @@ public class SlowDebuff : YggdrasilBuff
 
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
         DisplayName.SetDefault("Slow");
+        
         Main.buffNoTimeDisplay[Type] = false;
         Main.pvpBuff[Type] = false;
     }
@@ -25,8 +24,9 @@ public class SlowDebuff : YggdrasilBuff
 		if (npc.knockBackResist > 0f)
 		{
 			Player player = Main.LocalPlayer;
-			var SlowDebuffValue = player.GetModPlayer<RunePlayer>().SlowDebuffValue;
-			npc.velocity.X *= SlowDebuffValue;
+			
+			var slowDebuffValue = player.GetModPlayer<RunePlayer>().SlowDebuffValue;
+			npc.velocity.X *= slowDebuffValue;
 
 			if (Main.rand.NextBool(5))
 			{
