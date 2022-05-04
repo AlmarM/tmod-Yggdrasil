@@ -1,3 +1,17 @@
 Yggdrasil is a small content mod adding Viking and Norse Mythology related items and enemies.
 It also adds a new class, The Runemaster and a new mechanic, Rune Power.
 This mod wants to be an addition to vanilla terraria respecting the normal progression of this game we all like.
+
+NOTE: 
+- The content of this alpha version of the mod follow the progression of the game until hardmode except for runes.
+- Runes are probably unbalanced in many ways but go all the way to moonlord
+- If you want to help, feel free to reach out!
+- This is an early alpha version of the mod!
+
+Feedback is more than welcome on our forum thread here (search for Yggdrasil):
+https://forums.terraria.org/index.php?threads/yggdrasil-wip-1-4-we-need-testers.93660/
+
+or our Discord here:
+https://discord.gg/KmFVPR8fcd
+
+Lyker & resP

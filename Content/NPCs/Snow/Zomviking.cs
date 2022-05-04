@@ -26,7 +26,7 @@ public class Zomviking : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        //NPC.CloneDefaults(NPCID.Zombie);
+        NPC.CloneDefaults(NPCID.Zombie);
         NPC.damage = 20;
         NPC.defense = 9;
         NPC.lifeMax = 80;
@@ -44,6 +44,7 @@ public class Zomviking : YggdrasilNPC
     {
         return SpawnCondition.OverworldNightMonster.Chance * 0.7f;
     }
+
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArmRing>(), 100));
