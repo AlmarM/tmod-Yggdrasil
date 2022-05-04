@@ -80,7 +80,6 @@ public class ObsidianRunicHammer : RunicItem
 
     protected override void AddEffects()
     {
-        //@todo the OnFire doesn't apply even tho' it's the same code as the Obisidian Runic Sword
         AddEffect(new BiggerSizeEffect(2, 0.5f));
         AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true));
     }
