@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Utilities;
+using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Runic;
 
@@ -76,6 +78,14 @@ public abstract class RunicItem : YggdrasilItem
         RunePlayer runePlayer = GetRunePlayer(player);
 
         InflictBuffEffect.Apply(GetEffects<InflictBuffEffect>(), runePlayer, target);
+    }
+
+    public override int ChoosePrefix(UnifiedRandom rand)
+    {
+        int[] allowedPrefixes = RuneConfig.AllowedRunicVanillaPrefixes;
+        int prefixIndex = rand.Next(allowedPrefixes.Length);
+
+        return allowedPrefixes[prefixIndex];
     }
 
     protected virtual string GetTooltip()
