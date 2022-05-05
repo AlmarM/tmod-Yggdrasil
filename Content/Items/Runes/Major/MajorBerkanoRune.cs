@@ -8,8 +8,8 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorBerkanoRune : Rune
 {
-    private const int LifeRegenBonus = 20;
-    private const int ManaRegenBonus = 80;
+    private const int LifeRegenBonus = 3;
+    private const int ManaRegenBonus = 3;
 
     public override string Label => BerkanoRune.RuneName;
 

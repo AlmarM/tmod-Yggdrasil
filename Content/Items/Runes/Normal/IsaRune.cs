@@ -10,8 +10,8 @@ internal class IsaRune : Rune
 {
     public const string RuneName = "Isa";
 
-    private const float DamageBonus = 0.5f;
-    private const float HealthThreshold = 0.12f;
+    private const float DamageBonus = 0.2f;
+    private const float HealthThreshold = 0.3f;
 
     public override string Label => RuneName;
 

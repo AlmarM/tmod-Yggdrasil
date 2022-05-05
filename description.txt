@@ -15,3 +15,27 @@ or our Discord here:
 https://discord.gg/fucWFqagPC
 
 Lyker & resP
+
+0.1.2
+- Renamed Runic Silver sword for Runic Short Blade
+- Major Ehwaz rune nerfed from 20% move speed down to 15%
+- Perthro runes buffed from 1/2/3% for 2 sec up to 3/5/7% for 5 sec
+- Raidho runes temporarily removed and being redesigned
+- Isa runes changed from 25/50/100% buff below 10/12/15% HP to 10/20/30% buff below 30% HP
+- Berkano runes nerfed from 5/10/20 life/mana regen down to 1/2/3 life/mana regen
+- Nerfed snow weapons, dmg from 10 down to 9, KB from 4 down to 2, bow doesn't autoswing anymore and shoot slower dmg from 10 down to 7
+- Fixed Frostcore spear/tome rarity color
+- Nerfed Frostcore tome mana cost from 2 up to 10
+- Changed the crafting recipe of the Grass Runic weapons
+- Added a small icon to be used by the Bestiary for the mods enemies
+- Added Bestiary biome entries for the mod's enemies
+
+0.1.1
+- Just added a new placeholder icon for the mod
+
+0.1 - First release!
+- Runemaster Class
+- Runic Weapons up to hardmode
+- Runic Power mechanic
+- 100+ items
+- 10+ enemies

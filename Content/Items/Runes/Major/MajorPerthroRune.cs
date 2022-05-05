@@ -8,8 +8,8 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorPerthroRune : Rune
 {
-    private const float ApplyBuffChance = 0.03f;
-    private const float BuffDuration = 2;
+    private const float ApplyBuffChance = 0.07f;
+    private const float BuffDuration = 5;
 
     public override string Label => PerthroRune.RuneName;
 

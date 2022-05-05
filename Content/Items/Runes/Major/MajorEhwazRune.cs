@@ -8,8 +8,8 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorEhwazRune : Rune
 {
-    private const float MovementSpeedBonus = 0.2f;
-    private const float MaxSpeedBonus = 0.2f;
+    private const float MovementSpeedBonus = 0.15f;
+    private const float MaxSpeedBonus = 0.15f;
 
     public override string Label => EhwazRune.RuneName;
 

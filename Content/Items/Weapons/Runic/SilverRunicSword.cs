@@ -13,7 +13,7 @@ public class SilverRunicSword : RunicItem
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Runic Silver Sword");
+        DisplayName.SetDefault("Runic Short Blade");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

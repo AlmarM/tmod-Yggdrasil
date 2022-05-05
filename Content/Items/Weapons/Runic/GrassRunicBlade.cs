@@ -73,9 +73,20 @@ public class GrassRunicBlade : YggdrasilItem
         }
     }
 
-    public override void AddRecipes() => CreateRecipe()
+    public override void AddRecipes()
+    {
+        CreateRecipe()
         .AddIngredient(ItemID.Stinger, 15)
-        .AddIngredient(ItemID.JungleSpores, 15)
+        .AddIngredient(ItemID.RichMahogany, 10)
+        .AddIngredient(ItemID.GoldBar, 6)
         .AddTile(TileID.Anvils)
         .Register();
+
+        CreateRecipe()
+        .AddIngredient(ItemID.Stinger, 15)
+        .AddIngredient(ItemID.RichMahogany, 10)
+        .AddIngredient(ItemID.PlatinumBar, 6)
+        .AddTile(TileID.Anvils)
+        .Register();
+    }
 }

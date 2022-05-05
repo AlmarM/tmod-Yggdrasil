@@ -9,8 +9,8 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorPerthroRune : Rune
 {
-    private const float ApplyBuffChance = 0.01f;
-    private const float BuffDuration = 2;
+    private const float ApplyBuffChance = 0.03f;
+    private const float BuffDuration = 5;
 
     public override string Label => PerthroRune.RuneName;
 

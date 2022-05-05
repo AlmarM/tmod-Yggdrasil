@@ -10,8 +10,8 @@ internal class PerthroRune : Rune
 {
     public const string RuneName = "Perthro";
 
-    private const float ApplyBuffChance = 0.02f;
-    private const float BuffDuration = 2;
+    private const float ApplyBuffChance = 0.05f;
+    private const float BuffDuration = 5;
 
     public override string Label => RuneName;
 

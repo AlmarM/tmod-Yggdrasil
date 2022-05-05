@@ -9,8 +9,8 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorIsaRune : Rune
 {
-    private const float DamageBonus = 0.25f;
-    private const float HealthThreshold = 0.1f;
+    private const float DamageBonus = 0.1f;
+    private const float HealthThreshold = 0.3f;
 
     public override string Label => IsaRune.RuneName;
 

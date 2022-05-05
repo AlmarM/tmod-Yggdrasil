@@ -5,6 +5,7 @@ using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Terraria.GameContent.Bestiary;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -41,6 +42,18 @@ public class VikingAxeMan : YggdrasilNPC
         AnimationType = 213;
         //Banner = Item.NPCtoBanner(NPCID.Zombie); 
         //BannerItem = Item.BannerToItem(Banner); 
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+    {
+        // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+            });
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

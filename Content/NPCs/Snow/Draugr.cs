@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Utils;
+using Terraria.GameContent.Bestiary;
 
 namespace Yggdrasil.Content.NPCs.Snow;
 
@@ -36,6 +37,18 @@ public class Draugr : YggdrasilNPC
         NPC.knockBackResist = 0.3f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+    {
+        // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundSnow,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+            });
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -3,6 +3,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Terraria.GameContent.Bestiary;
+
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Utils;
 
@@ -38,6 +40,18 @@ public class Zomviking : YggdrasilNPC
 
         Banner = Item.NPCtoBanner(NPCID.Zombie);
         BannerItem = Item.BannerToItem(Banner);
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+    {
+        // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+            });
     }
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

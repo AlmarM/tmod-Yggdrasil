@@ -33,7 +33,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 			Item.shoot = ModContent.ProjectileType<FrostCoreSpearProjectile>();
 
 			Item.value = Item.sellPrice(0, 0, 23, 0);
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
 

@@ -18,15 +18,15 @@ namespace Yggdrasil.Content.Items.Weapons.Snow
         }
         public override void SetDefaults()
         {
-            Item.damage = 10;
+            Item.damage = 9;
             Item.DamageType = DamageClass.Magic;
             Item.mana = 2;
             Item.useTime = 30;
             Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 3;
-            Item.crit = 1;
+            Item.knockBack = 2;
+            Item.crit = 0;
             Item.value = Item.sellPrice(0, 0, 0, 20);
             Item.rare = ItemRarityID.White;
             Item.UseSound = SoundID.Item20;

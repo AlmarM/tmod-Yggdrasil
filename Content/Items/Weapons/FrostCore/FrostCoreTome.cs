@@ -21,7 +21,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
         {
             Item.damage = 30;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 2;
+            Item.mana = 10;
             Item.useTime = 25;
             Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
             Item.knockBack = 2;
             Item.crit = 0;
             Item.value = Item.sellPrice(0, 1, 75);
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = false;
             Item.shoot = ProjectileID.BallofFrost;

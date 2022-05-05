@@ -1,4 +1,4 @@
-using Terraria.ID;
+/*using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
@@ -30,4 +30,4 @@ internal class RaidhoRune : Rune
     {
         AddEffect(RuneEffects.Get<RaidhoEffect>(), new RaidhoEffect.Parameters(ThrowingDamageBonus));
     }
-}
+}*/

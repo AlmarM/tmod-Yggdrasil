@@ -16,7 +16,7 @@ namespace Yggdrasil.Content.Items.Weapons.Snow
         }
         public override void SetDefaults()
         {
-            Item.damage = 9;
+            Item.damage = 7;
             Item.DamageType = DamageClass.Ranged;
             Item.useAnimation = 24;
             Item.useTime = 24;
@@ -26,9 +26,9 @@ namespace Yggdrasil.Content.Items.Weapons.Snow
             Item.crit = 0;
             Item.rare = ItemRarityID.White;
             Item.UseSound = SoundID.Item5;
-            Item.autoReuse = true;
+            Item.autoReuse = false;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 5f;
             Item.value = Item.sellPrice(0, 0, 0, 20);
             Item.useAmmo = AmmoID.Arrow;
         }
