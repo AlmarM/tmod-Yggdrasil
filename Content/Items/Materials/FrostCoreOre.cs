@@ -5,11 +5,11 @@ using Yggdrasil.Content.Tiles;
 
 namespace Yggdrasil.Content.Items.Materials;
 
-public class FrostcoreOre : YggdrasilItem
+public class FrostCoreOre : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Frostcore Ore");
+        DisplayName.SetDefault("FrostCore Ore");
         Tooltip.SetDefault("Really cold");
 
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
@@ -26,7 +26,7 @@ public class FrostcoreOre : YggdrasilItem
         Item.autoReuse = true;
         Item.maxStack = 999;
         Item.consumable = true;
-        Item.createTile = ModContent.TileType<FrostcoreTile>();
+        Item.createTile = ModContent.TileType<FrostCoreTile>();
         Item.width = 12;
         Item.height = 12;
         Item.value = 200;

@@ -9,8 +9,8 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorBerkanoRune : Rune
 {
-    private const int LifeRegenBonus = 3;
-    private const int ManaRegenBonus = 3;
+    private const int LifeRegenBonus = 1;
+    private const int ManaRegenBonus = 1;
 
     public override string Label => BerkanoRune.RuneName;
 

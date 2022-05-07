@@ -157,15 +157,6 @@ public class RunePlayer : ModPlayer
         return speed;
     }
 
-    public override bool? CanAutoReuseItem(Item item)
-    {
-        if (item.ModItem is RunicItem && TyrHandEquip == true)
-        {
-            return true;
-        }
-        return null;
-    }
-
     //We check for runic power at the absolute end
     //We make sure these gets activated both with rune and accessories potential +X runicpower
     public override void PostUpdateEquips() 

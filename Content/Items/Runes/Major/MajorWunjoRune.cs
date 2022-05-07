@@ -8,7 +8,7 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorWunjoRune : Rune
 {
-    private const float DamageReductionBonus = 0.07f;
+    private const float DamageReductionBonus = 0.05f;
 
     public override string Label => WunjoRune.RuneName;
 

@@ -10,7 +10,7 @@ internal class UruzRune : Rune
 {
     public const string RuneName = "Uruz";
 
-    private const float MeleeSpeedBonus = 0.05f;
+    private const float MeleeSpeedBonus = 0.1f;
 
     public override string Label => RuneName;
 

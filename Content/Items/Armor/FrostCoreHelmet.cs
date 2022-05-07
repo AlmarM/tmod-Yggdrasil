@@ -8,12 +8,12 @@ using Yggdrasil.Content.Items.Materials;
 namespace Yggdrasil.Content.Items.Armor;
 
 [AutoloadEquip(EquipType.Head)]
-public class FrostcoreHelmet : YggdrasilItem
+public class FrostCoreHelmet : YggdrasilItem
 {
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Frostcore Helmet");
+        DisplayName.SetDefault("FrostCore Helmet");
         Tooltip.SetDefault("It's really cold!"+
                             "\nAttackers also take some damage");
 
@@ -29,8 +29,8 @@ public class FrostcoreHelmet : YggdrasilItem
 
     public override bool IsArmorSet(Item head, Item body, Item legs)
     {
-        return body.type == ModContent.ItemType<FrostcorePlate>() &&
-               legs.type == ModContent.ItemType<FrostcoreBoots>();
+        return body.type == ModContent.ItemType<FrostCorePlate>() &&
+               legs.type == ModContent.ItemType<FrostCoreBoots>();
     }
 
     public override void UpdateArmorSet(Player player)
@@ -51,7 +51,7 @@ public class FrostcoreHelmet : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostcoreBar>(10)
+        .AddIngredient<FrostCoreBar>(10)
         .AddTile(TileID.Anvils)
         .Register();
 }

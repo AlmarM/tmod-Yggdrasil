@@ -8,11 +8,11 @@ using Microsoft.Xna.Framework;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {
-    public class FrostcoreTome : YggdrasilItem
+    public class FrostCoreTome : YggdrasilItem
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Frostcore Tome");
+			DisplayName.SetDefault("FrostCore Tome");
             Tooltip.SetDefault("It's really cold!");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -60,7 +60,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 
         public override void AddRecipes() => CreateRecipe()
             .AddIngredient(ItemID.Book, 1)
-            .AddIngredient<FrostcoreBar>(8)
+            .AddIngredient<FrostCoreBar>(8)
             .Register();
     }
 }

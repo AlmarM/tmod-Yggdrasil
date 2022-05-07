@@ -8,11 +8,11 @@ using Yggdrasil.Content.Buffs;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class FrostcoreArrowProjectile : YggdrasilProjectile
+public class FrostCoreArrowProjectile : YggdrasilProjectile
 {
 	public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Frostcore Arrow");
+		DisplayName.SetDefault("FrostCore Arrow");
 	}
 
 	public override void SetDefaults()

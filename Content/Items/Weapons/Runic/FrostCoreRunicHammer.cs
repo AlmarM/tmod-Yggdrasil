@@ -11,7 +11,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class FrostcoreRunicHammer : RunicItem
+public class FrostCoreRunicHammer : RunicItem
 {
     public override void SetStaticDefaults()
     {
@@ -21,7 +21,7 @@ public class FrostcoreRunicHammer : RunicItem
         // string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         // string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Runic Frostcore Warhammer");
+        DisplayName.SetDefault("Runic FrostCore Warhammer");
         // Tooltip.SetDefault(
         //     $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
         //     $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
@@ -46,7 +46,7 @@ public class FrostcoreRunicHammer : RunicItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostcoreBar>(8)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

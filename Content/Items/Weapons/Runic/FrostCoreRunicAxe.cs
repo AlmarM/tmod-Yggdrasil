@@ -10,13 +10,13 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class FrostcoreRunicAxe : RunicItem
+public class FrostCoreRunicAxe : RunicItem
 {
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Runic Frostcore Axe");
+        DisplayName.SetDefault("Runic FrostCore Axe");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -38,7 +38,7 @@ public class FrostcoreRunicAxe : RunicItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostcoreBar>(8)
+        .AddIngredient<FrostCoreBar>(8)
         .AddTile(TileID.Anvils)
         .Register();
 

@@ -22,7 +22,7 @@ public class VikingKey : YggdrasilItem
 
     //Temporary
     /*public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostcoreBar>(5)
+        .AddIngredient<FrostCoreBar>(5)
         .AddIngredient(ItemID.IceBlock, 50)
         .AddTile(TileID.Bottles)
         .Register();*/

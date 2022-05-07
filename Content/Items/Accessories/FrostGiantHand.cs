@@ -43,7 +43,7 @@ public class FrostGiantHand : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.TitanGlove)
         .AddIngredient(ItemID.FrostDaggerfish)
-        .AddIngredient<FrostcoreBar>(30)
+        .AddIngredient<FrostCoreBar>(30)
         .AddTile(TileID.WorkBenches)
         .Register();
 }

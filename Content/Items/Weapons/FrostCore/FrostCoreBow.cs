@@ -9,13 +9,13 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {
-    public class FrostcoreBow : YggdrasilItem
+    public class FrostCoreBow : YggdrasilItem
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Frostcore Bow");
+			DisplayName.SetDefault("FrostCore Bow");
             Tooltip.SetDefault("It's really cold!"+
-                               "\nWooden Arrows turn into Frostcore Arrows");
+                               "\nWooden Arrows turn into FrostCore Arrows");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -42,7 +42,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 		{
 			if (type == ProjectileID.WoodenArrowFriendly)
 			{
-				type = ModContent.ProjectileType<FrostcoreArrowProjectile>();
+				type = ModContent.ProjectileType<FrostCoreArrowProjectile>();
 			}
 			Projectile.NewProjectile(null, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
 			return false;
@@ -51,7 +51,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 
 
 		public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<FrostcoreBar>(8)
+            .AddIngredient<FrostCoreBar>(8)
             .Register();
     }
 }

@@ -5,11 +5,11 @@ using Yggdrasil.Content.Tiles;
 
 namespace Yggdrasil.Content.Items.Materials;
 
-public class FrostcoreBar : YggdrasilItem
+public class FrostCoreBar : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Frostcore Bar");
+        DisplayName.SetDefault("FrostCore Bar");
         Tooltip.SetDefault("Really cold");
 
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 59;
@@ -27,14 +27,14 @@ public class FrostcoreBar : YggdrasilItem
         Item.useTime = 10;
         Item.autoReuse = true;
         Item.consumable = true;
-        Item.createTile = ModContent.TileType<FrostcoreBarTile>();
+        Item.createTile = ModContent.TileType<FrostCoreBarTile>();
         Item.placeStyle = 0;
         Item.rare = ItemRarityID.Blue;
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<FrostEssence>()
-        .AddIngredient<FrostcoreOre>(4)
+        .AddIngredient<FrostCoreOre>(4)
         .AddTile(TileID.Furnaces)
         .Register();
 }

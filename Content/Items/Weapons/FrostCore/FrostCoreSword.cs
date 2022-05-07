@@ -7,10 +7,10 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {
-	public class FrostcoreSword : YggdrasilItem
+	public class FrostCoreSword : YggdrasilItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Frostcore Sword");
+			DisplayName.SetDefault("FrostCore Sword");
 			Tooltip.SetDefault("50% chance to frostburn target for 3 sec");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -39,7 +39,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 		}
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<FrostcoreBar>(8)
+		.AddIngredient<FrostCoreBar>(8)
 		.AddTile(TileID.Anvils)
 		.Register();
 

@@ -7,7 +7,7 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Tiles;
 
-public class FrostcoreBarTile : YggdrasilTile
+public class FrostCoreBarTile : YggdrasilTile
 {
     public override void SetStaticDefaults()
     {
@@ -33,7 +33,7 @@ public class FrostcoreBarTile : YggdrasilTile
         // It can be useful to share a single tile with multiple styles. This code will let you drop the appropriate bar if you had multiple.
         if (style == 0)
         {
-            Item.NewItem(null, i * 16, j * 16, 16, 16, ModContent.ItemType<FrostcoreBar>());
+            Item.NewItem(null, i * 16, j * 16, 16, 16, ModContent.ItemType<FrostCoreBar>());
         }
 
         return base.Drop(i, j);

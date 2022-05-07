@@ -8,7 +8,7 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorUruzRune : Rune
 {
-    private const float MeleeSpeedBonus = 0.07f;
+    private const float MeleeSpeedBonus = 0.25f;
 
     public override string Label => UruzRune.RuneName;
 
