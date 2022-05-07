@@ -10,8 +10,8 @@ internal class BerkanoRune : Rune
 {
     public const string RuneName = "Berkano";
 
-    private const int LifeRegenBonus = 2;
-    private const int ManaRegenBonus = 2;
+    private const int LifeRegenBonus = 5;
+    private const int ManaRegenBonus = 5;
 
     public override string Label => RuneName;
 

@@ -9,7 +9,7 @@ public class FrostCoreBar : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Bar");
+        DisplayName.SetDefault("Frostcore Bar");
         Tooltip.SetDefault("Really cold");
 
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 59;

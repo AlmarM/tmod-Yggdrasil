@@ -52,7 +52,7 @@ public class VikingAxeMan : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("They are like swordmen but instead they go faster and carry axes!")
             });
     }
 

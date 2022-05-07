@@ -21,7 +21,7 @@ public class FrostCoreRunicHammer : RunicItem
         // string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         // string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Runic FrostCore Warhammer");
+        DisplayName.SetDefault("Runic Frostcore Warhammer");
         // Tooltip.SetDefault(
         //     $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
         //     $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");

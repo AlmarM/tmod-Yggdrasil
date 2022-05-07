@@ -49,7 +49,7 @@ public class DraugrElite : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundSnow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("It is the spirit of a wicked person, full of hate for the living, that continues to spread fear wherever it goes, even after its death")
             });
     }
 

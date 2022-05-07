@@ -47,7 +47,7 @@ public class Gubbe : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("The Gubbe is notoriously grumpy and bad-tempered, and prefers to keep himself to himself")
             });
     }
 

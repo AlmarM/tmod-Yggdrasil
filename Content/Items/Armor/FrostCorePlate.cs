@@ -11,7 +11,7 @@ public class FrostCorePlate : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Plate");
+        DisplayName.SetDefault("Frostcore Plate");
         Tooltip.SetDefault("It's really cold!" +
                             "\nAttackers also take some damage");
 

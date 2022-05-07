@@ -13,7 +13,7 @@ namespace Yggdrasil.Content.Items.Ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Arrow");
+			DisplayName.SetDefault("Frostcore Arrow");
 			Tooltip.SetDefault("Apply Frostburn on hit" +
 							   "\nSlows down target for half a sec");
 

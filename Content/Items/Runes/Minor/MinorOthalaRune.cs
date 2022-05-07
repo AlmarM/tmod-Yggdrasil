@@ -9,7 +9,7 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorOthalaRune : Rune
 {
-    private const float ReduceAmmoConsumptionBonus = 0.02f;
+    private const float ReduceAmmoConsumptionBonus = 0.1f;
 
     public override string Label => OthalaRune.RuneName;
 

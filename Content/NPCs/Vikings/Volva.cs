@@ -56,7 +56,7 @@ public class Volva : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("It is told that Völva have the ability to foretell future events and perform sorcery")
             });
     }
 

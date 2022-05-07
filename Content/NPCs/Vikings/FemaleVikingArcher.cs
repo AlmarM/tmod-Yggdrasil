@@ -50,7 +50,7 @@ public class FemaleVikingArcher : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("It is said that dying from an arrow in battle would be the most shameful death for a Viking. It all depends if you're the one holding the bow.")
             });
     }
 

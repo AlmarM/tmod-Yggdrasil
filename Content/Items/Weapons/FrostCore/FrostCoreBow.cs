@@ -13,7 +13,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("FrostCore Bow");
+			DisplayName.SetDefault("Frostcore Bow");
             Tooltip.SetDefault("It's really cold!"+
                                "\nWooden Arrows turn into FrostCore Arrows");
 

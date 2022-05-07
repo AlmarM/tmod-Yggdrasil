@@ -13,7 +13,7 @@ public class FrostCoreHelmet : YggdrasilItem
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Helmet");
+        DisplayName.SetDefault("Frostcore Helmet");
         Tooltip.SetDefault("It's really cold!"+
                             "\nAttackers also take some damage");
 

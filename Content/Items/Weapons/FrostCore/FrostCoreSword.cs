@@ -10,7 +10,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 	public class FrostCoreSword : YggdrasilItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("FrostCore Sword");
+			DisplayName.SetDefault("Frostcore Sword");
 			Tooltip.SetDefault("50% chance to frostburn target for 3 sec");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

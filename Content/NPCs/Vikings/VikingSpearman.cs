@@ -46,7 +46,7 @@ public class VikingSpearman : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("Behind the security of the Viking shield wall, the spearmen keeps the enemies at bay with their long reach")
             });
     }
 

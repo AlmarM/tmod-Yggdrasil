@@ -11,7 +11,7 @@ namespace Yggdrasil.Content.Projectiles
 		protected virtual float HoldoutRangeMax => 110f;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Spear");
+			DisplayName.SetDefault("Frostcore Spear");
 
 		}
 

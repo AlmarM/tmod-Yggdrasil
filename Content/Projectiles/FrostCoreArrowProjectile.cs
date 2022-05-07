@@ -12,7 +12,7 @@ public class FrostCoreArrowProjectile : YggdrasilProjectile
 {
 	public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("FrostCore Arrow");
+		DisplayName.SetDefault("Frostcore Arrow");
 	}
 
 	public override void SetDefaults()

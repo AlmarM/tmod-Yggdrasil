@@ -55,7 +55,7 @@ public class VikingSwordMan : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("Lorem Ipsum")
+				new FlavorTextBestiaryInfoElement("The bulk force of a Viking army. Forced to travel the world for glory, riches or adventure, these strong and fearless men will stop in front of nothing.")
             });
     }
 

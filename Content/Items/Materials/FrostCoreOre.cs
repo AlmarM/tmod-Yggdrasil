@@ -9,7 +9,7 @@ public class FrostCoreOre : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Ore");
+        DisplayName.SetDefault("Frostcore Ore");
         Tooltip.SetDefault("Really cold");
 
         ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;

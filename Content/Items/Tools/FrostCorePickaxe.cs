@@ -14,7 +14,7 @@ public class FrostCorePickaxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Pickaxe");
+        DisplayName.SetDefault("Frostcore Pickaxe");
         Tooltip.SetDefault("50% chance to inflict frostburn for 2 sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

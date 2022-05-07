@@ -16,7 +16,7 @@ public class FrostCoreRunicAxe : RunicItem
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Runic FrostCore Axe");
+        DisplayName.SetDefault("Runic Frostcore Axe");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

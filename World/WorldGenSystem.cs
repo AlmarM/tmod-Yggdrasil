@@ -49,7 +49,7 @@ public class WorldGenSystem : ModSystem
         if (shiniesIndex != -1)
         {
             // Next, we insert our pass directly after the original "Shinies" pass.
-            tasks.Insert(shiniesIndex + 1, new PassLegacy("Frost Core Ores", FrostCoreGen));
+            tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
         }
 
         if (vikingChestIndex != -1)
@@ -67,7 +67,7 @@ public class WorldGenSystem : ModSystem
     {
         // progress.Message is the message shown to the user while the following code is running.
         // Try to make your message clear. You can be a little bit clever, but make sure it is descriptive enough for troubleshooting purposes.
-        progress.Message = "Frost Core Ores";
+        progress.Message = "Frostcore Ores";
 
         // Ores are quite simple, we simply use a for loop and the WorldGen.TileRunner to place splotches of the specified Tile in the world.
         // "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.

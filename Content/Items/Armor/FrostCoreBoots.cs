@@ -11,7 +11,7 @@ public class FrostCoreBoots : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Boots");
+        DisplayName.SetDefault("Frostcore Boots");
         Tooltip.SetDefault("It's really cold!" +
                             "\n5 % increase movement speed");
 

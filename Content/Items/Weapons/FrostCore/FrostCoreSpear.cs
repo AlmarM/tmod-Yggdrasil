@@ -12,7 +12,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Spear");
+			DisplayName.SetDefault("Frostcore Spear");
 			Tooltip.SetDefault("50% chance to frostburn target for 3 sec");
 
 			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
