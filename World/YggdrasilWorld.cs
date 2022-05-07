@@ -60,7 +60,7 @@ namespace Yggdrasil.World
 					{
 						case 0:
 							itemsToAdd.Add((ModContent.ItemType<RunicPotion>(), Main.rand.Next(1, 2)));
-							itemsToAdd.Add((ModContent.ItemType<FrostCoreBar>(), Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ModContent.ItemType<FrostcoreBar>(), Main.rand.Next(1, 3)));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 2)));
 							itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(0, 2)));

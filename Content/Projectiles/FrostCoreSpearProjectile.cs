@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.Content.Projectiles
 {
-	public class FrostCoreSpearProjectile : YggdrasilProjectile
+	public class FrostcoreSpearProjectile : YggdrasilProjectile
 	{
 		protected virtual float HoldoutRangeMin => 24f;
 		protected virtual float HoldoutRangeMax => 110f;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Spear");
+			DisplayName.SetDefault("Frostcore Spear");
 
 		}
 

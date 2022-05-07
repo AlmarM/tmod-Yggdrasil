@@ -41,7 +41,7 @@ public class FrostGiantShard : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(30)
+        .AddIngredient<FrostcoreBar>(30)
         .AddIngredient(ItemID.FrostCore)
         .AddTile(TileID.WorkBenches)
         .Register();

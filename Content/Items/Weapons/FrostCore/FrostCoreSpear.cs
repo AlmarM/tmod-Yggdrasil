@@ -8,11 +8,11 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {
-	public class FrostCoreSpear : YggdrasilItem
+	public class FrostcoreSpear : YggdrasilItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Spear");
+			DisplayName.SetDefault("Frostcore Spear");
 			Tooltip.SetDefault("50% chance to frostburn target for 3 sec");
 
 			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
@@ -30,7 +30,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 			Item.DamageType = DamageClass.Melee;
 			Item.noMelee = true;
 			Item.shootSpeed = 3.5f;
-			Item.shoot = ModContent.ProjectileType<FrostCoreSpearProjectile>();
+			Item.shoot = ModContent.ProjectileType<FrostcoreSpearProjectile>();
 
 			Item.value = Item.sellPrice(0, 0, 23, 0);
 			Item.rare = ItemRarityID.Blue;
@@ -40,7 +40,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 		}
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<FrostCoreBar>(8)
+		.AddIngredient<FrostcoreBar>(8)
 		.AddTile(TileID.Anvils)
 		.Register();
 

@@ -9,11 +9,11 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Ammo
 {
-	public class FrostCoreArrow : YggdrasilItem
+	public class FrostcoreArrow : YggdrasilItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("FrostCore Arrow");
+			DisplayName.SetDefault("Frostcore Arrow");
 			Tooltip.SetDefault("Apply Frostburn on hit" +
 							   "\nSlows down target for half a sec");
 
@@ -34,12 +34,12 @@ namespace Yggdrasil.Content.Items.Ammo
 			Item.DamageType = DamageClass.Ranged;
 			Item.consumable = true;
 
-			Item.shoot = ModContent.ProjectileType<FrostCoreArrowProjectile>();
+			Item.shoot = ModContent.ProjectileType<FrostcoreArrowProjectile>();
 			Item.shootSpeed = 5f;
 		}
 
 		public override void AddRecipes() => CreateRecipe(10)
-			.AddIngredient<FrostCoreBar>(1)
+			.AddIngredient<FrostcoreBar>(1)
 			.Register();
 	}
 }

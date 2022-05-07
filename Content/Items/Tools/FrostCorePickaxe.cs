@@ -10,11 +10,11 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Tools;
 
-public class FrostCorePickaxe : YggdrasilItem
+public class FrostcorePickaxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Pickaxe");
+        DisplayName.SetDefault("Frostcore Pickaxe");
         Tooltip.SetDefault("50% chance to inflict frostburn for 2 sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -37,7 +37,7 @@ public class FrostCorePickaxe : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(11)
+        .AddIngredient<FrostcoreBar>(11)
         .AddTile(TileID.Anvils)
         .Register();
 

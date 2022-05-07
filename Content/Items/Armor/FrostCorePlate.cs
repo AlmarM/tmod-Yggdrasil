@@ -7,11 +7,11 @@ using Yggdrasil.Content.Items.Materials;
 namespace Yggdrasil.Content.Items.Armor;
 
 [AutoloadEquip(EquipType.Body)]
-public class FrostCorePlate : YggdrasilItem
+public class FrostcorePlate : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Plate");
+        DisplayName.SetDefault("Frostcore Plate");
         Tooltip.SetDefault("It's really cold!" +
                             "\nAttackers also take some damage");
 
@@ -31,7 +31,7 @@ public class FrostCorePlate : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(20)
+        .AddIngredient<FrostcoreBar>(20)
         .AddTile(TileID.Anvils)
         .Register();
 }

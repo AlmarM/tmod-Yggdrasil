@@ -16,6 +16,7 @@ namespace Yggdrasil.Content.Items.Accessories
 
 			DisplayName.SetDefault ("Tyr's Hand");
 			Tooltip.SetDefault($"10% increase {runicText} attack speed" +
+							   $"\nEnables auto swing for {runicText} weapons" +
 							   $"\n{runicPower} 5% increase {runicText} damage");
 		}
 

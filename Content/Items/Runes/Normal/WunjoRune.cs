@@ -10,7 +10,7 @@ internal class WunjoRune : Rune
 {
     public const string RuneName = "Wunjo";
 
-    private const float DamageReductionBonus = 0.03f;
+    private const float DamageReductionBonus = 0.05f;
 
     public override string Label => RuneName;
 

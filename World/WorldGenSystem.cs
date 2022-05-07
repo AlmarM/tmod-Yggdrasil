@@ -49,7 +49,7 @@ public class WorldGenSystem : ModSystem
         if (shiniesIndex != -1)
         {
             // Next, we insert our pass directly after the original "Shinies" pass.
-            tasks.Insert(shiniesIndex + 1, new PassLegacy("Frost Core Ores", FrostCoreGen));
+            tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
         }
 
         if (vikingChestIndex != -1)
@@ -88,7 +88,7 @@ public class WorldGenSystem : ModSystem
                 int strength = Terraria.WorldGen.genRand.Next(3, 8);
                 int steps = Terraria.WorldGen.genRand.Next(10, 30);
 
-                Terraria.WorldGen.TileRunner(x, y, strength, steps, ModContent.TileType<FrostCoreTile>());
+                Terraria.WorldGen.TileRunner(x, y, strength, steps, ModContent.TileType<FrostcoreTile>());
             }
         }
     }

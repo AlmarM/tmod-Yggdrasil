@@ -10,7 +10,7 @@ internal class OthalaRune : Rune
 {
     public const string RuneName = "Othala";
 
-    private const float ReduceAmmoConsumptionBonus = 0.05f;
+    private const float ReduceAmmoConsumptionBonus = 0.15f;
 
     public override string Label => RuneName;
 

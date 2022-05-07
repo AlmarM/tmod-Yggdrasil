@@ -6,7 +6,7 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Tiles;
 
-public class FrostCoreTile : YggdrasilTile
+public class FrostcoreTile : YggdrasilTile
 {
     public override void SetStaticDefaults()
     {
@@ -31,7 +31,7 @@ public class FrostCoreTile : YggdrasilTile
         AddMapEntry(new Color(51, 255, 255), name);
 
         DustType = DustID.NorthPole;
-        ItemDrop = ModContent.ItemType<FrostCoreOre>();
+        ItemDrop = ModContent.ItemType<FrostcoreOre>();
         SoundType = SoundID.Tink;
         MinPick = 55;
         MineResist = 1f;

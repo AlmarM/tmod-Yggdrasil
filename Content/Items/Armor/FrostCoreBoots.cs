@@ -7,11 +7,11 @@ using Terraria.GameContent.Creative;
 namespace Yggdrasil.Content.Items.Armor;
 
 [AutoloadEquip(EquipType.Legs)]
-public class FrostCoreBoots : YggdrasilItem
+public class FrostcoreBoots : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("FrostCore Boots");
+        DisplayName.SetDefault("Frostcore Boots");
         Tooltip.SetDefault("It's really cold!" +
                             "\n5 % increase movement speed");
 
@@ -31,7 +31,7 @@ public class FrostCoreBoots : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(15)
+        .AddIngredient<FrostcoreBar>(15)
         .AddTile(TileID.Anvils)
         .Register();
 }
