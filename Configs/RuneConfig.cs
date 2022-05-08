@@ -10,8 +10,21 @@ public static class RuneConfig
 
     /* Text */
     public const string RunicDamageLabel = "runic";
-    public static string RunicDamageTooltip = TextUtils.GetColoredText(RuneTooltipColor, RunicDamageLabel);
-    public const string RunePowerLabel = "Rune Power {0}+";
+    public const string RunePowerLabel = "Rune Power";
+    public const string RunePowerRequiredLabel = $"{RunePowerLabel} {{0}}+";
+    public const string RunemasterLabel = "Runemaster";
+    public const string RunemasterTitleLabel = $"- {RunemasterLabel} Class -";
+
+    public static readonly string ColoredRunicDamageLabel =
+        TextUtils.GetColoredText(RuneTooltipColor, RunicDamageLabel);
+
+    public static readonly string ColoredRunePowerLabel = TextUtils.GetColoredText(RuneTooltipColor, RunePowerLabel);
+    public static readonly string RunePowerBonusLabel = $"Grant +{{0}} {ColoredRunePowerLabel}";
+    public static readonly string ColoredRunemasterLabel = TextUtils.GetColoredText(RuneTooltipColor, RunemasterLabel);
+
+    public static readonly string ColoredRunemasterTitleLabel =
+        TextUtils.GetColoredText(RuneTooltipColor, RunemasterTitleLabel);
+
 
     /* Items Stats */
     public const int MaxRuneStack = 1;

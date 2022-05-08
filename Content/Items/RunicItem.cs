@@ -6,6 +6,7 @@ using Terraria.Utilities;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items;
 
@@ -86,6 +87,18 @@ public abstract class RunicItem : YggdrasilItem
         int prefixIndex = rand.Next(allowedPrefixes.Length);
 
         return allowedPrefixes[prefixIndex];
+    }
+
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
+    {
+        int lineIndex = tooltips.FindIndex(x => x.Name == "ItemName" && x.Mod == "Terraria");
+        if (lineIndex < 0)
+        {
+            return;
+        }
+
+        string title = RuneConfig.ColoredRunemasterTitleLabel;
+        tooltips.Insert(lineIndex + 1, new TooltipLine(Mod, "ClassTitle", title));
     }
 
     protected virtual string GetTooltip()

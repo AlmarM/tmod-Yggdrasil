@@ -76,6 +76,9 @@ public abstract class Rune : YggdrasilItem, IRune
             description += $"\n{effect.GetDescription(parameters)}";
         }
 
+        var bonusRunePower = string.Format(RuneConfig.RunePowerBonusLabel, RunePower);
+        description += $"\n{bonusRunePower}";
+
         return description;
     }
 

@@ -47,7 +47,7 @@ public class CrimtaneRunicAxe : RunicItem
     {
         string tooltip = base.GetTooltip();
         var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Heal for half {runicPowerText} on critical strike to a maximum of 5";

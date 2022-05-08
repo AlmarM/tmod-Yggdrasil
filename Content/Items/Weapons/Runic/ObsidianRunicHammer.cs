@@ -70,7 +70,7 @@ public class ObsidianRunicHammer : RunicItem
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Spawn fireballs on hit";

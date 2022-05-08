@@ -44,7 +44,7 @@ public class BeeRunicAxe : RunicItem
     protected override string GetTooltip() //Temporary
     {
         string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 2);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 2);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Apply Honey on hit for RunicPower sec"; 

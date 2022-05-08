@@ -53,7 +53,7 @@ public class DemoniteRunicAxe : RunicItem
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 4);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Spawn an axe clone on critical strike";

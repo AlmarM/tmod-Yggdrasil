@@ -11,7 +11,7 @@ public abstract class RunicEffect : IRunicEffect
     {
         get
         {
-            var runePower = string.Format(RuneConfig.RunePowerLabel, RunePowerRequired);
+            var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, RunePowerRequired);
             var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
             return $"{runePowerColored}: {GetDescription()}";

@@ -14,7 +14,7 @@ public class RunicCritChanceEffect : RunicEffect
 
     protected override string GetDescription()
     {
-        return $"Grants +{CritBonus}% {RuneConfig.RunicDamageTooltip} crit chance";
+        return $"Grants +{CritBonus}% {RuneConfig.ColoredRunicDamageLabel} crit chance";
     }
 
     public static void Apply(RunicCritChanceEffect[] effects, RunePlayer runePlayer, ref float crit)

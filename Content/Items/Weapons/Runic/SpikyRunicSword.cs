@@ -52,7 +52,7 @@ public class SpikyRunicSword : RunicItem
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 3);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 3);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Has 50% on hit to throw a spiky ball";

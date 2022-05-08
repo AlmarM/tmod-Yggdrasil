@@ -15,7 +15,7 @@ public class FlatRunicDamageEffect : RunicEffect
 
     protected override string GetDescription()
     {
-        return $"Grants +{FlatDamage} {RuneConfig.RunicDamageTooltip} damage";
+        return $"Grants +{FlatDamage} {RuneConfig.ColoredRunicDamageLabel} damage";
     }
 
     public static void Apply(FlatRunicDamageEffect[] effects, RunePlayer runePlayer, ref StatModifier damage)

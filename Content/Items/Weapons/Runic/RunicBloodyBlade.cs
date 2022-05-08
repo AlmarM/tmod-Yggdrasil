@@ -48,7 +48,7 @@ public class RunicBloodyBlade : RunicItem
     {
         string tooltip = base.GetTooltip();
         
-        var runePower = string.Format(RuneConfig.RunePowerLabel, 1);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 1);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
         tooltip += $"\n{runePowerColored}: Has 25% chance to heal for 1 on hit";
