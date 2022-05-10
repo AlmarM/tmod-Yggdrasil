@@ -2,10 +2,12 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -79,14 +81,14 @@ public class GrassRunicBlade : YggdrasilItem
         .AddIngredient(ItemID.Stinger, 15)
         .AddIngredient(ItemID.RichMahogany, 10)
         .AddIngredient(ItemID.GoldBar, 6)
-        .AddTile(TileID.Anvils)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
         CreateRecipe()
         .AddIngredient(ItemID.Stinger, 15)
         .AddIngredient(ItemID.RichMahogany, 10)
         .AddIngredient(ItemID.PlatinumBar, 6)
-        .AddTile(TileID.Anvils)
+        .AddTile<DvergrForgeTile>()
         .Register();
     }
 }

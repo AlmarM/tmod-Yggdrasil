@@ -4,12 +4,14 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 using Yggdrasil.Runic;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -98,6 +100,6 @@ public class ObsidianRunicHammer : RunicItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.HellstoneBar, 20)
         .AddIngredient(ItemID.Obsidian, 20)
-        .AddTile(TileID.Anvils)
+        .AddTile<DvergrForgeTile>()
         .Register();
 }

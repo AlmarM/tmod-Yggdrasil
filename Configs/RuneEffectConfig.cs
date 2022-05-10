@@ -100,31 +100,31 @@ public static class RuneEffectConfig
     public const string MajorWunjoDescription = "A major rune granting comfort.";
 
     /* Effect Descriptions */
-    public const string AlgizEffectDescription = "Grant +{0} defense";
-    public const string AnsuzEffectDescription = "Grant +{0} mana";
-    public const string BerkanoEffectDescription = "Grant +{0} life regen and boost mana regen speed by {1}";
-    public const string DagazEffectDescription = "Grant +{0}% range damage";
-    public const string EhwazEffectDescription = "Grant +{0}% movement and max speed";
-    public const string EihwazEffectDescription = "Grant +{0}% melee damage";
-    public const string FehuEffectDescription = "Grant +{0}% critical chance";
-    public const string GeboEffectDescription = "Grant +{0}% minion damage";
-    public const string HagalazEffectDescription = "Grant +{0}% magic damage";
-    public const string IngwazEffectDescription = "Grant +{0} max life";
+    public const string AlgizEffectDescription = "Increases defense by {0}";
+    public const string AnsuzEffectDescription = "Grants +{0} mana";
+    public const string BerkanoEffectDescription = "Grants +{0} life regen and boost mana regen speed by {1}";
+    public const string DagazEffectDescription = "Grants +{0}% range damage";
+    public const string EhwazEffectDescription = "Grants +{0}% movement and max speed";
+    public const string EihwazEffectDescription = "Grants +{0}% melee damage";
+    public const string FehuEffectDescription = "Grants +{0}% critical chance";
+    public const string GeboEffectDescription = "Grants +{0}% minion damage";
+    public const string HagalazEffectDescription = "Grants +{0}% magic damage";
+    public const string IngwazEffectDescription = "Grants +{0} max life";
     public const string IsaEffectDescription = "+{0}% dmg when at below {1}% HP";
-    public const string JeraEffectDescription = "Remove {0} Aggro";
-    public const string KenazEffectDescription = "Grant +{0}% dodge chance";
-    public const string LaguzEffectDescription = "Heal {0} every {1} seconds";
-    public const string MannazEffectDescription = "Grant +{0}% damage when there is only one enemy in your vicinity";
-    public const string NauthizEffectDescription = "Grant {0} seconds of invincibility";
-    public const string OthalaEffectDescription = "Grant {0}% chance to not consume ammo";
+    public const string JeraEffectDescription = "Removes {0} Aggro";
+    public const string KenazEffectDescription = "Grants +{0}% dodge chance";
+    public const string LaguzEffectDescription = "Heals {0} every {1} seconds";
+    public const string MannazEffectDescription = "Grants +{0}% damage when there is only one enemy in your vicinity";
+    public const string NauthizEffectDescription = "Grants {0} seconds of invincibility";
+    public const string OthalaEffectDescription = "Grants {0}% chance to not consume ammo";
 
     public const string PerthroEffectDescription =
         "Hitting an enemy grants {0}% chance to inflict a random debuff for {1} sec";
 
-    public const string RaidhoEffectDescription = "Grant +{0}% throw damage";
-    public const string SowiloEffectDescription = "Grant +{0} armor penetration";
-    public const string ThurisazEffectDescription = "Grant +{0}% thorns";
-    public const string TiwazEffectDescription = "Grant +{0}% runic damage";
-    public const string UruzEffectDescription = "Grant +{0}% melee speed";
-    public const string WunjoEffectDescription = "Grant {0}% damage reduction";
+    public const string RaidhoEffectDescription = "Grants +{0}% throw damage";
+    public const string SowiloEffectDescription = "Grants +{0} armor penetration";
+    public const string ThurisazEffectDescription = "Grants +{0}% thorns";
+    public const string TiwazEffectDescription = "Grants +{0}% runic damage";
+    public const string UruzEffectDescription = "Grants +{0}% melee speed";
+    public const string WunjoEffectDescription = "Grants {0}% damage reduction";
 }

@@ -1,10 +1,12 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -20,6 +22,7 @@ public class BerserkerRing : YggdrasilItem
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n3% increased {runicText} critical strike chance" +
                            $"\nGrants +1 {runicPowerText}" +
+                           "\nIncreases defense by 2" +
                            $"\n{runicPower} 1% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -37,12 +40,8 @@ public class BerserkerRing : YggdrasilItem
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
         player.GetModPlayer<RunePlayer>().RunePower += 1;
-
-        var modPlayer = player.GetModPlayer<RunePlayer>();
-        if (modPlayer.RunePower >= 3)
-        {
-            player.GetCritChance<RunicDamageClass>() += 1;
-        }
+        player.statDefense += 2;
+        player.GetModPlayer<RunePlayer>().BerserkerRingEquip = true;
     }
 
     public override void AddRecipes()
@@ -50,13 +49,13 @@ public class BerserkerRing : YggdrasilItem
         CreateRecipe()
             .AddIngredient<ArmRing>()
             .AddIngredient(ItemID.VilePowder, 5)
-            .AddTile(TileID.Anvils)
+            .AddTile<DvergrForgeTile>()
             .Register();
 
         CreateRecipe()
             .AddIngredient<ArmRing>()
             .AddIngredient(ItemID.ViciousPowder, 5)
-            .AddTile(TileID.Anvils)
+            .AddTile<DvergrForgeTile>()
             .Register();
     }
 }

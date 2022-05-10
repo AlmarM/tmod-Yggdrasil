@@ -44,11 +44,13 @@ public class VikingLeatherHelmet : YggdrasilItem
     {
         player.setBonus = $"1% increased {_runicText} damage" +
                           $"\n1% increased {_runicText} critical strike chance" +
-                          $"\nGrants +1 {_runicPowerText}";
+                          $"\nGrants +1 {_runicPowerText}" +
+                          "\nIncreases defense by 1";
 
         player.GetDamage<RunicDamageClass>() += 0.01f;
         player.GetCritChance<RunicDamageClass>() += 1;
         player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.statDefense += 1;
     }
 
     public override void UpdateEquip(Player player)

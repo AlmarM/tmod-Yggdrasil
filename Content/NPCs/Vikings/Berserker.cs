@@ -1,6 +1,15 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Bestiary;
+
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Armor;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -30,31 +39,40 @@ public class Berserker : YggdrasilNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = 150f;
-        NPC.knockBackResist = 0.5f;
+        NPC.knockBackResist = 0.9f;
         NPC.aiStyle = 3;
         AIType = 213;
         AnimationType = 482;
         NPC.buffImmune[BuffID.Confused] = true;
+        NPC.buffImmune[BuffID.Frostburn] = true;
     }
-
-    /*public override float SpawnChance(NPCSpawnInfo spawnInfo) 
-    {
-        if(YggdrasilWorld.vikingInvasionUp && !NPC.AnyNPCs(mod.NPCType("Berserker")))
-        {
-            return SpawnCondition.Overworld.Chance * 0.5f;
-        }
-        return 0f;
-    }*/
-
     public override void AI()
     {
         NPC.TargetClosest();
         NPC.netUpdate = true;
+        
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+    {
+        // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("In the Old Norse written corpus, berserker were those who were said to have fought in a trance-like fury")
+            });
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingDaneAxe"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>()));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BerserkerBoots>()));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BerserkerChest>()));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BerserkerHelmet>()));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 3));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 1, 2, 5));
     }
 
     public override void HitEffect(int hitDirection, double damage)
@@ -69,17 +87,29 @@ public class Berserker : YggdrasilNPC
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
 
-        /*//Casting slash Projectile while on low life
-        float velocity = 7f;
-        float speedX = NPC.direction * velocity;
-        Vector2 shootPos = NPC.Center;
-        if(NPC.life < (NPC.lifeMax * 0.35f))
+        Player player = Main.player[NPC.target];
+
+        if (NPC.life < (NPC.lifeMax * 0.35f))
         {
-            if(Main.rand.NextFloat() < .7f)
+            int projectileCount = 5;
+
+            const float projectileSpeed = 6f;
+            const float radius = 25f;
+
+            float delta = MathF.PI * 2 / projectileCount;
+
+            for (var i = 0; i < projectileCount; i++)
             {
-                //Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType(""), damage, knockBack, player.whoAmI);
-                Projectile.NewProjectile(shootPos.X, shootPos.Y, speedX, 0, mod.ProjectileType("WaveSlash"), 20, 5);
+                float theta = delta * i;
+                var position = NPC.Center + Vector2.One.RotatedBy(theta) * radius;
+
+                Vector2 direction = position - NPC.Center;
+                direction = Vector2.Normalize(direction);
+                direction = Vector2.Multiply(direction, projectileSpeed);
+
+                Projectile.NewProjectile(null, position, direction, ProjectileID.FrostWave, 15, 2, player.whoAmI);
             }
-        }*/
+        }
+
     }
 }

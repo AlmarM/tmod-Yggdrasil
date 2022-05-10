@@ -10,7 +10,7 @@ public static class RuneConfig
 
     /* Text */
     public const string RunicDamageLabel = "runic";
-    public const string RunePowerLabel = "Rune Power";
+    public const string RunePowerLabel = "Runic Power";
     public const string RunePowerRequiredLabel = $"{RunePowerLabel} {{0}}+";
     public const string RunemasterLabel = "Runemaster";
     public const string RunemasterTitleLabel = $"- {RunemasterLabel} Class -";
@@ -19,7 +19,7 @@ public static class RuneConfig
         TextUtils.GetColoredText(RuneTooltipColor, RunicDamageLabel);
 
     public static readonly string ColoredRunePowerLabel = TextUtils.GetColoredText(RuneTooltipColor, RunePowerLabel);
-    public static readonly string RunePowerBonusLabel = $"Grant +{{0}} {ColoredRunePowerLabel}";
+    public static readonly string RunePowerBonusLabel = $"Grants +{{0}} {ColoredRunePowerLabel}";
     public static readonly string ColoredRunemasterLabel = TextUtils.GetColoredText(RuneTooltipColor, RunemasterLabel);
 
     public static readonly string ColoredRunemasterTitleLabel =

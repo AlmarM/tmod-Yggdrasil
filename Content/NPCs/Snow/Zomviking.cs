@@ -56,7 +56,7 @@ public class Zomviking : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        return SpawnCondition.OverworldNightMonster.Chance * 0.7f;
+        return SpawnCondition.OverworldNightMonster.Chance;
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)

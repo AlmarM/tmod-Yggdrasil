@@ -15,7 +15,7 @@ public class OccultBuff : YggdrasilBuff
     {
         DisplayName.SetDefault("Occult Buff");
         Description.SetDefault(
-            "Increase defense by 2"+
+            "Increases defense by 2"+
             "\nGrants immunity to Poison and Fire"+
             "\nProvide life regeneration near water candles"+
             "\nIncrease enemy spawn rate");

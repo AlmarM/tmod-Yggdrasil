@@ -25,10 +25,6 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RunemasterEmblem>(), 4));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FleshRunicAxe>(), 4));
                 break;
-            case NPCID.BloodZombie or NPCID.Drippler:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 4));
-                break;
-
         }
     }
 }

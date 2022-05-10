@@ -7,6 +7,7 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Items.Weapons.Runic;
 
 namespace Yggdrasil.World
 {
@@ -56,7 +57,7 @@ namespace Yggdrasil.World
 					var itemsToAdd = new List<(int type, int stack)>();
 
 					// Using a switch statement and a random choice to add sets of items.
-					switch (Main.rand.Next(3))
+					switch (Main.rand.Next(4))
 					{
 						case 0:
 							itemsToAdd.Add((ModContent.ItemType<RunicPotion>(), Main.rand.Next(1, 2)));
@@ -79,9 +80,17 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ModContent.ItemType<WoodArmRing>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(9, 18)));
-							itemsToAdd.Add((ItemID.MagicMirror, Main.rand.Next(0, 1)));
+							itemsToAdd.Add((ItemID.IceMirror, Main.rand.Next(0, 1)));
 							itemsToAdd.Add((ItemID.ShoeSpikes, Main.rand.Next(0, 1)));
 							itemsToAdd.Add((ItemID.SwiftnessPotion, Main.rand.Next(1, 2)));
+							break;
+						case 3:
+							itemsToAdd.Add((ModContent.ItemType<NorsemanShield>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<SilverRunicSword>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
+							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
+							itemsToAdd.Add((ItemID.FlurryBoots, Main.rand.Next(1)));
+							itemsToAdd.Add((ItemID.RecallPotion, Main.rand.Next(2, 4)));
 							break;
 					}
 

@@ -1,9 +1,11 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -16,8 +18,8 @@ public class ProtectiveRuneSlab : YggdrasilItem
 
         DisplayName.SetDefault("Protective Runic Slab");
         Tooltip.SetDefault($"Displays {runicPowerText}"+
-                           $"\nGrants +3 defense"+
-                           $"\n{runicPower} Grants an additional +15 defense");
+                           $"\nIncreases defense by 3" +
+                           $"\n{runicPower} Increases defense by an additional 15");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -42,6 +44,6 @@ public class ProtectiveRuneSlab : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<RunicSlab>()
         .AddIngredient(ItemID.TurtleShell)
-        .AddTile(TileID.WorkBenches)
+        .AddTile<DvergrForgeTile>()
         .Register();
 }

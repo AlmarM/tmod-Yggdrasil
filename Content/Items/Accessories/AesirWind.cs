@@ -8,7 +8,7 @@ using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
-public class ArmRing : YggdrasilItem
+public class AesirWind : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
@@ -16,34 +16,35 @@ public class ArmRing : YggdrasilItem
         string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
         string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
-        DisplayName.SetDefault("Armring");
-        Tooltip.SetDefault($"2% increase {runicText} damage" +
-                           $"\nGrants +1 {runicPowerText}" +
-                           "\nIncreases defense by 1" +
-                           $"\n{runicPower} 1% increase {runicText} damage");
+        DisplayName.SetDefault("Aesir Wind");
+        Tooltip.SetDefault($"Allows the holder to double jump" +
+                           $"\nIncreases jump height" +
+                           "\nNegates fall damage" +
+                           $"\n{runicPower} Increases defense by 2");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.Blue;
+        Item.rare = ItemRarityID.LightRed;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 0, 10);
+        Item.value = Item.buyPrice(0, 3);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetDamage<RunicDamageClass>() += 0.02f;
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.GetModPlayer<RunePlayer>().ArmRingEquip = true;
-        player.statDefense += 1;
+        player.GetModPlayer<RunePlayer>().AesirWindEquip = true;
+        player.jumpSpeedBoost += 2f;
+        player.hasJumpOption_Cloud = true;
+        player.noFallDmg = true;
 
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<WoodArmRing>()
-        .AddRecipeGroup(RecipeGroupID.IronBar, 2)
-        .AddTile(TileID.Anvils)
+        .AddIngredient<RuneBag>()
+        .AddIngredient(ItemID.LuckyHorseshoe)
+        .AddIngredient(ItemID.CloudinaBalloon)
+        .AddTile(TileID.TinkerersWorkbench)
         .Register();
 }

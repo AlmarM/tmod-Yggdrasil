@@ -18,6 +18,7 @@ public class RuneBag : YggdrasilItem
 
         DisplayName.SetDefault("RuneBag");
         Tooltip.SetDefault($"2% increased {runicText} damage for every 3 {runicPowerText}" +
+                           $"\nGrants +1 {runicPowerText}" +
                            $"\nDisplays {runicPowerText}");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -34,7 +35,7 @@ public class RuneBag : YggdrasilItem
     {
         var modPlayer = player.GetModPlayer<RunePlayer>();
         modPlayer.ShowRunePower = true;
-
+        player.GetModPlayer<RunePlayer>().RunePower += 1;
         player.GetDamage<RunicDamageClass>() += 0.02f * (modPlayer.RunePower / 3f);
     }
 

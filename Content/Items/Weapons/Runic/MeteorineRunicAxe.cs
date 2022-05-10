@@ -2,11 +2,14 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
+
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -47,6 +50,6 @@ public class MeteorineRunicAxe : RunicItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.MeteoriteBar, 12)
-        .AddTile(TileID.Anvils)
+        .AddTile<DvergrForgeTile>()
         .Register();
 }

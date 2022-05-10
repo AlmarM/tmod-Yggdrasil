@@ -1,10 +1,11 @@
 using Terraria;
 using Terraria.ID;
+
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories
 {
@@ -35,7 +36,7 @@ namespace Yggdrasil.Content.Items.Accessories
 		public override void AddRecipes() => CreateRecipe()
 		.AddIngredient<BloodDrops>(10)
 		.AddIngredient(ItemID.SoulofSight, 10)
-		.AddTile(TileID.WorkBenches)
+		.AddTile<DvergrForgeTile>()
 		.Register();
 
 	}

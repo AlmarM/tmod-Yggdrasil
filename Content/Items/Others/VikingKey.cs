@@ -20,10 +20,4 @@ public class VikingKey : YggdrasilItem
         Item.rare = ItemRarityID.White;
     }
 
-    //Temporary
-    /*public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(5)
-        .AddIngredient(ItemID.IceBlock, 50)
-        .AddTile(TileID.Bottles)
-        .Register();*/
 }

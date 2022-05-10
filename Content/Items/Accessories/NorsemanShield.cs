@@ -17,7 +17,7 @@ public class NorsemanShield : YggdrasilItem
 
         DisplayName.SetDefault("Norsemen Shield");
         Tooltip.SetDefault("Grants immunity to knockback" +
-                           "\nGrants + 3 defense" +
+                           "\nIncreases defense by 3" +
                            $"\n{runicPower} 2% increased {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

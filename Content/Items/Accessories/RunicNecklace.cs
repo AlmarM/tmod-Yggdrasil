@@ -1,10 +1,12 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -20,7 +22,8 @@ public class RunicNecklace : YggdrasilItem
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n5% increased {runicText} critical strike chance" +
                            $"\nGrants +2 {runicPowerText}" +
-                           $"\n{runicPower} Generate Light");
+                           "\nIncreases defense by 2" +
+                           $"\n{runicPower} Generates Light");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -37,18 +40,20 @@ public class RunicNecklace : YggdrasilItem
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
         player.GetModPlayer<RunePlayer>().RunePower += 2;
-
-        var modPlayer = player.GetModPlayer<RunePlayer>();
+        player.statDefense += 2;
+        player.GetModPlayer<RunePlayer>().RunicNecklaceEquip = true;
+        
+        /*var modPlayer = player.GetModPlayer<RunePlayer>();
         if (modPlayer.RunePower >= 5)
         {
             Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .5f, .8f, .8f);
-        }
+        }*/
     }
 
     public override void AddRecipes() => CreateRecipe()
             .AddIngredient<BerserkerRing>()
             .AddIngredient(ItemID.Bell)
-            .AddTile(TileID.Anvils)
+            .AddTile<DvergrForgeTile>()
             .Register();
     
 }

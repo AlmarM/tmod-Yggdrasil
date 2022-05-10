@@ -2,10 +2,12 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Armor;
 
@@ -38,6 +40,6 @@ public class OccultPlate : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
             .AddIngredient<OccultShard>(15)
             .AddIngredient(ItemID.Bone, 50)
-            .AddTile(TileID.Anvils)
+            .AddTile<DvergrForgeTile>()
             .Register();
 }

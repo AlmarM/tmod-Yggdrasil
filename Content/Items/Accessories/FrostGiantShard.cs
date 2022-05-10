@@ -1,11 +1,12 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -43,6 +44,6 @@ public class FrostGiantShard : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<FrostCoreBar>(30)
         .AddIngredient(ItemID.FrostCore)
-        .AddTile(TileID.WorkBenches)
+        .AddTile<DvergrForgeTile>()
         .Register();
 }

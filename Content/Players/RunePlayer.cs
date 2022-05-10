@@ -4,8 +4,9 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Yggdrasil.Utils;
 using System;
+
+using Yggdrasil.Utils;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Buffs;
@@ -28,7 +29,7 @@ public class RunePlayer : ModPlayer
     public float RandomBuffDuration { get; set; }
     public float SlowDebuffValue { get; set; }
 
-    //Here comes all the equip check for runepower accessories
+    //Here comes all the equip check for runic relateds equips
     public bool SurtrEquip { get; set; }
     public bool ProtectiveSlabEquip { get; set; }
     public bool ArmRingEquip { get; set; }
@@ -41,6 +42,12 @@ public class RunePlayer : ModPlayer
     public bool TyrHandEquip { get; set; }
     public bool RunemasterCrestEquip { get; set; }
     public bool NiddhogToothEquip { get; set; }
+    public bool FreyaNecklaceEquip { get; set; }
+    public float FreyaNecklaceChance { get; set; }
+    public bool BerserkerBootsEquip { get; set; }
+    public bool BerserkerRingEquip { get; set; }
+    public bool RunicNecklaceEquip { get; set; }
+    public bool AesirWindEquip { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -139,6 +146,14 @@ public class RunePlayer : ModPlayer
                 target.AddBuff(BuffID.Venom, 180);
             }
         }
+
+        if (item.ModItem is RunicItem && FreyaNecklaceEquip == true)
+        {
+            if (Main.rand.Next(100) < 5)
+            {
+                Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
+            }
+        }
     }
 
     public override float UseSpeedMultiplier(Item item)
@@ -146,12 +161,17 @@ public class RunePlayer : ModPlayer
         var speed = 1f;
         if (item.ModItem is RunicItem && TyrHandEquip == true)
         {
-            speed += 0.10f;
+            speed += 0.1f;
         }
 
         if (item.ModItem is RunicItem && RunemasterCrestEquip == true)
         {
             speed += 0.15f;
+        }
+
+        if (item.ModItem is RunicItem && BerserkerBootsEquip == true)
+        {
+            speed += 0.1f;
         }
 
         return speed;
@@ -212,6 +232,24 @@ public class RunePlayer : ModPlayer
                 Player.GetDamage<RunicDamageClass>() += 0.05f;
             }
 
+        if (BerserkerRingEquip)
+            if (RunePower >= 3)
+            {
+                Player.GetCritChance<RunicDamageClass>() += 1;
+            }
+
+        if (RunicNecklaceEquip)
+            if (RunePower >= 5)
+            {
+                Lighting.AddLight((int)Player.Center.X / 16, (int)Player.Center.Y / 16, .5f, .8f, .8f);
+            }
+
+        if (AesirWindEquip)
+            if (RunePower >= 2)
+            {
+                Player.statDefense += 2;
+            }
+
     }
 
     public override void ResetEffects()
@@ -227,7 +265,7 @@ public class RunePlayer : ModPlayer
         SlowDebuffValue = 0f;
 
         
-        //Runepower Accessories equip reset
+        //Runic related equip reset
         SurtrEquip = false;
         ProtectiveSlabEquip = false;
         ArmRingEquip = false;
@@ -240,5 +278,11 @@ public class RunePlayer : ModPlayer
         HelsNailEquip = false;
         RunemasterCrestEquip = false;
         NiddhogToothEquip = false;
+        FreyaNecklaceEquip = false;
+        FreyaNecklaceChance = 0f;
+        BerserkerBootsEquip = false;
+        BerserkerRingEquip = false;
+        RunicNecklaceEquip = false;
+        AesirWindEquip = false;
     }
 }

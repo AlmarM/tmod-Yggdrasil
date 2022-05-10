@@ -7,6 +7,7 @@ using Terraria.GameContent.Bestiary;
 
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Items.Materials;
 
 
 namespace Yggdrasil.Content.NPCs.Vikings;
@@ -60,7 +61,7 @@ public class VikingArcher : YggdrasilNPC
     {
         if (spawnInfo.Player.ZoneSnow)
         {
-            return SpawnCondition.Overworld.Chance * 1f;
+            return SpawnCondition.Overworld.Chance;
         }
         return 0f;
     }
@@ -75,6 +76,7 @@ public class VikingArcher : YggdrasilNPC
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingBow>(), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
     public override void HitEffect(int hitDirection, double damage)

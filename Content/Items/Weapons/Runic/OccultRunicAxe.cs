@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
@@ -11,6 +12,7 @@ using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -42,6 +44,10 @@ public class OccultRunicAxe : RunicItem
         Item.shoot = ModContent.ProjectileType<OccultAxeProjectile>();
         Item.shootSpeed = 12f;
     }
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<OccultShard>(10)
+        .AddTile<DvergrForgeTile>()
+        .Register();
 
     public override bool AltFunctionUse(Player player)
     {
@@ -63,11 +69,6 @@ public class OccultRunicAxe : RunicItem
         var runePlayer = player.GetModPlayer<RunePlayer>();
         return runePlayer.RunePower >= 3 && player.altFunctionUse == 2;
     }
-
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<OccultShard>(10)
-        .AddTile(TileID.Anvils)
-        .Register();
 
     protected override string GetTooltip()
     {

@@ -14,7 +14,7 @@ public class FireProjectile : YggdrasilProjectile
         // Can the Projectile collide with tiles?
         Projectile.tileCollide = false;
         Projectile.friendly = true;
-        Projectile.timeLeft = 300;
+        Projectile.timeLeft = 120;
         Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
 
        //Projectile.CloneDefaults(ProjectileID.Fireball);

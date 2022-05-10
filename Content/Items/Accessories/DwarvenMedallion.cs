@@ -17,7 +17,7 @@ public class DwarvenMedallion : YggdrasilItem
         DisplayName.SetDefault("Dwarven Medallion");
         Tooltip.SetDefault("15% increased mining speed" +
                            "\nGenerate Light" +
-                           $"\n{runicPower} Grants +1 defense");
+                           $"\n{runicPower} Increases defense by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

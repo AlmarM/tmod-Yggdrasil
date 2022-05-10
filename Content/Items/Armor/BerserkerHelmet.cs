@@ -24,7 +24,8 @@ public class BerserkerHelmet : YggdrasilItem
 
         DisplayName.SetDefault("Berserker Wolf Skin");
         Tooltip.SetDefault($"5% increased {_runicText} damage" +
-                           $"\n5% increased {_runicText} critical strike chance");
+                           $"\n5% increased {_runicText} critical strike chance" +
+                           "\nIncreases defense by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -53,6 +54,7 @@ public class BerserkerHelmet : YggdrasilItem
         {
             player.GetDamage<RunicDamageClass>() += 0.2f;
             player.GetCritChance<RunicDamageClass>() += 20;
+            player.statDefense += 5;
         }
     }
 

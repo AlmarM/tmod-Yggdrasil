@@ -10,6 +10,7 @@ using Terraria.GameContent.Bestiary;
 
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -229,6 +230,7 @@ public class Volva : YggdrasilNPC
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 10));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
     public override void HitEffect(int hitDirection, double damage)

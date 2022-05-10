@@ -1,9 +1,11 @@
 using Terraria;
 using Terraria.ID;
+
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Accessories
 {
@@ -37,13 +39,15 @@ namespace Yggdrasil.Content.Items.Accessories
 			CreateRecipe()
 				.AddIngredient(ItemID.FeralClaws)
 				.AddIngredient(ItemID.ViciousPowder, 5)
-				.AddTile(TileID.Anvils)
+				.AddIngredient<BloodDrops>(5)
+				.AddTile<DvergrForgeTile>()
 				.Register();
 
 			CreateRecipe()
 				.AddIngredient(ItemID.FeralClaws)
 				.AddIngredient(ItemID.VilePowder, 5)
-				.AddTile(TileID.Anvils)
+				.AddIngredient<BloodDrops>(5)
+				.AddTile<DvergrForgeTile>()
 				.Register();
 		}
 

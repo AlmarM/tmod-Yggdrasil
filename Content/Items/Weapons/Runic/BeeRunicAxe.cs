@@ -62,12 +62,4 @@ public class BeeRunicAxe : RunicItem
         }
     }
 
-    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
-    {
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 2)
-        {
-            damage.Flat += 3;
-        }
-    }
 }

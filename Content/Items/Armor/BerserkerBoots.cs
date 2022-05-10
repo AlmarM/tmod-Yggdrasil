@@ -2,10 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Terraria.GameContent.Creative;
+
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
-using Terraria.GameContent.Creative;
+using Yggdrasil.Content.Players;
+
 
 namespace Yggdrasil.Content.Items.Armor;
 
@@ -17,7 +20,7 @@ public class BerserkerBoots : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Berserker Boots");
-        Tooltip.SetDefault($"Increase attack speed" +
+        Tooltip.SetDefault($"10% increase {runicText} attack speed" +
                            "\n10% increase movement speed");
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -32,6 +35,7 @@ public class BerserkerBoots : YggdrasilItem
     public override void UpdateEquip(Player player)
     {
         player.moveSpeed += 0.1f;
+        player.GetModPlayer<RunePlayer>().BerserkerBootsEquip = true;
     }
 
 }

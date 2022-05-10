@@ -3,9 +3,11 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 using Yggdrasil.Runic;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -56,6 +58,6 @@ public class ObsidianRunicAxe : RunicItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.HellstoneBar, 20)
         .AddIngredient(ItemID.Obsidian, 20)
-        .AddTile(TileID.Anvils)
+        .AddTile<DvergrForgeTile>()
         .Register();
 }

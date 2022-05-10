@@ -14,7 +14,8 @@ public class WoodArmRing : YggdrasilItem
         string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Wooden Armring");
-        Tooltip.SetDefault($"Grants +1 {runicPowerText}");
+        Tooltip.SetDefault($"Grants +1 {runicPowerText}"+
+                           "\nIncreases defense by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -29,6 +30,7 @@ public class WoodArmRing : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.statDefense += 1;
     }
 
     public override void AddRecipes() => CreateRecipe()

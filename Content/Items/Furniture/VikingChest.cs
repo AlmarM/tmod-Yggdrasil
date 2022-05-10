@@ -9,7 +9,7 @@ public class VikingChest : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Viking chest.");
+        Tooltip.SetDefault("Viking chest");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

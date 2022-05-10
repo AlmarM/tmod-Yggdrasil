@@ -1,7 +1,13 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
+
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -67,7 +73,8 @@ public class VikingSpearman : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(mod.ItemType("VikingSpear"), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSpear>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
     public override void HitEffect(int hitDirection, double damage)
