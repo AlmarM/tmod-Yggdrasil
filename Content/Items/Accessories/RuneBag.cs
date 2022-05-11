@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
@@ -33,9 +34,8 @@ public class RuneBag : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         var modPlayer = player.GetModPlayer<RunePlayer>();
-        modPlayer.ShowRunePower = true;
-
         player.GetDamage<RunicDamageClass>() += 0.02f * (modPlayer.RunePower / 3f);
+        player.SetEffect<RunicSlab>();
     }
 
     public override void AddRecipes() => CreateRecipe()

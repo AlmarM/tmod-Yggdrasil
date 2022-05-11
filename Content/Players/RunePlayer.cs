@@ -18,8 +18,7 @@ namespace Yggdrasil.Content.Players;
 public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
-
-    public bool ShowRunePower { get; set; }
+    
     public bool OccultBuff { get; set; }
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -217,7 +216,6 @@ public class RunePlayer : ModPlayer
     public override void ResetEffects()
     {
         RunePower = 0;
-        ShowRunePower = false;
         OccultBuff = false;
         DodgeChance = 0f;
         InvincibilityBonusTime = 0f;
@@ -226,7 +224,6 @@ public class RunePlayer : ModPlayer
         RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
 
-        
         //Runepower Accessories equip reset
         SurtrEquip = false;
         ProtectiveSlabEquip = false;

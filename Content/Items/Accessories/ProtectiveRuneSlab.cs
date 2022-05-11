@@ -3,6 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
@@ -15,8 +16,8 @@ public class ProtectiveRuneSlab : YggdrasilItem
         string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 15+");
 
         DisplayName.SetDefault("Protective Runic Slab");
-        Tooltip.SetDefault($"Displays {runicPowerText}"+
-                           $"\nGrants +3 defense"+
+        Tooltip.SetDefault($"Displays {runicPowerText}" +
+                           $"\nGrants +3 defense" +
                            $"\n{runicPower} Grants an additional +15 defense");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -31,12 +32,9 @@ public class ProtectiveRuneSlab : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        var modPlayer = player.GetModPlayer<RunePlayer>();
-        modPlayer.ShowRunePower = true;
         player.statDefense += 3;
-        player.GetModPlayer<RunePlayer>().ProtectiveSlabEquip = true;
-
-        
+        player.SetEffect<ProtectiveRuneSlab>();
+        player.SetEffect<RunicSlab>();
     }
 
     public override void AddRecipes() => CreateRecipe()

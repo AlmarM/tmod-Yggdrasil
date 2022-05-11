@@ -3,6 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
@@ -28,8 +29,7 @@ public class RunicSlab : YggdrasilItem
 
     public override void UpdateInventory(Player player)
     {
-        var modPlayer = player.GetModPlayer<RunePlayer>();
-        modPlayer.ShowRunePower = true;
+        player.SetEffect<RunicSlab>();
     }
 
     public override void AddRecipes() => CreateRecipe()
