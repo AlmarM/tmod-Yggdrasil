@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -34,7 +35,6 @@ public class NorsemanShield : YggdrasilItem
     {
         player.noKnockback = true;
         player.statDefense += 3;
-        player.GetModPlayer<RunePlayer>().NorsemanShieldEquip = true;
-
+        player.SetEffect<NorsemanShield>();
     }
 }

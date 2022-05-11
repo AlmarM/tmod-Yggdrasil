@@ -4,6 +4,7 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
@@ -36,7 +37,7 @@ public class SurtrBelt : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetDamage<RunicDamageClass>() += 0.15f;
-        player.GetModPlayer<RunePlayer>().SurtrEquip = true;
+        player.SetEffect<SurtrBelt>();
 
         player.lavaImmune = true;
         player.fireWalk = true;
@@ -47,8 +48,5 @@ public class SurtrBelt : YggdrasilItem
         player.buffImmune[BuffID.Frozen] = true;
         player.buffImmune[BuffID.ShadowFlame] = true;
         player.buffImmune[BuffID.Frostburn] = true;
-        
-
-
     }
 }

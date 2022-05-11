@@ -4,6 +4,7 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -31,23 +32,24 @@ public class DwarvenMedallion : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
+        player.SetEffect<DwarvenMedallion>();
         player.pickSpeed -= .15f;
-        Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .4f, .5f, .5f);
-        player.GetModPlayer<RunePlayer>().DwarvenMedallionEquip = true;
 
+        Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .4f, .5f, .5f);
     }
+
     public override void AddRecipes()
     {
-      CreateRecipe()
-     .AddIngredient(ItemID.SilverPickaxe)
-     .AddIngredient(ItemID.StoneBlock, 50)
-     .AddTile(TileID.Anvils)
-     .Register();
+        CreateRecipe()
+            .AddIngredient(ItemID.SilverPickaxe)
+            .AddIngredient(ItemID.StoneBlock, 50)
+            .AddTile(TileID.Anvils)
+            .Register();
 
-      CreateRecipe()
-     .AddIngredient(ItemID.TungstenPickaxe)
-     .AddIngredient(ItemID.StoneBlock, 50)
-     .AddTile(TileID.Anvils)
-     .Register();
+        CreateRecipe()
+            .AddIngredient(ItemID.TungstenPickaxe)
+            .AddIngredient(ItemID.StoneBlock, 50)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 }
