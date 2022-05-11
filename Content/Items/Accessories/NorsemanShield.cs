@@ -2,9 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -34,7 +33,6 @@ public class NorsemanShield : YggdrasilItem
     {
         player.noKnockback = true;
         player.statDefense += 3;
-        player.GetModPlayer<RunePlayer>().NorsemanShieldEquip = true;
-
+        player.SetEffect<NorsemanShield>();
     }
 }

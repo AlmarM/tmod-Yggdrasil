@@ -7,8 +7,6 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using Yggdrasil.Content.Items.Accessories;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
 
@@ -75,20 +73,20 @@ public class WorldGenSystem : ModSystem
         {
             // The inside of this for loop corresponds to one single splotch of our Ore.
             // First, we randomly choose any coordinate in the world by choosing a random x and y value.
-            int x = Terraria.WorldGen.genRand.Next(0, Main.maxTilesX);
+            int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 
             // WorldGen.worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
-            int y = Terraria.WorldGen.genRand.Next(0, Main.maxTilesY);
+            int y = WorldGen.genRand.Next(0, Main.maxTilesY);
 
             // Then, we call WorldGen.TileRunner with random "strength" and random "steps", as well as the Tile we wish to place.
             // Feel free to experiment with strength and step to see the shape they generate.
             Tile tile = Framing.GetTileSafely(x, y);
             if (tile.HasTile && tile.TileType == TileID.IceBlock || tile.TileType == TileID.SnowBlock)
             {
-                int strength = Terraria.WorldGen.genRand.Next(3, 8);
-                int steps = Terraria.WorldGen.genRand.Next(10, 30);
+                int strength = WorldGen.genRand.Next(3, 8);
+                int steps = WorldGen.genRand.Next(10, 30);
 
-                Terraria.WorldGen.TileRunner(x, y, strength, steps, ModContent.TileType<FrostCoreTile>());
+                WorldGen.TileRunner(x, y, strength, steps, ModContent.TileType<FrostCoreTile>());
             }
         }
     }
@@ -109,8 +107,8 @@ public class WorldGenSystem : ModSystem
                     break;
                 }
 
-                int x = Terraria.WorldGen.genRand.Next(0, Main.maxTilesX); //(int)Main.MouseWorld.X / 16;
-                int y = Terraria.WorldGen.genRand.Next(0, Main.maxTilesY); //(int)Main.MouseWorld.Y / 16;
+                int x = WorldGen.genRand.Next(0, Main.maxTilesX); //(int)Main.MouseWorld.X / 16;
+                int y = WorldGen.genRand.Next(0, Main.maxTilesY); //(int)Main.MouseWorld.Y / 16;
 
                 Dust.QuickBox(new Vector2(x, y) * 16, new Vector2(x + 1, y + 1) * 16, 2, Color.YellowGreen, null);
 

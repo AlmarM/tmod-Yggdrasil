@@ -1,13 +1,12 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-
 using Yggdrasil.Configs;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -38,8 +37,8 @@ public class FrostGiantHand : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetCritChance<RunicDamageClass>() += 5;
+        player.SetEffect<FrostGiantHand>();
         player.fireWalk = true;
-        player.GetModPlayer<RunePlayer>().FrostGiantHandEquip = true;
     }
 
     public override void AddRecipes() => CreateRecipe()

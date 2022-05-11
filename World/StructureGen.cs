@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 
-
 namespace Yggdrasil.World
 {
 	public abstract class StructureGen

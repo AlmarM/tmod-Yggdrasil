@@ -6,7 +6,6 @@ using Terraria.Utilities;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Runic;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items;
 

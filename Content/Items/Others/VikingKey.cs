@@ -1,6 +1,5 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Others;
 

@@ -1,11 +1,10 @@
 using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.Content.NPCs.Vikings;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.NPCs.Vikings;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Others;

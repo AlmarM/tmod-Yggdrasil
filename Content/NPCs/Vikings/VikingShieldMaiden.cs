@@ -1,14 +1,12 @@
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Bestiary;
-
+using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 

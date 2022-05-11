@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 
-
 namespace Yggdrasil.Content.Items.Armor;
 
 [AutoloadEquip(EquipType.Head)]

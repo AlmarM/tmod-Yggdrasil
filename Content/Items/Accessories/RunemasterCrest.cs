@@ -3,8 +3,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
-using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -17,7 +17,7 @@ public class RunemasterCrest : YggdrasilItem
 
         DisplayName.SetDefault("Runemaster Crest");
         Tooltip.SetDefault($"12% increased {runicText} damage" +
-                           $"\n10% increased {runicText} critical strike chance"+
+                           $"\n10% increased {runicText} critical strike chance" +
                            $"\n{runicPower} 15% increase {runicText} attack speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -34,7 +34,7 @@ public class RunemasterCrest : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>() += 0.12f;
         player.GetCritChance<RunicDamageClass>() += 10;
-        player.GetModPlayer<RunePlayer>().RunemasterCrestEquip = true;
+        player.SetEffect<RunemasterCrest>();
     }
 
     public override void AddRecipes() => CreateRecipe()

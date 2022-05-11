@@ -1,12 +1,6 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Projectiles.Summon;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Buffs;
 
 namespace Yggdrasil.Content.Buffs
 {

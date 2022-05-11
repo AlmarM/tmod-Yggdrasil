@@ -1,15 +1,17 @@
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
 using System;
-
-using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Content.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Items;
+using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Players;
 
@@ -20,34 +22,12 @@ public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
 
-    public bool ShowRunePower { get; set; }
-    public bool OccultBuff { get; set; }
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
     public float PreventAmmoConsumptionChance { get; set; }
     public float ApplyRandomBuffChance { get; set; }
     public float RandomBuffDuration { get; set; }
     public float SlowDebuffValue { get; set; }
-
-    //Here comes all the equip check for runic relateds equips
-    public bool SurtrEquip { get; set; }
-    public bool ProtectiveSlabEquip { get; set; }
-    public bool ArmRingEquip { get; set; }
-    public bool DwarvenMedallionEquip { get; set; }
-    public bool NorsemanShieldEquip { get; set; }
-    public bool RunemasterEmblemEquip { get; set; }
-    public bool FrostGiantHandEquip { get; set; }
-    public bool OdinsEyeEquip { get; set; }
-    public bool HelsNailEquip { get; set; }
-    public bool TyrHandEquip { get; set; }
-    public bool RunemasterCrestEquip { get; set; }
-    public bool NiddhogToothEquip { get; set; }
-    public bool FreyaNecklaceEquip { get; set; }
-    public float FreyaNecklaceChance { get; set; }
-    public bool BerserkerBootsEquip { get; set; }
-    public bool BerserkerRingEquip { get; set; }
-    public bool RunicNecklaceEquip { get; set; }
-    public bool AesirWindEquip { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -67,16 +47,22 @@ public class RunePlayer : ModPlayer
             Player.NinjaDodge();
             return false;
         }
-        if (OdinsEyeEquip && damage > Player.statLife && Main.rand.Next(100) < 10)
+
+        if (Player.HasEffect<OdinsEye>() && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
             if (RunePower >= 10)
+            {
                 healBack = 0.5f;
+            }
+
+            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * healBack);
 
             Player.NinjaDodge();
-            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * (healBack));
-            SoundEngine.PlaySound(SoundID.Item4, Player.position);
             Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (healBack)));
+
+            SoundEngine.PlaySound(SoundID.Item4, Player.position);
+
             return false;
         }
 
@@ -99,10 +85,10 @@ public class RunePlayer : ModPlayer
             int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
             BuffUtils.ApplyRandomDebuff(target, duration);
         }
-        
+
         if (crit && item.ModItem is RunicItem)
         {
-            if (FrostGiantHandEquip && RunePower >=5)
+            if (Player.HasEffect<FrostGiantHand>() && RunePower >= 5)
             {
                 int projectileCount = 12;
 
@@ -127,27 +113,23 @@ public class RunePlayer : ModPlayer
 
         if (item.ModItem is RunicItem)
         {
-            int poisonTime = 300;
-            if (HelsNailEquip)
+            if (Player.HasEffect<HelsNail>() && RunePower >= 4)
             {
-                if (RunePower >= 4)
-                {
-                    poisonTime = 480;
-                }
-                target.AddBuff(BuffID.Poisoned, poisonTime);
+                target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(8));
             }
         }
 
-        if (item.ModItem is RunicItem && NiddhogToothEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<NidhoggTooth>())
         {
             target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
+
             if (RunePower >= 10)
             {
                 target.AddBuff(BuffID.Venom, 180);
             }
         }
 
-        if (item.ModItem is RunicItem && FreyaNecklaceEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<FreyaNecklace>())
         {
             if (Main.rand.Next(100) < 5)
             {
@@ -159,17 +141,17 @@ public class RunePlayer : ModPlayer
     public override float UseSpeedMultiplier(Item item)
     {
         var speed = 1f;
-        if (item.ModItem is RunicItem && TyrHandEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<TyrHand>())
         {
             speed += 0.1f;
         }
 
-        if (item.ModItem is RunicItem && RunemasterCrestEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<RunemasterCrest>())
         {
             speed += 0.15f;
         }
 
-        if (item.ModItem is RunicItem && BerserkerBootsEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<BerserkerBoots>())
         {
             speed += 0.1f;
         }
@@ -179,110 +161,77 @@ public class RunePlayer : ModPlayer
 
     public override bool? CanAutoReuseItem(Item item)
     {
-        if (item.ModItem is RunicItem && TyrHandEquip == true)
+        if (item.ModItem is RunicItem && Player.HasEffect<TyrHand>())
         {
             return true;
         }
+
         return null;
     }
 
     //We check for runic power at the absolute end
     //We make sure these gets activated both with rune and accessories potential +X runicpower
-    public override void PostUpdateEquips() 
+    public override void PostUpdateEquips()
     {
-        if (SurtrEquip)
+        if (Player.HasEffect<SurtrBelt>() && RunePower >= 6)
+        {
+            Player.AddBuff(BuffID.Inferno, 2);
+        }
 
-            if (RunePower >= 6)
-            {
-                Player.AddBuff(BuffID.Inferno, 2);
-            }
+        if (Player.HasEffect<ProtectiveRuneSlab>() && RunePower >= 15)
+        {
+            Player.statDefense += 15;
+        }
 
-        if (ProtectiveSlabEquip)
-            if (RunePower >= 15)
-            {
-                Player.statDefense += 15;
-            }
+        if (Player.HasEffect<ArmRing>() && RunePower >= 2)
+        {
+            Player.GetDamage<RunicDamageClass>() += 0.01f;
+        }
 
-        if (ArmRingEquip)
-            if (RunePower >= 2)
-            {
-                Player.GetDamage<RunicDamageClass>() += 0.01f;
-            }
-        if (DwarvenMedallionEquip)
-            if (RunePower >= 2)
-            {
-                Player.statDefense += 1;
-            }
+        if (Player.HasEffect<DwarvenMedallion>() && RunePower >= 2)
+        {
+            Player.statDefense += 1;
+        }
 
-        if (NorsemanShieldEquip)
-            if (RunePower >= 2)
-            {
-                Player.GetDamage<RunicDamageClass>() += 0.02f;
-            }
+        if (Player.HasEffect<NorsemanShield>() && RunePower >= 2)
+        {
+            Player.GetDamage<RunicDamageClass>() += 0.02f;
+        }
 
-        if (RunemasterEmblemEquip)
-            if (RunePower >= 5)
-            {
-                Player.GetCritChance<RunicDamageClass>() += 1;
-            }
+        if (Player.HasEffect<RunemasterEmblem>() && RunePower >= 5)
+        {
+            Player.GetCritChance<RunicDamageClass>() += 1;
+        }
 
-        if (TyrHandEquip)
-            if (RunePower >= 4)
-            {
-                Player.GetDamage<RunicDamageClass>() += 0.05f;
-            }
+        if (Player.HasEffect<BerserkerRing>() && RunePower >= 3)
+        {
+            Player.GetCritChance<RunicDamageClass>() += 1;
+        }
 
-        if (BerserkerRingEquip)
-            if (RunePower >= 3)
-            {
-                Player.GetCritChance<RunicDamageClass>() += 1;
-            }
+        if (Player.HasEffect<RunicNecklace>() && RunePower >= 5)
+        {
+            Lighting.AddLight((int)Player.Center.X / 16, (int)Player.Center.Y / 16, .5f, .8f, .8f);
+        }
 
-        if (RunicNecklaceEquip)
-            if (RunePower >= 5)
-            {
-                Lighting.AddLight((int)Player.Center.X / 16, (int)Player.Center.Y / 16, .5f, .8f, .8f);
-            }
+        if (Player.HasEffect<AesirWind>() && RunePower >= 2)
+        {
+            Player.statDefense += 2;
+        }
 
-        if (AesirWindEquip)
-            if (RunePower >= 2)
-            {
-                Player.statDefense += 2;
-            }
-
+        if (Player.HasEffect<TyrHand>() && RunePower >= 4)
+        {
+            Player.GetDamage<RunicDamageClass>() += 0.05f;
+        }
     }
 
     public override void ResetEffects()
     {
         RunePower = 0;
-        ShowRunePower = false;
-        OccultBuff = false;
         DodgeChance = 0f;
         InvincibilityBonusTime = 0f;
         PreventAmmoConsumptionChance = 0f;
         ApplyRandomBuffChance = 0f;
         RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
-
-        
-        //Runic related equip reset
-        SurtrEquip = false;
-        ProtectiveSlabEquip = false;
-        ArmRingEquip = false;
-        DwarvenMedallionEquip = false;
-        NorsemanShieldEquip = false;
-        RunemasterEmblemEquip = false;
-        TyrHandEquip = false;
-        OdinsEyeEquip = false;
-        FrostGiantHandEquip = false;
-        HelsNailEquip = false;
-        RunemasterCrestEquip = false;
-        NiddhogToothEquip = false;
-        FreyaNecklaceEquip = false;
-        FreyaNecklaceChance = 0f;
-        BerserkerBootsEquip = false;
-        BerserkerRingEquip = false;
-        RunicNecklaceEquip = false;
-        AesirWindEquip = false;
     }
 }

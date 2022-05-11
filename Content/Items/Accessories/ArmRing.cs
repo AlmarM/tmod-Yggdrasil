@@ -2,9 +2,10 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -20,7 +21,7 @@ public class ArmRing : YggdrasilItem
         Tooltip.SetDefault($"2% increase {runicText} damage" +
                            $"\nGrants +1 {runicPowerText}" +
                            "\nIncreases defense by 1" +
-                           $"\n{runicPower} 1% increase {runicText} damage");
+                           $"\n{runicPower} 2% increase {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -36,9 +37,8 @@ public class ArmRing : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>() += 0.02f;
         player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.GetModPlayer<RunePlayer>().ArmRingEquip = true;
+        player.SetEffect<ArmRing>();
         player.statDefense += 1;
-
     }
 
     public override void AddRecipes() => CreateRecipe()

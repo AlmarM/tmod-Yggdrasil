@@ -1,10 +1,10 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Yggdrasil.Content.Items.Materials;
-using Microsoft.Xna.Framework;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {

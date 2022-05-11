@@ -1,7 +1,7 @@
 using Terraria;
+using Yggdrasil.Configs;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
-using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Buffs;
 

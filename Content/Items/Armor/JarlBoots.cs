@@ -1,11 +1,11 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
-using Terraria.GameContent.Creative;
 
 namespace Yggdrasil.Content.Items.Armor;
 

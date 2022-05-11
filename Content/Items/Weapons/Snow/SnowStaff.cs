@@ -1,8 +1,7 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using System.Numerics;
 
 namespace Yggdrasil.Content.Items.Weapons.Snow
 {

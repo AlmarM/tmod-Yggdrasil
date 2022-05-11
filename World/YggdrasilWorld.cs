@@ -1,13 +1,13 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.Items.Accessories;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Items.Consumables;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.Runic;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.World
 {

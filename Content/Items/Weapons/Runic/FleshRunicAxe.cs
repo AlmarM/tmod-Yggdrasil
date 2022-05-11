@@ -1,14 +1,11 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
-using Yggdrasil.Configs;
-using Yggdrasil.Utils;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Players;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 

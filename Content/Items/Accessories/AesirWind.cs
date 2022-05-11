@@ -2,9 +2,9 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -34,11 +34,10 @@ public class AesirWind : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetModPlayer<RunePlayer>().AesirWindEquip = true;
+        player.SetEffect<AesirWind>();
         player.jumpSpeedBoost += 2f;
         player.hasJumpOption_Cloud = true;
         player.noFallDmg = true;
-
     }
 
     public override void AddRecipes() => CreateRecipe()

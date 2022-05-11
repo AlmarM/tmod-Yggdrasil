@@ -1,12 +1,12 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -40,9 +40,9 @@ public class RunicNecklace : YggdrasilItem
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
         player.GetModPlayer<RunePlayer>().RunePower += 2;
+        player.SetEffect<RunicNecklace>();
         player.statDefense += 2;
-        player.GetModPlayer<RunePlayer>().RunicNecklaceEquip = true;
-        
+
         /*var modPlayer = player.GetModPlayer<RunePlayer>();
         if (modPlayer.RunePower >= 5)
         {
@@ -51,9 +51,8 @@ public class RunicNecklace : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<BerserkerRing>()
-            .AddIngredient(ItemID.Bell)
-            .AddTile<DvergrForgeTile>()
-            .Register();
-    
+        .AddIngredient<BerserkerRing>()
+        .AddIngredient(ItemID.Bell)
+        .AddTile<DvergrForgeTile>()
+        .Register();
 }

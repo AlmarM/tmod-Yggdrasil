@@ -1,12 +1,10 @@
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Terraria.GameContent.Bestiary;
-
 using Yggdrasil.Content.Items.Accessories;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.NPCs.Snow;
 

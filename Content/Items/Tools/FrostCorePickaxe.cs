@@ -2,11 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Players;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Tools;
 
