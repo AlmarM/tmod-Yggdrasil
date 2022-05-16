@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class UruzRune : Rune
     public override int Rarity => ItemRarityID.LightRed;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorUruzRune>(3)
+        .AddIngredient<MinorUruzRune>()
         .AddIngredient(ItemID.TitanGlove)
         .AddIngredient(ItemID.SoulofFlight, 20)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

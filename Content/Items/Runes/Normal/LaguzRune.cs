@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -22,10 +23,11 @@ internal class LaguzRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorLaguzRune>(3)
+        .AddIngredient<MinorLaguzRune>()
         .AddIngredient(ItemID.GreaterHealingPotion, 10)
         .AddIngredient(ItemID.LifeFruit, 2)
         .AddIngredient(ItemID.SoulofMight, 15)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

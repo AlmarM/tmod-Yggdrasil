@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class TiwazRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorTiwazRune>(3)
+        .AddIngredient<MinorTiwazRune>()
         .AddIngredient(ItemID.ShadowFlameHexDoll)
         .AddIngredient(ItemID.SoulofFright, 10)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -20,9 +21,10 @@ internal class MajorLaguzRune : Rune
     public override int Rarity => ItemRarityID.Cyan;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<LaguzRune>(3)
+        .AddIngredient<LaguzRune>()
         .AddIngredient(ItemID.SpectreHood)
         .AddIngredient(ItemID.SuperHealingPotion, 10)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

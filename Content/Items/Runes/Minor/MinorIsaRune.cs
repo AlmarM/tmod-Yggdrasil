@@ -4,6 +4,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -24,6 +25,7 @@ internal class MinorIsaRune : Rune
         .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.SlimeBanner)
         .AddIngredient(ItemID.BatBanner)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

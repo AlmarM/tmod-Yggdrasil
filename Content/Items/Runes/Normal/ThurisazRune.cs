@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class ThurisazRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorThurisazRune>(3)
+        .AddIngredient<MinorThurisazRune>()
         .AddIngredient(ItemID.TurtleShell)
         .AddIngredient(ItemID.Spike, 10)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -22,9 +23,10 @@ internal class BerkanoRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorBerkanoRune>(3)
+        .AddIngredient<MinorBerkanoRune>()
         .AddIngredient(ItemID.MoonStone)
         .AddIngredient(ItemID.LifeFruit, 2)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

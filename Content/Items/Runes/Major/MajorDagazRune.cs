@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -19,9 +20,10 @@ internal class MajorDagazRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<DagazRune>(3)
+        .AddIngredient<DagazRune>()
         .AddIngredient(ItemID.ShroomiteBar, 40)
         .AddIngredient(ItemID.SniperScope)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

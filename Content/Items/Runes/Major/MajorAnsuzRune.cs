@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -19,9 +20,10 @@ internal class MajorAnsuzRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<AnsuzRune>(3)
+        .AddIngredient<AnsuzRune>()
         .AddIngredient(ItemID.Ectoplasm, 10)
         .AddIngredient(ItemID.HallowedHeadgear)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

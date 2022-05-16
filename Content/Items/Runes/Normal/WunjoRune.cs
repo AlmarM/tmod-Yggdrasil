@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,10 +22,11 @@ internal class WunjoRune : Rune
     public override int Rarity => ItemRarityID.LightRed;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorWunjoRune>(3)
+        .AddIngredient<MinorWunjoRune>()
         .AddIngredient(ItemID.FrozenTurtleShell)
         .AddIngredient(ItemID.SkeletronPrimeTrophy)
         .AddIngredient(ItemID.HallowedBar, 30)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

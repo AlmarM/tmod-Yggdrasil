@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -22,9 +23,10 @@ internal class EhwazRune : Rune
     public override int Rarity => ItemRarityID.Orange;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorEhwazRune>(3)
+        .AddIngredient<MinorEhwazRune>()
         .AddIngredient(ItemID.AsphaltBlock, 50)
         .AddIngredient(ItemID.SoulofFlight, 20)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

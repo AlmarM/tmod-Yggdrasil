@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -19,10 +20,11 @@ internal class MajorKenazRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<KenazRune>(3)
+        .AddIngredient<KenazRune>()
         .AddIngredient(ItemID.Tabi)
         .AddIngredient(ItemID.BlackBelt)
         .AddIngredient(ItemID.BlackFairyDust)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

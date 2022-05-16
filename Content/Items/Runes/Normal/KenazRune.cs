@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,10 +22,11 @@ internal class KenazRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorKenazRune>(3)
+        .AddIngredient<MinorKenazRune>()
         .AddIngredient(ItemID.SmokeBomb, 10)
         .AddIngredient(ItemID.SoulofSight, 10)
         .AddIngredient(ItemID.DarkShard, 2)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

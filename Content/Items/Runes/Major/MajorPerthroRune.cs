@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -20,9 +21,10 @@ internal class MajorPerthroRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<PerthroRune>(3)
+        .AddIngredient<PerthroRune>()
         .AddIngredient(ItemID.InfernoFork)
         .AddIngredient(ItemID.Nanites, 50)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

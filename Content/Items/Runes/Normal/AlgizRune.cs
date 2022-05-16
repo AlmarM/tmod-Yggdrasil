@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class AlgizRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorAlgizRune>(3)
+        .AddIngredient<MinorAlgizRune>()
         .AddIngredient(ItemID.HallowedBar, 10)
         .AddIngredient(ItemID.TurtleShell)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

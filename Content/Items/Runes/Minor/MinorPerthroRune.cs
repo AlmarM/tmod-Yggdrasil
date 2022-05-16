@@ -4,6 +4,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -25,6 +26,7 @@ internal class MinorPerthroRune : Rune
         .AddIngredient(ItemID.LavaBucket)
         .AddIngredient(ItemID.FlaskofFire, 10)
         .AddIngredient(ItemID.FlaskofPoison, 10)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

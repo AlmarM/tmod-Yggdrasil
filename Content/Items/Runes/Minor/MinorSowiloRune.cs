@@ -4,6 +4,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -23,6 +24,7 @@ internal class MinorSowiloRune : Rune
         .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.SharkToothNecklace)
         .AddIngredient(ItemID.Cactus, 15)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

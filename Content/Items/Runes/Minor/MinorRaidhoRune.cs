@@ -4,6 +4,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -23,6 +24,7 @@ internal class MinorRaidhoRune : Rune
         .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.FossilOre, 25)
         .AddIngredient(ItemID.Javelin, 100)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

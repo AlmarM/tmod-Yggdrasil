@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -20,9 +21,10 @@ internal class MajorBerkanoRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<BerkanoRune>(3)
+        .AddIngredient<BerkanoRune>()
         .AddIngredient(ItemID.SpectreMask)
         .AddIngredient(ItemID.SunStone)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

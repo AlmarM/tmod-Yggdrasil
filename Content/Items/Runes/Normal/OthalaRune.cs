@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,10 +22,11 @@ internal class OthalaRune : Rune
     public override int Rarity => ItemRarityID.LightPurple;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorOthalaRune>(3)
+        .AddIngredient<MinorOthalaRune>()
         .AddIngredient(ItemID.EndlessQuiver)
         .AddIngredient(ItemID.EndlessMusketPouch, 5)
         .AddIngredient(ItemID.DaedalusStormbow)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

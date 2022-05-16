@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class RaidhoRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorRaidhoRune>(3)
+        .AddIngredient<MinorRaidhoRune>()
         .AddIngredient(ItemID.LightDisc)
         .AddIngredient(ItemID.MagicDagger)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

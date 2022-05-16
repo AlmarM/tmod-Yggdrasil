@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,10 +22,11 @@ internal class NauthizRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorNauthizRune>(3)
+        .AddIngredient<MinorNauthizRune>()
         .AddIngredient(ItemID.CrossNecklace)
         .AddIngredient(ItemID.SoulofMight, 5)
         .AddIngredient(ItemID.SoulofFright, 5)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

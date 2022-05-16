@@ -19,7 +19,7 @@ internal class MajorWunjoRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<WunjoRune>(3)
+        .AddIngredient<WunjoRune>()
         .AddIngredient(ItemID.CelestialShell)
         .AddIngredient(ItemID.MartianSaucerTrophy)
         .AddIngredient(ItemID.DukeFishronTrophy)

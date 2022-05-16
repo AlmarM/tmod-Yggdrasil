@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -19,9 +20,10 @@ internal class MajorGeboRune : Rune
     public override int Rarity => ItemRarityID.Yellow;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<GeboRune>(3)
+        .AddIngredient<GeboRune>()
         .AddIngredient(ItemID.SpookyWood, 400)
         .AddIngredient(ItemID.PygmyNecklace)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

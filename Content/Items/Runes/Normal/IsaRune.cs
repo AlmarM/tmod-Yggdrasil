@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -22,9 +23,10 @@ internal class IsaRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorIsaRune>(3)
+        .AddIngredient<MinorIsaRune>()
         .AddIngredient(ItemID.IlluminantBatBanner)
         .AddIngredient(ItemID.PirateBanner)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

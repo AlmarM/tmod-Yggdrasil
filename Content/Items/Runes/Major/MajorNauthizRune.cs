@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -19,10 +20,11 @@ internal class MajorNauthizRune : Rune
     public override int Rarity => ItemRarityID.Red;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<NauthizRune>(3)
+        .AddIngredient<NauthizRune>()
         .AddIngredient(ItemID.MartianConduitPlating, 50)
         .AddIngredient(ItemID.Ectoplasm, 10)
         .AddIngredient(ItemID.FragmentVortex, 10)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

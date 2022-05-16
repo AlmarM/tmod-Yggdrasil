@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
@@ -20,9 +21,10 @@ internal class MajorEhwazRune : Rune
     public override int Rarity => ItemRarityID.Lime;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<EhwazRune>(3)
+        .AddIngredient<EhwazRune>()
         .AddIngredient(ItemID.SpookyHook)
         .AddIngredient(ItemID.IlluminantHook)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

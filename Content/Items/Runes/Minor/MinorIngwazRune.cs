@@ -4,6 +4,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Runes.Normal;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
@@ -23,6 +24,7 @@ internal class MinorIngwazRune : Rune
         .AddIngredient<BlankRune>()
         .AddIngredient(ItemID.LifeCrystal)
         .AddIngredient(ItemID.HealingPotion, 5)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

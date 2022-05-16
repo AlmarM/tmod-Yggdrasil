@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class GeboRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorGeboRune>(3)
+        .AddIngredient<MinorGeboRune>()
         .AddIngredient(ItemID.SummonerEmblem)
         .AddIngredient(ItemID.AncientBattleArmorMaterial)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()

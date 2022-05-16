@@ -3,6 +3,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
+using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
@@ -21,9 +22,10 @@ internal class HagalazRune : Rune
     public override int Rarity => ItemRarityID.Pink;
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<MinorHagalazRune>(3)
+        .AddIngredient<MinorHagalazRune>()
         .AddIngredient(ItemID.SorcererEmblem)
         .AddIngredient(ItemID.MagicalHarp)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()
