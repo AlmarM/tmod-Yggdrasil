@@ -1,26 +1,31 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class WoodLance : RunicItem
 {
+    public override bool AltFunctionUse(Player player)
+    {
+        return true;
+    }
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
         DisplayName.SetDefault("Wooden Lance");
 
-        ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
+        // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
+        ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -44,15 +49,34 @@ public class WoodLance : RunicItem
         Item.autoReuse = false;
     }
 
+    public override bool? UseItem(Player player)
+    {
+        if (player.altFunctionUse == 2)
+        {
+            player.AddBuff(ModContent.BuffType<DefensiveStanceBuff>(), TimeUtils.SecondsToTicks(5));
+
+            return false;
+        }
+
+        return base.UseItem(player);
+    }
+
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+    {
+        if (player.HasBuff<DefensiveStanceBuff>())
+        {
+            // 20% increase?
+            damage += 0.2f;
+        }
+    }
+
     public override void AddRecipes() => CreateRecipe()
-            .AddRecipeGroup(RecipeGroupID.Wood, 10)
-            .AddTile(TileID.WorkBenches)
-            .Register();
+        .AddRecipeGroup(RecipeGroupID.Wood, 10)
+        .AddTile(TileID.WorkBenches)
+        .Register();
 
     protected override void AddEffects()
     {
         AddEffect(new FlatRunicDamageEffect(1, 2));
     }
-
-    
 }

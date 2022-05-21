@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
@@ -42,6 +43,16 @@ public class RunePlayer : ModPlayer
     public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
     {
+        if (Player.HasBuff<BlockBuff>())
+        {
+            int index = Player.FindBuffIndex(ModContent.BuffType<BlockBuff>());
+            Player.buffTime[index] = 0;
+
+            Player.SetImmuneTimeForAllTypes(Player.longInvince ? 120 : 80);
+
+            return false;
+        }
+
         if (damage > 0 && DodgeChance > 0f && Main.rand.NextFloat() <= DodgeChance)
         {
             Player.NinjaDodge();
@@ -75,6 +86,20 @@ public class RunePlayer : ModPlayer
         {
             int bonusTicks = TimeUtils.SecondsToTicks(InvincibilityBonusTime);
             Player.immuneTime += bonusTicks;
+        }
+    }
+
+    public override void ProcessTriggers(TriggersSet triggersSet)
+    {
+        if (YggdrasilKeybinds.LanceStance.JustPressed)
+        {
+            if (Player.HasBuff<CantBlockBuff>())
+            {
+                return;
+            }
+
+            // Check with HasBuff for the stance buff
+            Player.AddBuff(ModContent.BuffType<BlockBuff>(), TimeUtils.SecondsToTicks(2f));
         }
     }
 
