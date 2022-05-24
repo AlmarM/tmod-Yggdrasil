@@ -9,7 +9,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class WoodLance : RunicItem
+public class RunicPuncture : RunicItem
 {
     public override bool AltFunctionUse(Player player)
     {
@@ -20,7 +20,7 @@ public class WoodLance : RunicItem
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Wooden Lance");
+        DisplayName.SetDefault("Runic Puncture");
 
         // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
         ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
@@ -32,19 +32,22 @@ public class WoodLance : RunicItem
         Item.damage = 18;
         Item.useTime = 23;
         Item.useAnimation = 23;
-        Item.useStyle = ItemUseStyleID.Shoot;
+        Item.useStyle = ItemUseStyleID.Thrust;
         Item.knockBack = 4;
         Item.crit = 0;
         Item.noUseGraphic = true;
         Item.DamageType = DamageClass.Melee;
         Item.noMelee = true;
-        Item.shootSpeed = 3.5f;
-        Item.shoot = ModContent.ProjectileType<WoodLanceProjectile>();
-
+        Item.width = 64;
+        Item.height = 64;
         Item.value = Item.sellPrice(0, 0, 18, 0);
         Item.rare = ItemRarityID.White;
         Item.UseSound = SoundID.Item1;
         Item.autoReuse = false;
+        Item.useTime = TimeUtils.SecondsToTicks(0.5f);
+        Item.useAnimation = Item.useTime;
+        Item.shoot = ModContent.ProjectileType<RunicPunctureProjectile>();
+        Item.shootSpeed = 30f;
     }
 
     public override bool? UseItem(Player player)
