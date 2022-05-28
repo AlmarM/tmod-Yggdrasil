@@ -21,6 +21,7 @@ namespace Yggdrasil.Content.Players;
 public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
+    public int HitCount { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -76,6 +77,8 @@ public class RunePlayer : ModPlayer
             int bonusTicks = TimeUtils.SecondsToTicks(InvincibilityBonusTime);
             Player.immuneTime += bonusTicks;
         }
+
+        HitCount = 0;
     }
 
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
