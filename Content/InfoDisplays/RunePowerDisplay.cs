@@ -20,6 +20,11 @@ public class RunePowerDisplay : YggdrasilInfoDisplay
     public override string DisplayValue()
     {
         int runePower = Main.LocalPlayer.GetModPlayer<RunePlayer>().RunePower;
-        return runePower > 0 ? $"{runePower} Runic Power." : "No Runic Power";
+        int hitCount = Main.LocalPlayer.GetModPlayer<RunePlayer>().HitCount;
+
+        string display = runePower > 0 ? $"{runePower} Runic Power." : "No Runic Power";
+        display += $"\n{hitCount} focus";
+
+        return display;
     }
 }

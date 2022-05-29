@@ -22,6 +22,7 @@ public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
     public int HitCount { get; set; }
+    public int FocusPowerTime { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -159,6 +160,10 @@ public class RunePlayer : ModPlayer
             speed += 0.1f;
         }
 
+        if (item.ModItem is RunicItem && Player.HasEffect<CotinBuff>())
+        {
+            speed += 0.1f;
+        }
         return speed;
     }
 
@@ -225,6 +230,7 @@ public class RunePlayer : ModPlayer
         {
             Player.GetDamage<RunicDamageClass>() += 0.05f;
         }
+
     }
 
     public override void ResetEffects()
@@ -236,5 +242,6 @@ public class RunePlayer : ModPlayer
         ApplyRandomBuffChance = 0f;
         RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
+        FocusPowerTime = 300; //60 = 1sec
     }
 }

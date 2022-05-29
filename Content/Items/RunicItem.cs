@@ -90,45 +90,6 @@ public abstract class RunicItem : YggdrasilItem
 
         return allowedPrefixes[prefixIndex];
     }
-
-    public override bool AltFunctionUse(Player player)
-    {
-        return true;
-    }
-
-    public override bool? UseItem(Player player)
-    {
-        if (player.altFunctionUse == 2)
-        {
-            OnRightClick(player);
-
-            player.GetRunePlayer().HitCount = 0;
-
-            return true;
-        }
-
-        return base.UseItem(player);
-    }
-
-    protected virtual void OnRightClick(Player player)
-    {
-        RunePlayer runePlayer = player.GetRunePlayer();
-
-        if (runePlayer.HitCount >= 10)
-        {
-            Item.damage *= 2;
-
-            return;
-        }
-
-        if (runePlayer.HitCount >= 5)
-        {
-            Item.scale *= 2f;
-
-            return;
-        }
-    }
-
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
         int lineIndex = tooltips.FindIndex(x => x.Name == "ItemName" && x.Mod == "Terraria");

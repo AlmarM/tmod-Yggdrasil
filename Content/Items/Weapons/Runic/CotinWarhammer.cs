@@ -1,26 +1,27 @@
-using Microsoft.Xna.Framework;
 using Terraria;
+using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Players;
+using Terraria.Audio;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runic;
+using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class RunesmithHammer : RunicItem
+public class CotinWarhammer : RunicItem
 {
     private int FocusValue = 5;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
-        
-        DisplayName.SetDefault("Runesmith Warhammer");
+
+        DisplayName.SetDefault("Cotin Warhammer");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -29,14 +30,15 @@ public class RunesmithHammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
+        Item.width = 32;
+        Item.height = 32;   
         Item.useTime = 25;
         Item.useAnimation = 25;
         Item.autoReuse = false;
-        Item.damage = 9;
+        Item.damage = 8;
         Item.crit = 0;
-        Item.knockBack = 10;
-        //Item.hammer = 45;
-        Item.value = Item.buyPrice(0, 0, 5, 40);
+        Item.knockBack = 4;
+        Item.value = Item.buyPrice(0, 0, 0, 20);
         Item.rare = ItemRarityID.White;
         Item.UseSound = SoundID.Item1;
     }
@@ -94,7 +96,7 @@ public class RunesmithHammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<RunesmithBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<CotinBuff>(), Time);
             //Item.scale *= 2f; [HELP!] This doesn't reset anymore???
             return;
         }
@@ -105,19 +107,26 @@ public class RunesmithHammer : RunicItem
         string tooltip = base.GetTooltip();
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 3 & Slowly regenerates life";
+        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Grants +2 {runicText} damage & 10% increased {runicText} attack speed";
 
         return tooltip;
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 5)
-        .AddRecipeGroup(RecipeGroupID.IronBar, 8)
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+        .AddIngredient(ItemID.CopperBar, 5)
         .AddTile(TileID.Anvils)
         .Register();
 
+        CreateRecipe()
+        .AddIngredient(ItemID.TinBar, 5)
+        .AddTile(TileID.Anvils)
+        .Register();
+    }
+
     protected override void AddEffects()
     {
-        AddEffect(new FlatRunicDamageEffect(1, 3));
+        AddEffect(new FlatRunicDamageEffect(1, 1));
     }
 }
