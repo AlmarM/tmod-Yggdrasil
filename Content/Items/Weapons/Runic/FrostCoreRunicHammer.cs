@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Content.Players;
@@ -19,6 +18,7 @@ namespace Yggdrasil.Content.Items.Weapons.Runic;
 public class FrostCoreRunicHammer : RunicItem
 {
     private int FocusValue = 7;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -53,23 +53,33 @@ public class FrostCoreRunicHammer : RunicItem
 
     public override void HoldItem(Player player)
     {
+        base.HoldItem(player);
+
         RunePlayer runePlayer = player.GetRunePlayer();
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);  [HELP!] Plays indefinitely, I've no idea how to have it play only once
+            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
 
-            if (Main.rand.NextBool(5)) // Just the never ending sparkle of dusts
+            // Just the never ending sparkle of dusts
+            if (Main.rand.NextBool(5))
             {
-                int FocusDust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 5f), player.width, player.height, DustID.Cloud, //Dust sparkling over the character
-                    player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 100, default(Color), 2f);
-                Main.dust[FocusDust].noGravity = true;
-                Main.dust[FocusDust].velocity.X *= 0.5f;
-                Main.dust[FocusDust].velocity.Y = -2f;
-                Main.dust[FocusDust].noLight = true;
+                var position = new Vector2(player.position.X, player.position.Y + 5f);
+                var velocityX = player.velocity.X * 0.5f;
+                var velocityY = player.velocity.Y * 0.5f;
+
+                //Dust sparkling over the character
+                int focusDust = Dust.NewDust(position, player.width, player.height, DustID.Cloud, velocityX, velocityY,
+                    100, default, 2f);
+
+                Main.dust[focusDust].noGravity = true;
+                Main.dust[focusDust].velocity.X *= 0.5f;
+                Main.dust[focusDust].velocity.Y = -2f;
+                Main.dust[focusDust].noLight = true;
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -84,7 +94,6 @@ public class FrostCoreRunicHammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -100,12 +109,13 @@ public class FrostCoreRunicHammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int Time = runePlayer.FocusPowerTime;
+        int time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<FrostcoreBuff>(), Time);
-            //Item.scale *= 2f; [HELP!] This doesn't reset anymore???
+            player.AddBuff(ModContent.BuffType<FrostcoreBuff>(), time);
+            Item.scale *= 2f;
+
             return;
         }
     }
@@ -115,7 +125,8 @@ public class FrostCoreRunicHammer : RunicItem
         string tooltip = base.GetTooltip();
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Slowly regenerates life & Grants immunity to certain debuffs";
+        tooltip +=
+            $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Slowly regenerates life & Grants immunity to certain debuffs";
 
         return tooltip;
     }
@@ -129,7 +140,7 @@ public class FrostCoreRunicHammer : RunicItem
     {
         AddEffect(new FlatRunicDamageEffect(1, 3));
         AddEffect(new InflictBuffEffect(1, BuffID.Frostburn, 1, "Frostburn", 0.5f, true));
-        AddEffect(new BiggerSizeEffect(2, 0.5f)); // [HELP] THIS DOESN'T WORK ANYMORE FOR WHATEVER REASON
+        AddEffect(new BiggerSizeEffect(2, 0.5f));
         AddEffect(new InflictBuffEffect(2, BuffID.Frostburn, 2, "Frostburn", 0.25f, true));
     }
 }
