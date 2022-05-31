@@ -7,24 +7,24 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Buffs;
 
-public class CotinBuff : YggdrasilBuff
+public class BloodyBuff : YggdrasilBuff
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Cotin Focus");
+        DisplayName.SetDefault("Bloody Focus");
         Description.SetDefault(
-            "Increases defense by 1" +
-            "\nGrants +2 runic damage" +
-            "\n10% increase runic attack speed");
+            "Increases defense by 4" +
+            "\nGrants 3% damage reduction" +
+            "\nHitting an enemy with a runic weapon has a chance to generate a heart");
     }
 
     public override void Update(Player player, ref int buffIndex)
     {
-        player.statDefense += 1;
-        player.GetDamage<RunicDamageClass>().Flat += 2;
-        player.SetEffect<CotinBuff>();
+        player.statDefense += 4;
+        player.endurance += 0.03f;
+        player.SetEffect<BloodyBuff>();
     }
 
 }

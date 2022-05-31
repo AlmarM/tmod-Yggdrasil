@@ -113,6 +113,11 @@ public class RunePlayer : ModPlayer
                     Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
                 }
             }
+
+            if (Player.HasEffect<OccultHelmet>())
+            {
+                target.AddBuff(BuffID.Confused, 180);
+            }
         }
 
         if (item.ModItem is RunicItem)
@@ -136,6 +141,14 @@ public class RunePlayer : ModPlayer
         if (item.ModItem is RunicItem && Player.HasEffect<FreyaNecklace>())
         {
             if (Main.rand.Next(100) < 5)
+            {
+                Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
+            }
+        }
+
+        if (item.ModItem is RunicItem && Player.HasEffect<BloodyBuff>())
+        {
+            if (Main.rand.Next(100) < 4)
             {
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }

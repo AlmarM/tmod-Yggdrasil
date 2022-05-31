@@ -12,25 +12,17 @@ using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class FrostCoreRunicHammer : RunicItem
+public class BloodyWarhammer : RunicItem
 {
-    private int FocusValue = 7;
+    private int FocusValue = 9;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        // string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        // string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        // string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-
-        DisplayName.SetDefault("Frostcore Warhammer");
-        // Tooltip.SetDefault(
-        //     $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
-        //     $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
+        DisplayName.SetDefault("Bloody Warhammer");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -39,14 +31,13 @@ public class FrostCoreRunicHammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 26;
-        Item.useAnimation = 26;
+        Item.useTime = 25;
+        Item.useAnimation = 25;
         Item.autoReuse = false;
-        Item.damage = 18;
+        Item.damage = 15;
         Item.crit = 0;
-        Item.knockBack = 10;
-        //Item.hammer = 65;
-        Item.value = Item.buyPrice(0, 0, 23);
+        Item.knockBack = 4;
+        Item.value = Item.buyPrice(0, 0, 25);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
@@ -104,7 +95,7 @@ public class FrostCoreRunicHammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<FrostcoreBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<BloodyBuff>(), Time);
             //Item.scale *= 2f; [HELP!] This doesn't reset anymore???
             return;
         }
@@ -113,23 +104,46 @@ public class FrostCoreRunicHammer : RunicItem
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Slowly regenerates life & Grants immunity to certain debuffs";
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 1);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Has 25% chance to heal for 1 on hit \n[c/fc7b03:Focus { FocusValue}]: Increases defense by 4, Grants 3% damage reduction & Hitting an enemy with a {runicText} weapon has a chance to generate a heart";
 
         return tooltip;
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(8)
-        .AddTile<DvergrForgeTile>()
-        .Register();
-
     protected override void AddEffects()
     {
-        AddEffect(new FlatRunicDamageEffect(1, 3));
-        AddEffect(new InflictBuffEffect(1, BuffID.Frostburn, 1, "Frostburn", 0.5f, true));
-        AddEffect(new BiggerSizeEffect(2, 0.5f)); // [HELP] THIS DOESN'T WORK ANYMORE FOR WHATEVER REASON
-        AddEffect(new InflictBuffEffect(2, BuffID.Frostburn, 2, "Frostburn", 0.25f, true));
+        AddEffect(new FlatRunicDamageEffect(3, 5));
     }
+
+    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+    {
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        var healing = 1;
+
+        runePlayer.HitCount++; // Needed this because we're overiding OnHitNPC here too
+
+        if (runePlayer.RunePower >= 4)
+        {
+            if (player.statLife < player.statLifeMax2)   
+            {
+                if (Main.rand.NextFloat() < .25f)
+                {
+                    player.statLife += healing;
+                    player.HealEffect(healing);
+                }
+            }
+        }
+    }
+
+    public override void AddRecipes() => CreateRecipe()
+     .AddIngredient(ItemID.BloodMoonStarter)
+     .AddRecipeGroup(RecipeGroupID.Wood, 10)
+     .AddTile<DvergrForgeTile>()
+     .Register();
+
+
 }

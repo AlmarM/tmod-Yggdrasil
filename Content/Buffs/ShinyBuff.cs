@@ -7,24 +7,24 @@ using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Buffs;
 
-public class CotinBuff : YggdrasilBuff
+public class ShinyBuff : YggdrasilBuff
 {
     public override string Texture => TextureUtils.GetAssetPath(GetType());
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Cotin Focus");
+        DisplayName.SetDefault("Shiny Focus");
         Description.SetDefault(
-            "Increases defense by 1" +
-            "\nGrants +2 runic damage" +
-            "\n10% increase runic attack speed");
+            "Increases defense by 4" +
+            "\nShows ore around you" +
+            "\nGrants immunity to OnFire and Poisoned");
     }
 
     public override void Update(Player player, ref int buffIndex)
     {
-        player.statDefense += 1;
-        player.GetDamage<RunicDamageClass>().Flat += 2;
-        player.SetEffect<CotinBuff>();
+        player.statDefense += 4;
+        player.buffImmune[BuffID.OnFire] = true;
+        player.buffImmune[BuffID.Poisoned] = true;     
     }
 
 }

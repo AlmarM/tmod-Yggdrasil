@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Yggdrasil.Configs;
@@ -79,6 +80,12 @@ public abstract class RunicItem : YggdrasilItem
         RunePlayer runePlayer = GetRunePlayer(player);
 
         runePlayer.HitCount++;
+
+        //THIS IS GOOD FOR TESTING BUT TURN THIS ON FOR REALEASE AND REMOVE THE HITCOUNT++ ABOVE. 
+        //if (target.type != NPCID.TargetDummy)
+        //{
+        //    runePlayer.HitCount++;
+        //}
 
         InflictBuffEffect.Apply(GetEffects<InflictBuffEffect>(), runePlayer, target);
     }

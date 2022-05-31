@@ -16,7 +16,7 @@ namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class CotinWarhammer : RunicItem
 {
-    private int FocusValue = 5;
+    private int FocusValue = 7;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -107,7 +107,7 @@ public class CotinWarhammer : RunicItem
         string tooltip = base.GetTooltip();
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Grants +2 {runicText} damage & 10% increased {runicText} attack speed";
+        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 1, Grants +2 {runicText} damage & 10% increased {runicText} attack speed";
 
         return tooltip;
     }

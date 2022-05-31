@@ -34,7 +34,7 @@ public class RunesmithHammer : RunicItem
         Item.autoReuse = false;
         Item.damage = 9;
         Item.crit = 0;
-        Item.knockBack = 10;
+        Item.knockBack = 5;
         //Item.hammer = 45;
         Item.value = Item.buyPrice(0, 0, 5, 40);
         Item.rare = ItemRarityID.White;

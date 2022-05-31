@@ -9,6 +9,7 @@ using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Extensions;
 
 namespace Yggdrasil.Content.Items.Armor;
 
@@ -17,10 +18,12 @@ public class OccultHelmet : YggdrasilItem
 {
     private string _runicText;
     private string _runicPowerText;
+    private string _runicPowerOneText;
 
     public override void SetStaticDefaults()
     {
         _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        _runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
         DisplayName.SetDefault("Occult Helmet");
@@ -45,9 +48,15 @@ public class OccultHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = $"{_runicPowerText}: Apply Occult Buff ";
+        player.setBonus = $"{_runicPowerOneText}: Critical hit caused by {_runicText} weapons will confuse target" +
+            $"\n{_runicPowerText}: Apply Occult Buff ";
 
         var runePlayer = player.GetModPlayer<RunePlayer>();
+        
+        if (runePlayer.RunePower >= 1)
+        {
+            player.SetEffect<OccultHelmet>();
+        }
 
         if (runePlayer.RunePower >= 3)
         {

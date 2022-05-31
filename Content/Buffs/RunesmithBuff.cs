@@ -13,7 +13,7 @@ public class RunesmithBuff : YggdrasilBuff
 
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Cotin Focus");
+        DisplayName.SetDefault("Runesmith Focus");
         Description.SetDefault(
             $"Increases defense by 3" +
             $"\nSlowly regenerates life");
