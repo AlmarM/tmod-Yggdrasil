@@ -32,7 +32,7 @@ public class ColdIronTile : YggdrasilTile
 
         DustType = DustID.Platinum;
         ItemDrop = ModContent.ItemType<ColdIronOre>();
-        SoundType = SoundID.Tink;
+        //SoundType = SoundID.Tink;
         MinPick = 200;
         MineResist = 1f;
     }

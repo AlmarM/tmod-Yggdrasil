@@ -47,7 +47,7 @@ public class NorsemanHorn : YggdrasilItem
         if (player.ZoneSnow)
         {
             NPC.NewNPC(null, (int)player.position.X, (int)player.position.Y - 200, ModContent.NPCType<Berserker>());
-            SoundEngine.PlaySound(SoundID.Thunder, player.position, 0);
+            SoundEngine.PlaySound(SoundID.Thunder, player.position);
         }
         return true;
     }

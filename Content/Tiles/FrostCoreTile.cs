@@ -32,7 +32,7 @@ public class FrostCoreTile : YggdrasilTile
 
         DustType = DustID.NorthPole;
         ItemDrop = ModContent.ItemType<FrostCoreOre>();
-        SoundType = SoundID.Tink;
+        //SoundType = SoundID.Tink;
         MinPick = 55;
         MineResist = 1f;
     }

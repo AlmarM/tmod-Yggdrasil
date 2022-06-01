@@ -34,7 +34,7 @@ public class FrostCoreArrowProjectile : YggdrasilProjectile
 		{
 			Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost);
 		}
-		SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y);
+		SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 	}
 
 
