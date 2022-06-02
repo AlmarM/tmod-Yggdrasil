@@ -13,12 +13,10 @@ namespace Yggdrasil.Content.Items;
 
 public abstract class RunicItem : YggdrasilItem
 {
-    private IList<IRunicEffect> _runicEffects;
+    private IList<IRunicEffect> _runicEffects = new List<IRunicEffect>();
 
     public override void SetStaticDefaults()
-    {
-        _runicEffects = new List<IRunicEffect>();
-
+    {      
         AddEffects();
 
         _runicEffects = _runicEffects.OrderBy(re => re.RunePowerRequired).ToList();

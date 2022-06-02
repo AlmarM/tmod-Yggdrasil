@@ -42,20 +42,28 @@ public class StainlessWarhammer : RunicItem
 
     public override void HoldItem(Player player)
     {
+        base.HoldItem(player);
+
         RunePlayer runePlayer = player.GetRunePlayer();
 
         if (runePlayer.HitCount >= FocusValue)
         {
             //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);  [HELP!] Plays indefinitely, I've no idea how to have it play only once
 
-            if (Main.rand.NextBool(5)) // Just the never ending sparkle of dusts
+            if (Main.rand.NextBool(5))
             {
-                int FocusDust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 5f), player.width, player.height, DustID.Cloud, //Dust sparkling over the character
-                    player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 100, default(Color), 2f);
-                Main.dust[FocusDust].noGravity = true;
-                Main.dust[FocusDust].velocity.X *= 0.5f;
-                Main.dust[FocusDust].velocity.Y = -2f;
-                Main.dust[FocusDust].noLight = true;
+                var position = new Vector2(player.position.X, player.position.Y + 5f);
+                var velocityX = player.velocity.X * 0.5f;
+                var velocityY = player.velocity.Y * 0.5f;
+
+                //Dust sparkling over the character
+                int focusDust = Dust.NewDust(position, player.width, player.height, DustID.Cloud, velocityX, velocityY,
+                    100, default, 2f);
+
+                Main.dust[focusDust].noGravity = true;
+                Main.dust[focusDust].velocity.X *= 0.5f;
+                Main.dust[focusDust].velocity.Y = -2f;
+                Main.dust[focusDust].noLight = true;
             }
         }
     }
@@ -94,7 +102,8 @@ public class StainlessWarhammer : RunicItem
         if (runePlayer.HitCount >= FocusValue)
         {
             player.AddBuff(ModContent.BuffType<StainlessBuff>(), Time);
-            //Item.scale *= 2f; [HELP!] This doesn't reset anymore???
+            Item.scale *= 2f;
+
             return;
         }
     }

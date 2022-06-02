@@ -1,27 +1,28 @@
-using Terraria;
+using System;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
+
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Configs;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class WoodenRunicWarhammer : RunicItem
+public class BigBash : RunicItem
 {
-    private int FocusValue = 5;
+    private int FocusValue = 6;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Wooden Warhammer");
+        DisplayName.SetDefault("Big Bash");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -30,16 +31,14 @@ public class WoodenRunicWarhammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.width = 32;
-        Item.height = 32;   
-        Item.useTime = 25;
-        Item.useAnimation = 25;
+        Item.useTime = 24;
+        Item.useAnimation = 24;
         Item.autoReuse = false;
-        Item.damage = 7;
-        Item.crit = 0;
-        Item.knockBack = 4;
-        Item.value = Item.buyPrice(0, 0, 0, 20);
-        Item.rare = ItemRarityID.White;
+        Item.damage = 25;
+        Item.crit = 1;
+        Item.knockBack = 7;
+        Item.value = Item.sellPrice(0, 0, 50);
+        Item.rare = ItemRarityID.Green;
         Item.UseSound = SoundID.Item1;
     }
 
@@ -104,7 +103,7 @@ public class WoodenRunicWarhammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<WoodenBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<BigBashBuff>(), Time);
             Item.scale *= 2f;
 
             return;
@@ -115,19 +114,24 @@ public class WoodenRunicWarhammer : RunicItem
     {
         string tooltip = base.GetTooltip();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 2";
+        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 5, Grants immunity to knockback & Grants 5% damage reduction";
 
         return tooltip;
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 5)
-        .AddIngredient(ItemID.StoneBlock, 5)
-        .AddTile(TileID.WorkBenches)
-        .Register();
-
     protected override void AddEffects()
     {
-        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new AutoReuseEffect(1));
+        AddEffect(new AttackSpeedEffect(1, 0.25f));
+        AddEffect(new FlatRunicDamageEffect(3, 2));
+        AddEffect(new RunicCritChanceEffect(3, 5));
     }
+
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<OccultShard>(10)
+        .AddIngredient(ItemID.Bone, 20)
+        .AddTile<DvergrForgeTile>()
+        .Register();
+
 }

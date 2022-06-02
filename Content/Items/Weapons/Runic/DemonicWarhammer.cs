@@ -1,9 +1,10 @@
-using Terraria;
+using System;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
+
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Content.Players;
@@ -11,17 +12,19 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class WoodenRunicWarhammer : RunicItem
+public class DemonicWarhammer : RunicItem
 {
     private int FocusValue = 5;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Wooden Warhammer");
+        DisplayName.SetDefault("Demonic Warhammer");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -30,16 +33,14 @@ public class WoodenRunicWarhammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.width = 32;
-        Item.height = 32;   
-        Item.useTime = 25;
-        Item.useAnimation = 25;
+        Item.useTime = 24;
+        Item.useAnimation = 24;
         Item.autoReuse = false;
-        Item.damage = 7;
-        Item.crit = 0;
-        Item.knockBack = 4;
-        Item.value = Item.buyPrice(0, 0, 0, 20);
-        Item.rare = ItemRarityID.White;
+        Item.damage = 20;
+        Item.crit = 1;
+        Item.knockBack = 6;
+        Item.value = Item.buyPrice(0, 0, 27, 0);
+        Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
 
@@ -104,7 +105,7 @@ public class WoodenRunicWarhammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<WoodenBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<DemonicBuff>(), Time);
             Item.scale *= 2f;
 
             return;
@@ -115,19 +116,66 @@ public class WoodenRunicWarhammer : RunicItem
     {
         string tooltip = base.GetTooltip();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 2";
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 1);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+
+        tooltip += $"\n{runePowerColored}: Spawn a hammer head on critical strike \n[c/fc7b03:Focus { FocusValue}]: Increases defense by 4, Grants +10% thorns & Increases {runicText} damage by 3";
 
         return tooltip;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddRecipeGroup(RecipeGroupID.Wood, 5)
-        .AddIngredient(ItemID.StoneBlock, 5)
-        .AddTile(TileID.WorkBenches)
+        .AddIngredient(ItemID.DemoniteBar, 12)
+        .AddTile<DvergrForgeTile>()
         .Register();
 
     protected override void AddEffects()
     {
-        AddEffect(new FlatRunicDamageEffect(1, 1));
+        AddEffect(new RunicCritChanceEffect(2, 5));
+    }
+
+    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+    {
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 4)
+        {
+            if (crit)
+            {
+                // @todo clean up in the future
+                var radius = 200f;
+                var theta = Main.rand.NextFloat(0, MathF.PI * 2f);
+                var x = target.Center.X + MathF.Cos(theta) * radius;
+                var y = target.Center.Y + MathF.Sin(theta) * radius;
+
+                var direction = target.Center - new Vector2(x, y);
+                direction.Normalize();
+
+                var speed = 6f;
+                float speedX = direction.X * speed;
+                float speedY = direction.Y * speed;
+                int projectileType = ModContent.ProjectileType<DemoniteRunicAxeProjectile>();
+                int projectileDamage = Item.damage;
+
+                Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, projectileDamage, 0,
+                    player.whoAmI);
+            }
+        }
+
+        var healing = 1;
+
+        runePlayer.HitCount++; // Needed this because we're overiding OnHitNPC here too
+
+        if (runePlayer.RunePower >= 4)
+        {
+            if (player.statLife < player.statLifeMax2)
+            {
+                if (Main.rand.NextFloat() < .25f)
+                {
+                    player.statLife += healing;
+                    player.HealEffect(healing);
+                }
+            }
+        }
     }
 }

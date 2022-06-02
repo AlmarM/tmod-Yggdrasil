@@ -39,13 +39,12 @@ public class FrostCoreRunicHammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 26;
-        Item.useAnimation = 26;
+        Item.useTime = 24;
+        Item.useAnimation = 24;
         Item.autoReuse = false;
         Item.damage = 18;
         Item.crit = 0;
-        Item.knockBack = 10;
-        //Item.hammer = 65;
+        Item.knockBack = 5;
         Item.value = Item.buyPrice(0, 0, 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
