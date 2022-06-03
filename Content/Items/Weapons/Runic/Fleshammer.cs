@@ -7,25 +7,22 @@ using Terraria.ModLoader;
 
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
-using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
 
-
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class ObsidianRunicHammer : RunicItem
+public class Fleshammer : RunicItem
 {
     private int FocusValue = 5;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Obsidian Warhammer");
+        DisplayName.SetDefault("Fleshammer");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -37,13 +34,12 @@ public class ObsidianRunicHammer : RunicItem
         Item.useTime = 23;
         Item.useAnimation = 23;
         Item.autoReuse = false;
-        Item.damage = 30;
-        Item.crit = 1;
+        Item.damage = 36;
+        Item.crit = 2;
         Item.knockBack = 7;
-        Item.value = Item.buyPrice(0, 0, 55);
-        Item.rare = ItemRarityID.Orange;
+        Item.value = Item.buyPrice(0, 1, 25);
+        Item.rare = ItemRarityID.LightRed;
         Item.UseSound = SoundID.Item1;
-        Item.scale = 1.5f;
     }
 
     public override void HoldItem(Player player)
@@ -54,9 +50,8 @@ public class ObsidianRunicHammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
+            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);  [HELP!] Plays indefinitely, I've no idea how to have it play only once
 
-            // Just the never ending sparkle of dusts
             if (Main.rand.NextBool(5))
             {
                 var position = new Vector2(player.position.X, player.position.Y + 5f);
@@ -74,7 +69,6 @@ public class ObsidianRunicHammer : RunicItem
             }
         }
     }
-
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -89,6 +83,7 @@ public class ObsidianRunicHammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
+
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -104,67 +99,37 @@ public class ObsidianRunicHammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int time = runePlayer.FocusPowerTime;
+        int Time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<ObsidianBuff>(), time);
+            player.AddBuff(ModContent.BuffType<FleshBuff>(), Time);
             Item.scale *= 2f;
 
             return;
         }
     }
 
-    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {
-        base.OnHitNPC(player, target, damage, knockback, crit);
-
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 4)
-        {
-            const float projectileSpeed = 6f;
-            const float radius = 25f;
-
-            int projectileCount = (int)MathF.Min(runePlayer.RunePower, 6);
-            int projectileType = ModContent.ProjectileType<FireProjectile>();
-            float delta = MathF.PI * 2 / projectileCount;
-
-            for (var i = 0; i < projectileCount; i++)
-            {
-                float theta = delta * i;
-                var position = target.Center + Vector2.One.RotatedBy(theta) * radius;
-
-                Vector2 direction = position - target.Center;
-                direction = Vector2.Normalize(direction);
-                direction = Vector2.Multiply(direction, projectileSpeed);
-
-                Projectile.NewProjectile(null, position, direction, projectileType, 20, 2, player.whoAmI);
-            }
-        }
-
-    }
-
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
-        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n{runePowerColored}: Spawn fireballs on hit \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 7, 5% increased {runicText} critical strike chance & Grants immunity to fire blocks and lava";
+        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 8, Grants +20 max life & Regenerates life";
 
         return tooltip;
     }
 
     protected override void AddEffects()
     {
-        AddEffect(new BiggerSizeEffect(2, 0.5f));
-        AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true));
+        AddEffect(new AutoReuseEffect(2));
+        AddEffect(new FlatRunicDamageEffect(3, 2));
+        AddEffect(new BiggerSizeEffect(7, 0.25f));
+        AddEffect(new InflictBuffEffect(5, ModContent.BuffType<SlowDebuff>(), .5f, "Slow", 1f, true));
     }
-
     public override void MeleeEffects(Player player, Rectangle hitbox)
     {
-        var dustType = 127;
+        var dustType = 5; //Blood
         int dustIndex = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType);
 
         Dust dust = Main.dust[dustIndex];
@@ -173,9 +138,5 @@ public class ObsidianRunicHammer : RunicItem
         dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.HellstoneBar, 20)
-        .AddIngredient(ItemID.Obsidian, 20)
-        .AddTile<DvergrForgeTile>()
-        .Register();
+    // Dropped by Wall of Flesh
 }

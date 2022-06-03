@@ -19,12 +19,14 @@ public class OccultHelmet : YggdrasilItem
     private string _runicText;
     private string _runicPowerText;
     private string _runicPowerOneText;
+    private string _runicPower;
 
     public override void SetStaticDefaults()
     {
         _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         _runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
         _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        _runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Occult Helmet");
         Tooltip.SetDefault($"5% increased {_runicText} damage" +
@@ -49,10 +51,15 @@ public class OccultHelmet : YggdrasilItem
     public override void UpdateArmorSet(Player player)
     {
         player.setBonus = $"{_runicPowerOneText}: Critical hit caused by {_runicText} weapons will confuse target" +
+            $"\nGrants +1 {_runicPower}" +
+            "\n[c/fc7b03:Focus] buffs last 1 more sec" +
             $"\n{_runicPowerText}: Apply Occult Buff ";
 
         var runePlayer = player.GetModPlayer<RunePlayer>();
         
+        player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
+
         if (runePlayer.RunePower >= 1)
         {
             player.SetEffect<OccultHelmet>();

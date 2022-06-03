@@ -15,7 +15,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
         switch (npc.type)
         {
             case NPCID.QueenBee:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BeeRunicAxe>(), 3));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BeeSmash>(), 3));
                 break;
 
             case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
@@ -23,7 +23,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 break;
             case NPCID.WallofFlesh:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RunemasterEmblem>(), 4));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FleshRunicAxe>(), 4));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fleshammer>(), 4));
                 break;
         }
     }

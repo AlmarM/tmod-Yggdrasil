@@ -14,12 +14,13 @@ public class BerserkerHelmet : YggdrasilItem
 {
     private string _runicText;
     private string _runicPowerText;
-    //private string _runicPowerThreeText;
+    private string _runicPower;
 
     public override void SetStaticDefaults()
     {
         _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        _runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Berserker Wolf Skin");
         Tooltip.SetDefault($"5% increased {_runicText} damage" +
@@ -44,7 +45,12 @@ public class BerserkerHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = $"While below 25% health, 20% increase {_runicText} damage and critical strike chance";
+        player.setBonus = $"While below 25% health, 20% increase {_runicText} damage and critical strike chance +" +
+            $"\nGrants + 1 {_runicPower}" +
+            "\n[c/fc7b03:Focus] buffs last 1 more sec";
+
+        player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
 
         float HealthThreshold = .25f;
         

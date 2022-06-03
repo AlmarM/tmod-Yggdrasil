@@ -1,6 +1,5 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
+using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,18 +11,17 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
 using Yggdrasil.Utils;
-using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class CrimsonWarhammer : RunicItem
+public class BeeSmash : RunicItem
 {
-    private int FocusValue = 5;
+    private int FocusValue = 6;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Crimson Warhammer");
+        DisplayName.SetDefault("Bee Smash");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -32,14 +30,14 @@ public class CrimsonWarhammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 24;
-        Item.useAnimation = 24;
+        Item.useTime = 23;
+        Item.useAnimation = 23;
         Item.autoReuse = false;
-        Item.damage = 20;
+        Item.damage = 27;
         Item.crit = 1;
         Item.knockBack = 6;
-        Item.value = Item.buyPrice(0, 0, 27, 0);
-        Item.rare = ItemRarityID.Blue;
+        Item.value = Item.buyPrice(0, 1);
+        Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
     }
 
@@ -51,8 +49,9 @@ public class CrimsonWarhammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);  [HELP!] Plays indefinitely, I've no idea how to have it play only once
+            //SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
 
+            // Just the never ending sparkle of dusts
             if (Main.rand.NextBool(5))
             {
                 var position = new Vector2(player.position.X, player.position.Y + 5f);
@@ -70,6 +69,7 @@ public class CrimsonWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -84,7 +84,6 @@ public class CrimsonWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -100,54 +99,43 @@ public class CrimsonWarhammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int Time = runePlayer.FocusPowerTime;
+        int time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<CrimsonBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<BeeSmashBuff>(), time);
             Item.scale *= 2f;
 
             return;
         }
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.CrimtaneBar, 12)
-        .AddTile<DvergrForgeTile>()
-        .Register();
-
-    protected override string GetTooltip()
-    {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
-        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
-
-        tooltip += $"\n{runePowerColored}: Heal for half {runicPowerText} on critical strike to a maximum of 5 \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Grants +10 max life & Increases {runicText} damage by 3";
-
-        return tooltip;
-    }
-
     protected override void AddEffects()
     {
-        AddEffect(new RunicCritChanceEffect(2, 5));
+        AddEffect(new FlatRunicDamageEffect(2, 3));
+    }
+    protected override string GetTooltip() //Temporary
+    {
+        string tooltip = base.GetTooltip();
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 2);
+        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic");
+
+        tooltip += $"\n{runePowerColored}: Apply Honey on hit for RunicPower sec \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 7, Grants 5% damage reduction & {runicText} hit heals 2";
+
+        return tooltip;
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        var healingRunePower = (int)MathF.Min(runePlayer.RunePower / 2f, 5);
-
-        runePlayer.HitCount++; // Needed this because we're overiding OnHitNPC here too
-
-        if (runePlayer.RunePower >= 4)
+        if (runePlayer.RunePower >= 2)
         {
-            if (crit)
-            {
-                player.statLife += healingRunePower;
-                player.HealEffect(healingRunePower);
-            }
+            int duration = TimeUtils.SecondsToTicks(runePlayer.RunePower);
+            player.AddBuff(BuffID.Honey, duration);
         }
+
+        runePlayer.HitCount++;
     }
+
 }

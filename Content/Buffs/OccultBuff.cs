@@ -15,7 +15,7 @@ public class OccultBuff : YggdrasilBuff
             "Increases defense by 2"+
             "\nGrants immunity to Poison and Fire"+
             "\nProvide life regeneration near water candles"+
-            "\nIncrease enemy spawn rate");
+            "\nIncreases enemy spawn rate");
     }
 
     public override void Update(Player player, ref int buffIndex)

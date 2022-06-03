@@ -153,6 +153,15 @@ public class RunePlayer : ModPlayer
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }
         }
+
+        if (item.ModItem is RunicItem && Player.HasEffect<BeeSmashBuff>())
+        {
+            if (Player.statLife != Player.statLifeMax2)
+            {
+                Player.statLife += 2;
+                Player.HealEffect(2);
+            }
+        }
     }
 
     public override float UseSpeedMultiplier(Item item)
@@ -174,6 +183,11 @@ public class RunePlayer : ModPlayer
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<CotinBuff>())
+        {
+            speed += 0.1f;
+        }
+
+        if (item.ModItem is RunicItem && Player.HasEffect<MeadowBuff>())
         {
             speed += 0.1f;
         }

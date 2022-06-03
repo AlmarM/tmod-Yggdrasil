@@ -10,20 +10,20 @@ using Yggdrasil.Runic;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Configs;
-using Yggdrasil.Utils;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Utils;
+using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class CrimsonWarhammer : RunicItem
+public class SpikySpikeSpike : RunicItem
 {
-    private int FocusValue = 5;
+    private int FocusValue = 8;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Crimson Warhammer");
+        DisplayName.SetDefault("Spiky Spike Spike");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -32,17 +32,16 @@ public class CrimsonWarhammer : RunicItem
     {
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 24;
-        Item.useAnimation = 24;
-        Item.autoReuse = false;
-        Item.damage = 20;
-        Item.crit = 1;
+        Item.useTime = 23;
+        Item.useAnimation = 23;
+        Item.autoReuse = true;
+        Item.damage = 25;
+        Item.crit = 2;
         Item.knockBack = 6;
-        Item.value = Item.buyPrice(0, 0, 27, 0);
-        Item.rare = ItemRarityID.Blue;
+        Item.value = Item.buyPrice(0, 0, 50);
+        Item.rare = ItemRarityID.Green;
         Item.UseSound = SoundID.Item1;
     }
-
     public override void HoldItem(Player player)
     {
         base.HoldItem(player);
@@ -104,50 +103,59 @@ public class CrimsonWarhammer : RunicItem
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<CrimsonBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<SpickySpikeBuff>(), Time);
             Item.scale *= 2f;
 
             return;
         }
     }
 
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.CrimtaneBar, 12)
-        .AddTile<DvergrForgeTile>()
-        .Register();
-
     protected override string GetTooltip()
     {
         string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
+        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 3);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
-        tooltip += $"\n{runePowerColored}: Heal for half {runicPowerText} on critical strike to a maximum of 5 \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Grants +10 max life & Increases {runicText} damage by 3";
+        tooltip += $"\n{runePowerColored}: Has 50% on hit to throw a spiky ball \n[c/fc7b03:Focus {FocusValue}]: Grants +100% thorns";
 
         return tooltip;
     }
 
-    protected override void AddEffects()
-    {
-        AddEffect(new RunicCritChanceEffect(2, 5));
-    }
-
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {
+    {        
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        var healingRunePower = (int)MathF.Min(runePlayer.RunePower / 2f, 5);
-
-        runePlayer.HitCount++; // Needed this because we're overiding OnHitNPC here too
-
-        if (runePlayer.RunePower >= 4)
+        if (runePlayer.RunePower >= 3)
         {
-            if (crit)
+            if (Main.rand.NextFloat() < .5f)
             {
-                player.statLife += healingRunePower;
-                player.HealEffect(healingRunePower);
+                // @todo clean up in the future
+                var x = player.Center.X;
+                var y = player.Center.Y;
+
+                var direction = target.Center - player.Center;
+                direction.Normalize();
+
+                var speed = 6f;
+                float speedX = direction.X * speed;
+                float speedY = direction.Y * speed;
+                int projectileType = ProjectileID.SpikyBall;
+                int projectileDamage = (Item.damage / 2);
+
+                Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, projectileDamage, 0,
+                    player.whoAmI);
             }
         }
+
+        runePlayer.HitCount++;
+    }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient(ItemID.SpikyBall, 50)
+        .AddTile<DvergrForgeTile>()
+        .Register();
+
+    protected override void AddEffects()
+    {
+        AddEffect(new AttackSpeedEffect(2, 0.25f));
     }
 }

@@ -5,27 +5,34 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
-using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Runic;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
 using Yggdrasil.Content.Buffs;
-
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Utils;
+using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
-public class ObsidianRunicHammer : RunicItem
+public class Meadow : RunicItem
 {
     private int FocusValue = 5;
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Obsidian Warhammer");
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
+        string runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+
+        DisplayName.SetDefault("Meadow");
+        Tooltip.SetDefault(
+            $"{runicPowerOneText}: Has 50% chance to inflict poison based on {runicPowerText}" +
+            $"\n{runicPowerThreeText} Grants +3 {runicText} damage 2% increased {runicText} critical strike chance" +
+            $"\n[c/fc7b03:Focus { FocusValue}]: Increases defense by 5, Incrases {runicText} damage by 3 & 10% increased {runicText} attack speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -37,13 +44,12 @@ public class ObsidianRunicHammer : RunicItem
         Item.useTime = 23;
         Item.useAnimation = 23;
         Item.autoReuse = false;
-        Item.damage = 30;
+        Item.damage = 23;
         Item.crit = 1;
-        Item.knockBack = 7;
+        Item.knockBack = 6;
         Item.value = Item.buyPrice(0, 0, 55);
         Item.rare = ItemRarityID.Orange;
         Item.UseSound = SoundID.Item1;
-        Item.scale = 1.5f;
     }
 
     public override void HoldItem(Player player)
@@ -89,6 +95,7 @@ public class ObsidianRunicHammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
+
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -104,11 +111,11 @@ public class ObsidianRunicHammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int time = runePlayer.FocusPowerTime;
+        int Time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<ObsidianBuff>(), time);
+            player.AddBuff(ModContent.BuffType<MeadowBuff>(), Time);
             Item.scale *= 2f;
 
             return;
@@ -117,65 +124,52 @@ public class ObsidianRunicHammer : RunicItem
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
     {
-        base.OnHitNPC(player, target, damage, knockback, crit);
-
         var runePlayer = player.GetModPlayer<RunePlayer>();
-        if (runePlayer.RunePower >= 4)
+        int poisonTime = runePlayer.RunePower * 60;
+
+        if (runePlayer.RunePower >= 1)
         {
-            const float projectileSpeed = 6f;
-            const float radius = 25f;
-
-            int projectileCount = (int)MathF.Min(runePlayer.RunePower, 6);
-            int projectileType = ModContent.ProjectileType<FireProjectile>();
-            float delta = MathF.PI * 2 / projectileCount;
-
-            for (var i = 0; i < projectileCount; i++)
+            if (Main.rand.NextFloat() < 0.5f)
             {
-                float theta = delta * i;
-                var position = target.Center + Vector2.One.RotatedBy(theta) * radius;
-
-                Vector2 direction = position - target.Center;
-                direction = Vector2.Normalize(direction);
-                direction = Vector2.Multiply(direction, projectileSpeed);
-
-                Projectile.NewProjectile(null, position, direction, projectileType, 20, 2, player.whoAmI);
+                target.AddBuff(BuffID.Poisoned, poisonTime);
             }
         }
 
+        runePlayer.HitCount++;
     }
 
-    protected override string GetTooltip()
+    public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
     {
-        string tooltip = base.GetTooltip();
-        var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
-        var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
-        tooltip += $"\n{runePowerColored}: Spawn fireballs on hit \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 7, 5% increased {runicText} critical strike chance & Grants immunity to fire blocks and lava";
-
-        return tooltip;
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 3)
+        {
+            damage.Flat += 3;
+        }
     }
 
-    protected override void AddEffects()
+    public override void ModifyWeaponCrit(Player player, ref float crit)
     {
-        AddEffect(new BiggerSizeEffect(2, 0.5f));
-        AddEffect(new InflictBuffEffect(2, BuffID.OnFire, 3, "OnFire", 1f, true));
+        var runePlayer = player.GetModPlayer<RunePlayer>();
+        if (runePlayer.RunePower >= 3)
+        {
+            crit += 2;
+        }
     }
 
-    public override void MeleeEffects(Player player, Rectangle hitbox)
+    public override void AddRecipes()
     {
-        var dustType = 127;
-        int dustIndex = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, dustType);
-
-        Dust dust = Main.dust[dustIndex];
-        dust.velocity.X += Main.rand.Next(-50, 51) * 0.01f;
-        dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
-        dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
-    }
-
-    public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.HellstoneBar, 20)
-        .AddIngredient(ItemID.Obsidian, 20)
+        CreateRecipe()
+        .AddIngredient(ItemID.Stinger, 15)
+        .AddIngredient(ItemID.RichMahogany, 10)
+        .AddIngredient(ItemID.GoldBar, 6)
         .AddTile<DvergrForgeTile>()
         .Register();
+
+        CreateRecipe()
+        .AddIngredient(ItemID.Stinger, 15)
+        .AddIngredient(ItemID.RichMahogany, 10)
+        .AddIngredient(ItemID.PlatinumBar, 6)
+        .AddTile<DvergrForgeTile>()
+        .Register();
+    }
 }

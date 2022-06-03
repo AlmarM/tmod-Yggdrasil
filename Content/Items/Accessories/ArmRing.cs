@@ -21,7 +21,6 @@ public class ArmRing : YggdrasilItem
         Tooltip.SetDefault($"2% increase {runicText} damage" +
                            $"\nGrants +1 {runicPowerText}" +
                            "\nIncreases defense by 1" +
-                           "\n[c/fc7b03:Focus] buffs last 1 more sec" +
                            $"\n{runicPower} 2% increase {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -40,7 +39,6 @@ public class ArmRing : YggdrasilItem
         player.GetModPlayer<RunePlayer>().RunePower += 1;
         player.SetEffect<ArmRing>();
         player.statDefense += 1;
-        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
     }
 
     public override void AddRecipes() => CreateRecipe()
