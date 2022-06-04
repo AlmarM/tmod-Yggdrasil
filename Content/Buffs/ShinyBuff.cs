@@ -1,9 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Yggdrasil.Utils;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Extensions;
-using Yggdrasil.Configs;
 
 namespace Yggdrasil.Content.Buffs;
 
@@ -24,7 +21,6 @@ public class ShinyBuff : YggdrasilBuff
     {
         player.statDefense += 4;
         player.buffImmune[BuffID.OnFire] = true;
-        player.buffImmune[BuffID.Poisoned] = true;     
+        player.buffImmune[BuffID.Poisoned] = true;
     }
-
 }

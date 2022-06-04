@@ -191,6 +191,7 @@ public class RunePlayer : ModPlayer
         {
             speed += 0.1f;
         }
+
         return speed;
     }
 
@@ -257,7 +258,6 @@ public class RunePlayer : ModPlayer
         {
             Player.GetDamage<RunicDamageClass>() += 0.05f;
         }
-
     }
 
     public override void ResetEffects()

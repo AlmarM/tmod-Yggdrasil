@@ -1,18 +1,15 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Utils;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 

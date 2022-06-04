@@ -7,6 +7,7 @@ public static class RuneConfig
 {
     /* Colors */
     public const string RuneTooltipColor = "AE804F";
+    public const string FocusTooltipColor = "FC7B03";
 
     /* Text */
     public const string RunicDamageLabel = "runic";
@@ -14,6 +15,8 @@ public static class RuneConfig
     public const string RunePowerRequiredLabel = $"{RunePowerLabel} {{0}}+";
     public const string RunemasterLabel = "Runemaster";
     public const string RunemasterTitleLabel = $"- {RunemasterLabel} Class -";
+    public const string FocusLabel = "Focus";
+    public const string FocusRequiredLabel = $"{FocusLabel} {{0}}+";
 
     public static readonly string ColoredRunicDamageLabel =
         TextUtils.GetColoredText(RuneTooltipColor, RunicDamageLabel);
@@ -24,6 +27,8 @@ public static class RuneConfig
 
     public static readonly string ColoredRunemasterTitleLabel =
         TextUtils.GetColoredText(RuneTooltipColor, RunemasterTitleLabel);
+
+    public static readonly string ColoredFocusLabel = TextUtils.GetColoredText(FocusTooltipColor, FocusLabel);
 
 
     /* Items Stats */

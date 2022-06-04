@@ -1,15 +1,15 @@
-using Terraria;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
@@ -17,6 +17,7 @@ namespace Yggdrasil.Content.Items.Weapons.Runic;
 public class CotinWarhammer : RunicItem
 {
     private int FocusValue = 7;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -31,7 +32,7 @@ public class CotinWarhammer : RunicItem
         Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Item.useStyle = ItemUseStyleID.Swing;
         Item.width = 32;
-        Item.height = 32;   
+        Item.height = 32;
         Item.useTime = 25;
         Item.useAnimation = 25;
         Item.autoReuse = false;
@@ -70,6 +71,7 @@ public class CotinWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -84,7 +86,6 @@ public class CotinWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -111,27 +112,34 @@ public class CotinWarhammer : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 1, Grants +2 {runicText} damage & 10% increased {runicText} attack speed";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 1, ";
+        focusLine += $"grants +2 {RuneConfig.ColoredRunicDamageLabel} damage ";
+        focusLine += $"and 10% increased {RuneConfig.ColoredRunicDamageLabel} attack speed";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void AddRecipes()
     {
         CreateRecipe()
-        .AddIngredient(ItemID.CopperBar, 5)
-        .AddTile(TileID.Anvils)
-        .Register();
+            .AddIngredient(ItemID.CopperBar, 5)
+            .AddTile(TileID.Anvils)
+            .Register();
 
         CreateRecipe()
-        .AddIngredient(ItemID.TinBar, 5)
-        .AddTile(TileID.Anvils)
-        .Register();
+            .AddIngredient(ItemID.TinBar, 5)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 
     protected override void AddEffects()

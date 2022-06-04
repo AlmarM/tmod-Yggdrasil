@@ -1,23 +1,24 @@
-using Terraria;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class BloodyWarhammer : RunicItem
 {
     private int FocusValue = 9;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -69,6 +70,7 @@ public class BloodyWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -83,7 +85,6 @@ public class BloodyWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -110,17 +111,27 @@ public class BloodyWarhammer : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 1);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
-        tooltip += $"\n{runePowerColored}: Has 25% chance to heal for 1 on hit \n[c/fc7b03:Focus { FocusValue}]: Increases defense by 4, Grants 3% damage reduction & Hitting an enemy with a {runicText} weapon has a chance to generate a heart";
+        descriptions.Add($"{runePowerColored}: Has 25% chance to heal for 1 on hit");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 4, ";
+        focusLine += "grants 3% damage reduction ";
+        focusLine +=
+            $"and hitting an enemy with a {RuneConfig.ColoredRunicDamageLabel} weapon has a chance to generate a heart";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     protected override void AddEffects()
@@ -137,7 +148,7 @@ public class BloodyWarhammer : RunicItem
 
         if (runePlayer.RunePower >= 4)
         {
-            if (player.statLife < player.statLifeMax2)   
+            if (player.statLife < player.statLifeMax2)
             {
                 if (Main.rand.NextFloat() < .25f)
                 {
@@ -149,10 +160,8 @@ public class BloodyWarhammer : RunicItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-     .AddIngredient(ItemID.BloodMoonStarter)
-     .AddRecipeGroup(RecipeGroupID.Wood, 10)
-     .AddTile<DvergrForgeTile>()
-     .Register();
-
-
+        .AddIngredient(ItemID.BloodMoonStarter)
+        .AddRecipeGroup(RecipeGroupID.Wood, 10)
+        .AddTile<DvergrForgeTile>()
+        .Register();
 }

@@ -1,22 +1,23 @@
-using Terraria;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
-
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class ShinyWarhammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -38,7 +39,7 @@ public class ShinyWarhammer : RunicItem
         Item.knockBack = 5;
         Item.value = Item.buyPrice(0, 0, 18);
         Item.rare = ItemRarityID.White;
-        Item.UseSound = SoundID.Item1;      
+        Item.UseSound = SoundID.Item1;
     }
 
     public override void HoldItem(Player player)
@@ -68,6 +69,7 @@ public class ShinyWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -82,7 +84,6 @@ public class ShinyWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -98,26 +99,33 @@ public class ShinyWarhammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int Time = runePlayer.FocusPowerTime;
+        int time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<ShinyBuff>(), Time);
-            player.AddBuff(BuffID.Spelunker, Time);
+            player.AddBuff(ModContent.BuffType<ShinyBuff>(), time);
+            player.AddBuff(BuffID.Spelunker, time);
             Item.scale *= 2f;
 
             return;
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Shows ore around you & Grants immunity to certain debuffs";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 4, ";
+        focusLine += "shows ore around you ";
+        focusLine += "and grants immunity to certain debuffs";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void AddRecipes()

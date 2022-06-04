@@ -1,24 +1,25 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class CrimsonWarhammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -70,6 +71,7 @@ public class CrimsonWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -84,7 +86,6 @@ public class CrimsonWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -116,17 +117,27 @@ public class CrimsonWarhammer : RunicItem
         .AddTile<DvergrForgeTile>()
         .Register();
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        var runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        List<string> descriptions = base.GetRunicEffectDescriptions();
+
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
-        tooltip += $"\n{runePowerColored}: Heal for half {runicPowerText} on critical strike to a maximum of 5 \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Grants +10 max life & Increases {runicText} damage by 3";
+        descriptions.Add(
+            $"{runePowerColored}: Heal for half {RuneConfig.ColoredRunePowerLabel} on critical strike to a maximum of 5");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 4, ";
+        focusLine += "grants +10 max life ";
+        focusLine += $"and increases {RuneConfig.ColoredRunicDamageLabel} damage by 3";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     protected override void AddEffects()

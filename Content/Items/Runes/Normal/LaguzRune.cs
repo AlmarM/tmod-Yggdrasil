@@ -1,9 +1,9 @@
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Minor;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
-using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 

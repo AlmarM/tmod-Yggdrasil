@@ -1,25 +1,26 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class DemonicWarhammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -71,6 +72,7 @@ public class DemonicWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -85,7 +87,6 @@ public class DemonicWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -112,17 +113,26 @@ public class DemonicWarhammer : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 1);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
-        tooltip += $"\n{runePowerColored}: Spawn a hammer head on critical strike \n[c/fc7b03:Focus { FocusValue}]: Increases defense by 4, Grants +10% thorns & Increases {runicText} damage by 3";
+        descriptions.Add($"{runePowerColored}: Spawn a hammer head on critical strike");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 4, ";
+        focusLine += "grants +10% thorns ";
+        focusLine += $"and increases {RuneConfig.ColoredRunicDamageLabel} damage by 3";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void AddRecipes() => CreateRecipe()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -16,10 +17,11 @@ namespace Yggdrasil.Content.Items.Weapons.Runic;
 public class RunesmithHammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
-        
+
         DisplayName.SetDefault("Runesmith Warhammer");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -68,6 +70,7 @@ public class RunesmithHammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -82,7 +85,6 @@ public class RunesmithHammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -109,14 +111,20 @@ public class RunesmithHammer : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 3 & Slowly regenerates life";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 3, ";
+        focusLine += "and slowly regenerates life";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void AddRecipes() => CreateRecipe()

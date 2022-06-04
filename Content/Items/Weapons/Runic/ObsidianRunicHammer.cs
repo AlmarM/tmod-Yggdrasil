@@ -1,26 +1,26 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
 using Yggdrasil.Runic;
 using Yggdrasil.Utils;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
-
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class ObsidianRunicHammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -141,19 +141,28 @@ public class ObsidianRunicHammer : RunicItem
                 Projectile.NewProjectile(null, position, direction, projectileType, 20, 2, player.whoAmI);
             }
         }
-
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
+
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 4);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        tooltip += $"\n{runePowerColored}: Spawn fireballs on hit \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 7, 5% increased {runicText} critical strike chance & Grants immunity to fire blocks and lava";
+        descriptions.Add($"{runePowerColored}: Spawn fireballs on hit");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 7, ";
+        focusLine += $"5% increased {RuneConfig.ColoredRunicDamageLabel} critical strike chance ";
+        focusLine += $"and grants immunity to fire blocks and lava";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     protected override void AddEffects()

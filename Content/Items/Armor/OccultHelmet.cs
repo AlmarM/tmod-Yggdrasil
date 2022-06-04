@@ -8,8 +8,8 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
-using Yggdrasil.Utils;
 using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Armor;
 

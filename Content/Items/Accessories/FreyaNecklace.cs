@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
