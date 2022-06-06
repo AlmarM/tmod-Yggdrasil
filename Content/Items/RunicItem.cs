@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -13,18 +14,9 @@ public abstract class RunicItem : YggdrasilItem
 {
     private IList<IRunicEffect> _runicEffects;
 
-    // public override void SetStaticDefaults()
-    // {
-    //     Tooltip.SetDefault(GetTooltip());
-    // }
-
     public override void OnCreate(ItemCreationContext context)
     {
-        _runicEffects = new List<IRunicEffect>();
-
-        AddEffects();
-
-        _runicEffects = _runicEffects.OrderBy(re => re.RunePowerRequired).ToList();
+        InitializeEffects();
     }
 
     public override ModItem Clone(Item newEntity)
@@ -161,6 +153,20 @@ public abstract class RunicItem : YggdrasilItem
 
     protected T[] GetEffects<T>() where T : IRunicEffect
     {
+        if (_runicEffects == null)
+        {
+            InitializeEffects();
+        }
+
         return _runicEffects.OfType<T>().ToArray();
+    }
+
+    private void InitializeEffects()
+    {
+        _runicEffects = new List<IRunicEffect>();
+
+        AddEffects();
+
+        _runicEffects = _runicEffects.OrderBy(re => re.RunePowerRequired).ToList();
     }
 }
