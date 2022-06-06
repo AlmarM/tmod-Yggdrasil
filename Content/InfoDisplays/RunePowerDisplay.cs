@@ -20,10 +20,16 @@ public class RunePowerDisplay : YggdrasilInfoDisplay
     public override string DisplayValue()
     {
         int runePower = Main.LocalPlayer.GetModPlayer<RunePlayer>().RunePower;
-        int hitCount = Main.LocalPlayer.GetModPlayer<RunePlayer>().HitCount;
+
+        int FartThreshold = Main.LocalPlayer.GetModPlayer<RunePlayer>().FartThreshold;
+        int FartValue = Main.LocalPlayer.GetModPlayer<RunePlayer>().FartValue;
+        int PukeThreshold = Main.LocalPlayer.GetModPlayer<RunePlayer>().PukeThreshold;
+        int PukeValue = Main.LocalPlayer.GetModPlayer<RunePlayer>().PukeValue;
 
         string display = runePower > 0 ? $"{runePower} Runic Power." : "No Runic Power";
-        display += $"\n{hitCount} focus";
+        display += $"\n{FartValue} / {FartThreshold} farts";
+        display += $"\n{PukeValue} / {PukeThreshold} biles ";
+
 
         return display;
     }

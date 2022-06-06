@@ -23,7 +23,6 @@ public class RunicNecklace : YggdrasilItem
                            $"\n5% increased {runicText} critical strike chance" +
                            $"\nGrants +2 {runicPowerText}" +
                            "\nIncreases defense by 2" +
-                           "\n[c/fc7b03:Focus] buffs last 1 more sec" +
                            $"\n{runicPower} Generates Light");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -43,7 +42,6 @@ public class RunicNecklace : YggdrasilItem
         player.GetModPlayer<RunePlayer>().RunePower += 2;
         player.SetEffect<RunicNecklace>();
         player.statDefense += 2;
-        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
 
         /*var modPlayer = player.GetModPlayer<RunePlayer>();
         if (modPlayer.RunePower >= 5)

@@ -23,6 +23,12 @@ public class RunePlayer : ModPlayer
     public int RunePower { get; set; }
     public int HitCount { get; set; }
     public int FocusPowerTime { get; set; }
+    public int FartThreshold { get; set; }
+    public int FartValue { get; set; }
+    public int FartTimer { get; set; }
+    public int PukeThreshold { get; set; }
+    public int PukeValue { get; set; }
+    public int PukeTimer { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -260,6 +266,43 @@ public class RunePlayer : ModPlayer
 
     }
 
+    public override void PreUpdate()
+    {
+        
+
+        if (FartValue > FartThreshold)
+        {
+            FartValue = FartThreshold;
+        }
+
+        if (PukeValue >= PukeThreshold)
+        {
+            Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"), (int)(Player.statLifeMax * .25f), 0);
+            PukeValue = 0;
+        }
+
+        if (PukeValue > 0)
+        {
+            PukeTimer++;
+            if (PukeTimer > 60)
+            {
+                PukeValue--;
+                PukeTimer = 0;
+            }
+        }
+
+        if (FartValue < FartThreshold)
+        {
+            FartTimer++;
+            if (FartTimer > 60)
+            {
+                FartValue++;
+                FartTimer = 0;
+            }
+        }
+
+    }
+
     public override void ResetEffects()
     {
         RunePower = 0;
@@ -270,5 +313,9 @@ public class RunePlayer : ModPlayer
         RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
         FocusPowerTime = 300; //60 = 1sec
+        FartThreshold = 10;
+        PukeThreshold = 25;
+        //FartValue = 0;
+        //PukeValue = 0;
     }
 }

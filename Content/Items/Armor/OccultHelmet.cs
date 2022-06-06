@@ -52,13 +52,11 @@ public class OccultHelmet : YggdrasilItem
     {
         player.setBonus = $"{_runicPowerOneText}: Critical hit caused by {_runicText} weapons will confuse target" +
             $"\nGrants +1 {_runicPower}" +
-            "\n[c/fc7b03:Focus] buffs last 1 more sec" +
             $"\n{_runicPowerText}: Apply Occult Buff ";
 
         var runePlayer = player.GetModPlayer<RunePlayer>();
         
         player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
 
         if (runePlayer.RunePower >= 1)
         {

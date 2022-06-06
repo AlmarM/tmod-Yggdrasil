@@ -46,11 +46,9 @@ public class BerserkerHelmet : YggdrasilItem
     public override void UpdateArmorSet(Player player)
     {
         player.setBonus = $"While below 25% health, 20% increase {_runicText} damage and critical strike chance +" +
-            $"\nGrants + 1 {_runicPower}" +
-            "\n[c/fc7b03:Focus] buffs last 1 more sec";
+            $"\nGrants + 1 {_runicPower}";
 
         player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
 
         float HealthThreshold = .25f;
         
