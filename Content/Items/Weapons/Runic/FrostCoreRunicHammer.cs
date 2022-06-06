@@ -1,17 +1,18 @@
-using Terraria;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
-using Yggdrasil.Utils;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
@@ -23,14 +24,7 @@ public class FrostCoreRunicHammer : RunicItem
     {
         base.SetStaticDefaults();
 
-        // string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        // string runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        // string runicPowerTwoText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-
         DisplayName.SetDefault("Frostcore Warhammer");
-        // Tooltip.SetDefault(
-        //     $"{runicPowerOneText}: Grants +3 {runicText} damage & has 50% chance to inflict frostburn for 1 sec" +
-        //     $"\n{runicPowerTwoText}: Increase Size by 50% & adds 25% chance to inflict frostburn for 2 more sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -119,15 +113,21 @@ public class FrostCoreRunicHammer : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip +=
-            $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 4, Slowly regenerates life & Grants immunity to certain debuffs";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 4, ";
+        focusLine += "slowly regenerates life ";
+        focusLine += "and Grants immunity to certain debuffs";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void AddRecipes() => CreateRecipe()

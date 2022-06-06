@@ -1,22 +1,24 @@
-using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
+using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class FallenstarWarhammer : RunicItem
 {
     private int FocusValue = 5;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -68,6 +70,7 @@ public class FallenstarWarhammer : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -82,7 +85,6 @@ public class FallenstarWarhammer : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -98,24 +100,31 @@ public class FallenstarWarhammer : RunicItem
     protected virtual void OnRightClick(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
-        int Time = runePlayer.FocusPowerTime;
+        int time = runePlayer.FocusPowerTime;
 
         if (runePlayer.HitCount >= FocusValue)
         {
-            player.AddBuff(ModContent.BuffType<FallenBuff>(), Time);
+            player.AddBuff(ModContent.BuffType<FallenBuff>(), time);
             Item.scale *= 2f;
 
             return;
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 5, Grants immunity to knockback";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 5, ";
+        focusLine += "and grants immunity to knockback";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     protected override void AddEffects()

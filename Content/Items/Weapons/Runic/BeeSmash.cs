@@ -1,15 +1,15 @@
-using Terraria;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
@@ -17,6 +17,7 @@ namespace Yggdrasil.Content.Items.Weapons.Runic;
 public class BeeSmash : RunicItem
 {
     private int FocusValue = 6;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -114,16 +115,27 @@ public class BeeSmash : RunicItem
     {
         AddEffect(new FlatRunicDamageEffect(2, 3));
     }
-    protected override string GetTooltip() //Temporary
+
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
+
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 2);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic");
 
-        tooltip += $"\n{runePowerColored}: Apply Honey on hit for RunicPower sec \n[c/fc7b03:Focus {FocusValue}]: Increases defense by 7, Grants 5% damage reduction & {runicText} hit heals 2";
+        descriptions.Add($"{runePowerColored}: Apply Honey on hit for {RuneConfig.ColoredRunePowerLabel} seconds");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 7, ";
+        focusLine += "grants 5% damage reduction ";
+        focusLine += $"and {RuneConfig.ColoredRunicDamageLabel} hits heal 2 health";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
@@ -137,5 +149,4 @@ public class BeeSmash : RunicItem
 
         runePlayer.HitCount++;
     }
-
 }

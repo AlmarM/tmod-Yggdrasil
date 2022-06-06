@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.ID;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Buffs;

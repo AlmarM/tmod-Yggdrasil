@@ -1,24 +1,24 @@
-using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Utils;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class SpikySpikeSpike : RunicItem
 {
     private int FocusValue = 8;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -42,6 +42,7 @@ public class SpikySpikeSpike : RunicItem
         Item.rare = ItemRarityID.Green;
         Item.UseSound = SoundID.Item1;
     }
+
     public override void HoldItem(Player player)
     {
         base.HoldItem(player);
@@ -69,6 +70,7 @@ public class SpikySpikeSpike : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -83,7 +85,6 @@ public class SpikySpikeSpike : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -110,19 +111,31 @@ public class SpikySpikeSpike : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
+
         var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 3);
         var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
 
-        tooltip += $"\n{runePowerColored}: Has 50% on hit to throw a spiky ball \n[c/fc7b03:Focus {FocusValue}]: Grants +100% thorns";
+        descriptions.Add($"{runePowerColored}: Has 50% on hit to throw a spiky ball");
 
-        return tooltip;
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
+
+        descriptions.Add($"{focusColored}: Grants +100% thorns");
+
+        // var runePower = string.Format(RuneConfig.RunePowerRequiredLabel, 3);
+        // var runePowerColored = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, runePower);
+        //
+        // tooltip +=
+        //     $"\n{runePowerColored}:  \n[c/fc7b03:Focus {FocusValue}]: ";
+
+        return descriptions;
     }
 
     public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-    {        
+    {
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (runePlayer.RunePower >= 3)
         {

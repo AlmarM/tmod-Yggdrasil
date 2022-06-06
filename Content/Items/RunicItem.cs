@@ -1,27 +1,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runic;
 
 namespace Yggdrasil.Content.Items;
 
 public abstract class RunicItem : YggdrasilItem
 {
-    private IList<IRunicEffect> _runicEffects = new List<IRunicEffect>();
+    private IList<IRunicEffect> _runicEffects;
 
-    public override void SetStaticDefaults()
-    {      
+    // public override void SetStaticDefaults()
+    // {
+    //     Tooltip.SetDefault(GetTooltip());
+    // }
+
+    public override void OnCreate(ItemCreationContext context)
+    {
+        _runicEffects = new List<IRunicEffect>();
+
         AddEffects();
 
         _runicEffects = _runicEffects.OrderBy(re => re.RunePowerRequired).ToList();
+    }
 
-        Tooltip.SetDefault(GetTooltip());
+    public override ModItem Clone(Item newEntity)
+    {
+        var clone = (RunicItem)base.Clone(newEntity);
+
+        if (_runicEffects == null)
+        {
+            clone.OnCreate(new InitializationContext());
+        }
+        else
+        {
+            clone._runicEffects = new List<IRunicEffect>(_runicEffects);
+        }
+
+        return clone;
     }
 
     public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
@@ -95,33 +114,35 @@ public abstract class RunicItem : YggdrasilItem
 
         return allowedPrefixes[prefixIndex];
     }
+
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
+        // Class title additions
         int lineIndex = tooltips.FindIndex(x => x.Name == "ItemName" && x.Mod == "Terraria");
-        if (lineIndex < 0)
+        if (lineIndex >= 0)
         {
-            return;
+            string title = RuneConfig.ColoredRunemasterTitleLabel;
+            tooltips.Insert(lineIndex + 1, new TooltipLine(Mod, "ClassTitle", title));
         }
 
-        string title = RuneConfig.ColoredRunemasterTitleLabel;
-        tooltips.Insert(lineIndex + 1, new TooltipLine(Mod, "ClassTitle", title));
+        List<string> runicDescriptions = GetRunicEffectDescriptions();
+        for (var i = 0; i < runicDescriptions.Count; i++)
+        {
+            string description = runicDescriptions[i];
+            tooltips.Add(new TooltipLine(Mod, $"RunicEffectDescription_{i}", description));
+        }
     }
 
-    protected virtual string GetTooltip()
+    protected virtual List<string> GetRunicEffectDescriptions()
     {
-        var tooltip = string.Empty;
-        for (var i = 0; i < _runicEffects.Count; i++)
-        {
-            IRunicEffect effect = _runicEffects[i];
-            tooltip += effect.Description;
+        var lines = new List<string>();
 
-            if (i < _runicEffects.Count - 1)
-            {
-                tooltip += "\n";
-            }
+        foreach (IRunicEffect effect in _runicEffects)
+        {
+            lines.Add(effect.Description);
         }
 
-        return tooltip;
+        return lines;
     }
 
     protected void AddEffect(IRunicEffect effect)

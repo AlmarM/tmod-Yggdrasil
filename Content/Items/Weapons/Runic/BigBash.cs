@@ -1,23 +1,25 @@
-using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-using Yggdrasil.DamageClasses;
-using Yggdrasil.Runic;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Extensions;
+using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.DamageClasses;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runic;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.Runic;
 
 public class BigBash : RunicItem
 {
     private int FocusValue = 6;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
@@ -69,6 +71,7 @@ public class BigBash : RunicItem
             }
         }
     }
+
     public override bool AltFunctionUse(Player player)
     {
         RunePlayer runePlayer = player.GetRunePlayer();
@@ -83,7 +86,6 @@ public class BigBash : RunicItem
 
     public override bool? UseItem(Player player)
     {
-
         if (player.altFunctionUse == 2)
         {
             OnRightClick(player);
@@ -110,13 +112,21 @@ public class BigBash : RunicItem
         }
     }
 
-    protected override string GetTooltip()
+    protected override List<string> GetRunicEffectDescriptions()
     {
-        string tooltip = base.GetTooltip();
+        List<string> descriptions = base.GetRunicEffectDescriptions();
 
-        tooltip += $"\n[c/fc7b03:Focus {FocusValue}]: Increases defense by 5, Grants immunity to knockback & Grants 5% damage reduction";
+        var focus = string.Format(RuneConfig.FocusRequiredLabel, FocusValue);
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, focus);
 
-        return tooltip;
+        string focusLine = $"{focusColored}: ";
+        focusLine += "Increases defense by 5, ";
+        focusLine += "grants immunity to knockback ";
+        focusLine += "and Grants 5% damage reduction";
+
+        descriptions.Add(focusLine);
+
+        return descriptions;
     }
 
     protected override void AddEffects()
@@ -133,5 +143,4 @@ public class BigBash : RunicItem
         .AddIngredient(ItemID.Bone, 20)
         .AddTile<DvergrForgeTile>()
         .Register();
-
 }
