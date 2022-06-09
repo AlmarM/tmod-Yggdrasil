@@ -14,14 +14,11 @@ public class ArmRing : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
 
         DisplayName.SetDefault("Armring");
-        Tooltip.SetDefault($"2% increase {runicText} damage" +
-                           $"\nGrants +1 {runicPowerText}" +
+        Tooltip.SetDefault($"Increases {runicText} damage by 1" +
                            "\nIncreases defense by 1" +
-                           $"\n{runicPower} 2% increase {runicText} damage");
+                           "\nIncreases insanity gauge by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -35,10 +32,9 @@ public class ArmRing : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetDamage<RunicDamageClass>() += 0.02f;
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.SetEffect<ArmRing>();
+        player.GetDamage<RunicDamageClass>().Flat += 1;
         player.statDefense += 1;
+        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
     }
 
     public override void AddRecipes() => CreateRecipe()

@@ -18,7 +18,7 @@ public class JarlBoots : YggdrasilItem
 
         DisplayName.SetDefault("Jarl Boots");
         Tooltip.SetDefault($"2% increased {runicText} damage" +
-                           "\n8% increase movement speed");
+                           "\n5% increase movement speed");
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -31,7 +31,7 @@ public class JarlBoots : YggdrasilItem
 
     public override void UpdateEquip(Player player)
     {
-        player.moveSpeed += 0.08f;
+        player.moveSpeed += 0.05f;
         player.GetDamage<RunicDamageClass>() += 0.02f;
     }
 

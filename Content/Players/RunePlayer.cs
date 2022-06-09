@@ -21,14 +21,13 @@ namespace Yggdrasil.Content.Players;
 public class RunePlayer : ModPlayer
 {
     public int RunePower { get; set; }
-    public int HitCount { get; set; }
     public int FocusPowerTime { get; set; }
-    public int FartThreshold { get; set; }
-    public int FartValue { get; set; }
-    public int FartTimer { get; set; }
-    public int PukeThreshold { get; set; }
-    public int PukeValue { get; set; }
-    public int PukeTimer { get; set; }
+    public int FocusThreshold { get; set; }
+    public int FocusValue { get; set; }
+    public int FocusTimer { get; set; }
+    public int InsanityThreshold { get; set; }
+    public int InsanityValue { get; set; }
+    public int InsanityTimer { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -84,8 +83,6 @@ public class RunePlayer : ModPlayer
             int bonusTicks = TimeUtils.SecondsToTicks(InvincibilityBonusTime);
             Player.immuneTime += bonusTicks;
         }
-
-        HitCount = 0;
     }
 
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -98,7 +95,7 @@ public class RunePlayer : ModPlayer
 
         if (crit && item.ModItem is RunicItem)
         {
-            if (Player.HasEffect<FrostGiantHand>() && RunePower >= 5)
+            if (Player.HasEffect<FrostGiantHand>())
             {
                 int projectileCount = 12;
 
@@ -128,20 +125,16 @@ public class RunePlayer : ModPlayer
 
         if (item.ModItem is RunicItem)
         {
-            if (Player.HasEffect<HelsNail>() && RunePower >= 4)
-            {
-                target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(8));
-            }
+            
+            target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
+            
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<NidhoggTooth>())
         {
             target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
-
-            if (RunePower >= 10)
-            {
-                target.AddBuff(BuffID.Venom, 180);
-            }
+            target.AddBuff(BuffID.Venom, 180);
+            
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<FreyaNecklace>())
@@ -215,29 +208,9 @@ public class RunePlayer : ModPlayer
     //We make sure these gets activated both with rune and accessories potential +X runicpower
     public override void PostUpdateEquips()
     {
-        if (Player.HasEffect<SurtrBelt>() && RunePower >= 6)
-        {
-            Player.AddBuff(BuffID.Inferno, 2);
-        }
-
         if (Player.HasEffect<ProtectiveRuneSlab>() && RunePower >= 15)
         {
             Player.statDefense += 15;
-        }
-
-        if (Player.HasEffect<ArmRing>() && RunePower >= 2)
-        {
-            Player.GetDamage<RunicDamageClass>() += 0.01f;
-        }
-
-        if (Player.HasEffect<DwarvenMedallion>() && RunePower >= 2)
-        {
-            Player.statDefense += 1;
-        }
-
-        if (Player.HasEffect<NorsemanShield>() && RunePower >= 2)
-        {
-            Player.GetDamage<RunicDamageClass>() += 0.02f;
         }
 
         if (Player.HasEffect<RunemasterEmblem>() && RunePower >= 5)
@@ -245,19 +218,9 @@ public class RunePlayer : ModPlayer
             Player.GetCritChance<RunicDamageClass>() += 1;
         }
 
-        if (Player.HasEffect<BerserkerRing>() && RunePower >= 3)
-        {
-            Player.GetCritChance<RunicDamageClass>() += 1;
-        }
-
         if (Player.HasEffect<RunicNecklace>() && RunePower >= 5)
         {
             Lighting.AddLight((int)Player.Center.X / 16, (int)Player.Center.Y / 16, .5f, .8f, .8f);
-        }
-
-        if (Player.HasEffect<AesirWind>() && RunePower >= 2)
-        {
-            Player.statDefense += 2;
         }
 
         if (Player.HasEffect<TyrHand>() && RunePower >= 4)
@@ -270,34 +233,34 @@ public class RunePlayer : ModPlayer
     {
         
 
-        if (FartValue > FartThreshold)
+        if (FocusValue > FocusThreshold)
         {
-            FartValue = FartThreshold;
+            FocusValue = FocusThreshold;
         }
 
-        if (PukeValue >= PukeThreshold)
+        if (InsanityValue >= InsanityThreshold)
         {
             Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"), (int)(Player.statLifeMax * .25f), 0);
-            PukeValue = 0;
+            InsanityValue = 0;
         }
 
-        if (PukeValue > 0)
+        if (InsanityValue > 0)
         {
-            PukeTimer++;
-            if (PukeTimer > 60)
+            InsanityTimer++;
+            if (InsanityTimer > 60)
             {
-                PukeValue--;
-                PukeTimer = 0;
+                InsanityValue--;
+                InsanityTimer = 0;
             }
         }
 
-        if (FartValue < FartThreshold)
+        if (FocusValue < FocusThreshold)
         {
-            FartTimer++;
-            if (FartTimer > 60)
+            FocusTimer++;
+            if (FocusTimer > 60)
             {
-                FartValue++;
-                FartTimer = 0;
+                FocusValue++;
+                FocusTimer = 0;
             }
         }
 
@@ -313,9 +276,7 @@ public class RunePlayer : ModPlayer
         RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
         FocusPowerTime = 300; //60 = 1sec
-        FartThreshold = 10;
-        PukeThreshold = 25;
-        //FartValue = 0;
-        //PukeValue = 0;
+        FocusThreshold = 10;
+        InsanityThreshold = 25;
     }
 }

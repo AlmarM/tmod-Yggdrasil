@@ -6,7 +6,7 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.Runic;
+using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.World
@@ -86,7 +86,7 @@ namespace Yggdrasil.World
 							break;
 						case 3:
 							itemsToAdd.Add((ModContent.ItemType<NorsemanShield>(), 1));
-							itemsToAdd.Add((ModContent.ItemType<StainlessWarhammer>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<StoneBlock>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
 							itemsToAdd.Add((ItemID.FlurryBoots, Main.rand.Next(1)));

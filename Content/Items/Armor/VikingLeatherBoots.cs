@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Armor;
@@ -11,7 +12,9 @@ public class VikingLeatherBoots : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Viking Leather Boots");
-        Tooltip.SetDefault("5% increase movement speed");
+        //Tooltip.SetDefault("");
+
+        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
@@ -19,11 +22,6 @@ public class VikingLeatherBoots : YggdrasilItem
         Item.rare = ItemRarityID.White;
         Item.defense = 2;
         Item.value = Item.sellPrice(0, 0, 5);
-    }
-
-    public override void UpdateEquip(Player player)
-    {
-        player.moveSpeed += 0.05f;
     }
 
     public override void AddRecipes() => CreateRecipe()

@@ -15,15 +15,12 @@ public class BerserkerRing : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
 
         DisplayName.SetDefault("Berserker Ring");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n3% increased {runicText} critical strike chance" +
-                           $"\nGrants +1 {runicPowerText}" +
                            "\nIncreases defense by 2" +
-                           $"\n{runicPower} 1% increased {runicText} critical strike chance");
+                           "\nIncreases insanity gauge by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -39,9 +36,8 @@ public class BerserkerRing : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.SetEffect<BerserkerRing>();
         player.statDefense += 2;
+        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
     }
 
     public override void AddRecipes()

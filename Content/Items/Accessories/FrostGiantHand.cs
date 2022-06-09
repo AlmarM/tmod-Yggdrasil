@@ -15,12 +15,11 @@ public class FrostGiantHand : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5+");
 
         DisplayName.SetDefault("Frost Giant Hand");
         Tooltip.SetDefault($"5% increased {runicText} critical strike chance" +
                            $"\nGrants immunity to fire blocks" +
-                           $"\n{runicPower} Critical hit caused by {runicText} weapons releases many frost sparks");
+                           $"\nCritical hit caused by {runicText} weapons releases many frost sparks");
 
         // @todo "weapons release explosive frost sparks" needs implementation!
 

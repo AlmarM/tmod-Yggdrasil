@@ -11,10 +11,8 @@ public class RunicSlab : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-
         DisplayName.SetDefault("Runic Slab");
-        Tooltip.SetDefault($"Displays {runicPowerText}");
+        Tooltip.SetDefault($"Displays focus and instaniy");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

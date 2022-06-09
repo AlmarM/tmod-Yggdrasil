@@ -11,13 +11,10 @@ public class DwarvenMedallion : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 2+");
-
         DisplayName.SetDefault("Dwarven Medallion");
         Tooltip.SetDefault("15% increased mining speed" +
                            "\nGenerate Light" +
-                           $"\n{runicPower} Increases defense by 1");
+                           $"\nIncreases defense by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -33,6 +30,7 @@ public class DwarvenMedallion : YggdrasilItem
     {
         player.SetEffect<DwarvenMedallion>();
         player.pickSpeed -= .15f;
+        player.statDefense += 1;
 
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .4f, .5f, .5f);
     }

@@ -16,21 +16,15 @@ namespace Yggdrasil.Content.Items.Armor;
 [AutoloadEquip(EquipType.Head)]
 public class OccultHelmet : YggdrasilItem
 {
-    private string _runicText;
-    private string _runicPowerText;
-    private string _runicPowerOneText;
-    private string _runicPower;
+    
 
     public override void SetStaticDefaults()
     {
-        _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        _runicPowerOneText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 1+");
-        _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
-        _runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Occult Helmet");
-        Tooltip.SetDefault($"5% increased {_runicText} damage" +
-                           $"\n5% increased {_runicText} critical strike chance");
+        Tooltip.SetDefault($"5% increased {runicText} damage" +
+                           $"\n5% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -50,24 +44,14 @@ public class OccultHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = $"{_runicPowerOneText}: Critical hit caused by {_runicText} weapons will confuse target" +
-            $"\nGrants +1 {_runicPower}" +
-            $"\n{_runicPowerText}: Apply Occult Buff ";
-
-        var runePlayer = player.GetModPlayer<RunePlayer>();
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        player.setBonus = $"Critical hit caused by {runicText} weapons will confuse target" +
+            "\nApply Occult Buff ";
+    
+        player.SetEffect<OccultHelmet>();
+        player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
+        player.AddBuff(BuffID.Battle, 2);
         
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
-
-        if (runePlayer.RunePower >= 1)
-        {
-            player.SetEffect<OccultHelmet>();
-        }
-
-        if (runePlayer.RunePower >= 3)
-        {
-            player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
-            player.AddBuff(BuffID.Battle, 2);
-        }
     }
 
     public override void UpdateEquip(Player player)

@@ -13,12 +13,11 @@ public class RunemasterCrest : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5+");
 
         DisplayName.SetDefault("Runemaster Crest");
         Tooltip.SetDefault($"12% increased {runicText} damage" +
                            $"\n10% increased {runicText} critical strike chance" +
-                           $"\n{runicPower} 15% increase {runicText} attack speed");
+                           $"\n15% increase {runicText} attack speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

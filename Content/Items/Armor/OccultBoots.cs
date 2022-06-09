@@ -13,8 +13,6 @@ public class OccultBoots : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
         DisplayName.SetDefault("Occult Boots");
         Tooltip.SetDefault($"10% increase movement speed");
     }

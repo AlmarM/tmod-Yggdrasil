@@ -13,16 +13,12 @@ namespace Yggdrasil.Content.Items.Armor;
 [AutoloadEquip(EquipType.Head)]
 public class VikingLeatherHelmet : YggdrasilItem
 {
-    private string _runicText;
-    private string _runicPowerText;
 
     public override void SetStaticDefaults()
     {
-        _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Viking Helmet");
-        Tooltip.SetDefault($"2% increased {_runicText} damage");
+        //Tooltip.SetDefault("");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -42,25 +38,30 @@ public class VikingLeatherHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = $"1% increased {_runicText} damage" +
-                          $"\n1% increased {_runicText} critical strike chance" +
-                          $"\nGrants +1 {_runicPowerText}" +
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+
+        player.setBonus = $"Increases {runicText} damage by 1" +
+                          $"\n1% increased {runicText} critical strike chance" +
                           "\nIncreases defense by 1";
 
-        player.GetDamage<RunicDamageClass>() += 0.01f;
+        player.GetDamage<RunicDamageClass>().Flat += 1;
         player.GetCritChance<RunicDamageClass>() += 1;
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
         player.statDefense += 1;
     }
 
-    public override void UpdateEquip(Player player)
+    public override void AddRecipes()
     {
-        player.GetDamage<RunicDamageClass>() += 0.02f;
-    }
-
-    public override void AddRecipes() => CreateRecipe()
+        CreateRecipe()
         .AddIngredient<Linnen>(5)
-        .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+        .AddIngredient(ItemID.CopperBar)
         .AddTile(TileID.Anvils)
         .Register();
+
+        CreateRecipe()
+        .AddIngredient<Linnen>(5)
+        .AddIngredient(ItemID.TinBar)
+        .AddTile(TileID.Anvils)
+        .Register();
+
+    }
 }

@@ -1,4 +1,4 @@
-using Terraria;
+/*using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
@@ -14,8 +14,7 @@ public class RuneBag : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicText = TextUtils.GetColoredText(RuneConfig.RunicDamageLabel);
 
         DisplayName.SetDefault("RuneBag");
         Tooltip.SetDefault($"2% increased {runicText} damage for every 3 {runicPowerText}" +
@@ -45,4 +44,4 @@ public class RuneBag : YggdrasilItem
         .AddIngredient<RunicSlab>()
         .AddTile(TileID.WorkBenches)
         .Register();
-}
+}*/

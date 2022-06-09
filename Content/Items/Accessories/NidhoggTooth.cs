@@ -14,12 +14,10 @@ namespace Yggdrasil.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-            string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-            string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 10+");
 
             DisplayName.SetDefault("Nidhogg's Tooth");
-            Tooltip.SetDefault($"{runicPower} 5% increased {runicText} critical strike chance" +
-                               $"\nHitting an enemy with a {runicText} weapon slows the target by 25% for 3 sec");
+            Tooltip.SetDefault($"5% increased {runicText} critical strike chance" +
+                               $"\nHitting an enemy with a {runicText} weapon slows the target by 25% for 3 sec and also applies Venom");
         }
 
         public override void SetDefaults()

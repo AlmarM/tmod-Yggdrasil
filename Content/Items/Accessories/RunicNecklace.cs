@@ -15,15 +15,13 @@ public class RunicNecklace : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 5+");
 
         DisplayName.SetDefault("Runic Necklace");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n5% increased {runicText} critical strike chance" +
-                           $"\nGrants +2 {runicPowerText}" +
-                           "\nIncreases defense by 2" +
-                           $"\n{runicPower} Generates Light");
+                           "\nIncreases defense by 3" +
+                           "\nIncreases insanity gauge by 8" +
+                           $"\nGenerates Light");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -38,16 +36,12 @@ public class RunicNecklace : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetDamage<RunicDamageClass>() += 0.1f;
-        player.GetCritChance<RunicDamageClass>() += 3;
-        player.GetModPlayer<RunePlayer>().RunePower += 2;
-        player.SetEffect<RunicNecklace>();
-        player.statDefense += 2;
+        player.GetCritChance<RunicDamageClass>() += 5;
+        player.statDefense += 3;
+        player.GetModPlayer<RunePlayer>().InsanityThreshold += 8;
 
-        /*var modPlayer = player.GetModPlayer<RunePlayer>();
-        if (modPlayer.RunePower >= 5)
-        {
-            Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .5f, .8f, .8f);
-        }*/
+        Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .5f, .8f, .8f);
+
     }
 
     public override void AddRecipes() => CreateRecipe()

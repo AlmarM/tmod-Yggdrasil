@@ -88,14 +88,6 @@ public abstract class RunicItem : YggdrasilItem
     {
         RunePlayer runePlayer = GetRunePlayer(player);
 
-        runePlayer.HitCount++;
-
-        //THIS IS GOOD FOR TESTING BUT TURN THIS ON FOR REALEASE AND REMOVE THE HITCOUNT++ ABOVE. 
-        //if (target.type != NPCID.TargetDummy)
-        //{
-        //    runePlayer.HitCount++;
-        //}
-
         InflictBuffEffect.Apply(GetEffects<InflictBuffEffect>(), runePlayer, target);
     }
 

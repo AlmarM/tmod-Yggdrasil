@@ -13,18 +13,12 @@ namespace Yggdrasil.Content.Items.Armor;
 [AutoloadEquip(EquipType.Head)]
 public class JarlHelmet : YggdrasilItem
 {
-    private string _runicText;
-    private string _runicPowerText;
-    private string _runicPowerThreeText;
-
     public override void SetStaticDefaults()
     {
-        _runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        _runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        _runicPowerThreeText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 3+");
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Jarl Helmet");
-        Tooltip.SetDefault($"4% increased {_runicText} damage");
+        Tooltip.SetDefault($"4% increased {runicText} damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -44,20 +38,18 @@ public class JarlHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = $"4% increased {_runicText} damage" +
-                          $"\nGrants +1 {_runicPowerText}" +
-                          $"\n{_runicPowerThreeText}: Slowly regenerate life";
+
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        player.setBonus = $"4% increased {runicText} damage" +
+                          "\nSlowly regenerate life";
 
         player.GetDamage<RunicDamageClass>() += 0.04f;
-        player.GetModPlayer<RunePlayer>().FocusPowerTime += 60; //60 = 1sec
 
         var runePlayer = player.GetModPlayer<RunePlayer>();
         runePlayer.RunePower += 1;
 
-        if (runePlayer.RunePower >= 3)
-        {
-            player.lifeRegen += 5;
-        }
+        player.lifeRegen += 5;
+        
     }
 
     public override void UpdateEquip(Player player)

@@ -13,14 +13,13 @@ public class SurtrBelt : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 6+");
 
         DisplayName.SetDefault("Surtr Belt");
         Tooltip.SetDefault($"15% increased {runicText} damage" +
                            "\nIncrease max life by 20" +
                            "\nGrants immunity to OnFire, Shadowflame, Frostburn, Chilled and Frozen" +
                            "\nGrants immunity to fire blocks and lava" +
-                           $"\n{runicPowerText} Ignites nearby enemies");
+                           $"\nIgnites nearby enemies");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -36,7 +35,7 @@ public class SurtrBelt : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.GetDamage<RunicDamageClass>() += 0.15f;
-        player.SetEffect<SurtrBelt>();
+        player.AddBuff(BuffID.Inferno, 2);
 
         player.lavaImmune = true;
         player.fireWalk = true;

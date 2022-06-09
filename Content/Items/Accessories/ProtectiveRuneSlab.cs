@@ -12,13 +12,10 @@ public class ProtectiveRuneSlab : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
-        string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 15+");
 
         DisplayName.SetDefault("Protective Runic Slab");
-        Tooltip.SetDefault($"Displays {runicPowerText}" +
-                           $"\nIncreases defense by 3" +
-                           $"\n{runicPower} Increases defense by an additional 15");
+        Tooltip.SetDefault($"Displays focus and insanity" +
+                           $"\nIncreases defense by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -32,8 +29,7 @@ public class ProtectiveRuneSlab : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.statDefense += 3;
-        player.SetEffect<ProtectiveRuneSlab>();
+        player.statDefense += 5;
         player.SetEffect<RunicSlab>();
     }
 

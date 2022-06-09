@@ -13,11 +13,9 @@ namespace Yggdrasil.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-            string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 4+");
 
             DisplayName.SetDefault("Hel's Nail");
-            Tooltip.SetDefault($"All {runicText} weapons now inflict poison for 5 sec" +
-                               $"\n{runicPower} debuff time increases to 8 sec");
+            Tooltip.SetDefault($"All {runicText} weapons now inflict poison for 5 sec");
         }
 
         public override void SetDefaults()

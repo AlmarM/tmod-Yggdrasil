@@ -12,11 +12,9 @@ namespace Yggdrasil.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            string runicPower = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power 10+");
 
             DisplayName.SetDefault("Odin's Eye");
-            Tooltip.SetDefault("Grants 10% to avoid a fatal blow and heal back to 20% life" +
-                               $"\n{runicPower} Heal back to 50% life instead");
+            Tooltip.SetDefault("Grants 10% to avoid a fatal blow and heal back to 20% life");
         }
 
         public override void SetDefaults()

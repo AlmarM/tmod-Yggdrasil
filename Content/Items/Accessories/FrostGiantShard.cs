@@ -14,7 +14,6 @@ public class FrostGiantShard : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
 
         DisplayName.SetDefault("Frost Giant Shard");
         Tooltip.SetDefault($"10% increased {runicText} damage" +

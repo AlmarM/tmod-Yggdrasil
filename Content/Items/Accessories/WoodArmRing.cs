@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Players;
+using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
@@ -11,10 +11,10 @@ public class WoodArmRing : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicPowerText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "Runic Power");
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Wooden Armring");
-        Tooltip.SetDefault($"Grants +1 {runicPowerText}"+
+        Tooltip.SetDefault($"Increases {runicText} damage by 1" +
                            "\nIncreases defense by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -29,7 +29,7 @@ public class WoodArmRing : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
+        player.GetDamage<RunicDamageClass>().Flat += 1;
         player.statDefense += 1;
     }
 
