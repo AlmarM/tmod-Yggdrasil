@@ -18,8 +18,8 @@ public class OccultPlate : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Occult Plate");
-        Tooltip.SetDefault($"5% increased {runicText} damage" +
-                           $"\n5% increased {runicText} critical strike chance");
+        Tooltip.SetDefault($"Increases {runicText} damage by 2" +
+                           $"\n1% increased {runicText} critical strike chance");
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -32,8 +32,8 @@ public class OccultPlate : YggdrasilItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage<RunicDamageClass>() += 0.05f;
-        player.GetCritChance<RunicDamageClass>() += 5;
+        player.GetDamage<RunicDamageClass>().Flat += 2;
+        player.GetCritChance<RunicDamageClass>() += 1;
     }
 
     public override void AddRecipes() => CreateRecipe()

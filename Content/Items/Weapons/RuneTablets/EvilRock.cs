@@ -9,36 +9,37 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class StoneBlock : RunicItem
+    public class EvilRock : RunicItem
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Stone Slab");
-            Tooltip.SetDefault("Well, it's a block of stone");
+			DisplayName.SetDefault("Evil Rock");
+            Tooltip.SetDefault("");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 2;
+            Item.damage = 8;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.crit = 0;
-            Item.value = Item.sellPrice(0, 0, 0, 20);
-            Item.rare = ItemRarityID.White;
+            Item.knockBack = 2;
+            Item.crit = 1;
+            Item.value = Item.sellPrice(0, 0, 30);
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<StoneBlockProjectile>();
+            Item.shoot = ModContent.ProjectileType<EvilRockProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -75,8 +76,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 6;
-            var Type = ModContent.ProjectileType<StoneBlockProjectile>();
+            const int ExplosionProjectiles = 10;
+            var Type = ModContent.ProjectileType<EvilRockProjectile>();
 
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
@@ -104,7 +105,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE BREATH
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 2; // The number of projectiles.
+            const int NumProjectiles = 5; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -130,16 +131,26 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of projectiles around you ";
+            focusLine += "Releases an explosion of projectiles around you ";
 
             descriptions.Add(focusLine);
 
             return descriptions;
         }
 
-        public override void AddRecipes() => CreateRecipe()
-            .AddIngredient(ItemID.StoneBlock, 5)
-            .AddTile(TileID.WorkBenches)
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient<StoneBlock>()
+            .AddIngredient(ItemID.CrimtaneBar, 5)
+            .AddTile<DvergrForgeTile>()
             .Register();
+
+            CreateRecipe()
+            .AddIngredient<StoneBlock>()
+            .AddIngredient(ItemID.DemoniteBar, 5)
+            .AddTile<DvergrForgeTile>()
+            .Register();
+        }
     }
 }

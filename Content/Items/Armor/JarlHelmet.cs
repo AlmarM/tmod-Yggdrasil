@@ -15,10 +15,9 @@ public class JarlHelmet : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Jarl Helmet");
-        Tooltip.SetDefault($"4% increased {runicText} damage");
+        Tooltip.SetDefault("The helm of a true leader");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -40,14 +39,12 @@ public class JarlHelmet : YggdrasilItem
     {
 
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        player.setBonus = $"4% increased {runicText} damage" +
+        player.setBonus = $"Increases {runicText} damage by 2" +
+                          $"\n2% increased {runicText} critical strike chance" +
                           "\nSlowly regenerate life";
 
-        player.GetDamage<RunicDamageClass>() += 0.04f;
-
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        runePlayer.RunePower += 1;
-
+        player.GetDamage<RunicDamageClass>().Flat += 2;
+        player.GetCritChance<RunicDamageClass>() += 2;
         player.lifeRegen += 5;
         
     }

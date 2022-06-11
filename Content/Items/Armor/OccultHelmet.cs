@@ -23,8 +23,8 @@ public class OccultHelmet : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Occult Helmet");
-        Tooltip.SetDefault($"5% increased {runicText} damage" +
-                           $"\n5% increased {runicText} critical strike chance");
+        Tooltip.SetDefault($"Increases {runicText} damage by 1" +
+                           $"\n2% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -50,14 +50,13 @@ public class OccultHelmet : YggdrasilItem
     
         player.SetEffect<OccultHelmet>();
         player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
-        player.AddBuff(BuffID.Battle, 2);
-        
+                
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage<RunicDamageClass>() += 0.05f;
-        player.GetCritChance<RunicDamageClass>() += 5;
+        player.GetDamage<RunicDamageClass>().Flat += 1;
+        player.GetCritChance<RunicDamageClass>() += 2;
     }
 
     public override void AddRecipes() => CreateRecipe()

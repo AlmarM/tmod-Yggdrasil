@@ -14,10 +14,9 @@ public class JarlShirt : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
+        
         DisplayName.SetDefault("Jarl Shirt");
-        Tooltip.SetDefault($"5% increased {runicText} critical strike chance");
+        Tooltip.SetDefault($"It's pretty warm");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,7 +30,7 @@ public class JarlShirt : YggdrasilItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetCritChance<RunicDamageClass>() += 5;
+        
     }
 
     public override void AddRecipes()

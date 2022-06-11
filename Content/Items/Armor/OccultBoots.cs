@@ -21,7 +21,7 @@ public class OccultBoots : YggdrasilItem
     {
         Item.rare = ItemRarityID.Orange;
         Item.defense = 6;
-        Item.value = Item.sellPrice(0, 60);
+        Item.value = Item.sellPrice(0, 0, 60);
     }
 
     public override void UpdateEquip(Player player)

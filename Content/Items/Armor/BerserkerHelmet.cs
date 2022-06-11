@@ -18,9 +18,7 @@ public class BerserkerHelmet : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Berserker Wolf Skin");
-        Tooltip.SetDefault($"5% increased {runicText} damage" +
-                           $"\n5% increased {runicText} critical strike chance" +
-                           "\nIncreases defense by 5");
+        Tooltip.SetDefault($"Increases {runicText} damage by 3");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -41,7 +39,8 @@ public class BerserkerHelmet : YggdrasilItem
     public override void UpdateArmorSet(Player player)
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        player.setBonus = $"While below 25% health, 20% increase {runicText} damage and critical strike chance";
+        player.setBonus = $"While below 25% health, 20% increase {runicText} damage and critical strike chance" +
+                           "\nIncreases defense by 5";
 
         float HealthThreshold = .25f;
         
@@ -56,8 +55,7 @@ public class BerserkerHelmet : YggdrasilItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage<RunicDamageClass>() += 0.05f;
-        player.GetCritChance<RunicDamageClass>() += 5;
+        player.GetDamage<RunicDamageClass>().Flat += 3;
     }
 
 }

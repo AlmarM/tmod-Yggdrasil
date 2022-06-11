@@ -17,8 +17,7 @@ public class JarlBoots : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Jarl Boots");
-        Tooltip.SetDefault($"2% increased {runicText} damage" +
-                           "\n5% increase movement speed");
+        Tooltip.SetDefault("5% increase movement speed");
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
@@ -26,13 +25,12 @@ public class JarlBoots : YggdrasilItem
     {
         Item.rare = ItemRarityID.Green;
         Item.defense = 4;
-        Item.value = Item.sellPrice(0, 30);
+        Item.value = Item.sellPrice(0, 0, 30);
     }
 
     public override void UpdateEquip(Player player)
     {
         player.moveSpeed += 0.05f;
-        player.GetDamage<RunicDamageClass>() += 0.02f;
     }
 
     public override void AddRecipes()

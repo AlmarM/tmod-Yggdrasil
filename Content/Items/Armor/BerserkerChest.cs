@@ -16,8 +16,7 @@ public class BerserkerChest : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Berserker Chest");
-        Tooltip.SetDefault($"5% increased {runicText} damage" +
-                           $"\n5% increased {runicText} critical strike chance");
+        Tooltip.SetDefault($"4% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,8 +30,7 @@ public class BerserkerChest : YggdrasilItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage<RunicDamageClass>() += 0.05f;
-        player.GetCritChance<RunicDamageClass>() += 5;
+        player.GetCritChance<RunicDamageClass>() += 4;
     }
 
 }

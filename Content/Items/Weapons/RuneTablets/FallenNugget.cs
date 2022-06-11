@@ -9,36 +9,37 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class StoneBlock : RunicItem
+    public class FallenNugget : RunicItem
     {
-		public override void SetStaticDefaults() 
-		{
-			DisplayName.SetDefault("Stone Slab");
-            Tooltip.SetDefault("Well, it's a block of stone");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Fallen Nugget");
+            Tooltip.SetDefault("Straight out of the stars");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 2;
+            Item.damage = 7;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.crit = 0;
-            Item.value = Item.sellPrice(0, 0, 0, 20);
-            Item.rare = ItemRarityID.White;
+            Item.knockBack = 2;
+            Item.crit = 2;
+            Item.value = Item.sellPrice(0, 0, 30);
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<StoneBlockProjectile>();
+            Item.shoot = ModContent.ProjectileType<FallenNuggetProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -76,14 +77,14 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             RunePlayer runePlayer = player.GetRunePlayer();
 
             const int ExplosionProjectiles = 6;
-            var Type = ModContent.ProjectileType<StoneBlockProjectile>();
+            var Type = ProjectileID.BallofFire;
 
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
                 Vector2 Speed = Main.rand.NextVector2Unit();
                 var Damage = Item.damage;
                 var knockback = Item.knockBack;
-                
+
                 Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
 
             }
@@ -104,16 +105,16 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE BREATH
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 2; // The number of projectiles.
+            const int NumProjectiles = 5; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
             for (int i = 0; i < NumProjectiles; i++)
             {
                 Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 12);
-                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 6);
-                
+                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
+                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
+
                 //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
 
                 Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
@@ -122,7 +123,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             return false;
         }
-        
+
         protected override List<string> GetRunicEffectDescriptions()
         {
             List<string> descriptions = base.GetRunicEffectDescriptions();
@@ -130,7 +131,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of projectiles around you ";
+            focusLine += "Releases a small explosion of fire balls around you ";
 
             descriptions.Add(focusLine);
 
@@ -138,8 +139,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient(ItemID.StoneBlock, 5)
-            .AddTile(TileID.WorkBenches)
-            .Register();
+            .AddIngredient<StoneBlock>()
+            .AddIngredient(ItemID.MeteoriteBar, 5)
+            .AddTile<DvergrForgeTile>()
+            .Register();        
     }
 }
