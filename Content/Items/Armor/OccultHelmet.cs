@@ -45,12 +45,16 @@ public class OccultHelmet : YggdrasilItem
     public override void UpdateArmorSet(Player player)
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
+
         player.setBonus = $"Critical hit caused by {runicText} weapons will confuse target" +
+            $"\nIncreases {insanityText} gauge by 3" +
             "\nApply Occult Buff ";
     
         player.SetEffect<OccultHelmet>();
         player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
-                
+        player.GetModPlayer<RunePlayer>().InsanityThreshold += 3;
+
     }
 
     public override void UpdateEquip(Player player)

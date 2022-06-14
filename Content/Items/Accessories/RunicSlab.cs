@@ -9,10 +9,17 @@ namespace Yggdrasil.Content.Items.Accessories;
 
 public class RunicSlab : YggdrasilItem
 {
+    //Display of focus and insanity is temporary as it will be turned into UI element under the player
     public override void SetStaticDefaults()
     {
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
+        var insanityColored = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
+
+        string focusLine = $"{focusColored}";
+        string insanityLine = $"{insanityColored}";
+
         DisplayName.SetDefault("Runic Slab");
-        Tooltip.SetDefault($"Displays focus and instaniy");
+        Tooltip.SetDefault($"Displays {focusLine} and {insanityColored}");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,7 +38,6 @@ public class RunicSlab : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10)
-        .AddIngredient(ItemID.Lens)
         .AddTile(TileID.WorkBenches)
         .Register();
 }

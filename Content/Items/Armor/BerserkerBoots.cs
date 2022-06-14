@@ -25,7 +25,7 @@ public class BerserkerBoots : YggdrasilItem
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Orange;
-        Item.defense = 6;
+        Item.defense = 8;
         Item.value = Item.sellPrice(0, 0, 65);
     }
 

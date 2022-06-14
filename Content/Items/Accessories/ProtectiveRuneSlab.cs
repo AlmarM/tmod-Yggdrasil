@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
@@ -12,10 +13,12 @@ public class ProtectiveRuneSlab : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
+        string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Protective Runic Slab");
-        Tooltip.SetDefault($"Displays focus and insanity" +
-                           $"\nIncreases defense by 5");
+        Tooltip.SetDefault($"Increases defense by 8" + 
+            $"\nIncreases {insanityText} removed by {focusText} power by 2");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -29,8 +32,8 @@ public class ProtectiveRuneSlab : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.statDefense += 5;
-        player.SetEffect<RunicSlab>();
+        player.statDefense += 8;
+        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 2;
     }
 
     public override void AddRecipes() => CreateRecipe()

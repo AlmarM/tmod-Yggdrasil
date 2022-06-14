@@ -15,12 +15,13 @@ public class BerserkerRing : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Berserker Ring");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n3% increased {runicText} critical strike chance" +
                            "\nIncreases defense by 2" +
-                           "\nIncreases insanity gauge by 5");
+                           $"\nIncreases {insanityText} gauge by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

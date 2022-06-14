@@ -28,6 +28,7 @@ public class RunePlayer : ModPlayer
     public int InsanityThreshold { get; set; }
     public int InsanityValue { get; set; }
     public int InsanityTimer { get; set; }
+    public int InsanityRemoverValue { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -252,5 +253,7 @@ public class RunePlayer : ModPlayer
         FocusPowerTime = 300; //60 = 1sec
         FocusThreshold = 10;
         InsanityThreshold = 25;
+        InsanityRemoverValue = 10;
+
     }
 }

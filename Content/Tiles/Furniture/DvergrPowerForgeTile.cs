@@ -8,7 +8,7 @@ using Yggdrasil.Content.Items.Furniture;
 
 namespace Yggdrasil.Content.Tiles.Furniture;
 
-public class DvergrForgeTile : YggdrasilTile
+public class DvergrPowerForgeTile : YggdrasilTile
 {
 	public override void SetStaticDefaults()
 	{
@@ -35,8 +35,8 @@ public class DvergrForgeTile : YggdrasilTile
 
 		// Etc
 		ModTranslation name = CreateMapEntryName();
-		name.SetDefault("Dvergr Forge");
-		AddMapEntry(new Color(29, 240, 255), name);
+		name.SetDefault("Dvergr Power Forge");
+		AddMapEntry(new Color(161, 255, 206), name);
 		AnimationFrameHeight = 38;
 	}
 
@@ -63,8 +63,8 @@ public class DvergrForgeTile : YggdrasilTile
 
 	public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 	{
-		r = 0.1f;
-		g = 0.85f;
-		b = 0.9f;
+		r = 0.5f;
+		g = 0.9f;
+		b = 0.75f;
 	}
 }

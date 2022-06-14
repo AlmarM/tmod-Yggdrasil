@@ -6,40 +6,42 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
-using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class ShinyTablet : RunicItem
+    public class TabletofFlesh : RunicItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shiny Tablet");
-            Tooltip.SetDefault("Generates light");
+            DisplayName.SetDefault("Tablet of Flesh");
+            Tooltip.SetDefault("Are these things moving?" +
+                "\nProjectiles pierce through enemies");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 7;
+            Item.damage = 23;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.crit = 1;
-            Item.value = Item.sellPrice(0, 0, 18);
-            Item.rare = ItemRarityID.White;
+            Item.knockBack = 3;
+            Item.crit = 3;
+            Item.value = Item.sellPrice(0, 1, 25);
+            Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<ShinyTabletProjectile>();
+            Item.shoot = ModContent.ProjectileType<TabletofFleshProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -76,8 +78,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 9;
-            var Type = ModContent.ProjectileType<ShinyTabletProjectile>();
+            const int ExplosionProjectiles = 12;
+            var Type = ModContent.ProjectileType<TabletofFleshProjectile>();
+
 
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
@@ -87,10 +90,10 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
                 Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
 
-                player.AddBuff(BuffID.Spelunker, 600);
-
             }
 
+            player.AddBuff(ModContent.BuffType<SuperHPRegen>(), 300);
+            
             // Removing insanity when using a focus power
             runePlayer.FocusValue = 0;
             if (runePlayer.InsanityValue >= runePlayer.InsanityRemoverValue)
@@ -108,15 +111,15 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 3; // The number of projectiles.
+            const int NumProjectiles = 10; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
             for (int i = 0; i < NumProjectiles; i++)
             {
                 Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
-                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
+                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 12);
+                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 6);
 
                 //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
 
@@ -127,17 +130,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             return false;
         }
 
-        public override void HoldItem(Player player)
-        {
-            base.HoldItem(player);
-
-            RunePlayer runePlayer = player.GetRunePlayer();
-            var centerX = (int)runePlayer.Player.Center.X / 16;
-            var centerY = (int)runePlayer.Player.Center.Y / 16;
-
-            Lighting.AddLight(centerX, centerY, 0.4f, 0.4f, 0.1f);
-        }
-
         protected override List<string> GetRunicEffectDescriptions()
         {
             List<string> descriptions = base.GetRunicEffectDescriptions();
@@ -145,27 +137,13 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of projectiles around you & Shows the location of treasure and ore";
+            focusLine += "Releases an explosion of projectiles around you and greatly increases life regeneration";
 
             descriptions.Add(focusLine);
 
             return descriptions;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.GoldBar, 5)
-            .AddTile(TileID.Anvils)
-            .Register();
-
-            CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.PlatinumBar, 5)
-            .AddTile(TileID.Anvils)
-            .Register();
-        }
-
+        // Dropped by WoF
     }
 }

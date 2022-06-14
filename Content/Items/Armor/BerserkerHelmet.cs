@@ -6,6 +6,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
 
 namespace Yggdrasil.Content.Items.Armor;
 
@@ -26,7 +27,7 @@ public class BerserkerHelmet : YggdrasilItem
     public override void SetDefaults()
     {
         Item.rare = ItemRarityID.Orange;
-        Item.defense = 6;
+        Item.defense = 8;
         Item.value = Item.sellPrice(0, 0, 65);
     }
 
@@ -39,18 +40,21 @@ public class BerserkerHelmet : YggdrasilItem
     public override void UpdateArmorSet(Player player)
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        player.setBonus = $"While below 25% health, 20% increase {runicText} damage and critical strike chance" +
-                           "\nIncreases defense by 5";
+        string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
+
+        player.setBonus = $"While below 25% health, 20% increase {runicText} damage and critical strike chance & increases defense by 5" +
+                          $"\nIncreases {insanityText} removed by {focusText} power by 1";
 
         float HealthThreshold = .25f;
         
         var runePlayer = player.GetModPlayer<RunePlayer>();
         if (player.statLife < HealthThreshold * player.statLifeMax2)
         {
-            player.GetDamage<RunicDamageClass>() += 0.2f;
-            player.GetCritChance<RunicDamageClass>() += 20;
-            player.statDefense += 5;
+            player.AddBuff(ModContent.BuffType<BerserkerRageBuff>(), 2);
         }
+
+        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
     }
 
     public override void UpdateEquip(Player player)

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
@@ -13,11 +14,14 @@ public class NorsemanShield : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Norsemen Shield");
         Tooltip.SetDefault("Grants immunity to knockback" +
                            "\nIncreases defense by 3" +
-                           $"\n2% increased {runicText} damage");
+                           $"\n2% increased {runicText} damage" +
+                           $"\nIncreases {insanityText} removed by {focusText} power by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -34,5 +38,6 @@ public class NorsemanShield : YggdrasilItem
         player.noKnockback = true;
         player.statDefense += 3;
         player.GetDamage<RunicDamageClass>() += 0.02f;
+        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
     }
 }

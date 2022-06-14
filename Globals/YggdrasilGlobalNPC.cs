@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Weapons.RuneTablets;
 
 namespace Yggdrasil.Globals;
 
@@ -13,15 +14,18 @@ public class YggdrasilGlobalNPC : GlobalNPC
     {
         switch (npc.type)
         {
-            case NPCID.QueenBee:
-                
-                break;
-
             case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OccultShard>(), 5));
                 break;
             case NPCID.WallofFlesh:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RunemasterEmblem>(), 4));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TabletofFlesh>(), 4));
+                break;
+            case NPCID.IcyMerman:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 10));
+                break;
+            case NPCID.IceMimic:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 6));
                 break;
         }
     }

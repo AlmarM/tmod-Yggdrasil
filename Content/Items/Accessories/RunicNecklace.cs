@@ -15,12 +15,13 @@ public class RunicNecklace : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Runic Necklace");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
                            $"\n5% increased {runicText} critical strike chance" +
                            "\nIncreases defense by 3" +
-                           "\nIncreases insanity gauge by 8" +
+                           $"\nIncreases {insanityText} gauge by 8" +
                            $"\nGenerates Light");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

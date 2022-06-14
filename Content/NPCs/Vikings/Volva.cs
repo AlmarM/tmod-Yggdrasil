@@ -60,14 +60,8 @@ public class Volva : YggdrasilNPC
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo)
-    {
-        if (spawnInfo.Player.ZoneSnow)
-        {
-            return SpawnCondition.Overworld.Chance * .1f;
-        }
-        return 0f;
-    }
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow && (spawnInfo.SpawnTileY > Main.worldSurface) ? 0.12f : 0f;
+  
 
     // @todo encapsulate behavior for composition
     public override void AI() // This is a clone rework of the goblin sorcerer AI

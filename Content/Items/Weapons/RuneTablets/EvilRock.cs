@@ -72,7 +72,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         protected virtual void OnRightClick(Player player)
         {
 
-            // THE RELEASE
+            // THE FOCUS POWER
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
@@ -89,10 +89,11 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             }
 
+            // Removing insanity when using a focus power
             runePlayer.FocusValue = 0;
-            if (runePlayer.InsanityValue >= 10)
+            if (runePlayer.InsanityValue >= runePlayer.InsanityRemoverValue)
             {
-                runePlayer.InsanityValue -= 10;
+                runePlayer.InsanityValue -= runePlayer.InsanityRemoverValue;
             }
             else
             {

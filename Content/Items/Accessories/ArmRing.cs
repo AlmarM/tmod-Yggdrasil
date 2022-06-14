@@ -14,11 +14,12 @@ public class ArmRing : YggdrasilItem
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Armring");
         Tooltip.SetDefault($"Increases {runicText} damage by 1" +
                            "\nIncreases defense by 1" +
-                           "\nIncreases insanity gauge by 5");
+                           $"\nIncreases {insanityText} gauge by 5");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

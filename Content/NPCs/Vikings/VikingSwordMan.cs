@@ -60,14 +60,7 @@ public class VikingSwordMan : YggdrasilNPC
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo)
-    {
-        if (spawnInfo.Player.ZoneSnow)
-        {
-            return SpawnCondition.Overworld.Chance;
-        }
-        return 0f;
-    }
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow && (spawnInfo.SpawnTileY > Main.worldSurface) ? 0.12f : 0f;
 
     public override void AI()
     {
@@ -78,8 +71,8 @@ public class VikingSwordMan : YggdrasilNPC
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 100));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 10));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 10));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
