@@ -17,7 +17,8 @@ public class ProtectiveRuneSlab : YggdrasilItem
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         DisplayName.SetDefault("Protective Runic Slab");
-        Tooltip.SetDefault($"Increases defense by 8" + 
+        Tooltip.SetDefault($"Increases defense by 8" +
+            "\nReduces damage taken by 50%" +
             $"\nIncreases {insanityText} removed by {focusText} power by 2");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -34,6 +35,7 @@ public class ProtectiveRuneSlab : YggdrasilItem
     {
         player.statDefense += 8;
         player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 2;
+        player.endurance += 0.05f;
     }
 
     public override void AddRecipes() => CreateRecipe()

@@ -38,7 +38,7 @@ public class AesirWind : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<StoneBlock>()
+        .AddIngredient<RuneBag>()
         .AddIngredient(ItemID.LuckyHorseshoe)
         .AddIngredient(ItemID.CloudinaBalloon)
         .AddTile(TileID.TinkerersWorkbench)

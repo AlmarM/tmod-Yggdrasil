@@ -7,7 +7,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class FallenNuggetProjectile : YggdrasilProjectile
+public class FallenNuggetProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

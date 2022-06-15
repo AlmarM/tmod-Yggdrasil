@@ -8,7 +8,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class SpikyBlockProjectile : YggdrasilProjectile
+public class SpikyBlockProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

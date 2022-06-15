@@ -7,7 +7,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class TabletofFleshProjectile : YggdrasilProjectile
+public class TabletofFleshProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

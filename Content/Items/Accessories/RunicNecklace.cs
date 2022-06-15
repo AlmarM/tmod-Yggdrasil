@@ -48,6 +48,6 @@ public class RunicNecklace : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<BerserkerRing>()
         .AddIngredient(ItemID.Bell)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 }

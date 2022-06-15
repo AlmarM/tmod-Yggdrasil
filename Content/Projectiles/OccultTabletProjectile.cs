@@ -7,7 +7,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class OccultTabletProjectile : YggdrasilProjectile
+public class OccultTabletProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

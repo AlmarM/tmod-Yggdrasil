@@ -94,8 +94,12 @@ public class RunePlayer : ModPlayer
             int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
             BuffUtils.ApplyRandomDebuff(target, duration);
         }
+        
+    }
 
-        if (crit && item.ModItem is RunicItem)
+    public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+    {
+        if (crit && proj.ModProjectile is RunicProjectile)
         {
             if (Player.HasEffect<FrostGiantHand>())
             {
@@ -108,33 +112,17 @@ public class RunePlayer : ModPlayer
             }
         }
 
-        if (item.ModItem is RunicItem)
-        {
-            target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
-        }
-
-        if (item.ModItem is RunicItem && Player.HasEffect<NidhoggTooth>())
+        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<NidhoggTooth>())
         {
             target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
             target.AddBuff(BuffID.Venom, 180);
         }
 
-        if (item.ModItem is RunicItem && Player.HasEffect<FreyaNecklace>())
+        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>())
         {
             if (Main.rand.Next(100) < 5)
             {
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
-            }
-        }
-    }
-
-    public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-    {
-        if (crit && proj.ModProjectile is RunicProjectile)
-        {
-            if (Player.HasEffect<FrostGiantHand>())
-            {
-                CreateBlizzardExplosionAroundEntity(12, 6f, 25f, target);
             }
         }
     }
@@ -174,19 +162,10 @@ public class RunePlayer : ModPlayer
     //We make sure these gets activated both with rune and accessories potential +X runicpower
     public override void PostUpdateEquips()
     {
-        if (Player.HasEffect<ProtectiveRuneSlab>() && RunePower >= 15)
-        {
-            Player.statDefense += 15;
-        }
 
         if (Player.HasEffect<RunemasterEmblem>() && RunePower >= 5)
         {
             Player.GetCritChance<RunicDamageClass>() += 1;
-        }
-
-        if (Player.HasEffect<RunicNecklace>() && RunePower >= 5)
-        {
-            Lighting.AddLight((int)Player.Center.X / 16, (int)Player.Center.Y / 16, .5f, .8f, .8f);
         }
 
         if (Player.HasEffect<TyrHand>() && RunePower >= 4)

@@ -27,6 +27,9 @@ public class YggdrasilGlobalNPC : GlobalNPC
             case NPCID.IceMimic:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 6));
                 break;
+            case NPCID.BigMimicHallow:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LokisGift>(), 4));
+                break;
         }
     }
 }

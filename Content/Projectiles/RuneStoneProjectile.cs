@@ -6,7 +6,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class RuneStoneProjectile : YggdrasilProjectile
+public class RuneStoneProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

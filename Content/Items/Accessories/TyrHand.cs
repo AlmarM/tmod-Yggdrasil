@@ -17,7 +17,6 @@ namespace Yggdrasil.Content.Items.Accessories
 
             DisplayName.SetDefault("Tyr's Hand");
             Tooltip.SetDefault($"10% increase {runicText} attack speed" +
-                               $"\nEnables auto swing for {runicText} weapons" +
                                $"\n5% increase {runicText} damage");
         }
 
@@ -31,6 +30,7 @@ namespace Yggdrasil.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage<RunicDamageClass>() += 0.05f;
+            player.SetEffect<TyrHand>();
         }
 
         public override void AddRecipes()

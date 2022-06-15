@@ -8,7 +8,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class MeadowProjectileExplosion : YggdrasilProjectile
+public class MeadowProjectileExplosion : RunicProjectile
 {
     public override void SetDefaults()
     {

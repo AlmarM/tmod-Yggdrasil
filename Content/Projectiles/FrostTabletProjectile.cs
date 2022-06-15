@@ -7,7 +7,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class FrostTabletProjectile : YggdrasilProjectile
+public class FrostTabletProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

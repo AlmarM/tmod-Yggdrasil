@@ -8,7 +8,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class HoneyStoneProjectile : YggdrasilProjectile
+public class HoneyStoneProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

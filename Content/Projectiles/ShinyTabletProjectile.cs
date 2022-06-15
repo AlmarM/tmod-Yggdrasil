@@ -6,7 +6,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class ShinyTabletProjectile : YggdrasilProjectile
+public class ShinyTabletProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {

@@ -1,4 +1,4 @@
-/*using Terraria;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
@@ -14,12 +14,12 @@ public class RuneBag : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RunicDamageLabel);
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
-        DisplayName.SetDefault("RuneBag");
-        Tooltip.SetDefault($"2% increased {runicText} damage for every 3 {runicPowerText}" +
-                           $"\nGrants +1 {runicPowerText}" +
-                           $"\nDisplays {runicPowerText}");
+        DisplayName.SetDefault("Rune Bag");
+        Tooltip.SetDefault($"Increases {insanityText} gauge by 2" +
+                           $"\nIncreases {runicText} damage by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -33,10 +33,9 @@ public class RuneBag : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        var modPlayer = player.GetModPlayer<RunePlayer>();
-        player.GetModPlayer<RunePlayer>().RunePower += 1;
-        player.GetDamage<RunicDamageClass>() += 0.02f * (modPlayer.RunePower / 3f);
         player.SetEffect<RunicSlab>();
+        player.GetModPlayer<RunePlayer>().InsanityThreshold += 2;
+        player.GetDamage<RunicDamageClass>().Flat += 1;
     }
 
     public override void AddRecipes() => CreateRecipe()
@@ -44,4 +43,4 @@ public class RuneBag : YggdrasilItem
         .AddIngredient<RunicSlab>()
         .AddTile(TileID.WorkBenches)
         .Register();
-}*/
+}
