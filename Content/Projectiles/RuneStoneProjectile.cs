@@ -26,8 +26,8 @@ public class RuneStoneProjectile : YggdrasilProjectile
 
     public override void AI()
     {
-       Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Tin, Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
+        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Tin,
+            Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
         d.noGravity = true;
     }
-
 }

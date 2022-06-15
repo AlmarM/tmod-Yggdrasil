@@ -18,13 +18,14 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
     public class BloodySlab : RunicItem
     {
-		public override void SetStaticDefaults() 
-		{
-			DisplayName.SetDefault("Bloody Slab");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bloody Slab");
             Tooltip.SetDefault("Has a chance to heal on hit");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+
         public override void SetDefaults()
         {
             Item.damage = 7;
@@ -58,7 +59,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         public override bool? UseItem(Player player)
         {
-
             if (player.altFunctionUse == 2)
             {
                 OnRightClick(player);
@@ -71,17 +71,14 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         protected virtual void OnRightClick(Player player)
         {
-
             // THE FOCUS POWER
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
             if (player.statLife < player.statLifeMax2)
             {
-                
                 player.statLife += runePlayer.InsanityValue;
                 player.HealEffect(runePlayer.InsanityValue);
-                
             }
 
             // Removing insanity when using a focus power
@@ -96,8 +93,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             }
         }
 
-  
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position,
+            Vector2 velocity, int type, int damage, float knockback)
         {
             // THE ATTACK
 
@@ -112,8 +110,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
-
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback,
+                    player.whoAmI);
             }
 
             return false;

@@ -17,7 +17,7 @@ public class FrostGiantShard : YggdrasilItem
 
         DisplayName.SetDefault("Frost Giant Shard");
         Tooltip.SetDefault($"10% increased {runicText} damage" +
-                           $"\nIncrease defense by 5 in snow biome"+
+                           $"\nIncrease defense by 5 in snow biome" +
                            $"\nProvides life regeneration in snow biome");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -35,8 +35,10 @@ public class FrostGiantShard : YggdrasilItem
         player.GetDamage<RunicDamageClass>() += 0.1f;
 
         if (player.ZoneSnow)
+        {
             player.statDefense += 5;
             player.lifeRegen += 5;
+        }
     }
 
     public override void AddRecipes() => CreateRecipe()

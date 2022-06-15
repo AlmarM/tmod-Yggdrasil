@@ -8,7 +8,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class BloodySlabProjectile : YggdrasilProjectile
+public class BloodySlabProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {
@@ -28,7 +28,8 @@ public class BloodySlabProjectile : YggdrasilProjectile
 
     public override void AI()
     {
-        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
+        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood,
+            Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
         d.noGravity = true;
 
         //Lighting.AddLight(Projectile.position, 0, 0.4f, 0.4f);
@@ -48,5 +49,4 @@ public class BloodySlabProjectile : YggdrasilProjectile
             }
         }
     }
-
 }

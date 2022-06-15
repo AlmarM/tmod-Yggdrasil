@@ -18,13 +18,14 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
     public class EvilRock : RunicItem
     {
-		public override void SetStaticDefaults() 
-		{
-			DisplayName.SetDefault("Evil Rock");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Evil Rock");
             Tooltip.SetDefault("");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+
         public override void SetDefaults()
         {
             Item.damage = 8;
@@ -58,7 +59,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         public override bool? UseItem(Player player)
         {
-
             if (player.altFunctionUse == 2)
             {
                 OnRightClick(player);
@@ -71,7 +71,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         protected virtual void OnRightClick(Player player)
         {
-
             // THE FOCUS POWER
 
             RunePlayer runePlayer = player.GetRunePlayer();
@@ -84,9 +83,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 Vector2 Speed = Main.rand.NextVector2Unit();
                 var Damage = Item.damage;
                 var knockback = Item.knockBack;
-                
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
 
+                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback,
+                    player.whoAmI);
             }
 
             // Removing insanity when using a focus power
@@ -101,7 +100,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             }
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position,
+            Vector2 velocity, int type, int damage, float knockback)
         {
             // THE BREATH
 
@@ -115,16 +115,16 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 12);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 6);
-                
+
                 //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
-
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback,
+                    player.whoAmI);
             }
 
             return false;
         }
-        
+
         protected override List<string> GetRunicEffectDescriptions()
         {
             List<string> descriptions = base.GetRunicEffectDescriptions();
@@ -142,16 +142,16 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.CrimtaneBar, 5)
-            .AddTile<DvergrForgeTile>()
-            .Register();
+                .AddIngredient<StoneBlock>()
+                .AddIngredient(ItemID.CrimtaneBar, 5)
+                .AddTile<DvergrForgeTile>()
+                .Register();
 
             CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.DemoniteBar, 5)
-            .AddTile<DvergrForgeTile>()
-            .Register();
+                .AddIngredient<StoneBlock>()
+                .AddIngredient(ItemID.DemoniteBar, 5)
+                .AddTile<DvergrForgeTile>()
+                .Register();
         }
     }
 }

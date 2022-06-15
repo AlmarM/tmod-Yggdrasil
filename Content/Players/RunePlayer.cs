@@ -9,6 +9,7 @@ using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
@@ -98,24 +99,7 @@ public class RunePlayer : ModPlayer
         {
             if (Player.HasEffect<FrostGiantHand>())
             {
-                int projectileCount = 12;
-
-                const float projectileSpeed = 6f;
-                const float radius = 25f;
-
-                float delta = MathF.PI * 2 / projectileCount;
-
-                for (var i = 0; i < projectileCount; i++)
-                {
-                    float theta = delta * i;
-                    var position = target.Center + Vector2.One.RotatedBy(theta) * radius;
-
-                    Vector2 direction = position - target.Center;
-                    direction = Vector2.Normalize(direction);
-                    direction = Vector2.Multiply(direction, projectileSpeed);
-
-                    Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
-                }
+                CreateBlizzardExplosionAroundEntity(12, 6f, 25f, target);
             }
 
             if (Player.HasEffect<OccultHelmet>())
@@ -126,16 +110,13 @@ public class RunePlayer : ModPlayer
 
         if (item.ModItem is RunicItem)
         {
-            
             target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
-            
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<NidhoggTooth>())
         {
             target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
             target.AddBuff(BuffID.Venom, 180);
-            
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<FreyaNecklace>())
@@ -145,7 +126,17 @@ public class RunePlayer : ModPlayer
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }
         }
+    }
 
+    public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+    {
+        if (crit && proj.ModProjectile is RunicProjectile)
+        {
+            if (Player.HasEffect<FrostGiantHand>())
+            {
+                CreateBlizzardExplosionAroundEntity(12, 6f, 25f, target);
+            }
+        }
     }
 
     public override float UseSpeedMultiplier(Item item)
@@ -206,8 +197,6 @@ public class RunePlayer : ModPlayer
 
     public override void PreUpdate()
     {
-        
-
         if (FocusValue > FocusThreshold)
         {
             FocusValue = FocusThreshold;
@@ -215,7 +204,8 @@ public class RunePlayer : ModPlayer
 
         if (InsanityValue >= InsanityThreshold)
         {
-            Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"), (int)(Player.statLifeMax * .25f), 0);
+            Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"),
+                (int)(Player.statLifeMax * .25f), 0);
             InsanityValue = 0;
         }
 
@@ -238,7 +228,6 @@ public class RunePlayer : ModPlayer
                 FocusTimer = 0;
             }
         }
-
     }
 
     public override void ResetEffects()
@@ -255,5 +244,23 @@ public class RunePlayer : ModPlayer
         InsanityThreshold = 25;
         InsanityRemoverValue = 10;
 
+    }
+
+    private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,
+        Entity entity)
+    {
+        float delta = MathF.PI * 2 / projectileCount;
+
+        for (var i = 0; i < projectileCount; i++)
+        {
+            float theta = delta * i;
+            var position = entity.Center + Vector2.One.RotatedBy(theta) * radius;
+
+            Vector2 direction = position - entity.Center;
+            direction = Vector2.Normalize(direction);
+            direction = Vector2.Multiply(direction, projectileSpeed);
+
+            Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
+        }
     }
 }
