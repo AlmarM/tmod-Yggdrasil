@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -10,6 +11,7 @@ using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
@@ -223,6 +225,14 @@ public class RunePlayer : ModPlayer
         InsanityThreshold = 25;
         InsanityRemoverValue = 10;
 
+    }
+
+    public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
+    {
+        return new[] {
+                new Item(ModContent.ItemType<StartingNote>()),
+
+            };
     }
 
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,
