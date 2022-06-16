@@ -36,7 +36,7 @@ public class RunicSlab : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10)
-        .AddIngredient(ItemID.Lens)
+        //.AddIngredient(ItemID.Lens)
         .AddTile(TileID.WorkBenches)
         .Register();
 }
