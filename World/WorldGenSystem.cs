@@ -17,7 +17,7 @@ public class WorldGenSystem : ModSystem
     //*************************************
     //Super Duper Debugging stuff there there
     //*************************************
-    public static bool JustPressed(Keys key)
+    /*public static bool JustPressed(Keys key)
     {
         return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
     }
@@ -29,7 +29,7 @@ public class WorldGenSystem : ModSystem
             new VikingHouseGen().Generate();
         }
 
-    }
+    }*/
     //*************************************
     //Super Duper Debugging stuff there there
     //*************************************

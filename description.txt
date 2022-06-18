@@ -15,6 +15,19 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
+
+0.2.1 - Bug fixes, balance and adition
+New Content
+- Added the Glacier armor set
+- Added the Occult Sword
+
+Fixes and Tweaks
+- Fixed a typo in the Protective Rune Slab. Now shows dmg reduction 5% instead of 50%
+- The Berserker mini-boss low health attack will not trigger 100% of the time anymore
+- Fixed summon mini-viking walking through the floor
+- Zombiking now knock on doors like normal zombies
+- Tweaked spawn rates of certain Vikings
+
 0.2 - Revamp of the Runemaster
 
 - Runemaster has been revamped with new weapons, accessories and armors effects

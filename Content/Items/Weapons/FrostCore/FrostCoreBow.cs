@@ -49,9 +49,9 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 
 		}
 
-
 		public override void AddRecipes() => CreateRecipe()
             .AddIngredient<FrostCoreBar>(8)
-            .Register();
+			.AddTile(TileID.Anvils)
+			.Register();
     }
 }

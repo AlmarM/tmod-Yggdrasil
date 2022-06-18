@@ -61,6 +61,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
         public override void AddRecipes() => CreateRecipe()
             .AddIngredient(ItemID.Book, 1)
             .AddIngredient<FrostCoreBar>(8)
+            .AddTile(TileID.Bookcases)
             .Register();
     }
 }

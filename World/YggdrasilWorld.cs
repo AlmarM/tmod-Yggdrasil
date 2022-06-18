@@ -89,7 +89,7 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ModContent.ItemType<StoneBlock>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
-							itemsToAdd.Add((ItemID.FlurryBoots, Main.rand.Next(1)));
+							itemsToAdd.Add((ItemID.FlurryBoots, 1));
 							itemsToAdd.Add((ItemID.RecallPotion, Main.rand.Next(2, 4)));
 							break;
 					}

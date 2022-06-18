@@ -33,7 +33,7 @@ public class Zomviking : YggdrasilNPC
         NPC.value = 200f;
         AIType = NPCID.Zombie;
         AnimationType = NPCID.Zombie;
-        NPC.aiStyle = 3;
+        //NPC.aiStyle = 3;
         NPC.knockBackResist = 0.55f;
 
         Banner = Item.NPCtoBanner(NPCID.Zombie);

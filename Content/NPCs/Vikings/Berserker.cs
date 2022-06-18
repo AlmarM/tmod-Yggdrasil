@@ -88,6 +88,7 @@ public class Berserker : YggdrasilNPC
 
         Player player = Main.player[NPC.target];
 
+        
         if (NPC.life < (NPC.lifeMax * 0.35f))
         {
             int projectileCount = 5;
@@ -96,17 +97,19 @@ public class Berserker : YggdrasilNPC
             const float radius = 25f;
 
             float delta = MathF.PI * 2 / projectileCount;
-
-            for (var i = 0; i < projectileCount; i++)
+            if (Main.rand.Next(100) < 25)
             {
-                float theta = delta * i;
-                var position = NPC.Center + Vector2.One.RotatedBy(theta) * radius;
+                for (var i = 0; i < projectileCount; i++)
+                {
+                    float theta = delta * i;
+                    var position = NPC.Center + Vector2.One.RotatedBy(theta) * radius;
 
-                Vector2 direction = position - NPC.Center;
-                direction = Vector2.Normalize(direction);
-                direction = Vector2.Multiply(direction, projectileSpeed);
+                    Vector2 direction = position - NPC.Center;
+                    direction = Vector2.Normalize(direction);
+                    direction = Vector2.Multiply(direction, projectileSpeed);
 
-                Projectile.NewProjectile(null, position, direction, ProjectileID.FrostWave, 15, 2, player.whoAmI);
+                    Projectile.NewProjectile(null, position, direction, ProjectileID.FrostWave, 15, 2, player.whoAmI);
+                }
             }
         }
 

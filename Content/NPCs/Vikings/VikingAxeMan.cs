@@ -57,7 +57,7 @@ public class VikingAxeMan : YggdrasilNPC
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow && (spawnInfo.SpawnTileY > Main.worldSurface) ? 0.12f : 0f;
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow ? 0.3f : 0f;
 
     public override void AI()
     {

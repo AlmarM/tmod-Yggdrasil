@@ -89,6 +89,13 @@ public class RunePlayer : ModPlayer
         }
     }
 
+    public override void OnHitByNPC(NPC npc, int damage, bool crit)
+    {
+        if (Player.HasEffect<GlacierHelmet>())
+            npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
+    }
+    
+
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
     {
         if (ApplyRandomBuffChance > 0f && Main.rand.NextFloat() <= ApplyRandomBuffChance)
@@ -152,11 +159,6 @@ public class RunePlayer : ModPlayer
 
     public override bool? CanAutoReuseItem(Item item)
     {
-        if (item.ModItem is RunicItem && Player.HasEffect<TyrHand>())
-        {
-            return true;
-        }
-
         return null;
     }
 
@@ -165,15 +167,6 @@ public class RunePlayer : ModPlayer
     public override void PostUpdateEquips()
     {
 
-        if (Player.HasEffect<RunemasterEmblem>() && RunePower >= 5)
-        {
-            Player.GetCritChance<RunicDamageClass>() += 1;
-        }
-
-        if (Player.HasEffect<TyrHand>() && RunePower >= 4)
-        {
-            Player.GetDamage<RunicDamageClass>() += 0.05f;
-        }
     }
 
     public override void PreUpdate()
