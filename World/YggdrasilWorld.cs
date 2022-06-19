@@ -1,4 +1,7 @@
+using Terraria.UI;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,11 +11,13 @@ using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.UI;
 
 namespace Yggdrasil.World
 {
 	public class YggdrasilWorld : ModSystem
 	{
+		
 		public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
 		{
 			// Fail if the tile at the other end of the check plane isn't also solid

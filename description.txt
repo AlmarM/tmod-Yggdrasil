@@ -20,6 +20,8 @@ Lyker & resP
 New Content
 - Added the Glacier armor set
 - Added the Occult Sword
+- Added the Shiny Sword
+- UI for the Runic weapons to show focus and insanity
 
 Fixes and Tweaks
 - Fixed a typo in the Protective Rune Slab. Now shows dmg reduction 5% instead of 50%
@@ -27,6 +29,7 @@ Fixes and Tweaks
 - Fixed summon mini-viking walking through the floor
 - Zombiking now knock on doors like normal zombies
 - Tweaked spawn rates of certain Vikings
+- Völva is not spawning anymore. Will be kept for the future invasion
 
 0.2 - Revamp of the Runemaster
 

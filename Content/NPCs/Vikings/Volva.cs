@@ -60,7 +60,7 @@ public class Volva : YggdrasilNPC
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow ? 0.1f : 0f;
+    // public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow ? 0.1f : 0f;
   
 
     // @todo encapsulate behavior for composition
