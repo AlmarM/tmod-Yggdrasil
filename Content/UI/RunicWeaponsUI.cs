@@ -68,7 +68,7 @@ namespace Yggdrasil.Content.UI
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
+        {           
             base.DrawSelf(spriteBatch);
 
             var runePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();

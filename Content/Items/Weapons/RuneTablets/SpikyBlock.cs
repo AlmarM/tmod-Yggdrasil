@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
         public override void SetDefaults()
         {
-            Item.damage = 10;
+            Item.damage = 8;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -129,17 +129,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             return false;
         }
 
-        public override void HoldItem(Player player)
-        {
-            base.HoldItem(player);
-
-            RunePlayer runePlayer = player.GetRunePlayer();
-            var centerX = (int)runePlayer.Player.Center.X / 16;
-            var centerY = (int)runePlayer.Player.Center.Y / 16;
-
-            Lighting.AddLight(centerX, centerY, 0.4f, 0.4f, 0.1f);
-        }
-
         protected override List<string> GetRunicEffectDescriptions()
         {
             List<string> descriptions = base.GetRunicEffectDescriptions();
@@ -147,7 +136,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a bunch of spiky balls and applies Spiky";
+            focusLine += "Releases a bunch of spiky balls and applies Spiky buff";
 
             descriptions.Add(focusLine);
 

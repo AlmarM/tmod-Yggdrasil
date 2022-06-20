@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
         public override void SetDefaults()
         {
-            Item.damage = 23;
+            Item.damage = 12;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -111,7 +111,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 10; // The number of projectiles.
+            const int NumProjectiles = 9; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 

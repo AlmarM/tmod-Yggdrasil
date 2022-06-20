@@ -18,10 +18,12 @@ Lyker & resP
 
 0.2.1 - Bug fixes, balance and adition
 New Content
+- UI for the Runic weapons to show focus and insanity
 - Added the Glacier armor set
 - Added the Occult Sword
 - Added the Shiny Sword
-- UI for the Runic weapons to show focus and insanity
+- Added the Jotun armor set
+- Added a new Sturdy Leaf crafting material
 
 Fixes and Tweaks
 - Fixed a typo in the Protective Rune Slab. Now shows dmg reduction 5% instead of 50%
@@ -30,6 +32,8 @@ Fixes and Tweaks
 - Zombiking now knock on doors like normal zombies
 - Tweaked spawn rates of certain Vikings
 - Völva is not spawning anymore. Will be kept for the future invasion
+- Changed sprite of the viking key
+- Nerfed Tablets weapons
 
 0.2 - Revamp of the Runemaster
 

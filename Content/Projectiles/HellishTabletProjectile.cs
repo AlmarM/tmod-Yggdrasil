@@ -17,7 +17,7 @@ public class HellishTabletProjectile : RunicProjectile
         Projectile.timeLeft = 30;
         Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Projectile.alpha = 255;
-        Projectile.penetrate = 3;
+        //Projectile.penetrate = 3;
     }
 
     public override bool OnTileCollide(Vector2 oldVelocity)

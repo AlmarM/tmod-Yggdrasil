@@ -47,9 +47,7 @@ public class OccultHelmet : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
-        player.setBonus = $"Critical hit caused by {runicText} weapons will confuse target" +
-            $"\nIncreases {insanityText} gauge by 3" +
-            "\nApply Occult Buff ";
+        player.setBonus = $"Increases {insanityText} gauge by 3                \nCritical hit caused by {runicText} weapons will confuse target\nApply Occult Buff"; //all the spaces there is a workaround because the text doesnt fit on screen
     
         player.SetEffect<OccultHelmet>();
         player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);

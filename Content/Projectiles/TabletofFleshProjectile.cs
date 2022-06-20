@@ -17,7 +17,7 @@ public class TabletofFleshProjectile : RunicProjectile
         Projectile.timeLeft = 30;
         Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Projectile.alpha = 255;
-        Projectile.penetrate = 4;
+        //Projectile.penetrate = 4;
     }
 
     public override bool OnTileCollide(Vector2 oldVelocity)

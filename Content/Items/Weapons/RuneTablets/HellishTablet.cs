@@ -28,7 +28,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
         public override void SetDefaults()
         {
-            Item.damage = 19;
+            Item.damage = 11;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;

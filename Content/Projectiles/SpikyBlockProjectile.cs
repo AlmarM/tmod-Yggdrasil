@@ -38,11 +38,13 @@ public class SpikyBlockProjectile : RunicProjectile
     {
         Player player = Main.player[Projectile.owner];
 
-        if (Main.rand.NextFloat() < .25f)
+        if (Main.rand.NextFloat() < .10f)
         {
             // @todo clean up in the future
             var x = player.Center.X;
             var y = player.Center.Y;
+
+            int spikeDamage = (damage / 3);
 
             var direction = target.Center - player.Center;
             direction.Normalize();
@@ -52,7 +54,7 @@ public class SpikyBlockProjectile : RunicProjectile
             float speedY = direction.Y * speed;
             int projectileType = ProjectileID.SpikyBall;
 
-            Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, damage, 0,
+            Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, spikeDamage, 0,
                 player.whoAmI);
         }
     }

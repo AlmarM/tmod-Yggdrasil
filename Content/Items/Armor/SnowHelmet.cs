@@ -32,8 +32,7 @@ public class SnowHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "Grants + 1 defense" +
-                          "\nGrants an additional 4 defense in snow biome";
+        player.setBonus = "Grants + 1 defense\nGrants an additional 4 defense in snow biome";
 
         player.statDefense += 1;
 
