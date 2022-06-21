@@ -16,31 +16,31 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class FrostTablet : RunicItem
+    public class JotunTablet : RunicItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frost Tablet");
-            Tooltip.SetDefault("By Odin that's cold!");
+            DisplayName.SetDefault("Jotun Tablet");
+            Tooltip.SetDefault("Made of giants");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 8;
+            Item.damage = 13;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 2;
-            Item.crit = 1;
-            Item.value = Item.sellPrice(0, 0, 23);
-            Item.rare = ItemRarityID.Blue;
+            Item.knockBack = 3;
+            Item.crit = 3;
+            Item.value = Item.sellPrice(0, 5);
+            Item.rare = ItemRarityID.Pink;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<FrostTabletProjectile>();
+            Item.shoot = ModContent.ProjectileType<JotunTabletProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -75,8 +75,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 4;
-            var Type = ProjectileID.BallofFrost;
+            const int ExplosionProjectiles = 6;
+            var Type = ProjectileID.CursedFlameFriendly;
 
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
@@ -106,7 +106,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 4; // The number of projectiles.
+            const int NumProjectiles = 9; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -130,7 +130,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of frost balls around you";
+            focusLine += "Releases a small explosion of crused flames around you";
 
             descriptions.Add(focusLine);
 
@@ -138,8 +138,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient<FrostCoreBar>(5)
+            .AddIngredient<FallenNugget>()
+            .AddIngredient(ItemID.HallowedBar, 10)
             .AddTile<DvergrForgeTile>()
             .Register();
     }

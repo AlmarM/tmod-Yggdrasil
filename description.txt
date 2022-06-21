@@ -3,7 +3,7 @@ It also adds a new class, The Runemaster.
 This mod wants to be an addition to vanilla terraria respecting the normal progression of this game we all like.
 
 NOTE: 
-- The content of this alpha version of the mod follow the progression of the game until hardmode except for runes.
+- Runemaster class content progression is still in development.
 - Runes are probably unbalanced in many ways but go all the way to moonlord
 - If you want to help, feel free to reach out!
 - This is an early alpha version of the mod!
@@ -18,12 +18,16 @@ Lyker & resP
 
 0.2.1 - Bug fixes, balance and adition
 New Content
-- UI for the Runic weapons to show focus and insanity
+- UI for the runemaster weapons to show focus and insanity
 - Added the Glacier armor set
 - Added the Occult Sword
 - Added the Shiny Sword
+- Added the Glacier Sword
 - Added the Jotun armor set
+- Added the Jomsborg armor set
 - Added a new Sturdy Leaf crafting material
+- Added the Glacier Chunk runemaster weapon
+- Added the Jotun Tablet runemaster weapon
 
 Fixes and Tweaks
 - Fixed a typo in the Protective Rune Slab. Now shows dmg reduction 5% instead of 50%

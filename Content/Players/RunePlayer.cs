@@ -11,10 +11,10 @@ using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Projectiles;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Items.Others;
 
 namespace Yggdrasil.Content.Players;
 
@@ -152,6 +152,11 @@ public class RunePlayer : ModPlayer
         if (item.ModItem is RunicItem && Player.HasEffect<BerserkerBoots>())
         {
             speed += 0.1f;
+        }
+
+        if (item.ModItem is RunicItem && Player.HasEffect<JomsborgCasque>())
+        {
+            speed += (float)InsanityValue/100;
         }
 
         return speed;

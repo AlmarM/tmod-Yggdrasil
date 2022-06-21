@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
@@ -16,31 +17,31 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class FrostTablet : RunicItem
+    public class GlacierChunk : RunicItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frost Tablet");
-            Tooltip.SetDefault("By Odin that's cold!");
+            DisplayName.SetDefault("Glacier Chunk");
+            Tooltip.SetDefault("Absolute zero and stuff");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 8;
+            Item.damage = 12;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 2;
-            Item.crit = 1;
-            Item.value = Item.sellPrice(0, 0, 23);
-            Item.rare = ItemRarityID.Blue;
+            Item.knockBack = 3;
+            Item.crit = 3;
+            Item.value = Item.sellPrice(0, 1, 25);
+            Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<FrostTabletProjectile>();
+            Item.shoot = ModContent.ProjectileType<GlacierChunkProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -75,7 +76,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 4;
+            const int ExplosionProjectiles = 8;
             var Type = ProjectileID.BallofFrost;
 
             for (int i = 0; i < ExplosionProjectiles; i++)
@@ -86,6 +87,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
                 Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback,
                     player.whoAmI);
+
+                player.AddBuff(ModContent.BuffType<GlacierBarrier>(), 300);
             }
 
             // Removing insanity when using a focus power
@@ -106,7 +109,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 4; // The number of projectiles.
+            const int NumProjectiles = 9; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -130,7 +133,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of frost balls around you";
+            focusLine += "Releases an explosion of frost balls around you applies Glacier Barrier buff";
 
             descriptions.Add(focusLine);
 
@@ -138,9 +141,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient<FrostCoreBar>(5)
-            .AddTile<DvergrForgeTile>()
+            .AddIngredient<FrostTablet>()
+            .AddIngredient<GlacierShards>(10)
+            .AddTile<DvergrPowerForgeTile>()
             .Register();
     }
 }
