@@ -32,6 +32,7 @@ public class RunePlayer : ModPlayer
     public int InsanityValue { get; set; }
     public int InsanityTimer { get; set; }
     public int InsanityRemoverValue { get; set; }
+    public int RunicProjectilesAdd { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -39,6 +40,7 @@ public class RunePlayer : ModPlayer
     public float ApplyRandomBuffChance { get; set; }
     public float RandomBuffDuration { get; set; }
     public float SlowDebuffValue { get; set; }
+    public float InsanityHurtValue { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -159,6 +161,11 @@ public class RunePlayer : ModPlayer
             speed += (float)InsanityValue/100;
         }
 
+        if (item.ModItem is RunicItem && Player.HasEffect<TheSunBuff>())
+        {
+            speed += 0.1f;
+        }
+
         return speed;
     }
 
@@ -183,8 +190,20 @@ public class RunePlayer : ModPlayer
 
         if (InsanityValue >= InsanityThreshold)
         {
-            Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"),
-                (int)(Player.statLifeMax * .25f), 0);
+            int diff = (int)(Player.statLifeMax2 * InsanityHurtValue);
+            Player.statLife -= diff;
+            CombatText.NewText(Player.Hitbox, CombatText.DamagedFriendly, diff);
+            Player.immuneNoBlink = false;
+            Player.immune = true;
+            Player.immuneTime = 20;
+
+            
+            SoundEngine.PlaySound(SoundID.PlayerHit, Player.position);
+            
+            
+
+            //Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " went insane"),
+            //    (int)(Player.statLifeMax * InsanityHurtValue), 0);
             InsanityValue = 0;
         }
 
@@ -222,6 +241,8 @@ public class RunePlayer : ModPlayer
         FocusThreshold = 10;
         InsanityThreshold = 25;
         InsanityRemoverValue = 10;
+        InsanityHurtValue = 0.25f;
+        RunicProjectilesAdd = 0;
 
     }
 

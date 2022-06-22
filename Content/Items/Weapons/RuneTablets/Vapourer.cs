@@ -16,18 +16,18 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class HellishTablet : RunicItem
+    public class Vapourer : RunicItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tablet of the Underworld");
-            Tooltip.SetDefault("That one's pretty hot");
+            DisplayName.SetDefault("Vapourer");
+            Tooltip.SetDefault("It's the plague!");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 11;
+            Item.damage = 13;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -35,11 +35,11 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             Item.noMelee = true;
             Item.knockBack = 3;
             Item.crit = 3;
-            Item.value = Item.sellPrice(0, 1);
-            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(0, 5);
+            Item.rare = ItemRarityID.Lime;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<HellishTabletProjectile>();
+            Item.shoot = ModContent.ProjectileType<VapourerProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -76,26 +76,17 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 10;
-            const int ExplosionProjectiles2 = 5;
-            var Type = ProjectileID.BallofFire;
-            var Type2 = ModContent.ProjectileType<HellishTabletProjectile>();
-            var Damage = Item.damage;
-            var knockback = Item.knockBack;
-
+            const int ExplosionProjectiles = 6;
+            var Type2 = ModContent.ProjectileType<VapourerProjectileExplosion>();
+            
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
                 Vector2 Speed = Main.rand.NextVector2Unit();
+                var Damage = Item.damage;
+                var knockback = Item.knockBack;
 
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
-
-            }
-            for (int i = 0; i < ExplosionProjectiles2; i++)
-            {
-                Vector2 Speed2 = Main.rand.NextVector2Unit();
-
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed2 * 10, Type2, Damage, knockback, player.whoAmI);
-
+                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type2, Damage, knockback, player.whoAmI);
+                
             }
 
             // Removing insanity when using a focus power
@@ -115,7 +106,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 8; // The number of projectiles.
+            const int NumProjectiles = 10; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -125,28 +116,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
-
                 Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
 
-            }
-
-            if (Main.rand.NextFloat() < .1f)
-            {
-                // @todo clean up in the future
-                var x = player.Center.X;
-                var y = player.Center.Y;
-
-                var direction = Main.MouseWorld - player.Center;
-                direction.Normalize();
-
-                var speed = 6f;
-                float speedX = direction.X * speed;
-                float speedY = direction.Y * speed;
-                int projectileType = ProjectileID.BallofFire;
-
-                Projectile.NewProjectile(null, x, y, speedX, speedY, projectileType, damage, 0,
-                    player.whoAmI);
             }
 
             return false;
@@ -159,7 +130,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases an explosion of projectiles and fireballs";
+            focusLine += "Releases homing projectiles that will weaken targets";
 
             descriptions.Add(focusLine);
 
@@ -167,10 +138,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.Obsidian, 20)
-            .AddIngredient(ItemID.HellstoneBar, 6)
-            .AddTile<DvergrForgeTile>()
+            .AddIngredient<Meadow>()
+            .AddIngredient(ItemID.ButterflyDust)
+            .AddTile<DvergrPowerForgeTile>()
             .Register();        
     }
 }

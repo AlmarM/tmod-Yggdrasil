@@ -87,9 +87,10 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
                 Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback,
                     player.whoAmI);
-
-                player.AddBuff(ModContent.BuffType<GlacierBarrier>(), 300);
+  
             }
+
+            player.AddBuff(ModContent.BuffType<GlacierBarrier>(), 300);
 
             // Removing insanity when using a focus power
             runePlayer.FocusValue = 0;

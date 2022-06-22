@@ -87,11 +87,10 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 var Damage = Item.damage;
                 var knockback = Item.knockBack;
 
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
-
-                player.AddBuff(ModContent.BuffType<SpikyBuff>(), 300);
-
+                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);      
             }
+
+            player.AddBuff(ModContent.BuffType<SpikyBuff>(), 300);
 
             // Removing insanity when using a focus power
             runePlayer.FocusValue = 0;

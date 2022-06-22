@@ -16,7 +16,7 @@ https://discord.gg/ZCb8824q4b
 
 Lyker & resP
 
-0.2.1 - Bug fixes, balance and adition
+0.2.1 - Bug fixes, balance and addition
 New Content
 - UI for the runemaster weapons to show focus and insanity
 - Added the Glacier armor set

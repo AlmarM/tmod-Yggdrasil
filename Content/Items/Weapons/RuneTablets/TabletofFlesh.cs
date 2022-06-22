@@ -22,8 +22,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tablet of Flesh");
-            Tooltip.SetDefault("Are these things moving?" +
-                "\nProjectiles pierce through enemies");
+            Tooltip.SetDefault("Are these things moving?");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
