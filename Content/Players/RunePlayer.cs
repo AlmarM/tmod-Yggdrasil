@@ -41,6 +41,7 @@ public class RunePlayer : ModPlayer
     public float RandomBuffDuration { get; set; }
     public float SlowDebuffValue { get; set; }
     public float InsanityHurtValue { get; set; }
+    public float RunicProjectileSpeedMultiplyer { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -243,6 +244,7 @@ public class RunePlayer : ModPlayer
         InsanityRemoverValue = 10;
         InsanityHurtValue = 0.25f;
         RunicProjectilesAdd = 0;
+        RunicProjectileSpeedMultiplyer = 10f;
 
     }
 

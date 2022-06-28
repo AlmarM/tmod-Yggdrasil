@@ -11,35 +11,37 @@ using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
-using Yggdrasil.Runic;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 {
-    public class ShinyTablet : RunicItem
+    public class Ragnarok : RunicItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shiny Tablet");
-            Tooltip.SetDefault("Generates light");
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(34, 6));
+
+            DisplayName.SetDefault("Ragnarök");
+            Tooltip.SetDefault("The death of Baldr was the beginning of the end");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+
         public override void SetDefaults()
         {
-            Item.damage = 7;
+            Item.damage = 60;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.crit = 1;
-            Item.value = Item.sellPrice(0, 0, 18);
-            Item.rare = ItemRarityID.White;
+            Item.knockBack = 5;
+            Item.crit = 6;
+            Item.value = Item.sellPrice(0, 15);
+            Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<ShinyTabletProjectile>();
+            Item.shoot = ModContent.ProjectileType<RagnarokProjectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
         }
@@ -58,7 +60,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         public override bool? UseItem(Player player)
         {
-
             if (player.altFunctionUse == 2)
             {
                 OnRightClick(player);
@@ -71,13 +72,12 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         protected virtual void OnRightClick(Player player)
         {
-
             // THE FOCUS POWER
 
             RunePlayer runePlayer = player.GetRunePlayer();
 
-            const int ExplosionProjectiles = 9;
-            var Type = ModContent.ProjectileType<ShinyTabletProjectile>();
+            const int ExplosionProjectiles = 5;
+            var Type = ModContent.ProjectileType<RagnarokProjectileExplosion>();
 
             for (int i = 0; i < ExplosionProjectiles; i++)
             {
@@ -85,10 +85,8 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 var Damage = Item.damage;
                 var knockback = Item.knockBack;
 
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
-
-                player.AddBuff(BuffID.Spelunker, 600);
-
+                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, (Damage * 5), knockback,
+                    player.whoAmI);
             }
 
             // Removing insanity when using a focus power
@@ -103,39 +101,37 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             }
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position,
+            Vector2 velocity, int type, int damage, float knockback)
         {
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 3; // The number of projectiles.
+            const int NumProjectiles = 15; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
             for (int i = 0; i < NumProjectiles; i++)
             {
                 Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
-                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
+                float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 28);
+                Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 14);
 
-                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer * 2; // Times 2 cuz that's a badass weapon so projectiles reach farther
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
+                    player.whoAmI);
+            }
 
+            // 1/5 chances of shooting a rune projectile when attacking
+            var Type = ModContent.ProjectileType<RagnarokProjectileLazerShot>();
+            if (Main.rand.NextBool(5))
+            {
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, velocity, Type, damage * 3, knockback,
+                    player.whoAmI);
             }
 
             return false;
-        }
-
-        public override void HoldItem(Player player)
-        {
-            base.HoldItem(player);
-
-            RunePlayer runePlayer = player.GetRunePlayer();
-            var centerX = (int)runePlayer.Player.Center.X / 16;
-            var centerY = (int)runePlayer.Player.Center.Y / 16;
-
-            Lighting.AddLight(centerX, centerY, 0.4f, 0.4f, 0.1f);
         }
 
         protected override List<string> GetRunicEffectDescriptions()
@@ -145,27 +141,13 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a small explosion of projectiles around you & Shows the location of treasure and ore";
+            focusLine += "Bring the end of the world upon your enemies";
 
             descriptions.Add(focusLine);
 
             return descriptions;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.GoldBar, 5)
-            .AddTile(TileID.Anvils)
-            .Register();
-
-            CreateRecipe()
-            .AddIngredient<StoneBlock>()
-            .AddIngredient(ItemID.PlatinumBar, 5)
-            .AddTile(TileID.Anvils)
-            .Register();
-        }
-
+        //Dropped by Moonlord
     }
 }

@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         public override void SetDefaults()
         {
-            Item.damage = 17;
+            Item.damage = 25;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 13;
             Item.useAnimation = 13;
@@ -120,7 +120,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 28);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 14);
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback,
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
+
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
                     player.whoAmI);
 
                 if (Main.rand.Next(100) < 2)
@@ -147,6 +149,6 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             return descriptions;
         }
 
-        //Drop^ped by Golem
+        //Dropped by Golem
     }
 }

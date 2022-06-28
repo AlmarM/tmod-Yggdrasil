@@ -8,30 +8,32 @@ using Yggdrasil.Content.Items.Materials;
 namespace Yggdrasil.Content.Items.Armor;
 
 [AutoloadEquip(EquipType.Legs)]
-public class JomsborgBoots : YggdrasilItem
+public class TrueValhallaSabaton : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Jomsborg Boots");
-        Tooltip.SetDefault($"20% increase movement speed");
+        DisplayName.SetDefault("True Valhalla Sabaton");
+        Tooltip.SetDefault($"30% increase movement speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.Lime;
-        Item.defense = 15;
-        Item.value = Item.sellPrice(0, 4, 80);
+        Item.rare = ItemRarityID.Yellow;
+        Item.defense = 25;
+        Item.value = Item.sellPrice(0, 6);
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.moveSpeed += 0.2f;
+        player.moveSpeed += 0.3f;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<SturdyLeaf>(10)
+        .AddIngredient(ItemID.SquireAltPants) //Valhalla Greaves
+        .AddIngredient<TrueHeroFragment>()
+        .AddIngredient<SunPebble>()
         .AddTile<DvergrPowerForgeTile>()
         .Register();
 }

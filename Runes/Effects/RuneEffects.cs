@@ -30,7 +30,7 @@ public static class RuneEffects
 
     public static void Dispose()
     {
-        _effectCache.Clear();
+        _effectCache?.Clear();
         _effectCache = null;
     }
 }

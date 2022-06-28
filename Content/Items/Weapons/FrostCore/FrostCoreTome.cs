@@ -34,8 +34,6 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
             Item.autoReuse = false;
             Item.shoot = ProjectileID.BallofFrost;
             Item.shootSpeed = 10f;
-            Item.mana = 10;
-
 
         }
 

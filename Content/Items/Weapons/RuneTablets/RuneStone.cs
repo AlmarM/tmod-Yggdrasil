@@ -115,9 +115,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback,
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
                     player.whoAmI);
             }
 

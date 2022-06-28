@@ -16,6 +16,23 @@ https://discord.gg/ZCb8824q4b
 
 Lyker & resP
 
+0.2.2 - Having a full runemaster item progression
+New Content
+- Added the Develish Plate runemaster weapon
+- Added the Vapourer runemaster weapon
+- Added the Sun Tablet runemaster weapon
+- Added the Ragnarök runemaster weapon
+- Added the True Valhalla Warrior runemaster armor set
+- Added new material, Sun Pebble
+- Added new material, True Hero Fragment
+- Added the Glacier Staff
+
+Fixes and Tweaks
+- Tablet related buffs now generate dust when active
+- Reaching the insanity threshold will now always deal 25% max HP dmg
+- Tyr Hand now also buff runic weapon range attack
+- Attemps at fixing the unload issue
+
 0.2.1 - Bug fixes, balance and addition
 New Content
 - UI for the runemaster weapons to show focus and insanity
@@ -54,21 +71,3 @@ Fixes and Tweaks
 - New characters now spawn with a note informing them about a couple of things to help them with the mode and the Runemaster class
 - A note can also be crafted by hand with nothing
 - New mod icon
-
-0.1.3 - Some new items and more balance
-- Runic weapons now display "- Runemaster Class -" in their description
-- Fixed some typos for some item descriptions
-- Vikings are now dropping Blood Drops (Blood Zombies and Dripplers don't drop Blood Drops anymore)
-- Added a new accessory named Freya's Necklace. On hit with a runic weapon, has a chance to generate a heart.
-- Tyr's Hand now requires Blood Drops to be crafted
-- Berserker Boots now add runic attack speed
-- Added a new crafting station, the Dvergr Forge. Used to craft many of the Yggdrasil items.
-- Added a new item, Norseman Horn. Used in the snow biome will summon a Berserker.
-- Added a new mini (micro?) boss, the Berserker. !!This enemy is a placeholder for better AI later!!
-- Runemaster armor Berserker Set is now obtainable by killing a Berserker.
-- Viking Leather set now also grants +1 defense
-- Wooden Armring and Arming now grants +1 def
-- Berserker Ring and Runic Necklace now grants +2 def
-- Obsidian Runic Hammer projectiles disapear quicker
-- New item Aesir Wind, lots of jumps and stuff in there
-- Viking chests have more loots in them (can only be seen upon new world creation)

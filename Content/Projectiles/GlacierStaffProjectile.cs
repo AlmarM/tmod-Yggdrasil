@@ -8,7 +8,7 @@ using Yggdrasil.DamageClasses;
 
 namespace Yggdrasil.Content.Projectiles;
 
-public class VapourerProjectileExplosion : RunicProjectile
+public class GlacierStaffProjectile : RunicProjectile
 {
     public override void SetDefaults()
     {
@@ -17,7 +17,7 @@ public class VapourerProjectileExplosion : RunicProjectile
         Projectile.friendly = true;
         Projectile.timeLeft = 300;
         Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        Projectile.alpha = 255;
+        //Projectile.alpha = 255;
     }
 
     public override void SetStaticDefaults()
@@ -66,14 +66,16 @@ public class VapourerProjectileExplosion : RunicProjectile
             Projectile.velocity = (Projectile.velocity * 20 + homingVect) / 21f;
         }
 
-        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenBlood, Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 2f);
+        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.UnusedWhiteBluePurple, Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 2f);
         d.noGravity = true;
+
+        Lighting.AddLight(Projectile.position, 0.05f, 0.45f, 0.5f);
     }
 
 
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {
-        target.AddBuff(ModContent.BuffType<SicknessDebuff>(), 300);
+        target.AddBuff(BuffID.Frostburn, 180);
     }
 
 }

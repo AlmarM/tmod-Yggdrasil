@@ -30,8 +30,8 @@ public class YggdrasilGlobalNPC : GlobalNPC
             case NPCID.BigMimicHallow:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LokisGift>(), 4));
                 break;
-            case NPCID.Plantera:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
+            case NPCID.Mothron:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TrueHeroFragment>(), 3));
                 break;
         }
     }

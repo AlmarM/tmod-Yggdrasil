@@ -21,13 +21,13 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Develish Plate");
-            Tooltip.SetDefault("Projectiles pass through the terrain");
+            Tooltip.SetDefault("");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 14;
+            Item.damage = 20;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 14;
             Item.useAnimation = 14;
@@ -117,7 +117,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
+
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback, player.whoAmI);
 
             }
 
