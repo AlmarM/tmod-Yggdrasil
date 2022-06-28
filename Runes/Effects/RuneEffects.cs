@@ -9,6 +9,11 @@ public static class RuneEffects
 
     public static T Get<T>(bool newInstance = false) where T : IRuneEffect, new()
     {
+        if (_effectCache == null)
+        {
+            Initialize();
+        }
+
         if (newInstance)
         {
             return new T();

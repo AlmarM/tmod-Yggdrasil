@@ -6,7 +6,6 @@ internal static class Instances
 {
     public static void Create()
     {
-        RuneEffects.Initialize();
     }
 
     public static void Dispose()
