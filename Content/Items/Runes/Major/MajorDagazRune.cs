@@ -23,7 +23,7 @@ internal class MajorDagazRune : Rune
         .AddIngredient<DagazRune>()
         .AddIngredient(ItemID.ShroomiteBar, 40)
         .AddIngredient(ItemID.SniperScope)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

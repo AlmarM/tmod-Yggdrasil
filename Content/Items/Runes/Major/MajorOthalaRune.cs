@@ -24,7 +24,7 @@ internal class MajorOthalaRune : Rune
         .AddIngredient(ItemID.VenusMagnum)
         .AddIngredient(ItemID.SnowballCannon)
         .AddIngredient(ItemID.CandyCornRifle)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -23,7 +23,7 @@ internal class MajorSowiloRune : Rune
         .AddIngredient<SowiloRune>()
         .AddIngredient(ItemID.Flairon)
         .AddIngredient(ItemID.LaserDrill)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

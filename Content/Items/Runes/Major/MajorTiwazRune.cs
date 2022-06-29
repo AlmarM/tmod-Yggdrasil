@@ -23,7 +23,7 @@ internal class MajorTiwazRune : Rune
         .AddIngredient<TiwazRune>()
         .AddIngredient(ItemID.EldMelter)
         .AddIngredient(ItemID.ChargedBlasterCannon)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

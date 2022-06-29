@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
@@ -40,6 +41,7 @@ public class ArmRing : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<WoodArmRing>()
+        .AddIngredient<NordicWood>(10)
         .AddRecipeGroup(RecipeGroupID.IronBar, 2)
         .AddTile(TileID.Anvils)
         .Register();

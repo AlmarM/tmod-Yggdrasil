@@ -24,7 +24,7 @@ internal class MajorNauthizRune : Rune
         .AddIngredient(ItemID.MartianConduitPlating, 50)
         .AddIngredient(ItemID.Ectoplasm, 10)
         .AddIngredient(ItemID.FragmentVortex, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

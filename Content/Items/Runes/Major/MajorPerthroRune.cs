@@ -24,7 +24,7 @@ internal class MajorPerthroRune : Rune
         .AddIngredient<PerthroRune>()
         .AddIngredient(ItemID.InfernoFork)
         .AddIngredient(ItemID.Nanites, 50)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

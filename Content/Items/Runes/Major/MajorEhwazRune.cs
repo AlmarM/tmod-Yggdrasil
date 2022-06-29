@@ -24,7 +24,7 @@ internal class MajorEhwazRune : Rune
         .AddIngredient<EhwazRune>()
         .AddIngredient(ItemID.SpookyHook)
         .AddIngredient(ItemID.IlluminantHook)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

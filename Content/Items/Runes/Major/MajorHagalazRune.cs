@@ -23,7 +23,7 @@ internal class MajorHagalazRune : Rune
         .AddIngredient<HagalazRune>()
         .AddIngredient(ItemID.StaffofEarth)
         .AddIngredient(ItemID.RazorbladeTyphoon)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Runes.Normal;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Runes;
 using Yggdrasil.Runes.Effects;
 
@@ -23,6 +24,7 @@ internal class MajorWunjoRune : Rune
         .AddIngredient(ItemID.CelestialShell)
         .AddIngredient(ItemID.MartianSaucerTrophy)
         .AddIngredient(ItemID.DukeFishronTrophy)
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

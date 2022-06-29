@@ -24,7 +24,7 @@ internal class MajorLaguzRune : Rune
         .AddIngredient<LaguzRune>()
         .AddIngredient(ItemID.SpectreHood)
         .AddIngredient(ItemID.SuperHealingPotion, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

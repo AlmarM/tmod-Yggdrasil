@@ -24,7 +24,7 @@ internal class MajorMannazRune : Rune
         .AddIngredient<MannazRune>()
         .AddIngredient(ItemID.BubbleGun)
         .AddIngredient(ItemID.SolarTablet)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -24,7 +24,7 @@ internal class MajorKenazRune : Rune
         .AddIngredient(ItemID.Tabi)
         .AddIngredient(ItemID.BlackBelt)
         .AddIngredient(ItemID.BlackFairyDust)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

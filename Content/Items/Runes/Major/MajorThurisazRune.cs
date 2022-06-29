@@ -23,7 +23,7 @@ internal class MajorThurisazRune : Rune
         .AddIngredient<ThurisazRune>()
         .AddIngredient(ItemID.WoodenSpike, 10)
         .AddIngredient(ItemID.ThornHook)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

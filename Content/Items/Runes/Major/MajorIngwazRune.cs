@@ -23,7 +23,7 @@ internal class MajorIngwazRune : Rune
         .AddIngredient<IngwazRune>()
         .AddIngredient(ItemID.SunStone)
         .AddIngredient(ItemID.MoonStone)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

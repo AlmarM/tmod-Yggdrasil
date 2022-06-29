@@ -23,7 +23,7 @@ internal class MajorAnsuzRune : Rune
         .AddIngredient<AnsuzRune>()
         .AddIngredient(ItemID.Ectoplasm, 10)
         .AddIngredient(ItemID.HallowedHeadgear)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -23,7 +23,7 @@ internal class MajorAlgizRune : Rune
         .AddIngredient<AlgizRune>()
         .AddIngredient(ItemID.PaladinsShield)
         .AddIngredient(ItemID.BeetleHusk, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

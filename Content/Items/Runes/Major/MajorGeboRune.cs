@@ -23,7 +23,7 @@ internal class MajorGeboRune : Rune
         .AddIngredient<GeboRune>()
         .AddIngredient(ItemID.SpookyWood, 400)
         .AddIngredient(ItemID.PygmyNecklace)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

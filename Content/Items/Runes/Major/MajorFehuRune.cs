@@ -24,7 +24,7 @@ internal class MajorFehuRune : Rune
         .AddIngredient(ItemID.SpectreRobe)
         .AddIngredient(ItemID.FrostBreastplate)
         .AddIngredient(ItemID.EyeoftheGolem)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

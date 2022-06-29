@@ -6,11 +6,11 @@ using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Furniture;
 
-public class VikingChest : YggdrasilItem
+public class NordicWoodWorkbench : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Viking chest");
+        Tooltip.SetDefault("Nordic Wood Work Bench");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -24,13 +24,13 @@ public class VikingChest : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.value = 500;
-        Item.createTile = ModContent.TileType<VikingChestTile>();
+        Item.createTile = ModContent.TileType<NordicWoodWorkbenchTile>();
+        Item.rare = ItemRarityID.White;
     }
 
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<NordicWood>(5)
-            .AddIngredient<FrostCoreBar>(1)
-            .AddTile(TileID.WorkBenches)
-            .Register();
+        .AddIngredient<NordicWood>(5)
+        .Register();
+
+    
 }

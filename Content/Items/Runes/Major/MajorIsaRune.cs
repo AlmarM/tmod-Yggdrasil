@@ -24,7 +24,7 @@ internal class MajorIsaRune : Rune
         .AddIngredient<IsaRune>()
         .AddIngredient(ItemID.LihzahrdBanner)
         .AddIngredient(ItemID.SolarSolenianBanner)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

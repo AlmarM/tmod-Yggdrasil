@@ -23,7 +23,7 @@ internal class MajorUruzRune : Rune
         .AddIngredient<UruzRune>()
         .AddIngredient(ItemID.ButchersChainsaw)
         .AddIngredient(ItemID.PossessedHatchet)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

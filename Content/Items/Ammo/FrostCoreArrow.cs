@@ -38,6 +38,7 @@ namespace Yggdrasil.Content.Items.Ammo
 
 		public override void AddRecipes() => CreateRecipe(10)
 			.AddIngredient<FrostCoreBar>(1)
+			.AddIngredient<NordicWood>(5)
 			.Register();
 	}
 }

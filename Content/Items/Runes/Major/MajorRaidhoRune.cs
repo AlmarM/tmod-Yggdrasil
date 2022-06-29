@@ -23,7 +23,7 @@ internal class MajorRaidhoRune : Rune
         .AddIngredient<RaidhoRune>()
         .AddIngredient(ItemID.PaladinsHammer)
         .AddIngredient(ItemID.ToxicFlask)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

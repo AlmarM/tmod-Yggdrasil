@@ -23,7 +23,7 @@ internal class MajorEihwazRune : Rune
         .AddIngredient<EihwazRune>()
         .AddIngredient(ItemID.GolemFist)
         .AddIngredient(ItemID.FlowerPow)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

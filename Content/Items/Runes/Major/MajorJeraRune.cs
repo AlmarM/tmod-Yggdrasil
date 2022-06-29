@@ -23,7 +23,7 @@ internal class MajorJeraRune : Rune
         .AddIngredient<JeraRune>()
         .AddIngredient(ItemID.PsychoKnife)
         .AddIngredient(ItemID.ShroomiteBar, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

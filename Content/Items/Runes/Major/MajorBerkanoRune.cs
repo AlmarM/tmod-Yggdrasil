@@ -24,7 +24,7 @@ internal class MajorBerkanoRune : Rune
         .AddIngredient<BerkanoRune>()
         .AddIngredient(ItemID.SpectreMask)
         .AddIngredient(ItemID.SunStone)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()
