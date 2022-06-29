@@ -1,5 +1,6 @@
 using Terraria;
 using Yggdrasil.Configs;
+using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;
@@ -17,7 +18,7 @@ public class TiwazEffect : RuneEffect<TiwazEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters damageParameters = CastParameters(effectParameters);
-        // add runic damage
+        player.GetDamage<RunicDamageClass>() += damageParameters.RunicDamageBonus;
     }
 
     public struct Parameters : IRuneEffectParameters

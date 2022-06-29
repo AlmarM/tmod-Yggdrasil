@@ -74,10 +74,10 @@ public static class RuneConfig
         PrefixID.Dangerous,
         PrefixID.Dull,
         PrefixID.Heavy,
-        PrefixID.Large,
+        //PrefixID.Large, //This doesn't affect the runic tablets as it boosts size
         PrefixID.Legendary,
         PrefixID.Light,
-        PrefixID.Massive,
+        //PrefixID.Massive, //This doesn't affect the runic tablets as it boosts size
         PrefixID.Pointy,
         PrefixID.Savage,
         PrefixID.Shameful,

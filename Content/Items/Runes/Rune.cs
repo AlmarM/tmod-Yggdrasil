@@ -61,6 +61,11 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public override void UpdateInventory(Player player)
     {
+        if (_effects == null)
+        {
+            InitializeEffects();
+        }
+
         foreach ((IRuneEffect effect, IRuneEffectParameters parameters) in _effects)
         {
             effect.Apply(player, parameters);

@@ -27,13 +27,13 @@ public static class RuneEffectConfig
     public const string EihwazDescription = "A rune granting strength.";
     public const string MajorEihwazDescription = "A major rune granting strength.";
 
-    public const string MinorFehuDescription = "A minor rune granting luck.";
-    public const string FehuDescription = "A rune granting luck.";
-    public const string MajorFehuDescription = "A major rune granting luck.";
+    public const string MinorFehuDescription = "A minor rune granting fate.";
+    public const string FehuDescription = "A rune granting fate.";
+    public const string MajorFehuDescription = "A major rune granting fate.";
 
     public const string MinorGeboDescription = "A minor rune granting unity.";
     public const string GeboDescription = "A rune granting unity.";
-    public const string MajorGeboDescription = "A major rune granting luck.";
+    public const string MajorGeboDescription = "A major rune granting unity.";
 
     public const string MinorHagalazDescription = "A minor rune granting wrath.";
     public const string HagalazDescription = "A rune granting wrath.";
@@ -75,9 +75,9 @@ public static class RuneEffectConfig
     public const string PerthroDescription = "A rune granting mystery.";
     public const string MajorPerthroDescription = "A major rune granting mystery.";
 
-    public const string MinorRaidhoDescription = "A minor rune granting precision.";
-    public const string RaidhoDescription = "A rune granting precision.";
-    public const string MajorRaidhoDescription = "A major rune granting precision.";
+    public const string MinorRaidhoDescription = "A minor rune granting fury.";
+    public const string RaidhoDescription = "A rune granting fury.";
+    public const string MajorRaidhoDescription = "A major rune granting fury.";
 
     public const string MinorSowiloDescription = "A minor rune granting success.";
     public const string SowiloDescription = "A rune granting success.";

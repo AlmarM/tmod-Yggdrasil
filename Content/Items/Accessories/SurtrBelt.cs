@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
@@ -27,7 +29,7 @@ public class SurtrBelt : YggdrasilItem
     public override void SetDefaults()
     {
         Item.accessory = true;
-        Item.rare = ItemRarityID.Lime;
+        Item.rare = ItemRarityID.Yellow;
         Item.buffType = BuffID.Inferno;
         Item.value = Item.buyPrice(0, 7);
     }
@@ -47,4 +49,12 @@ public class SurtrBelt : YggdrasilItem
         player.buffImmune[BuffID.ShadowFlame] = true;
         player.buffImmune[BuffID.Frostburn] = true;
     }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient(ItemID.InfernoPotion)
+        .AddIngredient(ItemID.LifeforcePotion)
+        .AddIngredient(ItemID.HellstoneBar, 5)
+        .AddIngredient<SunPebble>()
+        .AddTile<DvergrPowerForgeTile>()
+        .Register();
 }
