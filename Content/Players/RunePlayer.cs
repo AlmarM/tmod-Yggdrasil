@@ -132,7 +132,7 @@ public class RunePlayer : ModPlayer
 
         if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>())
         {
-            if (Main.rand.Next(100) < 5)
+            if (Main.rand.Next(100) < 3)
             {
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }

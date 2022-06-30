@@ -13,6 +13,8 @@ public class RunicPotion : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
+        DisplayName.SetDefault("Runic Mead");
+
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         Tooltip.SetDefault($"20% increased {runicText} damage");

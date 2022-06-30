@@ -12,6 +12,8 @@ public class MeadBasic : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
+        DisplayName.SetDefault("Honey Mead");
+
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
         Tooltip.SetDefault($"Increases {insanityText} gauge by 5");

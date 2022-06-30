@@ -5,16 +5,17 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.NPCs.Jungle;
 
-public class Gubbe : YggdrasilNPC
+public class Backahast : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Gubbe");
+        DisplayName.SetDefault("Bäckahäst");
 
-        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.GrayGrunt];
+        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Unicorn];
 
         // Influences how the NPC looks in the Bestiary
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -26,14 +27,14 @@ public class Gubbe : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GrayGrunt);
-        NPC.damage = 20;
-        NPC.defense = 5;
-        NPC.lifeMax = 45;
+        NPC.CloneDefaults(NPCID.Unicorn);
+        NPC.damage = 60;
+        NPC.defense = 30;
+        NPC.lifeMax = 420;
         NPC.value = 200f;
-        AIType = NPCID.GrayGrunt;
-        AnimationType = NPCID.GrayGrunt;
-        NPC.knockBackResist = 0.1f;
+        AIType = NPCID.Unicorn;
+        AnimationType = NPCID.Unicorn;
+        NPC.knockBackResist = 0.7f;
         //npc.buffImmune[BuffID.Confused] = true;
 
     }
@@ -46,11 +47,11 @@ public class Gubbe : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The Gubbe is notoriously grumpy and bad-tempered, and prefers to keep himself to himself")
+				new FlavorTextBestiaryInfoElement("The bäckahäst is a treacherous predator that lurks in streams and lakes.")
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle ? 0.3f : 0f;
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle && Main.hardMode ? 0.3f : 0f;
 
     public override void AI()
     {
@@ -58,8 +59,13 @@ public class Gubbe : YggdrasilNPC
         NPC.netUpdate = true;
     }
 
+    public override void OnHitPlayer(Player player, int damage, bool crit)
+    {
+        player.AddBuff(BuffID.Confused, TimeUtils.SecondsToTicks(2));
+    }
+
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlankRune>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ItemID.Grapes, 40));
     }
 }
