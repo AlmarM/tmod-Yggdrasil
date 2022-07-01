@@ -17,7 +17,7 @@ namespace Yggdrasil.World
 {
 	public class YggdrasilWorld : ModSystem
 	{
-		
+		//Check if an area is flat enough to spawn the viking houses
 		public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
 		{
 			// Fail if the tile at the other end of the check plane isn't also solid
@@ -52,11 +52,11 @@ namespace Yggdrasil.World
 
 		public override void PostWorldGen()
 		{
-			// Place some items in Ice Chests
+			//Adding item to viking chests
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
 			{
 				Chest chest = Main.chest[chestIndex];
-				// If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Ice Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. 
+				
 				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<VikingChestTile>())
 				{
 					var itemsToAdd = new List<(int type, int stack)>();

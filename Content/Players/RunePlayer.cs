@@ -115,7 +115,7 @@ public class RunePlayer : ModPlayer
         {
             if (Player.HasEffect<FrostGiantHand>())
             {
-                CreateBlizzardExplosionAroundEntity(12, 6f, 25f, target);
+                CreateBlizzardExplosionAroundEntity(5, 6f, 25f, target); 
             }
 
             if (Player.HasEffect<OccultHelmet>())
@@ -130,9 +130,9 @@ public class RunePlayer : ModPlayer
             target.AddBuff(BuffID.Venom, 180);
         }
 
-        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>())
+        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>() && target.type != NPCID.TargetDummy)
         {
-            if (Main.rand.Next(100) < 3)
+            if (Main.rand.Next(100) < 1)
             {
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }
@@ -259,8 +259,10 @@ public class RunePlayer : ModPlayer
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,
         Entity entity)
     {
-        float delta = MathF.PI * 2 / projectileCount;
 
+        float delta = MathF.PI * 2 / projectileCount;
+   
+        
         for (var i = 0; i < projectileCount; i++)
         {
             float theta = delta * i;
@@ -270,7 +272,8 @@ public class RunePlayer : ModPlayer
             direction = Vector2.Normalize(direction);
             direction = Vector2.Multiply(direction, projectileSpeed);
 
-            Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
-        }
+            Projectile.NewProjectile(null, position, direction, ModContent.ProjectileType<GlacierStaffProjectile>(), 15, 2, Player.whoAmI);
+        }  
+        
     }
 }

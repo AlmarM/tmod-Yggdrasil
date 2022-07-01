@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.NPCs.Vikings;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.Items.Others;
 
@@ -15,7 +16,7 @@ public class NorsemanHorn : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Norseman Horn");
-        Tooltip.SetDefault("Use in the snow to summon a Berserker");
+        Tooltip.SetDefault("Might attract unwanted foes when used during the day");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -34,21 +35,15 @@ public class NorsemanHorn : YggdrasilItem
         Item.UseSound = SoundID.Item43;
     }
 
-    public override bool CanUseItem(Player player)
-    {
-        // If you decide to use the below UseItem code, you have to include !NPC.AnyNPCs(id), as this is also the check the server does when receiving MessageID.SpawnBoss.
-        // If you want more constraints for the summon item, combine them as boolean expressions:
-        //    return !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<MinionBossBody>()); would mean "not daytime and no MinionBossBody currently alive"
-        return !NPC.AnyNPCs(ModContent.NPCType<Berserker>()) && player.ZoneSnow;
-    }
+    public override bool CanUseItem(Player player) => !VikingInvasionWorld.vikingInvasion && Main.dayTime && player.ZoneOverworldHeight;
 
     public override bool? UseItem(Player player)
     {
-        if (player.ZoneSnow)
-        {
-            NPC.NewNPC(null, (int)player.position.X, (int)player.position.Y - 200, ModContent.NPCType<Berserker>());
-            SoundEngine.PlaySound(SoundID.Thunder, player.position);
-        }
+        //Spawns the viking invasion
+        Main.NewText("The vikings are on their way!", 174, 128, 79);
+        VikingInvasionWorld.vikingInvasion = true;
+        if (Main.netMode != NetmodeID.SinglePlayer)
+            NetMessage.SendData(MessageID.WorldData);
         return true;
     }
 

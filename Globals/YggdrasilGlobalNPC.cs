@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -5,6 +6,8 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
+using Yggdrasil.World;
+using Yggdrasil.Content.NPCs.Vikings;
 
 namespace Yggdrasil.Globals;
 
@@ -34,5 +37,34 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TrueHeroFragment>(), 3));
                 break;
         }
+    }
+    public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+    {
+        //Changing the max spawn and spawn rate
+        if (VikingInvasionWorld.vikingInvasion && player.ZoneOverworldHeight)
+        {
+            maxSpawns = (int)(maxSpawns * 2f);
+            spawnRate = (int)(spawnRate * 2f);
+        }
+    }
+    public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+    { 
+        //Setting the new spawn pool of vikings
+        if (VikingInvasionWorld.vikingInvasion && spawnInfo.Player.ZoneOverworldHeight)
+        {
+            pool.Add(ModContent.NPCType<VikingSwordMan>(), 5f);
+            pool.Add(ModContent.NPCType<VikingArcher>(), 3f);
+            pool.Add(ModContent.NPCType<FemaleVikingArcher>(), 3f);
+            pool.Add(ModContent.NPCType<VikingAxeMan>(), 3f);
+            pool.Add(ModContent.NPCType<VikingShieldMaiden>(), 4f);
+
+            if (!NPC.AnyNPCs(ModContent.NPCType<Volva>()))
+                pool.Add(ModContent.NPCType<Volva>(), .8f);
+
+            if (!NPC.AnyNPCs(ModContent.NPCType<Berserker>()))
+                pool.Add(ModContent.NPCType<Berserker>(), .4f);
+        }
+
+        return;
     }
 }
