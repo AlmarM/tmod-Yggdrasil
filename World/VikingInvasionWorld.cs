@@ -16,16 +16,15 @@ using Terraria.ModLoader.IO;
 
 namespace Yggdrasil.World
 {
-	public class VikingInvasionWorld : ModSystem
-	{
-		public static bool vikingInvasion = false;
+    public class VikingInvasionWorld : ModSystem
+    {
+        public static bool vikingInvasion = false;
         public static bool downedVikingInvasion = false;
-        public static bool dayTimeSwitched;
-        private static bool dayTimeLast;
+        public static int vikingKilled = 0;
 
         public override void SaveWorldData(TagCompound tag)
         {
-			var data = new TagCompound();
+            var data = new TagCompound();
             var downed = new List<string>();
 
             if (downedVikingInvasion)
@@ -33,7 +32,7 @@ namespace Yggdrasil.World
 
             data.Add("downed", downed);
             data.Add("vikinginvasion", vikingInvasion);
-		}
+        }
 
         public override void LoadWorldData(TagCompound tag)
         {
@@ -47,30 +46,49 @@ namespace Yggdrasil.World
         public override void OnWorldLoad()
         {
             vikingInvasion = false;
-            dayTimeSwitched = false;
-            dayTimeLast = Main.dayTime;
+            vikingKilled = 0;
         }
 
         public override void PostUpdateWorld()
         {
-            if (Main.dayTime != dayTimeLast)
-                dayTimeSwitched = true;
-            else
-                dayTimeSwitched = false;
+            //Viking leaves if daytime comes
+            if (Main.dayTime && vikingInvasion)
+            {
+                Main.NewText("The vikings have left!", 174, 128, 79);
+                vikingInvasion = false;
+                vikingKilled = 0;
+            }
 
-            dayTimeLast = Main.dayTime;
+            //Invasion is repelled if 200 vikings are killed
+            if (vikingInvasion && vikingKilled >= 200)
+            {
+                Main.NewText("The vikings have been defeated!", 174, 128, 79);
+                vikingInvasion = false;
+                vikingKilled = 0;
+            }
 
-            if (vikingInvasion && dayTimeSwitched && !downedVikingInvasion)
+            //Set that the invasion was successfuly repelled at 200kill if it's not done already
+            if (vikingInvasion && vikingKilled >= 200 && !downedVikingInvasion)
                 downedVikingInvasion = true;
             
-            //A full day cycle ends the invasion
-            if (dayTimeSwitched)
-            {
-                if (!Main.dayTime && vikingInvasion)
-                    vikingInvasion = false;
-            }
+
+            //if (vikingInvasion)
+            //Main.NewText(vikingKilled);
+
         }
+
     }
 
-	
+    public class VikingInvasionWorldEffect : ModSceneEffect
+    {
+        public override int Music => MusicID.OtherworldlyInvasion;
+
+        public override bool IsSceneEffectActive(Player player)
+        {
+            return VikingInvasionWorld.vikingInvasion;
+        }
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
+
+    }
 }

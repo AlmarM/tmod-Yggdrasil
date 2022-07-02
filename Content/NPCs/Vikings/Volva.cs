@@ -10,6 +10,7 @@ using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -221,9 +222,10 @@ public class Volva : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 10));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
+
     }
 
     public override void HitEffect(int hitDirection, double damage)
@@ -237,5 +239,11 @@ public class Volva : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 1;
     }
 }

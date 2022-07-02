@@ -9,6 +9,7 @@ using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -113,5 +114,11 @@ public class Berserker : YggdrasilNPC
             }
         }
 
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 5;
     }
 }

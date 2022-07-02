@@ -3,8 +3,10 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -26,7 +28,7 @@ public class VikingSpearman : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GoblinWarrior);
+        //NPC.CloneDefaults(NPCID.GoblinWarrior);
         NPC.width = 34;
         NPC.height = 40;
         NPC.damage = 35;
@@ -39,6 +41,9 @@ public class VikingSpearman : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = NPCID.GoblinWarrior;
         AnimationType = 213;
+
+        Banner = ModContent.NPCType<VikingSpearman>();
+        BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -53,14 +58,6 @@ public class VikingSpearman : YggdrasilNPC
             });
     }
 
-    /*public override float SpawnChance(NPCSpawnInfo spawnInfo) 
-    {
-        if(YggdrasilWorld.vikingInvasionUp)
-        {
-            return SpawnCondition.Overworld.Chance * 0.5f;
-        }
-        return 0f;
-    }*/
 
     public override void AI()
     {
@@ -70,7 +67,7 @@ public class VikingSpearman : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSpear>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSpear>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
@@ -85,5 +82,11 @@ public class VikingSpearman : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 1;
     }
 }

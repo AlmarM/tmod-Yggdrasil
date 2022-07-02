@@ -4,9 +4,11 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -28,7 +30,7 @@ public class VikingShieldMaiden : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GoblinWarrior);
+        //NPC.CloneDefaults(NPCID.GoblinWarrior);
         NPC.width = 30;
         NPC.height = 40;
         NPC.damage = 30;
@@ -43,6 +45,9 @@ public class VikingShieldMaiden : YggdrasilNPC
         AnimationType = 213;
         NPC.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Poisoned] = true;
+
+        Banner = ModContent.NPCType<VikingShieldMaiden>();
+        BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -66,9 +71,9 @@ public class VikingShieldMaiden : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 100));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 20));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
@@ -83,5 +88,11 @@ public class VikingShieldMaiden : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 1;
     }
 }

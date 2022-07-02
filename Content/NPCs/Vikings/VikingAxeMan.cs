@@ -4,6 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
@@ -41,8 +42,9 @@ public class VikingAxeMan : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = 213;
         AnimationType = 213;
-        //Banner = Item.NPCtoBanner(NPCID.Zombie); 
-        //BannerItem = Item.BannerToItem(Banner); 
+
+        Banner = ModContent.NPCType<VikingAxeMan>();
+        BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -67,8 +69,8 @@ public class VikingAxeMan : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 10));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 

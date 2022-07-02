@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.World
@@ -166,7 +167,7 @@ namespace Yggdrasil.World
 				case 2:
 					return new TileData(TileID.SnowBlock);
 				case 3:
-					return new TileData(TileID.BorealWood);
+					return new TileData(ModContent.TileType<NordicWoodTile>());
 				case 4:
 					return new TileData(TileID.WoodenBeam);
 				case 5:

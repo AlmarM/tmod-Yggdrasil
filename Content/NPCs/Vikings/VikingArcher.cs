@@ -4,9 +4,11 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -28,7 +30,7 @@ public class VikingArcher : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GoblinArcher);
+        //NPC.CloneDefaults(NPCID.GoblinArcher);
         NPC.width = 18;
         NPC.height = 40;
         NPC.damage = 30;
@@ -41,6 +43,9 @@ public class VikingArcher : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = NPCID.GoblinArcher;
         AnimationType = NPCID.GoblinArcher;
+
+        Banner = ModContent.NPCType<VikingArcher>();
+        BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -65,8 +70,8 @@ public class VikingArcher : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingBow>(), 10));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingBow>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
@@ -81,5 +86,11 @@ public class VikingArcher : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 1;
     }
 }

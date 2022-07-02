@@ -5,16 +5,17 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Banners;
 
-namespace Yggdrasil.Content.NPCs.Snow;
+namespace Yggdrasil.Content.NPCs.Night;
 
-public class Zomviking : YggdrasilNPC
+public class Sliking : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Zomviking");
+        DisplayName.SetDefault("Sliking");
 
-        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
+        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Slimer];
 
         // Influences how the NPC looks in the Bestiary
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -26,18 +27,18 @@ public class Zomviking : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.Zombie);
-        NPC.damage = 20;
-        NPC.defense = 9;
-        NPC.lifeMax = 80;
+        NPC.CloneDefaults(NPCID.Slimer);
+        NPC.damage = 50;
+        NPC.defense = 22;
+        NPC.lifeMax = 65;
         NPC.value = 200f;
-        AIType = NPCID.Zombie;
-        AnimationType = NPCID.Zombie;
+        AIType = NPCID.Slimer;
+        AnimationType = NPCID.Slimer;
         //NPC.aiStyle = 3;
-        NPC.knockBackResist = 0.55f;
+        NPC.knockBackResist = 0.3f;
 
-        Banner = Item.NPCtoBanner(NPCID.Zombie);
-        BannerItem = Item.BannerToItem(Banner);
+        //Banner = ModContent.NPCType<Sliking>();
+        //BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -54,12 +55,16 @@ public class Zomviking : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        return SpawnCondition.OverworldNightMonster.Chance;
+        if (Main.hardMode)
+        {
+            return SpawnCondition.OverworldNightMonster.Chance;
+        }
+        return 0f;
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArmRing>(), 100));
+        //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArmRing>(), 100));
     }
 
     public override void AI()

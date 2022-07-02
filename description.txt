@@ -15,11 +15,13 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2.3 - New items
+0.2.3 - The Viking invasion
 New Content
+- The Viking invasion is back! Use a norseman horn during the night and brace for impact.
 - Added the Frost Giant Belt
 - Added the Two Worlds Belt
 - Added new jungle hardmode enemy, the Bäckahäst
+- Added the Lunar Memorial runemaster weapon
 
 Fixes and Tweaks
 - Slightly changed Clacier Shards sprite

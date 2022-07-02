@@ -16,7 +16,7 @@ public class NorsemanHorn : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Norseman Horn");
-        Tooltip.SetDefault("Might attract unwanted foes when used during the day");
+        Tooltip.SetDefault("Might attract unwanted foes when used during the night");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -35,12 +35,12 @@ public class NorsemanHorn : YggdrasilItem
         Item.UseSound = SoundID.Item43;
     }
 
-    public override bool CanUseItem(Player player) => !VikingInvasionWorld.vikingInvasion && Main.dayTime && player.ZoneOverworldHeight;
+    public override bool CanUseItem(Player player) => !VikingInvasionWorld.vikingInvasion && !Main.dayTime && player.ZoneOverworldHeight;
 
     public override bool? UseItem(Player player)
     {
         //Spawns the viking invasion
-        Main.NewText("The vikings are on their way!", 174, 128, 79);
+        Main.NewText("The vikings are here!", 174, 128, 79);
         VikingInvasionWorld.vikingInvasion = true;
         if (Main.netMode != NetmodeID.SinglePlayer)
             NetMessage.SendData(MessageID.WorldData);
@@ -50,7 +50,7 @@ public class NorsemanHorn : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
          .AddIngredient<BloodDrops>(5)
          .AddIngredient<FrostEssence>()
-         .AddIngredient(ItemID.BorealWood, 10)
+         .AddIngredient<NordicWood>(5)
          .AddTile<DvergrForgeTile>()
          .Register();
 }

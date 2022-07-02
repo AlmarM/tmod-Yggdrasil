@@ -7,6 +7,8 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.World;
+using Yggdrasil.Content.NPCs;
+using Yggdrasil.Content.NPCs.Jungle;
 using Yggdrasil.Content.NPCs.Vikings;
 
 namespace Yggdrasil.Globals;
@@ -43,26 +45,30 @@ public class YggdrasilGlobalNPC : GlobalNPC
         //Changing the max spawn and spawn rate
         if (VikingInvasionWorld.vikingInvasion && player.ZoneOverworldHeight)
         {
-            maxSpawns = (int)(maxSpawns * 2f);
-            spawnRate = (int)(spawnRate * 2f);
+            maxSpawns = (int)(maxSpawns * 4f);
+            spawnRate = 6;
         }
     }
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
     { 
+
         //Setting the new spawn pool of vikings
         if (VikingInvasionWorld.vikingInvasion && spawnInfo.Player.ZoneOverworldHeight)
         {
+            pool.Clear();
+
             pool.Add(ModContent.NPCType<VikingSwordMan>(), 5f);
             pool.Add(ModContent.NPCType<VikingArcher>(), 3f);
             pool.Add(ModContent.NPCType<FemaleVikingArcher>(), 3f);
             pool.Add(ModContent.NPCType<VikingAxeMan>(), 3f);
+            pool.Add(ModContent.NPCType<VikingSpearman>(), 2f);
             pool.Add(ModContent.NPCType<VikingShieldMaiden>(), 4f);
 
             if (!NPC.AnyNPCs(ModContent.NPCType<Volva>()))
-                pool.Add(ModContent.NPCType<Volva>(), .8f);
+                pool.Add(ModContent.NPCType<Volva>(), .5f);
 
             if (!NPC.AnyNPCs(ModContent.NPCType<Berserker>()))
-                pool.Add(ModContent.NPCType<Berserker>(), .4f);
+                pool.Add(ModContent.NPCType<Berserker>(), .3f);
         }
 
         return;
