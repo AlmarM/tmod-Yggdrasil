@@ -20,6 +20,8 @@ internal class MajorEhwazRune : Rune
 
     public override int Rarity => ItemRarityID.Lime;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<EhwazRune>()
         .AddIngredient(ItemID.SpookyHook)

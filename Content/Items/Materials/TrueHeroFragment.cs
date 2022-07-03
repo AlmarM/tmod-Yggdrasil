@@ -1,5 +1,6 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria;
 
 namespace Yggdrasil.Content.Items.Materials;
 
@@ -17,6 +18,7 @@ public class TrueHeroFragment : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Yellow;
+        Item.value = Item.buyPrice(0, 5);
     }
 
 }

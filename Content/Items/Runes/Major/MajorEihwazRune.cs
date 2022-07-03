@@ -19,6 +19,8 @@ internal class MajorEihwazRune : Rune
 
     public override int Rarity => ItemRarityID.LightRed;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<EihwazRune>()
         .AddIngredient(ItemID.GolemFist)

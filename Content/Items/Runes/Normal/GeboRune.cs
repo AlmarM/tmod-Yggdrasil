@@ -21,6 +21,8 @@ internal class GeboRune : Rune
 
     public override int Rarity => ItemRarityID.Pink;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorGeboRune>()
         .AddIngredient(ItemID.SummonerEmblem)

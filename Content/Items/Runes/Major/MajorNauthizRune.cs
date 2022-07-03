@@ -19,6 +19,8 @@ internal class MajorNauthizRune : Rune
 
     public override int Rarity => ItemRarityID.Red;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<NauthizRune>()
         .AddIngredient(ItemID.MartianConduitPlating, 50)

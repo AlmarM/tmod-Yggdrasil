@@ -21,6 +21,8 @@ internal class SowiloRune : Rune
 
     public override int Rarity => ItemRarityID.Pink;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorSowiloRune>()
         .AddIngredient(ItemID.UnicornHorn, 10)

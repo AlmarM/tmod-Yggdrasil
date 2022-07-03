@@ -21,6 +21,8 @@ internal class OthalaRune : Rune
 
     public override int Rarity => ItemRarityID.LightPurple;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorOthalaRune>()
         .AddIngredient(ItemID.EndlessQuiver)

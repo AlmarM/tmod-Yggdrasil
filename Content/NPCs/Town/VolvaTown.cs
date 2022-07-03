@@ -19,6 +19,9 @@ using Yggdrasil.World;
 using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Consumables;
+using Yggdrasil.Content.Items.Runes.Minor;
+using Yggdrasil.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.NPCs.Town
 {
@@ -93,12 +96,12 @@ namespace Yggdrasil.Content.NPCs.Town
 		}
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money)
 		{
-			if (VikingInvasionWorld.downedVikingInvasion)
-			{
-				return true;
-			}
-
-			return false;
+			//if (VikingInvasionWorld.downedVikingInvasion)
+			//{
+			//	return true; ModContent.ItemType<VikingDistaff>()
+			//}
+			
+			return Main.player.Any(x => x.active && x.inventory.Any(y => y.type == ModContent.ItemType<VikingDistaff>()));
 		}
 
 		public override List<string> SetNPCNameList()
@@ -118,16 +121,10 @@ namespace Yggdrasil.Content.NPCs.Town
 		{
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 
-			/*int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-			if (partyGirl >= 0 && Main.rand.NextBool(4)) {
-				chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.PartyGirlDialogue", Main.npc[partyGirl].GivenName));
-			}*/
 			// These are things that the NPC has a chance of telling you when you talk to it.
-			chat.Add(Language.GetTextValue("Hejsan"));/*
-			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue2"));
-			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.StandardDialogue3"));
-			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.CommonDialogue"), 5.0);
-			chat.Add(Language.GetTextValue("Mods.ExampleMod.Dialogue.ExamplePerson.RareDialogue"), 0.1);*/
+			chat.Add(Language.GetTextValue("Hejsan"));
+			chat.Add(Language.GetTextValue("By Freya, this part of the world is lovely"));
+			chat.Add(Language.GetTextValue("On my way here I came across a weird looking merchant"), 0.2);
 
 			return chat; // chat is implicitly cast to a string.
 		}
@@ -175,11 +172,30 @@ namespace Yggdrasil.Content.NPCs.Town
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
 			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<VikingDistaff>());
-			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<VikingBow>());
-			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<VikingDaneAxe>());
-			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<VikingSpear>());
-			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<VikingSword>());
-			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BloodDrops>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ArmRing>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RuneBag>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RunicPotion>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MeadBasic>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FrostEssence>());
+			shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Linnen>());
+
+			if (NPC.downedBoss1)
+			{
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MinorAlgizRune>());
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MinorBerkanoRune>());
+			}
+
+			if (NPC.downedBoss3)
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultShard>());
+
+			if (NPC.downedPlantBoss)
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SturdyLeaf>());
+
+			if (NPC.downedGolemBoss)
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SunPebble>());	
+			
+			if (NPC.downedAncientCultist)
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TrueHeroFragment>());
 		}
 	}
 }

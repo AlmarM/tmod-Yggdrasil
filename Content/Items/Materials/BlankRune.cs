@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 
@@ -20,6 +21,7 @@ public class BlankRune : YggdrasilItem
         Item.height = 32;
         Item.rare = ItemRarityID.White;
         Item.maxStack = 999;
+        Item.value = Item.buyPrice(0, 0, 0, 4);
     }
 
     public override void AddRecipes() => CreateRecipe()

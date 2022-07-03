@@ -21,6 +21,8 @@ internal class UruzRune : Rune
 
     public override int Rarity => ItemRarityID.LightRed;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorUruzRune>()
         .AddIngredient(ItemID.TitanGlove)

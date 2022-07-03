@@ -13,14 +13,21 @@ using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
 using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace Yggdrasil.World
 {
     public class VikingInvasionWorld : ModSystem
     {
-        public static bool vikingInvasion = false;
-        public static bool downedVikingInvasion = false;
-        public static int vikingKilled = 0;
+        public static bool vikingInvasion;
+        public static bool downedVikingInvasion;
+        public static int vikingKilled;
+        public override void OnWorldLoad()
+        {
+            vikingInvasion = false;
+            vikingKilled = 0;
+            downedVikingInvasion = false;
+        }
 
         public override void SaveWorldData(TagCompound tag)
         {
@@ -43,10 +50,16 @@ namespace Yggdrasil.World
             vikingInvasion = tag.GetBool("vikinginvasion");
         }
 
-        public override void OnWorldLoad()
+        public override void NetSend(BinaryWriter writer)
         {
-            vikingInvasion = false;
-            vikingKilled = 0;
+            var flags = new BitsByte();
+            flags[1] = downedVikingInvasion;
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            downedVikingInvasion = flags[1];
         }
 
         public override void PostUpdateWorld()
@@ -55,6 +68,8 @@ namespace Yggdrasil.World
             if (vikingInvasion && vikingKilled >= 200 && !downedVikingInvasion)
             {
                 downedVikingInvasion = true;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                    NetMessage.SendData(MessageID.WorldData);
             }
 
             //Viking leaves if daytime comes
@@ -74,7 +89,7 @@ namespace Yggdrasil.World
             }
 
             //if (downedVikingInvasion)
-           // Main.NewText("ItsDown");
+            //Main.NewText("ItsDown");
 
         }
 

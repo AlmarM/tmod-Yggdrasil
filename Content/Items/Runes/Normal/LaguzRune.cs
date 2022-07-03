@@ -22,6 +22,8 @@ internal class LaguzRune : Rune
 
     public override int Rarity => ItemRarityID.Lime;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorLaguzRune>()
         .AddIngredient(ItemID.GreaterHealingPotion, 10)

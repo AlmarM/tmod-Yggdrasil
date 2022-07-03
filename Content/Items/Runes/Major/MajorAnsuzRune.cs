@@ -19,6 +19,8 @@ internal class MajorAnsuzRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<AnsuzRune>()
         .AddIngredient(ItemID.Ectoplasm, 10)

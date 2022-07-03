@@ -23,6 +23,8 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public virtual int Rarity => ItemRarityID.White;
 
+    public virtual int Value => 200;
+
     public virtual int RunePower => 1;
 
     public override void SetStaticDefaults()
@@ -36,6 +38,7 @@ public abstract class Rune : YggdrasilItem, IRune
         Item.height = 34;
         Item.maxStack = RuneConfig.MaxRuneStack;
         Item.rare = Rarity;
+        Item.value = Value;
     }
 
     public override void OnCreate(ItemCreationContext context)

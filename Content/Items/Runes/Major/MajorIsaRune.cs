@@ -20,6 +20,8 @@ internal class MajorIsaRune : Rune
 
     public override int Rarity => ItemRarityID.Cyan;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<IsaRune>()
         .AddIngredient(ItemID.LihzahrdBanner)

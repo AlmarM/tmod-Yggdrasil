@@ -22,6 +22,8 @@ internal class EhwazRune : Rune
 
     public override int Rarity => ItemRarityID.Orange;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorEhwazRune>()
         .AddIngredient(ItemID.AsphaltBlock, 50)

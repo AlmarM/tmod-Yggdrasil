@@ -1,4 +1,5 @@
 using Terraria.ID;
+using Terraria;
 
 namespace Yggdrasil.Content.Items.Materials;
 
@@ -14,5 +15,7 @@ public class OccultShard : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Green;
+        Item.value = Item.buyPrice(0, 0, 2);
+
     }
 }

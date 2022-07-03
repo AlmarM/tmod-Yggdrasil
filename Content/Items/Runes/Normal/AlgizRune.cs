@@ -21,6 +21,8 @@ internal class AlgizRune : Rune
 
     public override int Rarity => ItemRarityID.Lime;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorAlgizRune>()
         .AddIngredient(ItemID.HallowedBar, 10)

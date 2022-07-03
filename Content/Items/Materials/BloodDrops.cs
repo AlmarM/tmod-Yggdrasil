@@ -1,5 +1,6 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria;
 
 namespace Yggdrasil.Content.Items.Materials;
 
@@ -17,6 +18,7 @@ public class BloodDrops : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.White;
+        Item.value = Item.buyPrice(0, 0, 0, 50);
     }
 
 }

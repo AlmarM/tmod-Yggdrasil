@@ -22,6 +22,8 @@ internal class BerkanoRune : Rune
 
     public override int Rarity => ItemRarityID.Lime;
 
+    public override int Value => 1000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorBerkanoRune>()
         .AddIngredient(ItemID.MoonStone)
