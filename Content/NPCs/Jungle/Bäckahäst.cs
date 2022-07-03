@@ -13,7 +13,7 @@ public class Backahast : YggdrasilNPC
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Bäckahäst");
+        DisplayName.SetDefault("Brook Horse");
 
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Unicorn];
 
@@ -47,7 +47,7 @@ public class Backahast : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The bäckahäst is a treacherous predator that lurks in streams and lakes.")
+				new FlavorTextBestiaryInfoElement("The Brook Horse is a treacherous predator that lurks in streams and lakes.")
             });
     }
 

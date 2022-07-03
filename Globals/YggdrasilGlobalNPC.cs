@@ -69,6 +69,13 @@ public class YggdrasilGlobalNPC : GlobalNPC
 
             if (!NPC.AnyNPCs(ModContent.NPCType<Berserker>()))
                 pool.Add(ModContent.NPCType<Berserker>(), .3f);
+
+            //Hardmode
+            if (Main.hardMode)
+            {
+                pool.Add(ModContent.NPCType<GrayWolf>(), 1f);
+                pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);
+            }
         }
 
         return;

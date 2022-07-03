@@ -51,8 +51,14 @@ namespace Yggdrasil.World
 
         public override void PostUpdateWorld()
         {
+            //Set that the invasion was successfuly repelled at 200kill if it's not done already
+            if (vikingInvasion && vikingKilled >= 200 && !downedVikingInvasion)
+            {
+                downedVikingInvasion = true;
+            }
+
             //Viking leaves if daytime comes
-            if (Main.dayTime && vikingInvasion)
+            if (!Main.dayTime && vikingInvasion)
             {
                 Main.NewText("The vikings have left!", 174, 128, 79);
                 vikingInvasion = false;
@@ -67,13 +73,8 @@ namespace Yggdrasil.World
                 vikingKilled = 0;
             }
 
-            //Set that the invasion was successfuly repelled at 200kill if it's not done already
-            if (vikingInvasion && vikingKilled >= 200 && !downedVikingInvasion)
-                downedVikingInvasion = true;
-            
-
-            //if (vikingInvasion)
-            //Main.NewText(vikingKilled);
+            //if (downedVikingInvasion)
+           // Main.NewText("ItsDown");
 
         }
 

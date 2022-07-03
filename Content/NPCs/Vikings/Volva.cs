@@ -222,7 +222,7 @@ public class Volva : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 10));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
 

@@ -129,46 +129,6 @@ public class WorldGenSystem : ModSystem
                         (ushort)ModContent.TileType<VikingChestTile>(), true, style: 1);
                     success = chestSpawn != -1;
 
-                    /*int chestIndex = chestSpawn;
-
-                    if (chestIndex != -1)
-                    {
-                        Chest chest = Main.chest[chestIndex];
-                        // itemsToAdd will hold type and stack data for each item we want to add to the chest
-                        var itemsToAdd = new List<(int type, int stack)>();
-
-                        // Using a switch statement and a random choice to add sets of items.
-                        switch (Main.rand.Next(4))
-                        {
-                            case 0:
-                                itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
-                                break;
-                            case 1:
-                                itemsToAdd.Add((ModContent.ItemType<BerserkerRing>(), 1));
-                                break;
-                            case 2:
-                                itemsToAdd.Add((ModContent.ItemType<RunicSlab>(), 1));
-                                break;
-                            case 3:
-                                itemsToAdd.Add((ModContent.ItemType<RunicSlab>(), 1));
-                                itemsToAdd.Add((ModContent.ItemType<BerserkerRing>(), 1));
-                                itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
-                                break;
-                        }
-
-                        // Finally, iterate through itemsToAdd and actually create the Item instances and add to the chest.item array
-                        int chestItemIndex = 0;
-                        foreach (var itemToAdd in itemsToAdd)
-                        {
-                            Item item = new Item();
-                            item.SetDefaults(itemToAdd.type);
-                            item.stack = itemToAdd.stack;
-                            chest.item[chestItemIndex] = item;
-                            chestItemIndex++;
-                            if (chestItemIndex >= 40)
-                                break; // Make sure not to exceed the capacity of the chest
-                        }
-                    }*/
                 }
             }
         }

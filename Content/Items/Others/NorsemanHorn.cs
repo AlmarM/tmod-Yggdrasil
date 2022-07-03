@@ -16,7 +16,7 @@ public class NorsemanHorn : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Norseman Horn");
-        Tooltip.SetDefault("Might attract unwanted foes when used during the night");
+        Tooltip.SetDefault("Might attract unwanted foes when used during the day");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -35,7 +35,7 @@ public class NorsemanHorn : YggdrasilItem
         Item.UseSound = SoundID.Item43;
     }
 
-    public override bool CanUseItem(Player player) => !VikingInvasionWorld.vikingInvasion && !Main.dayTime && player.ZoneOverworldHeight;
+    public override bool CanUseItem(Player player) => !VikingInvasionWorld.vikingInvasion && Main.dayTime && !Main.bloodMoon && !Main.eclipse && player.ZoneOverworldHeight;
 
     public override bool? UseItem(Player player)
     {

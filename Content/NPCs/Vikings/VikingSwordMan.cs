@@ -15,6 +15,9 @@ namespace Yggdrasil.Content.NPCs.Vikings;
 
 public class VikingSwordMan : YggdrasilNPC
 {
+    //Variable used to make sure the NPC keeps spawned during the day befause Fighter AI despawn itself during day
+    //Might mess up in multiplayer
+    private int _timeLeft;
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Viking Swordman");
@@ -64,8 +67,19 @@ public class VikingSwordMan : YggdrasilNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow ? 0.3f : 0f;
 
+    //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
+    //Might mess up in multiplayer
+    public override bool PreAI()
+    {
+        _timeLeft = NPC.timeLeft;
+
+        return base.PreAI();
+    }
+
     public override void AI()
     {
+        NPC.timeLeft = _timeLeft;  
+
         NPC.TargetClosest();
         NPC.netUpdate = true;
     }

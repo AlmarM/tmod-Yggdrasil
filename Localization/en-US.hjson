@@ -1,0 +1,25 @@
+Mods: 
+{
+	Yggdrasil:
+	{
+		TownNPCMood: 
+		{
+			VolvaTown: {
+				Content: I feel pretty fine right now.
+				NoHome: I would very much like a house.
+				LoveSpace: I never felt as close to the Aesir as today!
+				FarFromHome: Could you please get me back to my house?
+				DislikeCrowded: There way too many people around here.
+				HateCrowded: I should go back to my people!
+				LikeBiome: "{BiomeName} is a very nice and cozy place"
+				LoveBiome: "I really love {BiomeName}."
+				DislikeBiome: "It's dark in {BiomeName}, I'm sure it's filled with dwarves. I want to go back to the surface!"
+				HateBiome: "It's way too warm in {BiomeName}."
+				LikeNPC: "I have to say {NPCName} is very charming"
+				LoveNPC: "Next time I meet {NPCName}, I'll ask them out"
+				DislikeNPC: " I would preffer {NPCName} to be really far awar from me."
+				HateNPC: "All those bang that {NPCName} makes all the time. I genuinely hate it"
+			}
+		}
+	}
+}

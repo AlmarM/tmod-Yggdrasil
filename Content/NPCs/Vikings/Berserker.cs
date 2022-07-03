@@ -15,6 +15,9 @@ namespace Yggdrasil.Content.NPCs.Vikings;
 
 public class Berserker : YggdrasilNPC
 {
+    //Variable used to make sure the NPC keeps spawned during the day befause Fighter AI despawn itself during day
+    //Might mess up in multiplayer
+    private int _timeLeft;
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Berserker");
@@ -46,11 +49,22 @@ public class Berserker : YggdrasilNPC
         NPC.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
     }
+
+    //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
+    //Might mess up in multiplayer
+    public override bool PreAI()
+    {
+        _timeLeft = NPC.timeLeft;
+
+        return base.PreAI();
+    }
+
     public override void AI()
     {
+        NPC.timeLeft = _timeLeft;
+
         NPC.TargetClosest();
-        NPC.netUpdate = true;
-        
+        NPC.netUpdate = true;        
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

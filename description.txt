@@ -1,6 +1,12 @@
 Yggdrasil is a small content mod adding Viking and Norse Mythology related items and enemies.
-It also adds a new class, The Runemaster.
 This mod wants to be an addition to vanilla terraria respecting the normal progression of this game we all like.
+
+At a glance:
+- Around 150 new items
+- 15+ NPCs
+- 10+ tiles
+- 1 new event The Viking Invasion
+- 1 new class The Runemaster
 
 NOTE: 
 - Runemaster class content progression is still in development but goes all the way to moonlord.
@@ -15,13 +21,16 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2.3 - The Viking invasion
+0.2.3 - The Viking invasion is back
 New Content
 - The Viking invasion is back! Use a norseman horn during the night and brace for impact.
 - Added the Frost Giant Belt
 - Added the Two Worlds Belt
-- Added new jungle hardmode enemy, the Bäckahäst
 - Added the Lunar Memorial runemaster weapon
+- Added Viking and Draugr Banner
+- Added the Glacier bow
+- Added new night hardmode enemy, the Sliking
+- Added new jungle hardmode enemy, the Bäckahäst
 
 Fixes and Tweaks
 - Slightly changed Clacier Shards sprite
@@ -46,7 +55,6 @@ New Content
 - Surtr Belt can now be crafted
 - Viking Chest can now be crafted
 
-
 Fixes and Tweaks
 - Tablet related buffs now generate dust when active
 - Reaching the insanity threshold will now always deal 25% max HP dmg
@@ -55,25 +63,3 @@ Fixes and Tweaks
 - Fixed runes not giving any buffs anymore
 - Major runes are now crafted at the Dvergr Power Forge
 
-0.2.1 - Bug fixes, balance and addition
-New Content
-- UI for the runemaster weapons to show focus and insanity
-- Added the Glacier armor set
-- Added the Occult Sword
-- Added the Shiny Sword
-- Added the Glacier Sword
-- Added the Jotun armor set
-- Added the Jomsborg armor set
-- Added a new Sturdy Leaf crafting material
-- Added the Glacier Chunk runemaster weapon
-- Added the Jotun Tablet runemaster weapon
-
-Fixes and Tweaks
-- Fixed a typo in the Protective Rune Slab. Now shows dmg reduction 5% instead of 50%
-- The Berserker mini-boss low health attack will not trigger 100% of the time anymore
-- Fixed summon mini-viking walking through the floor
-- Zombiking now knock on doors like normal zombies
-- Tweaked spawn rates of certain Vikings
-- Völva is not spawning anymore. Will be kept for the future invasion
-- Changed sprite of the viking key
-- Nerfed Tablets weapons

@@ -16,6 +16,7 @@ public class YggdrasilGlobalItem : GlobalItem
         recipe.AddIngredient(ItemID.SoulofMight, 5);
         recipe.AddIngredient(ItemID.SoulofSight, 5);
         recipe.AddIngredient(ItemID.SoulofFright, 5);
+        recipe.AddTile(TileID.TinkerersWorkbench);
         recipe.Register();
     }
 

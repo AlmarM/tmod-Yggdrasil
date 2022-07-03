@@ -4,6 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
@@ -12,16 +13,13 @@ using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
-public class FemaleVikingArcher : YggdrasilNPC
+public class OdinRaven : YggdrasilNPC
 {
-    //Variable used to make sure the NPC keeps spawned during the day befause Fighter AI despawn itself during day
-    //Might mess up in multiplayer
-    private int _timeLeft;
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Viking Bowwoman");
+        DisplayName.SetDefault("Odin's Raven");
 
-        Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.GoblinArcher];
+        Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Parrot];
 
         // Influences how the NPC looks in the Bestiary
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -33,22 +31,20 @@ public class FemaleVikingArcher : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        //NPC.CloneDefaults(NPCID.GoblinArcher);
-        NPC.width = 18;
-        NPC.height = 40;
-        NPC.damage = 30;
-        NPC.defense = 6;
-        NPC.lifeMax = 80;
+        NPC.CloneDefaults(NPCID.Parrot);
+        NPC.damage = 25;
+        NPC.defense = 15;
+        NPC.lifeMax = 70;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.value = 200f;
-        NPC.knockBackResist = 0.2f;
-        NPC.aiStyle = 3;
-        AIType = NPCID.GoblinArcher;
-        AnimationType = NPCID.GoblinArcher;
+        NPC.value = 150f;
+        NPC.knockBackResist = 0.7f;
+        AIType = NPCID.Parrot;
+        AnimationType = NPCID.Parrot;
+        NPC.buffImmune[BuffID.Confused] = true;
 
-        Banner = ModContent.NPCType<FemaleVikingArcher>();
-        BannerItem = ModContent.ItemType<VikingBanner>();
+        //Banner = ModContent.NPCType<VikingSwordMan>();
+        //BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -59,39 +55,26 @@ public class FemaleVikingArcher : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("It is said that dying from an arrow in battle would be the most shameful death for a Viking. It all depends if you're the one holding the bow.")
+				new FlavorTextBestiaryInfoElement("Huggin 'thought' and Munnin 'memory' are a pair of ravens that fly all over Midgard and bring information to the god Odin.")
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow ? 0.3f : 0f;
-
-    //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
-    //Might mess up in multiplayer
-    public override bool PreAI()
-    {
-        _timeLeft = NPC.timeLeft;
-
-        return base.PreAI();
-    }
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneSnow && Main.hardMode ? 0.3f : 0f;
 
     public override void AI()
     {
-        NPC.timeLeft = _timeLeft;
-
-        NPC.TargetClosest();
+        NPC.TargetClosest(true);
         NPC.netUpdate = true;
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingBow>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
     }
 
     public override void HitEffect(int hitDirection, double damage)
     {
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
         {
             int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
 
@@ -105,6 +88,6 @@ public class FemaleVikingArcher : YggdrasilNPC
     public override void OnKill()
     {
         if (VikingInvasionWorld.vikingInvasion)
-            VikingInvasionWorld.vikingKilled += 1;
+        VikingInvasionWorld.vikingKilled += 1;
     }
 }
