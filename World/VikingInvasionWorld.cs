@@ -20,13 +20,15 @@ namespace Yggdrasil.World
     public class VikingInvasionWorld : ModSystem
     {
         public static bool vikingInvasion;
-        public static bool downedVikingInvasion;
+        public bool downedVikingInvasion;
+        public static bool valkyrieUp;
         public static int vikingKilled;
         public override void OnWorldLoad()
         {
             vikingInvasion = false;
             vikingKilled = 0;
             downedVikingInvasion = false;
+            valkyrieUp = false;
         }
 
         public override void SaveWorldData(TagCompound tag)
@@ -80,16 +82,25 @@ namespace Yggdrasil.World
                 vikingKilled = 0;
             }
 
-            //Invasion is repelled if 200 vikings are killed
-            if (vikingInvasion && vikingKilled >= 200)
+            //Hardmode invasion is repelled if 300 vikings are killed
+            if (Main.hardMode && vikingInvasion && vikingKilled >= 300)
             {
                 Main.NewText("The vikings have been defeated!", 174, 128, 79);
                 vikingInvasion = false;
                 vikingKilled = 0;
             }
 
-            //if (downedVikingInvasion)
-            //Main.NewText("ItsDown");
+            //Invasion is repelled if 200 vikings are killed
+            if (!Main.hardMode && vikingInvasion && vikingKilled >= 200)
+            {
+                Main.NewText("The vikings have been defeated!", 174, 128, 79);
+                vikingInvasion = false;
+                vikingKilled = 0;
+            }
+
+            //if (valkyrieUp)
+            //Main.NewText("Trigger");
+            //Main.NewText(vikingKilled);
 
         }
 

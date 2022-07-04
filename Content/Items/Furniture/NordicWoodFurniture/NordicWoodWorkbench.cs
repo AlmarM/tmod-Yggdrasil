@@ -2,15 +2,15 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture;
+namespace Yggdrasil.Content.Items.Furniture.NordicWoodFurniture;
 
 public class NordicWoodWorkbench : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Nordic Wood Work Bench");
+        //Tooltip.SetDefault("Nordic Wood Work Bench");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

@@ -3,8 +3,10 @@ This mod wants to be an addition to vanilla terraria respecting the normal progr
 
 At a glance:
 - Around 150 new items
-- 15+ NPCs
-- 10+ tiles
+- 15+ enemies
+- 1 miniboss
+- 1 town NPC
+- 10+ tiles/furnitures
 - 1 new event The Viking Invasion
 - 1 new class The Runemaster
 
@@ -12,7 +14,7 @@ NOTE:
 - Runemaster class content progression is still in development but goes all the way to moonlord.
 - Runes are probably unbalanced in many ways and will need fine tunning.
 - If you want to help, feel free to reach out!
-- This is an early alpha version of the mod!
+- This is an alpha version of the mod!
 
 Feedback is more than welcome on our forum thread here (search for Yggdrasil):
 https://forums.terraria.org/index.php?threads/yggdrasil-wip-1-4-we-need-testers.93660/
@@ -21,6 +23,21 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
+0.2.4 - Our first miniboss and town NPC
+New Content
+- Added new viking invasion hardmode enemies, Graywolf and Odin's Raven
+- New Volva town NPC (will spawn if the player holds a Viking Distaff and has a free house available)
+- New nordic wood table and chair
+- New viking invasion miniboss Valkyrie
+- New Valkyrie Golden Shield
+- New Valkyrie banner
+- New Vanir Shield
+- New Runemaster Shield
+
+Fixes and Tweaks
+- Viking invasion now happens during the day
+- Runes and other materials now have a selling value
+
 0.2.3 - The Viking invasion is back
 New Content
 - The Viking invasion is back! Use a norseman horn during the night and brace for impact.

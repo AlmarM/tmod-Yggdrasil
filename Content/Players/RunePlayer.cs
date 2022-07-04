@@ -65,10 +65,20 @@ public class RunePlayer : ModPlayer
         if (Player.HasEffect<OdinsEye>() && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
-            if (RunePower >= 10)
-            {
-                healBack = 0.5f;
-            }
+
+            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * healBack);
+
+            Player.NinjaDodge();
+            Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (healBack)));
+
+            SoundEngine.PlaySound(SoundID.Item4, Player.position);
+
+            return false;
+        }
+
+        if (Player.HasEffect<RunemasterShield>() && damage > Player.statLife && Main.rand.Next(100) < 25)
+        {
+            var healBack = 0.5f;
 
             Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * healBack);
 

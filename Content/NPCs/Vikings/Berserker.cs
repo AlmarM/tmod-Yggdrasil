@@ -42,7 +42,7 @@ public class Berserker : YggdrasilNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = 150f;
-        NPC.knockBackResist = 0.9f;
+        NPC.knockBackResist = 0;
         NPC.aiStyle = 3;
         AIType = 213;
         AnimationType = 482;

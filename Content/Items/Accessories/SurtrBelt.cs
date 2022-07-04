@@ -18,7 +18,7 @@ public class SurtrBelt : YggdrasilItem
 
         DisplayName.SetDefault("Surtr Belt");
         Tooltip.SetDefault($"15% increased {runicText} damage" +
-                           "\nIncrease max life by 20" +
+                           "\nIncreases max life by 20" +
                            "\nGrants immunity to OnFire, Shadowflame, Frostburn, Chilled and Frozen" +
                            "\nGrants immunity to fire blocks and lava" +
                            $"\nIgnites nearby enemies");

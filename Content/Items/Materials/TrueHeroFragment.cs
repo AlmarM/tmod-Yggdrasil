@@ -18,7 +18,7 @@ public class TrueHeroFragment : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Yellow;
-        Item.value = Item.buyPrice(0, 5);
+        Item.value = Item.buyPrice(0, 10);
     }
 
 }

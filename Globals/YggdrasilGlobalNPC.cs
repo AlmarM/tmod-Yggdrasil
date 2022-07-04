@@ -74,7 +74,13 @@ public class YggdrasilGlobalNPC : GlobalNPC
             if (Main.hardMode)
             {
                 pool.Add(ModContent.NPCType<GrayWolf>(), 1f);
-                pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);
+                pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);  
+            }
+
+            if (Main.hardMode && VikingInvasionWorld.vikingKilled >= 200 && !NPC.AnyNPCs(ModContent.NPCType<Valkyrie>()) && !VikingInvasionWorld.valkyrieUp)
+            {
+                pool.Add(ModContent.NPCType<Valkyrie>(), 100f);
+                VikingInvasionWorld.valkyrieUp = true;
             }
         }
 

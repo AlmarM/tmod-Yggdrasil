@@ -6,12 +6,12 @@ using Yggdrasil.Content.Tiles.Banners;
 
 namespace Yggdrasil.Content.Items.Banners
 {
-    public class DraugrBanner : YggdrasilItem
+    public class ValkyrieBanner : YggdrasilItem
     {
         public override void SetStaticDefaults()
         { 
-            DisplayName.SetDefault("Draugr Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Draugr");
+            DisplayName.SetDefault("Valkyrie Banner");
+            Tooltip.SetDefault("Nearby players get a bonus against: Valkyrie");
 
           CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -26,9 +26,9 @@ namespace Yggdrasil.Content.Items.Banners
             Item.useTime = 10;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(0, 0, 2, 0);
-            Item.createTile = ModContent.TileType<DraugrBannerTile>();
+            Item.rare = ItemRarityID.Yellow;
+            Item.value = Item.buyPrice(0, 1);
+            Item.createTile = ModContent.TileType<ValkyrieBannerTile>();
             Item.placeStyle = 0;
         }
     }
