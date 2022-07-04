@@ -7,12 +7,13 @@ using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Yggdrasil.Content.Items.Banners;
-using Yggdrasil.Content.NPCs.Snow;
+using Yggdrasil.Content.NPCs.Vikings;
 using System;
+using Yggdrasil.Content.NPCs.Night;
 
 namespace Yggdrasil.Content.Tiles.Banners
 {
-	public class DraugrBannerTile : YggdrasilTile
+	public class GrayWolfBannerTile : YggdrasilTile
 	{
         public override void SetStaticDefaults()
         {
@@ -31,12 +32,12 @@ namespace Yggdrasil.Content.Tiles.Banners
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Draugr Banner");
+			name.SetDefault("Gray Wolf Banner");
 			AddMapEntry(new Color(174, 128, 79), name);
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<DraugrBanner>());
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<GrayWolfBanner>());
 		}
 
 		public override void NearbyEffects(int i, int j, bool closer)
@@ -44,8 +45,7 @@ namespace Yggdrasil.Content.Tiles.Banners
 			if (closer)
 			{
 				Player player = Main.LocalPlayer;
-				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<Draugr>()] = true;
-				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<DraugrElite>()] = true;
+				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<GrayWolf>()] = true;
 				Main.SceneMetrics.hasBanner = true;
 			}
 		}

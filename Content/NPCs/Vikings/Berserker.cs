@@ -6,6 +6,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
@@ -87,6 +88,7 @@ public class Berserker : YggdrasilNPC
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BerserkerHelmet>()));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 3));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 1, 2, 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

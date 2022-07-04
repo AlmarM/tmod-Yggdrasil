@@ -7,6 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
@@ -225,6 +226,7 @@ public class Volva : YggdrasilNPC
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDistaff>(), 10));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
 
     }
 

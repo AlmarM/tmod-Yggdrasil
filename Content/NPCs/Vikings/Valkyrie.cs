@@ -15,6 +15,7 @@ using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.World;
 using Yggdrasil.Content.Projectiles.EnemyProjectile;
 using Yggdrasil.Content.Items.Weapons.Magic;
+using Yggdrasil.Content.Items.Consumables;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
@@ -163,6 +164,7 @@ public class Valkyrie : YggdrasilNPC
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValkyrieGoldenShield>(), 3));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ValkyrieLightStaff>(), 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

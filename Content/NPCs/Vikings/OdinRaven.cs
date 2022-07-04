@@ -43,8 +43,8 @@ public class OdinRaven : YggdrasilNPC
         AnimationType = NPCID.Parrot;
         NPC.buffImmune[BuffID.Confused] = true;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<OdinRaven>();
+        BannerItem = ModContent.ItemType<OdinsRavenBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

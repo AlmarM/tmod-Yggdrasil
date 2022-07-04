@@ -188,6 +188,9 @@ namespace Yggdrasil.Content.NPCs.Town
 			if (NPC.downedBoss3)
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultShard>());
 
+			if (Main.hardMode)
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RunemasterEmblem>());
+
 			if (NPC.downedPlantBoss)
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SturdyLeaf>());
 

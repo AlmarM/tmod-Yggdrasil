@@ -43,8 +43,8 @@ public class GrayWolf : YggdrasilNPC
         AnimationType = NPCID.Wolf;
         NPC.buffImmune[BuffID.Confused] = true;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<GrayWolf>();
+        BannerItem = ModContent.ItemType<GrayWolfBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

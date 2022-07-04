@@ -7,12 +7,11 @@ using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Yggdrasil.Content.Items.Banners;
-using Yggdrasil.Content.NPCs.Snow;
-using System;
+using Yggdrasil.Content.NPCs.Vikings;
 
 namespace Yggdrasil.Content.Tiles.Banners
 {
-	public class DraugrBannerTile : YggdrasilTile
+	public class OdinsRavenBannerTile : YggdrasilTile
 	{
         public override void SetStaticDefaults()
         {
@@ -31,12 +30,12 @@ namespace Yggdrasil.Content.Tiles.Banners
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Draugr Banner");
+			name.SetDefault("Odin's Raven Banner");
 			AddMapEntry(new Color(174, 128, 79), name);
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<DraugrBanner>());
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<OdinsRavenBanner>());
 		}
 
 		public override void NearbyEffects(int i, int j, bool closer)
@@ -44,8 +43,7 @@ namespace Yggdrasil.Content.Tiles.Banners
 			if (closer)
 			{
 				Player player = Main.LocalPlayer;
-				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<Draugr>()] = true;
-				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<DraugrElite>()] = true;
+				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<OdinRaven>()] = true;
 				Main.SceneMetrics.hasBanner = true;
 			}
 		}

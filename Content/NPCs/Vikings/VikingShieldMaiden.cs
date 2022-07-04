@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Banners;
+using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
@@ -88,6 +89,7 @@ public class VikingShieldMaiden : YggdrasilNPC
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)
