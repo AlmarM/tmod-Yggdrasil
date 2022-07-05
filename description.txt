@@ -23,21 +23,26 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2.4 - Our first miniboss and town NPC
+0.2.4 - First miniboss and town NPC
 New Content
 - Added new viking invasion hardmode enemies, Graywolf and Odin's Raven
 - New Volva town NPC (will spawn if the player has a Viking Distaff and has a free house available)
 - New nordic wood table and chair
 - New viking invasion miniboss Valkyrie
 - New Valkyrie Golden Shield
-- New Valkyrie banner
 - New Vanir Shield
 - New Runemaster Shield
 - New Frostcore Yoyo
+- New food Raggmunk
+- New banners, Valkyrie, Graywolf, Odin's Raven
+- New Credit Slab runemaster weapon
+- New Sturdy Block runemaster weapon
+- New Runemaster Necklace
 
 Fixes and Tweaks
 - Viking invasion now happens during the day
 - Runes and other materials now have a selling value
+- Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equiped
 
 0.2.3 - The Viking invasion is back
 New Content

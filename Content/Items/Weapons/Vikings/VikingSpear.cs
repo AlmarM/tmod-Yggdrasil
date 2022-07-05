@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.Melee;
 
 namespace Yggdrasil.Content.Items.Weapons.Vikings
 {
@@ -11,7 +11,7 @@ namespace Yggdrasil.Content.Items.Weapons.Vikings
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Viking Spear");
-			//Tooltip.SetDefault("");
+			Tooltip.SetDefault("To reach over the shield wall");
 
 			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

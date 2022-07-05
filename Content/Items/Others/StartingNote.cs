@@ -23,7 +23,7 @@ public class StartingNote : YggdrasilItem
             "\n[c/CD2340:Insanity] also decreases by itself over time" +
             "\nThe content progression for the [c/AE804F:Runemaster] class in term of items is still being developped but goes all the way to moonlord" +
             "\n----" +
-            "\nThe alpha version also containes a bunch of accessories, new enemies, new resources and small things." +
+            "\nThe alpha version also containes a bunch of accessories, new enemies, a town NPC, an event, new resources and small things." +
             "\nYou should head to the snow biome when you feel like it!" +
             "\nWe hope you enjoy!" +
             "\n[c/AE804F:Skal!]");

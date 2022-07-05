@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;

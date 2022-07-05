@@ -10,11 +10,12 @@ using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Content.Players;
 

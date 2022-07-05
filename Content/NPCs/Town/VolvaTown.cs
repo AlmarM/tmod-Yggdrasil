@@ -22,6 +22,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Projectiles.Magic;
 
 namespace Yggdrasil.Content.NPCs.Town
 {

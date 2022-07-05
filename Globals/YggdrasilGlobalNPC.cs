@@ -38,6 +38,9 @@ public class YggdrasilGlobalNPC : GlobalNPC
             case NPCID.Mothron:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TrueHeroFragment>(), 3));
                 break;
+            case NPCID.PirateShip:
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CreditSlab>(), 4));
+                break;
         }
     }
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)

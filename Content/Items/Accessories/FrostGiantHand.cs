@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
@@ -9,6 +10,8 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
+
+[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
 
 public class FrostGiantHand : YggdrasilItem
 {
