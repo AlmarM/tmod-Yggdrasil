@@ -175,7 +175,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             .AddIngredient(ItemID.FragmentVortex, 5)
             .AddIngredient(ItemID.FragmentStardust, 5)
             .AddIngredient(ItemID.FragmentSolar, 5)
-            .AddTile<DvergrPowerForgeTile>()
+            .AddTile(TileID.LunarCraftingStation)
             .Register();        
     }
 }

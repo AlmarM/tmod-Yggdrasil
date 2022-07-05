@@ -23,6 +23,13 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
+0.2.5 - A bit more stuff
+New Content
+- New endgame Runemaster armor set
+
+Fixes and Tweaks
+- Lunar Memorial now crafted at the Ancient Manipulator
+
 0.2.4 - First miniboss and town NPC
 New Content
 - Added new viking invasion hardmode enemies, Graywolf and Odin's Raven
@@ -42,7 +49,7 @@ New Content
 Fixes and Tweaks
 - Viking invasion now happens during the day
 - Runes and other materials now have a selling value
-- Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equiped
+- Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equipped
 
 0.2.3 - The Viking invasion is back
 New Content
@@ -62,27 +69,4 @@ Fixes and Tweaks
 - Runic Necklace can now be seen on the character when equiped
 - Norseman shield can now be seen on the character when equiped
 - Freya's Necklace drops heart a bit less often
-
-0.2.2 - Having a full runemaster item progression
-New Content
-- Added the Develish Plate runemaster weapon
-- Added the Vapourer runemaster weapon
-- Added the Sun Tablet runemaster weapon
-- Added the Ragnarök runemaster weapon
-- Added the True Valhalla Warrior runemaster armor set
-- Added new material, Sun Pebble
-- Added new material, True Hero Fragment
-- Added the Glacier Staff
-- Added new Nordic wood material
-- Added new furniture, Nordic Wood Work Bench
-- Surtr Belt can now be crafted
-- Viking Chest can now be crafted
-
-Fixes and Tweaks
-- Tablet related buffs now generate dust when active
-- Reaching the insanity threshold will now always deal 25% max HP dmg
-- Tyr Hand now also buff runic weapon range attack
-- Attemps at fixing the unload issue
-- Fixed runes not giving any buffs anymore
-- Major runes are now crafted at the Dvergr Power Forge
 
