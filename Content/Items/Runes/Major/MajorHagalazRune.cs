@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorHagalazRune : Rune
+internal class MajorHagalazRune : Rune<MajorHagalazRune>
 {
     private const float MagicDamageBonus = 0.2f;
 

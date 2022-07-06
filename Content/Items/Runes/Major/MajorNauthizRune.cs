@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorNauthizRune : Rune
+internal class MajorNauthizRune : Rune<MajorNauthizRune>
 {
     private const float InvincibilityBonus = 0.5f;
 

@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorLaguzRune : Rune
+internal class MajorLaguzRune : Rune<MajorLaguzRune>
 {
     private const int HealthRestored = 5;
     private const float HealInterval = 10f;

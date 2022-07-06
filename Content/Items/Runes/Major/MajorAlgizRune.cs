@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorAlgizRune : Rune
+internal class MajorAlgizRune : Rune<MajorAlgizRune>
 {
     private const int DefenseBonus = 3;
 

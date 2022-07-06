@@ -11,7 +11,7 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Runes;
 
-public abstract class Rune : YggdrasilItem, IRune
+public abstract class Rune<TRune> : YggdrasilItem, IRune where TRune : Rune<TRune>
 {
     private IList<(IRuneEffect, IRuneEffectParameters)> _effects;
 
@@ -48,7 +48,7 @@ public abstract class Rune : YggdrasilItem, IRune
 
     public override ModItem Clone(Item newEntity)
     {
-        var clone = (Rune)base.Clone(newEntity);
+        var clone = (Rune<TRune>)base.Clone(newEntity);
 
         if (_effects == null)
         {
@@ -69,12 +69,19 @@ public abstract class Rune : YggdrasilItem, IRune
             InitializeEffects();
         }
 
+        player.GetModPlayer<RunePlayer>().RunePower += RunePower;
+
+        if (player.HasEffect<TRune>())
+        {
+            return;
+        }
+
         foreach ((IRuneEffect effect, IRuneEffectParameters parameters) in _effects)
         {
             effect.Apply(player, parameters);
         }
 
-        player.GetModPlayer<RunePlayer>().RunePower += RunePower;
+        player.SetEffect<TRune>();
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips)

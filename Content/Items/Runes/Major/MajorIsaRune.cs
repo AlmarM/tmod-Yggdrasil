@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorIsaRune : Rune
+internal class MajorIsaRune : Rune<MajorIsaRune>
 {
     private const float DamageBonus = 0.3f;
     private const float HealthThreshold = 0.3f;

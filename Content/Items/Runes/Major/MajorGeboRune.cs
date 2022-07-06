@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorGeboRune : Rune
+internal class MajorGeboRune : Rune<MajorGeboRune>
 {
     private const float MinionDamageBonus = 0.2f;
 

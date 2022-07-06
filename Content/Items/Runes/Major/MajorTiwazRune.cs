@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorTiwazRune : Rune
+internal class MajorTiwazRune : Rune<MajorTiwazRune>
 {
     private const float RunicDamageBonus = 0.05f;
 

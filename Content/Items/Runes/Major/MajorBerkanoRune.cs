@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorBerkanoRune : Rune
+internal class MajorBerkanoRune : Rune<MajorBerkanoRune>
 {
     private const int LifeRegenBonus = 8;
     private const int ManaRegenBonus = 8;

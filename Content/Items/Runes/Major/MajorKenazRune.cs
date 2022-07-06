@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorKenazRune : Rune
+internal class MajorKenazRune : Rune<MajorKenazRune>
 {
     private const float DodgeChanceBonus = 0.03f;
 

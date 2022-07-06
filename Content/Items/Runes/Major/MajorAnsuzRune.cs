@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorAnsuzRune : Rune
+internal class MajorAnsuzRune : Rune<MajorAnsuzRune>
 {
     private const int MaxManaBonus = 30;
 

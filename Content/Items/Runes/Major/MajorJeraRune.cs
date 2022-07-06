@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorJeraRune : Rune
+internal class MajorJeraRune : Rune<MajorJeraRune>
 {
     private const int AggroReduceBonus = 100;
 

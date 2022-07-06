@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorIngwazRune : Rune
+internal class MajorIngwazRune : Rune<MajorIngwazRune>
 {
     private const int HealthBonus = 10;
 

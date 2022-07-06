@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorUruzRune : Rune
+internal class MajorUruzRune : Rune<MajorUruzRune>
 {
     private const float MeleeSpeedBonus = 0.07f;
 

@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorDagazRune : Rune
+internal class MajorDagazRune : Rune<MajorDagazRune>
 {
     private const float RangeDamageBoost = 0.2f;
 

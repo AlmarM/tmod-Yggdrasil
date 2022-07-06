@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorEhwazRune : Rune
+internal class MajorEhwazRune : Rune<MajorEhwazRune>
 {
     private const float MovementSpeedBonus = 0.15f;
     private const float MaxSpeedBonus = 0.15f;

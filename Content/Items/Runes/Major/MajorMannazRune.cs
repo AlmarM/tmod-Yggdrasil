@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorMannazRune : Rune
+internal class MajorMannazRune : Rune<MajorMannazRune>
 {
     private const float DamageBonus = 0.2f;
     private const float Distance = 300f;

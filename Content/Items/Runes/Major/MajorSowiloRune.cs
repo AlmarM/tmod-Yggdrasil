@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorSowiloRune : Rune
+internal class MajorSowiloRune : Rune<MajorSowiloRune>
 {
     private const int ArmorPenetrationBonus = 5;
 

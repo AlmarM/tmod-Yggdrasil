@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorPerthroRune : Rune
+internal class MajorPerthroRune : Rune<MajorPerthroRune>
 {
     private const float ApplyBuffChance = 0.07f;
     private const float BuffDuration = 5;

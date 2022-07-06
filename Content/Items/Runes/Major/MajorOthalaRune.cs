@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorOthalaRune : Rune
+internal class MajorOthalaRune : Rune<MajorOthalaRune>
 {
     private const float ReduceAmmoConsumptionBonus = 0.2f;
 

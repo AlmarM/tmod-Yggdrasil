@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorFehuRune : Rune
+internal class MajorFehuRune : Rune<MajorFehuRune>
 {
     private const int CritChanceBonus = 3;
 

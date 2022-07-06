@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorThurisazRune : Rune
+internal class MajorThurisazRune : Rune<MajorThurisazRune>
 {
     private const float ThornsBonus = 0.5f;
 
