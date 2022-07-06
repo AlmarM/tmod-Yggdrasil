@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorAlgizRune : Rune
+internal class MinorAlgizRune : Rune<MinorAlgizRune>
 {
     private const int DefenseBonus = 1;
 

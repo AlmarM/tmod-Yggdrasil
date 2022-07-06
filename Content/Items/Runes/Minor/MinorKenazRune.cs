@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorKenazRune : Rune
+internal class MinorKenazRune : Rune<MinorKenazRune>
 {
     private const float DodgeChanceBonus = 0.01f;
 

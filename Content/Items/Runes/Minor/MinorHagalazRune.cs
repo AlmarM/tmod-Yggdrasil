@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorHagalazRune : Rune
+internal class MinorHagalazRune : Rune<MinorHagalazRune>
 {
     private const float MagicDamageBonus = 0.05f;
 

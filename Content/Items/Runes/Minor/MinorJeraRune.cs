@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorJeraRune : Rune
+internal class MinorJeraRune : Rune<MinorJeraRune>
 {
     private const int AggroReduceBonus = 20;
 

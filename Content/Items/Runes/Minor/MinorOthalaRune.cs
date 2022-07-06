@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorOthalaRune : Rune
+internal class MinorOthalaRune : Rune<MinorOthalaRune>
 {
     private const float ReduceAmmoConsumptionBonus = 0.1f;
 

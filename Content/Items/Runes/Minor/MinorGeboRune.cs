@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorGeboRune : Rune
+internal class MinorGeboRune : Rune<MinorGeboRune>
 {
     private const float MinionDamageBonus = 0.05f;
 

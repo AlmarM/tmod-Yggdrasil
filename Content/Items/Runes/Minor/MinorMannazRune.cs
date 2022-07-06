@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorMannazRune : Rune
+internal class MinorMannazRune : Rune<MinorMannazRune>
 {
     private const float DamageBonus = 0.1f;
     private const float Distance = 500f;

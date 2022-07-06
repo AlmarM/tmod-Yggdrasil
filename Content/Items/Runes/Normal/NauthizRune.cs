@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class NauthizRune : Rune
+internal class NauthizRune : Rune<NauthizRune>
 {
     public const string RuneName = "Nauthiz";
 

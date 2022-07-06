@@ -7,7 +7,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class RaidhoRune : Rune
+internal class RaidhoRune : Rune<RaidhoRune>
 {
     public const string RuneName = "Raidho";
 

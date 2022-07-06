@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorUruzRune : Rune
+internal class MinorUruzRune : Rune<MinorUruzRune>
 {
     private const float MeleeSpeedBonus = 0.03f;
 
