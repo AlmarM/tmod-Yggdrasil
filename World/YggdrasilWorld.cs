@@ -12,11 +12,23 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
+using Yggdrasil.Content.Tiles.IronWood;
 
 namespace Yggdrasil.World
 {
+
 	public class YggdrasilWorld : ModSystem
 	{
+		
+		public static bool IronWoodBiome = false;
+		public static bool ZoneIronWood;
+		public static int IronWoodTiles = 0;
+
+		public override void OnWorldLoad()
+		{
+			ZoneIronWood = false;
+		}
+
 		//Check if an area is flat enough to spawn the viking houses
 		public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
 		{
@@ -56,7 +68,7 @@ namespace Yggdrasil.World
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
 			{
 				Chest chest = Main.chest[chestIndex];
-				
+
 				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<VikingChestTile>())
 				{
 					var itemsToAdd = new List<(int type, int stack)>();
@@ -114,5 +126,17 @@ namespace Yggdrasil.World
 				}
 			}
 		}
-	}
+
+		public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
+		{
+			IronWoodTiles = tileCounts[ModContent.TileType<IronWoodDirtTile>()] + tileCounts[ModContent.TileType<IronWoodGrassTile>()]
+			+ tileCounts[ModContent.TileType<IronWoodStoneTile>()] + tileCounts[ModContent.TileType<IronWoodIceTile>()] + tileCounts[ModContent.TileType<IronWoodSandTile>()];
+		}
+
+        public override void PostUpdateEverything()
+        {
+			//if (ZoneIronWood)
+			//Main.NewText(IronWoodTiles);
+		}
+	}	
 }

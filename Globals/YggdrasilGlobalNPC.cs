@@ -1,15 +1,21 @@
+using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Linq;
+using Terraria.Audio;
+using Terraria.Localization;
+using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Materials.IronWood;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.World;
-using Yggdrasil.Content.NPCs;
-using Yggdrasil.Content.NPCs.Jungle;
 using Yggdrasil.Content.NPCs.Vikings;
+using Yggdrasil.Content.Tiles.IronWood;
+using Yggdrasil.Content.Tiles;
+using Microsoft.Xna.Framework.Input;
 
 namespace Yggdrasil.Globals;
 
@@ -53,7 +59,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
         }
     }
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
-    { 
+    {
 
         //Setting the new spawn pool of vikings
         if (VikingInvasionWorld.vikingInvasion && spawnInfo.Player.ZoneOverworldHeight)
@@ -77,7 +83,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
             if (Main.hardMode)
             {
                 pool.Add(ModContent.NPCType<GrayWolf>(), 1f);
-                pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);  
+                pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);
             }
 
             if (Main.hardMode && VikingInvasionWorld.vikingKilled >= 200 && !NPC.AnyNPCs(ModContent.NPCType<Valkyrie>()) && !VikingInvasionWorld.valkyrieUp)
@@ -89,4 +95,5 @@ public class YggdrasilGlobalNPC : GlobalNPC
 
         return;
     }
+    
 }
