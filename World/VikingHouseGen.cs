@@ -1,38 +1,64 @@
+using Terraria.WorldBuilding;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
+using Terraria.IO;
 
 namespace Yggdrasil.World
 {
-	public class VikingHouseGen : StructureGen
+	public class YggdrasilGenPasses
 	{
-		public override int OffsetX => -3;
-		public override int OffsetY => -16;
-		public override int[,] Tiles => new int[,] {
+		public static void MicroBiomePass(GenerationProgress progress, GameConfiguration configuration)
+		{
+			int attempts = 0;
+
+			while (true)
+			{
+				attempts++;
+				if (attempts > 30 || YggdrasilWorld.gennedVikingHouse == true)
+					break;
+
+				progress.Message = "Adding Viking House...";
+				GenerateVikingHouse();
+			}
+		}
+
+		public static int OffsetX = -3;
+		public static int OffsetY = -16;
+
+		private static void GenerateVikingHouse()
+		{
+			int[,] HouseTiles = new int[,]
+			{
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,3,3,3,6,6,6,0,0,0,0,3,3,3,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,3,3,3,4,6,0,0,0,0,0,0,4,3,3,3,0,0,0,0,0,0},
-			{0,0,0,0,0,0,3,3,3,0,4,0,0,0,0,0,0,0,4,0,3,3,3,0,0,0,0,0},
-			{0,0,0,0,0,3,3,3,0,0,4,0,0,0,0,0,0,0,4,0,0,3,3,3,0,0,0,0},
+			{0,0,0,0,0,0,0,0,3,3,3,6,6,6,8,8,8,8,3,3,3,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,3,3,3,4,6,8,8,8,8,8,8,4,3,3,3,0,0,0,0,0,0},
+			{0,0,0,0,0,0,3,3,3,8,4,8,8,8,8,8,8,8,4,8,3,3,3,0,0,0,0,0},
+			{0,0,0,0,0,3,3,3,8,8,4,8,8,8,8,8,8,8,4,8,8,3,3,3,0,0,0,0},
 			{0,0,0,0,3,3,3,3,3,3,3,3,3,0,0,0,3,3,3,3,3,3,3,3,0,0,0,0},
-			{0,0,0,3,3,3,6,3,4,0,0,0,0,0,0,0,0,0,6,6,4,3,0,0,0,0,0,0},
-			{0,0,0,3,3,0,6,3,4,0,0,0,0,0,0,0,0,0,0,0,4,3,0,0,0,0,0,0},
-			{0,0,0,3,3,3,3,3,4,0,0,0,0,0,0,0,0,0,0,0,4,3,0,0,0,0,0,0},
-			{0,0,0,0,4,0,3,3,4,0,0,0,0,0,0,0,0,0,0,0,4,3,0,0,0,0,0,0},
-			{0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0},
-			{0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0},
-			{0,0,0,0,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0},
-			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0},
-			{0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
-			{0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0},
-			{0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0}
-		};
-		public override int[,] Slopes => new int[,] {
+			{0,0,0,3,3,3,6,3,4,8,8,8,8,8,8,8,8,8,6,6,4,3,8,8,0,0,0,0},
+			{0,0,0,3,3,8,6,3,4,8,8,8,8,8,8,8,8,8,8,8,4,3,8,8,8,0,0,0},
+			{0,0,0,3,3,3,3,3,4,8,8,8,8,8,8,8,8,8,8,8,4,3,8,8,8,0,0,0},
+			{0,0,0,3,8,8,3,3,4,8,8,8,8,8,8,8,8,8,8,8,4,3,8,8,8,0,0,0},
+			{0,0,0,3,8,8,8,8,4,8,8,8,8,8,8,8,8,8,8,0,4,2,2,2,8,0,0,0},
+			{0,0,0,3,8,8,8,8,4,8,8,8,8,8,8,8,8,8,8,8,2,2,2,2,2,2,0,0},
+			{0,0,0,3,8,8,8,8,4,8,8,8,8,8,8,8,8,8,8,2,2,2,2,2,2,2,2,0},
+			{0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,0},
+			{2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2},
+			{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+			{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0},
+			{0,2,2,2,2,2,2,0,0,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,0,0,0},
+			{0,0,0,2,0,0,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0,0,2,0,0,0,0}
+
+
+			};
+			int[,] HouseSlopes = new int[,]
+			{
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
@@ -44,7 +70,7 @@ namespace Yggdrasil.World
 			{0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,2,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -52,9 +78,13 @@ namespace Yggdrasil.World
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-		};
-		public override int[,] Walls => new int[,] {
+
+			};
+			int[,] HouseWalls = new int[,]
+			{
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -63,28 +93,32 @@ namespace Yggdrasil.World
 			{0,0,0,0,0,0,0,0,0,1,1,1,1,3,3,3,1,1,1,1,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,1,1,1,1,1,3,3,3,1,1,1,1,1,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,1,1,1,1,1,1,3,3,3,1,1,1,1,1,1,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,1,1,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,1,1,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		};
-		public override int[,] Furniture => new int[,] {
+			{0,0,0,0,0,0,0,8,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,1,8,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,1,8,8,0,0,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
+			{0,0,0,0,8,8,8,8,8,8,0,8,8,3,3,3,8,8,0,0,8,0,0,0,0,0,0,0},
+			{0,0,0,0,8,8,8,8,8,8,8,8,8,3,3,3,8,8,0,8,8,0,0,0,0,0,0,0},
+			{0,0,0,0,8,8,8,8,8,8,8,8,8,3,3,3,8,8,8,8,8,0,0,0,0,0,0,0},
+			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
+			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
+			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+
+			};
+			int[,] HouseFurnitures = new int[,]
+			{
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0},
@@ -92,132 +126,267 @@ namespace Yggdrasil.World
 			{0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,2,0,9,0,0,7,0,0,0,5,0,0,10,0,0,0,9,0,6,0,0,0,0},
-			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0},
+			{0,0,0,0,4,0,0,9,0,0,7,0,0,0,5,0,0,6,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,3,3,3,3,3,3,3,3,3,3,0,0,0,3,3,3,3,3,3,3,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		};
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 
-		private static int shingleColor;
-		public override bool Generate()
-		{
-			shingleColor = WorldGen.genRand.NextBool() ? TileID.RedDynastyShingles : TileID.BlueDynastyShingles;
-			bool placed = false;
+			};
+
+
+			bool housePlaced = false;
 			int attempts = 0;
-			while (!placed && attempts++ < 100000)
+			while (!housePlaced && attempts++ < 100000)
 			{
-				// Select a place in the first 6th of the world, avoiding the oceans
-				int towerX = WorldGen.genRand.Next(0, Main.maxTilesX); // from 50 since there's a unaccessible area at the world's borders
-																			 // 50% of choosing the last 6th of the world
-																			 // Choose which side of the world to be on randomly
-				/*if (WorldGen.genRand.NextBool())
-				{
-					towerX = Main.maxTilesX - towerX;
-				}*/
+				int houseX = WorldGen.genRand.Next(0, Main.maxTilesX);
 
 				//Start at 200 tiles above the surface instead of 0, to exclude floating islands
-				int towerY = (int)Main.worldSurface - 200;
+				int houseY = (int)Main.worldSurface - 200;
+
+				if (WorldGen.genRand.NextBool())
+				{
+					houseX = Main.maxTilesX - houseX;
+				}
 
 				// We go down until we hit a solid tile or go under the world's surface
-				while (!WorldGen.SolidTile(towerX, towerY) && towerY <= Main.worldSurface)
+				while (!WorldGen.SolidTile(houseX, houseY) && houseY <= Main.worldSurface)
 				{
-					towerY++;
+					houseY++;
 				}
 
 				// If we went under the world's surface, try again
-				if (towerY > Main.worldSurface)
+				if (houseY > Main.worldSurface)
 				{
 					continue;
 				}
-				Tile tile = Main.tile[towerX, towerY];
-				// If the type of the tile we are placing the tower on doesn't match what we want, try again
-				if (!(tile.TileType == TileID.IceBlock
-					|| tile.TileType == TileID.SnowBlock))
+				Tile tile = Main.tile[houseX, houseY];
+				// If the type of the tile we are placing the house on doesn't match what we want, try again
+				if (!(tile.TileType == TileID.IceBlock || tile.TileType == TileID.SnowBlock))
 				{
 					continue;
 				}
 
-				// Don't place the tower if the area isn't flat
-				if (!YggdrasilWorld.CheckFlat(towerX, towerY, Tiles.GetLength(1), 3)) 
-					continue;
+				// Don't place the house if the area isn't flat
+				//if (!WorldGenSystem.CheckFlat(houseX, houseY, Tiles.GetLength(1), 3)) 
+				//	continue;
 
-				// place the tower
-				Place(towerX, towerY);
-				// extend the base a bit
-				for (int i = towerX - 2; i < towerX + Tiles.GetLength(1) - 4; i++)
+				// place the house
+				VikingHousePlacement(houseX, houseY, HouseTiles, HouseWalls, HouseSlopes, HouseFurnitures);
+
+				housePlaced = true;
+				YggdrasilWorld.gennedVikingHouse = true;
+			}
+		}
+
+
+		private static void VikingHousePlacement(int i, int j, int[,] Tiles, int[,] Walls, int[,] Slopes, int[,] Furnitures)
+		{
+			for (int y = 0; y < Tiles.GetLength(0); y++)
+			{
+				for (int x = 0; x < Tiles.GetLength(1); x++)
 				{
-					for (int k = towerY + 3; k < towerY + 9; k++) //12
+					int k = x + i + OffsetX;
+					int l = y + j + OffsetY;
+					if (WorldGen.InWorld(k, l, 30))
 					{
-						WorldGen.PlaceTile(i, k, TileID.SnowBlock, mute: true, forced: true);
-						WorldGen.SlopeTile(i, k);
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Tiles[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 2:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 3:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 4:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 5:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 6:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 7:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 8:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+						}
 					}
 				}
 			}
-			//if (!placed) YggdrasilMod.Logger.Error("Worldgen: FAILED to place Goblin Tower, ground not flat enough?");
-			return placed;
-		}
 
-		protected override TileData TileMap(int tile, int x, int y)
-		{
-			switch (tile)
+			for (int y = 0; y < Walls.GetLength(0); y++)
 			{
-				case 1:
-					return new TileData(TileID.GrayBrick);
-				case 2:
-					return new TileData(TileID.SnowBlock);
-				case 3:
-					return new TileData(ModContent.TileType<NordicWoodTile>());
-				case 4:
-					return new TileData(TileID.WoodenBeam);
-				case 5:
-					return new TileData(TileID.StoneSlab);
-				case 6:
-					return new TileData(TileID.Cobweb);
+				for (int x = 0; x < Walls.GetLength(1); x++)
+				{
+					int k = x + i + OffsetX;
+					int l = y + j + OffsetY;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Walls[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 2:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 3:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 5:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 8:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+						}
+					}
+				}
 			}
-			return null;
-		}
 
-		protected override TileData FurnitureMap(int tile, int x, int y)
-		{
-			switch (tile)
+			for (int y = 0; y < Tiles.GetLength(0); y++)
 			{
-				case 4:
-					return new ChestData(ModContent.TileType<VikingChestTile>(), style: 1);
-				case 5:
-					return new ObjectData(TileID.Fireplace);
-				case 6:
-					return new ObjectData(93); //Tiki Torch
-				case 7:
-					return new ObjectData(TileID.Tables);
-				case 8:
-					return new ObjectData(TileID.Chairs);
-				case 9:
-					return new TileData(TileID.ClosedDoor, 30);
-				case 10:
-					return new TileData(TileID.Pots);
-
-
+				for (int x = 0; x < Tiles.GetLength(1); x++)
+				{
+					int k = x + i + OffsetX;
+					int l = y + j + OffsetY;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Tiles[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.PlaceTile(k, l, TileID.GrayBrick);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+							case 2:
+								WorldGen.PlaceTile(k, l, TileID.SnowBlock);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+							case 3:
+								WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<NordicWoodTile>());
+								WorldGen.SlopeTile(k, l, Slopes[y, x]);
+								break;
+							case 4:
+								WorldGen.PlaceTile(k, l, TileID.WoodenBeam);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+							case 5:
+								WorldGen.PlaceTile(k, l, TileID.IceBlock);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+							case 6:
+								WorldGen.PlaceTile(k, l, TileID.Cobweb);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+							case 7:
+								WorldGen.PlaceTile(k, l, TileID.Platforms);
+								//WorldGen.SlopeTile(k, l, Slopes[x, y]);
+								break;
+						}
+					}
+				}
 			}
-			return null;
-		}
 
-		protected override WallData WallMap(int wall, int x, int y)
-		{
-			switch (wall)
+			for (int y = 0; y < Walls.GetLength(0); y++)
 			{
-				case 1:
-					return new WallData(WallID.Wood);
-				case 2:
-					return new WallData(WallID.ArcaneRunes);
-				case 3:
-					return new WallData(WallID.GrayBrick);
-				case 5:
-					return new WallData(WallID.WoodenFence);
-				case 8:
-					return new WallData(WallID.Planked);
+				for (int x = 0; x < Walls.GetLength(1); x++)
+				{
+					int k = x + i + OffsetX;
+					int l = y + j + OffsetY;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Walls[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.PlaceWall(k, l, WallID.Wood);
+								break;
+							case 2:
+								WorldGen.PlaceWall(k, l, WallID.ArcaneRunes);
+								break;
+							case 3:
+								WorldGen.PlaceWall(k, l, WallID.GrayBrick);
+								break;
+							case 5:
+								WorldGen.PlaceWall(k, l, WallID.WoodenFence);
+								break;
+							case 8:
+								WorldGen.PlaceWall(k, l, WallID.Planked);
+								break;
+						}
+					}
+				}
 			}
-			return new WallData(-1);
+
+			for (int y = 0; y < Furnitures.GetLength(0); y++)
+			{
+				for (int x = 0; x < Furnitures.GetLength(1); x++)
+				{
+					int k = x + i + OffsetX;
+					int l = y + j + OffsetY;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Furnitures[y, x])
+						{
+							case 0:
+								break;
+							case 4:
+								WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<VikingChestTile>(), style: 1);
+								break;
+							case 5:
+								WorldGen.PlaceObject(k, l, TileID.Fireplace, style: 1);
+								break;
+							case 6:
+								WorldGen.PlaceObject(k, l, TileID.Pots); //Tiki Torch
+								break;
+							case 7:
+								WorldGen.PlaceObject(k, l, TileID.Tables);
+								break;
+							case 8:
+								WorldGen.PlaceObject(k, l, TileID.Chairs);
+								break;
+							case 9:
+								WorldGen.PlaceTile(k, l, TileID.ClosedDoor, style: 30);
+								break;
+						}
+					}
+				}
+			}
 		}
 	}
 }
+	

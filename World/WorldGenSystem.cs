@@ -16,26 +16,6 @@ namespace Yggdrasil.World;
 
 public class WorldGenSystem : ModSystem
 {
-    //*************************************
-    //Super Duper Debugging stuff there there
-    //*************************************
-    /*public static bool JustPressed(Keys key)
-    {
-        return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
-    }
-
-    public override void PostUpdateEverything()
-    {
-        if (JustPressed(Keys.D1))
-        {
-            new VikingHouseGen().Generate();
-        }
-
-    }*/
-    //*************************************
-    //Super Duper Debugging stuff there there
-    //*************************************
-
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
     {
 
@@ -45,7 +25,7 @@ public class WorldGenSystem : ModSystem
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
         int vikingChestIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Water Chests"));
-        int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Pyramids"));
+        int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Temple"));
 
         if (shiniesIndex != -1)
         {
@@ -60,18 +40,15 @@ public class WorldGenSystem : ModSystem
 
         if (vikingHouseIndex != -1)
         {
-            tasks.Insert(vikingHouseIndex + 1, new PassLegacy("Viking House", VikingHouseGen));
+            tasks.Insert(vikingHouseIndex + 1, new PassLegacy("Viking House", YggdrasilGenPasses.MicroBiomePass));
         }
     }
 
     private void FrostCoreGen(GenerationProgress progress, GameConfiguration configuration)
     {
-        // progress.Message is the message shown to the user while the following code is running.
-        // Try to make your message clear. You can be a little bit clever, but make sure it is descriptive enough for troubleshooting purposes.
+        
         progress.Message = "Frostcore Ores";
 
-        // Ores are quite simple, we simply use a for loop and the WorldGen.TileRunner to place splotches of the specified Tile in the world.
-        // "6E-05" is "scientific notation". It simply means 0.00006 but in some ways is easier to read.
         for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 0.0005); k++)
         {
             // The inside of this for loop corresponds to one single splotch of our Ore.
@@ -111,7 +88,7 @@ public class WorldGenSystem : ModSystem
                 }
 
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX); 
-                int y = WorldGen.genRand.Next(0, (int)((Main.rockLayer + Main.maxTilesY - 200)));
+                int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY);
 
                 Dust.QuickBox(new Vector2(x, y) * 16, new Vector2(x + 1, y + 1) * 16, 2, Color.YellowGreen, null);
 
@@ -136,19 +113,38 @@ public class WorldGenSystem : ModSystem
             }
         }
     }
-    private void VikingHouseGen(GenerationProgress progress, GameConfiguration configuration)
+
+    //Check if an area is flat enough to spawn the viking houses
+    public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
     {
-        int attempts = 0;
+        // Fail if the tile at the other end of the check plane isn't also solid
+        if (!WorldGen.SolidTile(startX + width, startY)) return false;
 
-        while (true)
+        float totalVariance = 0;
+        for (int i = 0; i < width; i++)
         {
-            attempts++;
-            if (attempts > 20)
-                break;
+            if (startX + i >= Main.maxTilesX) return false;
 
-            progress.Message = "Adding Viking Houses...";
-            new VikingHouseGen().Generate();
+            // Fail if there is a tile very closely above the check area
+            for (int k = startY - 1; k > startY - 100; k--)
+            {
+                if (WorldGen.SolidTile(startX + i, k)) return false;
+            }
+
+            // If the tile is solid, go up until we find air
+            // If the tile is not, go down until we find a floor
+            int offset = 0;
+            bool goingUp = WorldGen.SolidTile(startX + i, startY);
+            offset += goingUp ? goingUpWeight : goingDownWeight;
+            while ((goingUp && WorldGen.SolidTile(startX + i, startY - offset))
+                || (!goingUp && !WorldGen.SolidTile(startX + i, startY + offset)))
+            {
+                offset++;
+            }
+            if (goingUp) offset--; // account for going up counting the first tile
+            totalVariance += offset;
         }
+        return totalVariance / width <= threshold;
     }
 
     /*public override void PostUpdateNPCs()
