@@ -24,18 +24,12 @@ public class WorldGenSystem : ModSystem
         // The first step is an Ore. Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
-        int vikingChestIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Water Chests"));
         int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Temple"));
 
         if (shiniesIndex != -1)
         {
             // Next, we insert our pass directly after the original "Shinies" pass.
             tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
-        }
-
-        if (vikingChestIndex != -1)
-        {
-            tasks.Insert(vikingChestIndex + 1, new PassLegacy("Viking Chest", VikingChestGen));
         }
 
         if (vikingHouseIndex != -1)
@@ -71,93 +65,50 @@ public class WorldGenSystem : ModSystem
         }
     }
 
-    private void VikingChestGen(GenerationProgress progress, GameConfiguration configuration)
+    public override void PostUpdateNPCs()
     {
-        progress.Message = "Adding Viking Chests.....";
-
-        for (int i = 0; i < 10; i++)
+        //TODO: Save/Load that ColdIronGenerated in YggdrasilWorld
+        if (NPC.downedGolemBoss && !YggdrasilWorld.ColdIronGenerated)
         {
-            bool success = false;
-            int attempts = 0;
-            while (!success)
-            {
-                attempts++;
-                if (attempts > 1000)
-                {
-                    break;
-                }
-
-                int x = WorldGen.genRand.Next(0, Main.maxTilesX); 
-                int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY);
-
-                Dust.QuickBox(new Vector2(x, y) * 16, new Vector2(x + 1, y + 1) * 16, 2, Color.YellowGreen, null);
-
-                var point = new Point(x, y);
-                Point resultPoint;
-                bool searchSuccessful = WorldUtils.Find(point, Searches.Chain(new Searches.Down(20),
-                    new GenCondition[]
-                    {
-                        new Conditions.IsSolid().AreaAnd(2, 1),
-                        new Conditions.IsTile(TileID.IceBlock).AreaAnd(2, 1),
-                    }), out resultPoint);
-                if (searchSuccessful)
-                {
-                    
-                    Dust.QuickBox(new Vector2(resultPoint.X, resultPoint.Y) * 16,
-                        new Vector2(resultPoint.X + 1, resultPoint.Y + 1) * 16, 2, Color.YellowGreen, null);
-                    int chestSpawn = WorldGen.PlaceChest(resultPoint.X, resultPoint.Y - 1,
-                        (ushort)ModContent.TileType<VikingChestTile>(), true, style: 1);
-                    success = chestSpawn != -1;
-
-                }
-            }
+            YggdrasilWorld.ColdIronGenerated = true;
+            SpawnColdIron();
         }
     }
 
-    //Check if an area is flat enough to spawn the viking houses
-    public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
+    private void SpawnColdIron()
     {
-        // Fail if the tile at the other end of the check plane isn't also solid
-        if (!WorldGen.SolidTile(startX + width, startY)) return false;
-
-        float totalVariance = 0;
-        for (int i = 0; i < width; i++)
+        for (int k = 0; k < 200; k++)
         {
-            if (startX + i >= Main.maxTilesX) return false;
+            // The inside of this for loop corresponds to one single splotch of our Ore.
+            // First, we randomly choose any coordinate in the world by choosing a random x and y value.
+            int x = WorldGen.genRand.Next(100, (Main.maxTilesX / 2) - 500);
+            if (Main.dungeonX > Main.maxTilesX / 2) //rightside dungeon
+                x = WorldGen.genRand.Next((Main.maxTilesX / 2) + 300, Main.maxTilesX - 500);
 
-            // Fail if there is a tile very closely above the check area
-            for (int k = startY - 1; k > startY - 100; k--)
-            {
-                if (WorldGen.SolidTile(startX + i, k)) return false;
-            }
+            // WorldGen.worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
+            int y = WorldGen.genRand.Next((int)Main.rockLayer + 200, Main.maxTilesY - 200);
 
-            // If the tile is solid, go up until we find air
-            // If the tile is not, go down until we find a floor
-            int offset = 0;
-            bool goingUp = WorldGen.SolidTile(startX + i, startY);
-            offset += goingUp ? goingUpWeight : goingDownWeight;
-            while ((goingUp && WorldGen.SolidTile(startX + i, startY - offset))
-                || (!goingUp && !WorldGen.SolidTile(startX + i, startY + offset)))
+            // Then, we call WorldGen.TileRunner with random "strength" and random "steps", as well as the Tile we wish to place.
+            // Feel free to experiment with strength and step to see the shape they generate.
+            Tile tile = Framing.GetTileSafely(x, y);
+            if (tile.HasTile && (tile.TileType == TileID.Stone || tile.TileType == TileID.SnowBlock))
             {
-                offset++;
+
+                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 1, ModContent.TileType<ColdIronTile>());
+                WorldGen.SquareTileFrame(x, y, true);
             }
-            if (goingUp) offset--; // account for going up counting the first tile
-            totalVariance += offset;
         }
-        return totalVariance / width <= threshold;
+
+        YggdrasilWorld.ColdIronGenerated = true;
+        if (Main.netMode == NetmodeID.SinglePlayer)
+            Main.NewText("A cold wave passed through the earth...", 174, 128, 79);
+
+        //WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 1, ModContent.TileType<ColdIronTile>(), false, 0f, 0f, true, true);
     }
 
-    /*public override void PostUpdateNPCs()
-    {
-        if (NPC.downedSlimeKing && !YggdrasilWorld.IronWoodBiome)
-        {
-            YggdrasilWorld.IronWoodBiome = true;
-            SpawnIronWoodBiome();
-        }
-    }
 
     //Generation code of the new Iron Wood biome
-    private void SpawnIronWoodBiome()
+    /*private void SpawnIronWoodBiome()
     {
         int firstX = WorldGen.genRand.Next(100, (Main.maxTilesX / 2) - 500);
         if (Main.dungeonX > Main.maxTilesX / 2) //rightside dungeon
@@ -243,5 +194,38 @@ public class WorldGenSystem : ModSystem
         //    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Giants passed over the land..."), Color.Orange, -1); 
         //}
     }*/
+
+    //Check if an area is flat enough to spawn the viking houses
+    public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
+    {
+        // Fail if the tile at the other end of the check plane isn't also solid
+        if (!WorldGen.SolidTile(startX + width, startY)) return false;
+
+        float totalVariance = 0;
+        for (int i = 0; i < width; i++)
+        {
+            if (startX + i >= Main.maxTilesX) return false;
+
+            // Fail if there is a tile very closely above the check area
+            for (int k = startY - 1; k > startY - 100; k--)
+            {
+                if (WorldGen.SolidTile(startX + i, k)) return false;
+            }
+
+            // If the tile is solid, go up until we find air
+            // If the tile is not, go down until we find a floor
+            int offset = 0;
+            bool goingUp = WorldGen.SolidTile(startX + i, startY);
+            offset += goingUp ? goingUpWeight : goingDownWeight;
+            while ((goingUp && WorldGen.SolidTile(startX + i, startY - offset))
+                || (!goingUp && !WorldGen.SolidTile(startX + i, startY + offset)))
+            {
+                offset++;
+            }
+            if (goingUp) offset--; // account for going up counting the first tile
+            totalVariance += offset;
+        }
+        return totalVariance / width <= threshold;
+    }
 
 }

@@ -35,6 +35,7 @@ public class RunemasterCore : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.LunarBar, 10)
+        .AddIngredient<ColdIronBar>(3)
         .AddTile(TileID.LunarCraftingStation)
         .Register();
 }

@@ -30,7 +30,8 @@ public class RunemasterSabaton : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.LunarBar, 10)
+        .AddIngredient(ItemID.LunarBar, 8)
+        .AddIngredient<ColdIronBar>(3)
         .AddTile(TileID.LunarCraftingStation)
         .Register();
 }

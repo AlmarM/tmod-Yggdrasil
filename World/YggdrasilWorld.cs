@@ -21,6 +21,7 @@ namespace Yggdrasil.World
 	{
 		
 		public static bool IronWoodBiome = false;
+		public static bool ColdIronGenerated = false;
 		public static bool ZoneIronWood;
 		public static int IronWoodTiles = 0;
 		public static bool gennedVikingHouse = false;

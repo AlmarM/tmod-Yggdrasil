@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+/*using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -29,4 +29,4 @@ public class IronWoodSolution : YggdrasilItem
 		Item.maxStack = 999;
 		Item.consumable = true;
 	}
-}
+}*/

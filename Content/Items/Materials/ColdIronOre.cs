@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Tiles;
@@ -9,7 +10,7 @@ public class ColdIronOre : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
+        ItemID.Sets.SortingPriorityMaterials[Item.type] = 68;
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
@@ -26,7 +27,7 @@ public class ColdIronOre : YggdrasilItem
         Item.createTile = ModContent.TileType<ColdIronTile>();
         Item.width = 12;
         Item.height = 12;
-        Item.value = 800;
-        Item.rare = ItemRarityID.Green;
+        Item.value = Item.buyPrice(0, 0, 30);
+        Item.rare = ItemRarityID.Yellow;
     }
 }

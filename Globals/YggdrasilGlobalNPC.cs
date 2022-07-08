@@ -95,5 +95,5 @@ public class YggdrasilGlobalNPC : GlobalNPC
 
         return;
     }
-    
+
 }

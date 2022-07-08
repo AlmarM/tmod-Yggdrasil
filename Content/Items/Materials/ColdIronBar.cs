@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Tiles;
@@ -18,7 +19,6 @@ public class ColdIronBar : YggdrasilItem
     public override void SetDefaults()
     {
         Item.maxStack = 999;
-        Item.value = 750;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.useTurn = true;
         Item.useAnimation = 15;
@@ -27,12 +27,12 @@ public class ColdIronBar : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<ColdIronBarTile>();
         Item.placeStyle = 0;
-        Item.rare = ItemRarityID.Lime;
+        Item.value = Item.buyPrice(0, 1, 20);
+        Item.rare = ItemRarityID.Yellow;
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<ColdIronOre>(6)
-        .AddIngredient(ItemID.ChlorophyteBar)
-        .AddTile(TileID.Furnaces)
+        .AddTile(TileID.AdamantiteForge)
         .Register();
 }
