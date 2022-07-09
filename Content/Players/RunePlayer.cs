@@ -108,7 +108,7 @@ public class RunePlayer : ModPlayer
         if (Player.HasEffect<GlacierHelmet>())
             npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
     }
-    
+
 
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
     {
@@ -117,7 +117,6 @@ public class RunePlayer : ModPlayer
             int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
             BuffUtils.ApplyRandomDebuff(target, duration);
         }
-        
     }
 
     public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
@@ -126,7 +125,7 @@ public class RunePlayer : ModPlayer
         {
             if (Player.HasEffect<FrostGiantHand>())
             {
-                CreateBlizzardExplosionAroundEntity(5, 6f, 25f, target); 
+                CreateBlizzardExplosionAroundEntity(5, 6f, 25f, target);
             }
 
             if (Player.HasEffect<OccultHelmet>())
@@ -141,7 +140,8 @@ public class RunePlayer : ModPlayer
             target.AddBuff(BuffID.Venom, 180);
         }
 
-        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>() && target.type != NPCID.TargetDummy)
+        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>() &&
+            target.type != NPCID.TargetDummy)
         {
             if (Main.rand.Next(100) < 1)
             {
@@ -170,7 +170,7 @@ public class RunePlayer : ModPlayer
 
         if (item.ModItem is RunicItem && Player.HasEffect<JomsborgCasque>())
         {
-            speed += (float)InsanityValue/100;
+            speed += (float)InsanityValue / 100;
         }
 
         if (item.ModItem is RunicItem && Player.HasEffect<TheSunBuff>())
@@ -190,7 +190,6 @@ public class RunePlayer : ModPlayer
     //We make sure these gets activated both with rune and accessories potential +X runicpower
     public override void PostUpdateEquips()
     {
-
     }
 
     public override void PreUpdate()
@@ -209,10 +208,9 @@ public class RunePlayer : ModPlayer
             Player.immune = true;
             Player.immuneTime = 20;
 
-            
+
             SoundEngine.PlaySound(SoundID.PlayerHit, Player.position);
-            
-            
+
 
             //Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " went insane"),
             //    (int)(Player.statLifeMax * InsanityHurtValue), 0);
@@ -256,24 +254,22 @@ public class RunePlayer : ModPlayer
         InsanityHurtValue = 0.25f;
         RunicProjectilesAdd = 0;
         RunicProjectileSpeedMultiplyer = 10f;
-
     }
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
     {
-        return new[] {
-                new Item(ModContent.ItemType<StartingNote>()),
-
-            };
+        return new[]
+        {
+            new Item(ModContent.ItemType<StartingNote>()),
+        };
     }
 
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,
         Entity entity)
     {
-
         float delta = MathF.PI * 2 / projectileCount;
-   
-        
+
+
         for (var i = 0; i < projectileCount; i++)
         {
             float theta = delta * i;
@@ -283,8 +279,8 @@ public class RunePlayer : ModPlayer
             direction = Vector2.Normalize(direction);
             direction = Vector2.Multiply(direction, projectileSpeed);
 
-            Projectile.NewProjectile(null, position, direction, ModContent.ProjectileType<GlacierStaffProjectile>(), 15, 2, Player.whoAmI);
-        }  
-        
+            Projectile.NewProjectile(null, position, direction, ModContent.ProjectileType<GlacierStaffProjectile>(), 15,
+                2, Player.whoAmI);
+        }
     }
 }
