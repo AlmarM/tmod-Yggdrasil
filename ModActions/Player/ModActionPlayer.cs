@@ -6,14 +6,27 @@ using Terraria.ModLoader;
 
 namespace Yggdrasil.ModActions.Player;
 
-public class ModActionPlayer : ModPlayer
+public abstract class ModActionPlayer : ModPlayer
 {
     private IDictionary<Type, IList<IPlayerModAction>> _modActionMap;
 
     public override void Initialize()
     {
         _modActionMap = new Dictionary<Type, IList<IPlayerModAction>>();
+
+        CreateModActions();
     }
+
+    // public override ModPlayer NewInstance(Terraria.Player entity)
+    // {
+    //     ModPlayer newInstance = base.NewInstance(entity);
+    //     ModActionPlayer modActionPlayer = (ModActionPlayer)newInstance;
+    //
+    //     modActionPlayer._modActionMap = new Dictionary<Type, IList<IPlayerModAction>>();
+    //     modActionPlayer.CreateModActions();
+    //
+    //     return modActionPlayer;
+    // }
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
     {
@@ -66,19 +79,31 @@ public class ModActionPlayer : ModPlayer
 
     protected void AddModAction(IPlayerModAction modAction)
     {
-        var key = modAction.GetType();
-        if (_modActionMap.ContainsKey(key))
+        Type baseType = typeof(IPlayerModAction);
+        Type[] modActionTypes = modAction
+            .GetType()
+            .GetInterfaces()
+            .Where(it => it.IsAssignableTo(baseType) && it != baseType)
+            .ToArray();
+
+        foreach (Type type in modActionTypes)
         {
-            _modActionMap[key].Add(modAction);
-        }
-        else
-        {
-            _modActionMap.Add(key, new List<IPlayerModAction>(new[] { modAction }));
+            if (_modActionMap.ContainsKey(type))
+            {
+                _modActionMap[type].Add(modAction);
+            }
+            else
+            {
+                _modActionMap.Add(type, new List<IPlayerModAction>(new[] { modAction }));
+            }
         }
     }
 
     private IEnumerable<T> FilterModActions<T>()
     {
-        return _modActionMap[typeof(T)].Cast<T>();
+        var type = typeof(T);
+        return _modActionMap.ContainsKey(type)
+            ? _modActionMap[type].Cast<T>()
+            : Enumerable.Empty<T>();
     }
 }

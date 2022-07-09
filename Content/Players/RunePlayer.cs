@@ -16,13 +16,14 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.ModActions.Player;
 
 namespace Yggdrasil.Content.Players;
 
 /// <summary>
 /// Class that handles all logic regarding runes and runic effects.
 /// </summary>
-public class RunePlayer : ModPlayer
+public class RunePlayer : ModActionPlayer
 {
     public int RunePower { get; set; }
     public int FocusPowerTime { get; set; }
@@ -181,11 +182,6 @@ public class RunePlayer : ModPlayer
         return speed;
     }
 
-    public override bool? CanAutoReuseItem(Item item)
-    {
-        return null;
-    }
-
     //We check for runic power at the absolute end
     //We make sure these gets activated both with rune and accessories potential +X runicpower
     public override void PostUpdateEquips()
@@ -262,6 +258,11 @@ public class RunePlayer : ModPlayer
         {
             new Item(ModContent.ItemType<StartingNote>()),
         };
+    }
+
+    protected override void CreateModActions()
+    {
+        AddModAction(new TestEffectOne());
     }
 
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,

@@ -4,7 +4,7 @@ using Yggdrasil.ModActions.Player;
 
 namespace Yggdrasil;
 
-public class TestActionOne : ICanAutoReuseItemModAction
+public class TestEffectOne : ICanAutoReuseItemModAction
 {
     public int Priority => 0;
 
