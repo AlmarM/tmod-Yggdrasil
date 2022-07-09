@@ -6,14 +6,19 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
 public class Berserker : YggdrasilNPC
 {
+    //Variable used to make sure the NPC keeps spawned during the day befause Fighter AI despawn itself during day
+    //Might mess up in multiplayer
+    private int _timeLeft;
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Berserker");
@@ -38,18 +43,29 @@ public class Berserker : YggdrasilNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = 150f;
-        NPC.knockBackResist = 0.9f;
+        NPC.knockBackResist = 0;
         NPC.aiStyle = 3;
         AIType = 213;
         AnimationType = 482;
         NPC.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
     }
+
+    //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
+    //Might mess up in multiplayer
+    public override bool PreAI()
+    {
+        _timeLeft = NPC.timeLeft;
+
+        return base.PreAI();
+    }
+
     public override void AI()
     {
+        NPC.timeLeft = _timeLeft;
+
         NPC.TargetClosest();
-        NPC.netUpdate = true;
-        
+        NPC.netUpdate = true;        
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -72,6 +88,7 @@ public class Berserker : YggdrasilNPC
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BerserkerHelmet>()));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingDaneAxe>(), 3));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 1, 2, 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)
@@ -88,6 +105,7 @@ public class Berserker : YggdrasilNPC
 
         Player player = Main.player[NPC.target];
 
+        
         if (NPC.life < (NPC.lifeMax * 0.35f))
         {
             int projectileCount = 5;
@@ -96,19 +114,27 @@ public class Berserker : YggdrasilNPC
             const float radius = 25f;
 
             float delta = MathF.PI * 2 / projectileCount;
-
-            for (var i = 0; i < projectileCount; i++)
+            if (Main.rand.Next(100) < 25)
             {
-                float theta = delta * i;
-                var position = NPC.Center + Vector2.One.RotatedBy(theta) * radius;
+                for (var i = 0; i < projectileCount; i++)
+                {
+                    float theta = delta * i;
+                    var position = NPC.Center + Vector2.One.RotatedBy(theta) * radius;
 
-                Vector2 direction = position - NPC.Center;
-                direction = Vector2.Normalize(direction);
-                direction = Vector2.Multiply(direction, projectileSpeed);
+                    Vector2 direction = position - NPC.Center;
+                    direction = Vector2.Normalize(direction);
+                    direction = Vector2.Multiply(direction, projectileSpeed);
 
-                Projectile.NewProjectile(null, position, direction, ProjectileID.FrostWave, 15, 2, player.whoAmI);
+                    Projectile.NewProjectile(null, position, direction, ProjectileID.FrostWave, 15, 2, player.whoAmI);
+                }
             }
         }
 
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 5;
     }
 }

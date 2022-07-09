@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorAlgizRune : Rune
+internal class MajorAlgizRune : Rune<MajorAlgizRune>
 {
     private const int DefenseBonus = 3;
 
@@ -19,11 +19,13 @@ internal class MajorAlgizRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<AlgizRune>()
         .AddIngredient(ItemID.PaladinsShield)
         .AddIngredient(ItemID.BeetleHusk, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

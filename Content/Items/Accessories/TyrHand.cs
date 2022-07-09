@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
@@ -17,7 +18,8 @@ namespace Yggdrasil.Content.Items.Accessories
 
             DisplayName.SetDefault("Tyr's Hand");
             Tooltip.SetDefault($"10% increase {runicText} attack speed" +
-                               $"\n5% increase {runicText} damage");
+                               $"\n5% increase {runicText} damage" +
+                               $"\nIncreases {runicText} weapons range");
         }
 
         public override void SetDefaults()
@@ -31,6 +33,7 @@ namespace Yggdrasil.Content.Items.Accessories
         {
             player.GetDamage<RunicDamageClass>() += 0.05f;
             player.SetEffect<TyrHand>();
+            player.GetModPlayer<RunePlayer>().RunicProjectileSpeedMultiplyer += 2f;
         }
 
         public override void AddRecipes()

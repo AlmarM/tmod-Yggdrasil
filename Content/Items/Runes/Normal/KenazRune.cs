@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class KenazRune : Rune
+internal class KenazRune : Rune<KenazRune>
 {
     public const string RuneName = "Kenaz";
 
@@ -20,6 +20,8 @@ internal class KenazRune : Rune
     public override string TooltipDescription => RuneEffectConfig.KenazDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorKenazRune>()

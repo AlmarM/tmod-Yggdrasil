@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class BerkanoRune : Rune
+internal class BerkanoRune : Rune<BerkanoRune>
 {
     public const string RuneName = "Berkano";
 
@@ -21,6 +21,8 @@ internal class BerkanoRune : Rune
     public override string TooltipDescription => RuneEffectConfig.BerkanoDescription;
 
     public override int Rarity => ItemRarityID.Lime;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorBerkanoRune>()

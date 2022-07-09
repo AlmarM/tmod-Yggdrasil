@@ -1,4 +1,7 @@
+using Terraria.UI;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,50 +11,34 @@ using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.UI;
+using Yggdrasil.Content.Tiles.IronWood;
 
 namespace Yggdrasil.World
 {
+
 	public class YggdrasilWorld : ModSystem
 	{
-		public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
+		
+		public static bool IronWoodBiome = false;
+		public static bool ColdIronGenerated = false;
+		public static bool ZoneIronWood;
+		public static int IronWoodTiles = 0;
+		public static bool gennedVikingHouse = false;
+
+		public override void OnWorldLoad()
 		{
-			// Fail if the tile at the other end of the check plane isn't also solid
-			if (!WorldGen.SolidTile(startX + width, startY)) return false;
-
-			float totalVariance = 0;
-			for (int i = 0; i < width; i++)
-			{
-				if (startX + i >= Main.maxTilesX) return false;
-
-				// Fail if there is a tile very closely above the check area
-				for (int k = startY - 1; k > startY - 100; k--)
-				{
-					if (WorldGen.SolidTile(startX + i, k)) return false;
-				}
-
-				// If the tile is solid, go up until we find air
-				// If the tile is not, go down until we find a floor
-				int offset = 0;
-				bool goingUp = WorldGen.SolidTile(startX + i, startY);
-				offset += goingUp ? goingUpWeight : goingDownWeight;
-				while ((goingUp && WorldGen.SolidTile(startX + i, startY - offset))
-					|| (!goingUp && !WorldGen.SolidTile(startX + i, startY + offset)))
-				{
-					offset++;
-				}
-				if (goingUp) offset--; // account for going up counting the first tile
-				totalVariance += offset;
-			}
-			return totalVariance / width <= threshold;
+			ZoneIronWood = false;
+			gennedVikingHouse = false;
 		}
 
 		public override void PostWorldGen()
 		{
-			// Place some items in Ice Chests
+			//Adding item to viking chests
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
 			{
 				Chest chest = Main.chest[chestIndex];
-				// If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Ice Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. 
+
 				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<VikingChestTile>())
 				{
 					var itemsToAdd = new List<(int type, int stack)>();
@@ -89,7 +76,7 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ModContent.ItemType<StoneBlock>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
-							itemsToAdd.Add((ItemID.FlurryBoots, Main.rand.Next(1)));
+							itemsToAdd.Add((ItemID.FlurryBoots, 1));
 							itemsToAdd.Add((ItemID.RecallPotion, Main.rand.Next(2, 4)));
 							break;
 					}
@@ -109,5 +96,17 @@ namespace Yggdrasil.World
 				}
 			}
 		}
-	}
+
+		public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
+		{
+			IronWoodTiles = tileCounts[ModContent.TileType<IronWoodDirtTile>()] + tileCounts[ModContent.TileType<IronWoodGrassTile>()]
+			+ tileCounts[ModContent.TileType<IronWoodStoneTile>()] + tileCounts[ModContent.TileType<IronWoodIceTile>()] + tileCounts[ModContent.TileType<IronWoodSandTile>()];
+		}
+
+        public override void PostUpdateEverything()
+        {
+			//if (ZoneIronWood)
+			//Main.NewText(IronWoodTiles);
+		}
+	}	
 }

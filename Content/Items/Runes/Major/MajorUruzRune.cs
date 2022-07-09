@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorUruzRune : Rune
+internal class MajorUruzRune : Rune<MajorUruzRune>
 {
     private const float MeleeSpeedBonus = 0.07f;
 
@@ -19,11 +19,13 @@ internal class MajorUruzRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<UruzRune>()
         .AddIngredient(ItemID.ButchersChainsaw)
         .AddIngredient(ItemID.PossessedHatchet)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -10,11 +10,12 @@ using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Projectiles;
-using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
+using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Content.Players;
 
@@ -32,6 +33,7 @@ public class RunePlayer : ModPlayer
     public int InsanityValue { get; set; }
     public int InsanityTimer { get; set; }
     public int InsanityRemoverValue { get; set; }
+    public int RunicProjectilesAdd { get; set; }
 
     public float DodgeChance { get; set; }
     public float InvincibilityBonusTime { get; set; }
@@ -39,6 +41,8 @@ public class RunePlayer : ModPlayer
     public float ApplyRandomBuffChance { get; set; }
     public float RandomBuffDuration { get; set; }
     public float SlowDebuffValue { get; set; }
+    public float InsanityHurtValue { get; set; }
+    public float RunicProjectileSpeedMultiplyer { get; set; }
 
     public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
@@ -62,10 +66,20 @@ public class RunePlayer : ModPlayer
         if (Player.HasEffect<OdinsEye>() && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
-            if (RunePower >= 10)
-            {
-                healBack = 0.5f;
-            }
+
+            Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * healBack);
+
+            Player.NinjaDodge();
+            Player.HealEffect((int)Math.Ceiling(Player.statLifeMax2 * (healBack)));
+
+            SoundEngine.PlaySound(SoundID.Item4, Player.position);
+
+            return false;
+        }
+
+        if (Player.HasEffect<RunemasterShield>() && damage > Player.statLife && Main.rand.Next(100) < 25)
+        {
+            var healBack = 0.5f;
 
             Player.statLife += (int)Math.Ceiling(Player.statLifeMax2 * healBack);
 
@@ -89,6 +103,13 @@ public class RunePlayer : ModPlayer
         }
     }
 
+    public override void OnHitByNPC(NPC npc, int damage, bool crit)
+    {
+        if (Player.HasEffect<GlacierHelmet>())
+            npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
+    }
+    
+
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
     {
         if (ApplyRandomBuffChance > 0f && Main.rand.NextFloat() <= ApplyRandomBuffChance)
@@ -105,7 +126,7 @@ public class RunePlayer : ModPlayer
         {
             if (Player.HasEffect<FrostGiantHand>())
             {
-                CreateBlizzardExplosionAroundEntity(12, 6f, 25f, target);
+                CreateBlizzardExplosionAroundEntity(5, 6f, 25f, target); 
             }
 
             if (Player.HasEffect<OccultHelmet>())
@@ -120,9 +141,9 @@ public class RunePlayer : ModPlayer
             target.AddBuff(BuffID.Venom, 180);
         }
 
-        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>())
+        if (proj.ModProjectile is RunicProjectile && Player.HasEffect<FreyaNecklace>() && target.type != NPCID.TargetDummy)
         {
-            if (Main.rand.Next(100) < 5)
+            if (Main.rand.Next(100) < 1)
             {
                 Item.NewItem(null, (int)target.position.X, (int)target.position.Y, target.width, target.height, 58);
             }
@@ -147,16 +168,21 @@ public class RunePlayer : ModPlayer
             speed += 0.1f;
         }
 
+        if (item.ModItem is RunicItem && Player.HasEffect<JomsborgCasque>())
+        {
+            speed += (float)InsanityValue/100;
+        }
+
+        if (item.ModItem is RunicItem && Player.HasEffect<TheSunBuff>())
+        {
+            speed += 0.1f;
+        }
+
         return speed;
     }
 
     public override bool? CanAutoReuseItem(Item item)
     {
-        if (item.ModItem is RunicItem && Player.HasEffect<TyrHand>())
-        {
-            return true;
-        }
-
         return null;
     }
 
@@ -165,15 +191,6 @@ public class RunePlayer : ModPlayer
     public override void PostUpdateEquips()
     {
 
-        if (Player.HasEffect<RunemasterEmblem>() && RunePower >= 5)
-        {
-            Player.GetCritChance<RunicDamageClass>() += 1;
-        }
-
-        if (Player.HasEffect<TyrHand>() && RunePower >= 4)
-        {
-            Player.GetDamage<RunicDamageClass>() += 0.05f;
-        }
     }
 
     public override void PreUpdate()
@@ -185,8 +202,20 @@ public class RunePlayer : ModPlayer
 
         if (InsanityValue >= InsanityThreshold)
         {
-            Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " spat a bit too much"),
-                (int)(Player.statLifeMax * .25f), 0);
+            int diff = (int)(Player.statLifeMax2 * InsanityHurtValue);
+            Player.statLife -= diff;
+            CombatText.NewText(Player.Hitbox, CombatText.DamagedFriendly, diff);
+            Player.immuneNoBlink = false;
+            Player.immune = true;
+            Player.immuneTime = 20;
+
+            
+            SoundEngine.PlaySound(SoundID.PlayerHit, Player.position);
+            
+            
+
+            //Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " went insane"),
+            //    (int)(Player.statLifeMax * InsanityHurtValue), 0);
             InsanityValue = 0;
         }
 
@@ -224,6 +253,9 @@ public class RunePlayer : ModPlayer
         FocusThreshold = 10;
         InsanityThreshold = 25;
         InsanityRemoverValue = 10;
+        InsanityHurtValue = 0.25f;
+        RunicProjectilesAdd = 0;
+        RunicProjectileSpeedMultiplyer = 10f;
 
     }
 
@@ -238,8 +270,10 @@ public class RunePlayer : ModPlayer
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,
         Entity entity)
     {
-        float delta = MathF.PI * 2 / projectileCount;
 
+        float delta = MathF.PI * 2 / projectileCount;
+   
+        
         for (var i = 0; i < projectileCount; i++)
         {
             float theta = delta * i;
@@ -249,7 +283,8 @@ public class RunePlayer : ModPlayer
             direction = Vector2.Normalize(direction);
             direction = Vector2.Multiply(direction, projectileSpeed);
 
-            Projectile.NewProjectile(null, position, direction, ProjectileID.Blizzard, 15, 2, Player.whoAmI);
-        }
+            Projectile.NewProjectile(null, position, direction, ModContent.ProjectileType<GlacierStaffProjectile>(), 15, 2, Player.whoAmI);
+        }  
+        
     }
 }

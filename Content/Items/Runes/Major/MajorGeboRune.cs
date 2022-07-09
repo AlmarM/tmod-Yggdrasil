@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorGeboRune : Rune
+internal class MajorGeboRune : Rune<MajorGeboRune>
 {
     private const float MinionDamageBonus = 0.2f;
 
@@ -19,11 +19,13 @@ internal class MajorGeboRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<GeboRune>()
         .AddIngredient(ItemID.SpookyWood, 400)
         .AddIngredient(ItemID.PygmyNecklace)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

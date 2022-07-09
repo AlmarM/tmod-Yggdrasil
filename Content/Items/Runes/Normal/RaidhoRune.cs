@@ -7,7 +7,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class RaidhoRune : Rune
+internal class RaidhoRune : Rune<RaidhoRune>
 {
     public const string RuneName = "Raidho";
 
@@ -20,6 +20,8 @@ internal class RaidhoRune : Rune
     public override string TooltipDescription => RuneEffectConfig.RaidhoDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorRaidhoRune>()

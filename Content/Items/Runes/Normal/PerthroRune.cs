@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class PerthroRune : Rune
+internal class PerthroRune : Rune<PerthroRune>
 {
     public const string RuneName = "Perthro";
 
@@ -21,6 +21,8 @@ internal class PerthroRune : Rune
     public override string TooltipDescription => RuneEffectConfig.PerthroDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorPerthroRune>()

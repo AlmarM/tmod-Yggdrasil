@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorPerthroRune : Rune
+internal class MajorPerthroRune : Rune<MajorPerthroRune>
 {
     private const float ApplyBuffChance = 0.07f;
     private const float BuffDuration = 5;
@@ -20,11 +20,13 @@ internal class MajorPerthroRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<PerthroRune>()
         .AddIngredient(ItemID.InfernoFork)
         .AddIngredient(ItemID.Nanites, 50)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

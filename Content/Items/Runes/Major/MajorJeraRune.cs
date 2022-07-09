@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorJeraRune : Rune
+internal class MajorJeraRune : Rune<MajorJeraRune>
 {
     private const int AggroReduceBonus = 100;
 
@@ -19,11 +19,13 @@ internal class MajorJeraRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<JeraRune>()
         .AddIngredient(ItemID.PsychoKnife)
         .AddIngredient(ItemID.ShroomiteBar, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class FehuRune : Rune
+internal class FehuRune : Rune<FehuRune>
 {
     public const string RuneName = "Fehu";
 
@@ -20,6 +20,8 @@ internal class FehuRune : Rune
     public override string TooltipDescription => RuneEffectConfig.FehuDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorFehuRune>()

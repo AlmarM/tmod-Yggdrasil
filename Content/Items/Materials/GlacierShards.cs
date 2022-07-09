@@ -1,5 +1,6 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria;
 
 namespace Yggdrasil.Content.Items.Materials;
 
@@ -17,6 +18,7 @@ public class GlacierShards : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.LightRed;
+        Item.value = Item.buyPrice(0, 0, 15);
     }
 
 }

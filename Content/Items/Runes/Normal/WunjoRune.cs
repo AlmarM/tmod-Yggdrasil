@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class WunjoRune : Rune
+internal class WunjoRune : Rune<WunjoRune>
 {
     public const string RuneName = "Wunjo";
 
@@ -20,6 +20,8 @@ internal class WunjoRune : Rune
     public override string TooltipDescription => RuneEffectConfig.WunjoDescription;
 
     public override int Rarity => ItemRarityID.LightRed;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorWunjoRune>()

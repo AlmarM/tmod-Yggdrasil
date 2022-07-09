@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorThurisazRune : Rune
+internal class MajorThurisazRune : Rune<MajorThurisazRune>
 {
     private const float ThornsBonus = 0.5f;
 
@@ -19,11 +19,13 @@ internal class MajorThurisazRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<ThurisazRune>()
         .AddIngredient(ItemID.WoodenSpike, 10)
         .AddIngredient(ItemID.ThornHook)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

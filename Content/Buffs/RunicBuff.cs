@@ -12,7 +12,7 @@ public class RunicBuff : YggdrasilBuff
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Runic Buff");
-        Description.SetDefault($"20% increased {RuneConfig.ColoredRunicDamageLabel} damage");
+        Description.SetDefault($"20% increased runic damage");
     }
 
     public override void Update(Player player, ref int buffIndex)

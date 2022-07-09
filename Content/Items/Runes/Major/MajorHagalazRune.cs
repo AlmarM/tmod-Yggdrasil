@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorHagalazRune : Rune
+internal class MajorHagalazRune : Rune<MajorHagalazRune>
 {
     private const float MagicDamageBonus = 0.2f;
 
@@ -19,11 +19,13 @@ internal class MajorHagalazRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<HagalazRune>()
         .AddIngredient(ItemID.StaffofEarth)
         .AddIngredient(ItemID.RazorbladeTyphoon)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

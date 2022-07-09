@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorThurisazRune : Rune
+internal class MinorThurisazRune : Rune<MinorThurisazRune>
 {
     private const float ThornsBonus = 0.1f;
 

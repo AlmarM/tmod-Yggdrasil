@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class IsaRune : Rune
+internal class IsaRune : Rune<IsaRune>
 {
     public const string RuneName = "Isa";
 
@@ -21,6 +21,8 @@ internal class IsaRune : Rune
     public override string TooltipDescription => RuneEffectConfig.IsaDescription;
 
     public override int Rarity => ItemRarityID.Lime;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorIsaRune>()

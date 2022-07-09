@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorDagazRune : Rune
+internal class MajorDagazRune : Rune<MajorDagazRune>
 {
     private const float RangeDamageBoost = 0.2f;
 
@@ -19,11 +19,13 @@ internal class MajorDagazRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<DagazRune>()
         .AddIngredient(ItemID.ShroomiteBar, 40)
         .AddIngredient(ItemID.SniperScope)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

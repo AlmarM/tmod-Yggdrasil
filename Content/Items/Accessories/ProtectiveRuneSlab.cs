@@ -18,7 +18,7 @@ public class ProtectiveRuneSlab : YggdrasilItem
 
         DisplayName.SetDefault("Protective Runic Slab");
         Tooltip.SetDefault($"Increases defense by 8" +
-            "\nReduces damage taken by 50%" +
+            "\nReduces damage taken by 5%" +
             $"\nIncreases {insanityText} removed by {focusText} power by 2");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

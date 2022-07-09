@@ -30,7 +30,6 @@ public class RunicSlab : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.SetEffect<RunicSlab>();
         player.GetModPlayer<RunePlayer>().InsanityThreshold += 2;
     }
 

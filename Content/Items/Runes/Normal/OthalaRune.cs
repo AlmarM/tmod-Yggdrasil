@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class OthalaRune : Rune
+internal class OthalaRune : Rune<OthalaRune>
 {
     public const string RuneName = "Othala";
 
@@ -20,6 +20,8 @@ internal class OthalaRune : Rune
     public override string TooltipDescription => RuneEffectConfig.OthalaDescription;
 
     public override int Rarity => ItemRarityID.LightPurple;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorOthalaRune>()

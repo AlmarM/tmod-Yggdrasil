@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorTiwazRune : Rune
+internal class MajorTiwazRune : Rune<MajorTiwazRune>
 {
     private const float RunicDamageBonus = 0.05f;
 
@@ -19,11 +19,13 @@ internal class MajorTiwazRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<TiwazRune>()
         .AddIngredient(ItemID.EldMelter)
         .AddIngredient(ItemID.ChargedBlasterCannon)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

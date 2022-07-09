@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorLaguzRune : Rune
+internal class MinorLaguzRune : Rune<MinorLaguzRune>
 {
     private const int HealthRestored = 1;
     private const float HealInterval = 10f;

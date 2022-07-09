@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.Melee;
 
 namespace Yggdrasil.Content.Items.Weapons.FrostCore
 {
@@ -40,6 +40,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 
 		public override void AddRecipes() => CreateRecipe()
 		.AddIngredient<FrostCoreBar>(8)
+		.AddIngredient<NordicWood>(5)
 		.AddTile(TileID.Anvils)
 		.Register();
 

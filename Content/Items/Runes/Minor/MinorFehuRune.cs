@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorFehuRune : Rune
+internal class MinorFehuRune : Rune<MinorFehuRune>
 {
     private const int CritChanceBonus = 1;
 

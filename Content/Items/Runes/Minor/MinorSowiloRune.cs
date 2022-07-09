@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorSowiloRune : Rune
+internal class MinorSowiloRune : Rune<MinorSowiloRune>
 {
     private const int ArmorPenetrationBonus = 1;
 

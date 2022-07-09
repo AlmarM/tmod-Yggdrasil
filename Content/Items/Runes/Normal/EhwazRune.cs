@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class EhwazRune : Rune
+internal class EhwazRune : Rune<EhwazRune>
 {
     public const string RuneName = "Ehwaz";
 
@@ -21,6 +21,8 @@ internal class EhwazRune : Rune
     public override string TooltipDescription => RuneEffectConfig.EhwazDescription;
 
     public override int Rarity => ItemRarityID.Orange;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorEhwazRune>()

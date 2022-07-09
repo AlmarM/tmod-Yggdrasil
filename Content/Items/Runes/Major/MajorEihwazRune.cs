@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorEihwazRune : Rune
+internal class MajorEihwazRune : Rune<MajorEihwazRune>
 {
     private const float MeleeDamageBonus = 0.2f;
 
@@ -19,11 +19,13 @@ internal class MajorEihwazRune : Rune
 
     public override int Rarity => ItemRarityID.LightRed;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<EihwazRune>()
         .AddIngredient(ItemID.GolemFist)
         .AddIngredient(ItemID.FlowerPow)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

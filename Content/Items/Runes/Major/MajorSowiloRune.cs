@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorSowiloRune : Rune
+internal class MajorSowiloRune : Rune<MajorSowiloRune>
 {
     private const int ArmorPenetrationBonus = 5;
 
@@ -19,11 +19,13 @@ internal class MajorSowiloRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<SowiloRune>()
         .AddIngredient(ItemID.Flairon)
         .AddIngredient(ItemID.LaserDrill)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

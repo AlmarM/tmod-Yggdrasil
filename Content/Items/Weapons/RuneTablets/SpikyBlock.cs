@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Runic;
@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
         public override void SetDefaults()
         {
-            Item.damage = 10;
+            Item.damage = 8;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -87,11 +87,10 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 var Damage = Item.damage;
                 var knockback = Item.knockBack;
 
-                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);
-
-                player.AddBuff(ModContent.BuffType<SpikyBuff>(), 300);
-
+                Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, Damage, knockback, player.whoAmI);      
             }
+
+            player.AddBuff(ModContent.BuffType<SpikyBuff>(), 300);
 
             // Removing insanity when using a focus power
             runePlayer.FocusValue = 0;
@@ -120,24 +119,13 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback, player.whoAmI);
 
             }
 
             return false;
-        }
-
-        public override void HoldItem(Player player)
-        {
-            base.HoldItem(player);
-
-            RunePlayer runePlayer = player.GetRunePlayer();
-            var centerX = (int)runePlayer.Player.Center.X / 16;
-            var centerY = (int)runePlayer.Player.Center.Y / 16;
-
-            Lighting.AddLight(centerX, centerY, 0.4f, 0.4f, 0.1f);
         }
 
         protected override List<string> GetRunicEffectDescriptions()
@@ -147,7 +135,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
 
             string focusLine = $"{focusColored}: ";
-            focusLine += "Releases a bunch of spiky balls and applies Spiky";
+            focusLine += "Releases a bunch of spiky balls and applies Spiky buff";
 
             descriptions.Add(focusLine);
 

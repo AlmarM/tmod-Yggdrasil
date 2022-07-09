@@ -50,15 +50,7 @@ public class Gubbe : YggdrasilNPC
             });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo)
-    {
-        if (spawnInfo.Player.ZoneJungle)
-        {
-            return SpawnCondition.Overworld.Chance * .8f;
-        }
-
-        return 0f;
-    }
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle ? 0.3f : 0f;
 
     public override void AI()
     {
@@ -69,6 +61,5 @@ public class Gubbe : YggdrasilNPC
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlankRune>(), 5));
-
     }
 }

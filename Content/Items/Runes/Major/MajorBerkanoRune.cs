@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorBerkanoRune : Rune
+internal class MajorBerkanoRune : Rune<MajorBerkanoRune>
 {
     private const int LifeRegenBonus = 8;
     private const int ManaRegenBonus = 8;
@@ -20,11 +20,13 @@ internal class MajorBerkanoRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<BerkanoRune>()
         .AddIngredient(ItemID.SpectreMask)
         .AddIngredient(ItemID.SunStone)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

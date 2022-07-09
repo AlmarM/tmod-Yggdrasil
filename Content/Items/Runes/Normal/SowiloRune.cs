@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class SowiloRune : Rune
+internal class SowiloRune : Rune<SowiloRune>
 {
     public const string RuneName = "Sowilo";
 
@@ -20,6 +20,8 @@ internal class SowiloRune : Rune
     public override string TooltipDescription => RuneEffectConfig.SowiloDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorSowiloRune>()

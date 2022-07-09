@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorFehuRune : Rune
+internal class MajorFehuRune : Rune<MajorFehuRune>
 {
     private const int CritChanceBonus = 3;
 
@@ -19,12 +19,14 @@ internal class MajorFehuRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<FehuRune>()
         .AddIngredient(ItemID.SpectreRobe)
         .AddIngredient(ItemID.FrostBreastplate)
         .AddIngredient(ItemID.EyeoftheGolem)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

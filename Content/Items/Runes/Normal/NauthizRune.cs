@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class NauthizRune : Rune
+internal class NauthizRune : Rune<NauthizRune>
 {
     public const string RuneName = "Nauthiz";
 
@@ -20,6 +20,8 @@ internal class NauthizRune : Rune
     public override string TooltipDescription => RuneEffectConfig.NauthizDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorNauthizRune>()

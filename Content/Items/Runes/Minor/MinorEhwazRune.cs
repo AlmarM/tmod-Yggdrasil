@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorEhwazRune : Rune
+internal class MinorEhwazRune : Rune<MinorEhwazRune>
 {
     private const float MovementSpeedBonus = 0.05f;
     private const float MaxSpeedBonus = 0.05f;

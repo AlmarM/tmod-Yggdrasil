@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorAnsuzRune : Rune
+internal class MajorAnsuzRune : Rune<MajorAnsuzRune>
 {
     private const int MaxManaBonus = 30;
 
@@ -19,11 +19,13 @@ internal class MajorAnsuzRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<AnsuzRune>()
         .AddIngredient(ItemID.Ectoplasm, 10)
         .AddIngredient(ItemID.HallowedHeadgear)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

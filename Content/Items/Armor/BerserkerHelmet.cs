@@ -43,8 +43,7 @@ public class BerserkerHelmet : YggdrasilItem
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
-        player.setBonus = $"While below 25% health, 20% increase {runicText} damage and critical strike chance & increases defense by 5" +
-                          $"\nIncreases {insanityText} removed by {focusText} power by 1";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1\nApplies Berserker Rage buff";
 
         float HealthThreshold = .25f;
         

@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorLaguzRune : Rune
+internal class MajorLaguzRune : Rune<MajorLaguzRune>
 {
     private const int HealthRestored = 5;
     private const float HealInterval = 10f;
@@ -20,11 +20,13 @@ internal class MajorLaguzRune : Rune
 
     public override int Rarity => ItemRarityID.Cyan;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<LaguzRune>()
         .AddIngredient(ItemID.SpectreHood)
         .AddIngredient(ItemID.SuperHealingPotion, 10)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

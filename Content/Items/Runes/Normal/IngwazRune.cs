@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Normal;
 
-internal class IngwazRune : Rune
+internal class IngwazRune : Rune<IngwazRune>
 {
     public const string RuneName = "Ingwaz";
 
@@ -20,6 +20,8 @@ internal class IngwazRune : Rune
     public override string TooltipDescription => RuneEffectConfig.IngwazDescription;
 
     public override int Rarity => ItemRarityID.Pink;
+
+    public override int Value => 1000;
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<MinorIngwazRune>()

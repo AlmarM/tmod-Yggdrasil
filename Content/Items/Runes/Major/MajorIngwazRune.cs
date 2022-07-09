@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorIngwazRune : Rune
+internal class MajorIngwazRune : Rune<MajorIngwazRune>
 {
     private const int HealthBonus = 10;
 
@@ -19,11 +19,13 @@ internal class MajorIngwazRune : Rune
 
     public override int Rarity => ItemRarityID.Yellow;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<IngwazRune>()
         .AddIngredient(ItemID.SunStone)
         .AddIngredient(ItemID.MoonStone)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

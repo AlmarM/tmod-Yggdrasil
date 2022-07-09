@@ -1,12 +1,20 @@
 Yggdrasil is a small content mod adding Viking and Norse Mythology related items and enemies.
-It also adds a new class, The Runemaster.
 This mod wants to be an addition to vanilla terraria respecting the normal progression of this game we all like.
 
+At a glance:
+- Around 150 new items
+- 15+ enemies
+- 1 miniboss
+- 1 town NPC
+- 10+ tiles/furnitures
+- 1 new event The Viking Invasion
+- 1 new class The Runemaster
+
 NOTE: 
-- The content of this alpha version of the mod follow the progression of the game until hardmode except for runes.
-- Runes are probably unbalanced in many ways but go all the way to moonlord
+- Runemaster class content progression is still in development but goes all the way to moonlord.
+- Runes are probably unbalanced in many ways and will need fine tunning.
 - If you want to help, feel free to reach out!
-- This is an early alpha version of the mod!
+- This is an alpha version of the mod!
 
 Feedback is more than welcome on our forum thread here (search for Yggdrasil):
 https://forums.terraria.org/index.php?threads/yggdrasil-wip-1-4-we-need-testers.93660/
@@ -15,36 +23,50 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2 - Revamp of the Runemaster
+0.2.5 - A bit more stuff
+New Content
+- New endgame Runemaster armor set
 
-- Runemaster has been revamped with new weapons, accessories and armors effects
-- All former runic items are also gone and replaced by the new "Tablets" weapon for the Runemaster
-- Almost all accessories has been change to fit the new Runemaster class
-- Viking set got nerfed
-- Berserker has more total defense
-- Dvergr Forge is now animated
-- New Dverger Power Forge added
-- Added Honey Mead
-- Added Glacier Shards material
-- Added Loki's Gift accessory
-- New characters now spawn with a note informing them about a couple of things to help them with the mode and the Runemaster class
-- A note can also be crafted by hand with nothing
-- New mod icon
+Fixes and Tweaks
+- Lunar Memorial now crafted at the Ancient Manipulator
 
-0.1.3 - Some new items and more balance
-- Runic weapons now display "- Runemaster Class -" in their description
-- Fixed some typos for some item descriptions
-- Vikings are now dropping Blood Drops (Blood Zombies and Dripplers don't drop Blood Drops anymore)
-- Added a new accessory named Freya's Necklace. On hit with a runic weapon, has a chance to generate a heart.
-- Tyr's Hand now requires Blood Drops to be crafted
-- Berserker Boots now add runic attack speed
-- Added a new crafting station, the Dvergr Forge. Used to craft many of the Yggdrasil items.
-- Added a new item, Norseman Horn. Used in the snow biome will summon a Berserker.
-- Added a new mini (micro?) boss, the Berserker. !!This enemy is a placeholder for better AI later!!
-- Runemaster armor Berserker Set is now obtainable by killing a Berserker.
-- Viking Leather set now also grants +1 defense
-- Wooden Armring and Arming now grants +1 def
-- Berserker Ring and Runic Necklace now grants +2 def
-- Obsidian Runic Hammer projectiles disapear quicker
-- New item Aesir Wind, lots of jumps and stuff in there
-- Viking chests have more loots in them (can only be seen upon new world creation)
+0.2.4 - First miniboss and town NPC
+New Content
+- Added new viking invasion hardmode enemies, Graywolf and Odin's Raven
+- New Volva town NPC (will spawn if the player has a Viking Distaff and has a free house available)
+- New nordic wood table and chair
+- New viking invasion miniboss Valkyrie
+- New Valkyrie Golden Shield
+- New Vanir Shield
+- New Runemaster Shield
+- New Frostcore Yoyo
+- New food Raggmunk
+- New banners, Valkyrie, Graywolf, Odin's Raven
+- New Credit Slab runemaster weapon
+- New Sturdy Block runemaster weapon
+- New Runemaster Necklace
+
+Fixes and Tweaks
+- Viking invasion now happens during the day
+- Runes and other materials now have a selling value
+- Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equipped
+
+0.2.3 - The Viking invasion is back
+New Content
+- The Viking invasion is back! Use a norseman horn during the night and brace for impact.
+- Added the Frost Giant Belt
+- Added the Two Worlds Belt
+- Added the Lunar Memorial runemaster weapon
+- Added Viking and Draugr Banner
+- Added the Glacier bow
+- Added new night hardmode enemy, the Sliking
+- Added new jungle hardmode enemy, the Bäckahäst
+
+Fixes and Tweaks
+- Slightly changed Clacier Shards sprite
+- Frost Giant Shard and Hard cost less Frostcore Bar to craft
+- Runic Potion renamed for Runic Mead
+- Runic Necklace can now be seen on the character when equiped
+- Norseman shield can now be seen on the character when equiped
+- Freya's Necklace drops heart a bit less often
+

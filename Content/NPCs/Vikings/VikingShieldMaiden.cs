@@ -4,14 +4,20 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Banners;
+using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
 public class VikingShieldMaiden : YggdrasilNPC
 {
+    //Variable used to make sure the NPC keeps spawned during the day befause Fighter AI despawn itself during day
+    //Might mess up in multiplayer
+    private int _timeLeft;
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Viking Shield Maiden");
@@ -28,7 +34,7 @@ public class VikingShieldMaiden : YggdrasilNPC
 
     public override void SetDefaults()
     {
-        NPC.CloneDefaults(NPCID.GoblinWarrior);
+        //NPC.CloneDefaults(NPCID.GoblinWarrior);
         NPC.width = 30;
         NPC.height = 40;
         NPC.damage = 30;
@@ -43,6 +49,9 @@ public class VikingShieldMaiden : YggdrasilNPC
         AnimationType = 213;
         NPC.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Poisoned] = true;
+
+        Banner = ModContent.NPCType<VikingShieldMaiden>();
+        BannerItem = ModContent.ItemType<VikingBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -57,19 +66,30 @@ public class VikingShieldMaiden : YggdrasilNPC
             });
     }
 
+    //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
+    //Might mess up in multiplayer
+    public override bool PreAI()
+    {
+        _timeLeft = NPC.timeLeft;
+
+        return base.PreAI();
+    }
 
     public override void AI()
     {
+        NPC.timeLeft = _timeLeft;
+
         NPC.TargetClosest();
         NPC.netUpdate = true;
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 100));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 20));
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 20));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingSword>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NorsemanShield>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodDrops>(), 5));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Raggmunk>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)
@@ -83,5 +103,11 @@ public class VikingShieldMaiden : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
+    }
+
+    public override void OnKill()
+    {
+        if (VikingInvasionWorld.vikingInvasion)
+            VikingInvasionWorld.vikingKilled += 1;
     }
 }

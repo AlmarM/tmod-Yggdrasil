@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorBerkanoRune : Rune
+internal class MinorBerkanoRune : Rune<MinorBerkanoRune>
 {
     private const int LifeRegenBonus = 3;
     private const int ManaRegenBonus = 3;

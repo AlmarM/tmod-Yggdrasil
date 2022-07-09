@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorTiwazRune : Rune
+internal class MinorTiwazRune : Rune<MinorTiwazRune>
 {
     private const float RunicDamageBonus = 0.05f;
 

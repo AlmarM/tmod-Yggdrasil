@@ -40,9 +40,7 @@ public class VikingLeatherHelmet : YggdrasilItem
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        player.setBonus = $"Increases {runicText} damage by 1" +
-                          $"\n1% increased {runicText} critical strike chance" +
-                          "\nIncreases defense by 1";
+        player.setBonus = $"Increases {runicText} damage by 1\n1% increased {runicText} critical strike chance\nIncreases defense by 1";
 
         player.GetDamage<RunicDamageClass>().Flat += 1;
         player.GetCritChance<RunicDamageClass>() += 1;

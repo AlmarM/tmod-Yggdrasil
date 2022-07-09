@@ -1,6 +1,7 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Furniture;
@@ -26,4 +27,10 @@ public class VikingChest : YggdrasilItem
         Item.value = 500;
         Item.createTile = ModContent.TileType<VikingChestTile>();
     }
+
+    public override void AddRecipes() => CreateRecipe()
+            .AddIngredient<NordicWood>(5)
+            .AddIngredient<FrostCoreBar>(1)
+            .AddTile(TileID.WorkBenches)
+            .Register();
 }

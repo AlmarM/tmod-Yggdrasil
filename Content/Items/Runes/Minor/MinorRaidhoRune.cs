@@ -8,7 +8,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorRaidhoRune : Rune
+internal class MinorRaidhoRune : Rune<MinorRaidhoRune>
 {
     private const float ThrowingDamageBonus = 0.05f;
 

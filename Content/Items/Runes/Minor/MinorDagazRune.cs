@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorDagazRune : Rune
+internal class MinorDagazRune : Rune<MinorDagazRune>
 {
     private const float RangeDamageBoost = 0.05f;
 

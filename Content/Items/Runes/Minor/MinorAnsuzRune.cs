@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorAnsuzRune : Rune
+internal class MinorAnsuzRune : Rune<MinorAnsuzRune>
 {
     private const int MaxManaBonus = 10;
 

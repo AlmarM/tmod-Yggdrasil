@@ -34,6 +34,7 @@ public class FrostCorePickaxe : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<FrostCoreBar>(11)
+        .AddIngredient<NordicWood>(5)
         .AddTile(TileID.Anvils)
         .Register();
 

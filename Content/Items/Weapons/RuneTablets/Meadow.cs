@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
@@ -27,7 +27,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         }
         public override void SetDefaults()
         {
-            Item.damage = 15;
+            Item.damage = 9;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -106,7 +106,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 8; // The number of projectiles.
+            const int NumProjectiles = 7; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -116,9 +116,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
 
-                //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback, player.whoAmI);
 
             }
 

@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorIsaRune : Rune
+internal class MajorIsaRune : Rune<MajorIsaRune>
 {
     private const float DamageBonus = 0.3f;
     private const float HealthThreshold = 0.3f;
@@ -20,11 +20,13 @@ internal class MajorIsaRune : Rune
 
     public override int Rarity => ItemRarityID.Cyan;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<IsaRune>()
         .AddIngredient(ItemID.LihzahrdBanner)
         .AddIngredient(ItemID.SolarSolenianBanner)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()

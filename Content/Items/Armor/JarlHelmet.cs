@@ -39,9 +39,7 @@ public class JarlHelmet : YggdrasilItem
     {
 
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        player.setBonus = $"Increases {runicText} damage by 2" +
-                          $"\n2% increased {runicText} critical strike chance" +
-                          "\nSlowly regenerate life";
+        player.setBonus = $"Increases {runicText} damage by 2\n2% increased {runicText} critical strike chance\nSlowly regenerate life";
 
         player.GetDamage<RunicDamageClass>().Flat += 2;
         player.GetCritChance<RunicDamageClass>() += 2;

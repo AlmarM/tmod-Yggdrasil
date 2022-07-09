@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorPerthroRune : Rune
+internal class MinorPerthroRune : Rune<MinorPerthroRune>
 {
     private const float ApplyBuffChance = 0.03f;
     private const float BuffDuration = 5;

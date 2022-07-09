@@ -4,6 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Utils;
 
@@ -37,6 +38,9 @@ public class DraugrElite : YggdrasilNPC
         NPC.knockBackResist = 0.4f;
         //npc.buffImmune[BuffID.Confused] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
+
+        Banner = ModContent.NPCType<DraugrElite>();
+        BannerItem = ModContent.ItemType<DraugrBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

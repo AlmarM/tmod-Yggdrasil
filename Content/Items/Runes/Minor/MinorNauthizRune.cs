@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorNauthizRune : Rune
+internal class MinorNauthizRune : Rune<MinorNauthizRune>
 {
     private const float InvincibilityBonus = 0.1f;
 

@@ -8,7 +8,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Minor;
 
-internal class MinorIngwazRune : Rune
+internal class MinorIngwazRune : Rune<MinorIngwazRune>
 {
     private const int HealthBonus = 2;
 

@@ -9,7 +9,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
@@ -22,14 +22,13 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tablet of Flesh");
-            Tooltip.SetDefault("Are these things moving?" +
-                "\nProjectiles pierce through enemies");
+            Tooltip.SetDefault("Are these things moving?");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 23;
+            Item.damage = 12;
             Item.DamageType = ModContent.GetInstance<RunicDamageClass>();
             Item.useTime = 15;
             Item.useAnimation = 15;
@@ -111,7 +110,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             // THE ATTACK
 
             RunePlayer runePlayer = player.GetRunePlayer();
-            const int NumProjectiles = 10; // The number of projectiles.
+            const int NumProjectiles = 9; // The number of projectiles.
 
             runePlayer.InsanityValue++;
 
@@ -121,9 +120,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 12);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 6);
 
-                //Vector2 Mouth = new Vector2(player.Center.X, (player.Center.Y - 5)); Doesn't scale if player is mounted
+                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
 
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback, player.whoAmI);
 
             }
 

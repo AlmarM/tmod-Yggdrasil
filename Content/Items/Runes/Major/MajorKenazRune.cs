@@ -7,7 +7,7 @@ using Yggdrasil.Runes.Effects;
 
 namespace Yggdrasil.Content.Items.Runes.Major;
 
-internal class MajorKenazRune : Rune
+internal class MajorKenazRune : Rune<MajorKenazRune>
 {
     private const float DodgeChanceBonus = 0.03f;
 
@@ -19,12 +19,14 @@ internal class MajorKenazRune : Rune
 
     public override int Rarity => ItemRarityID.Lime;
 
+    public override int Value => 2000;
+
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<KenazRune>()
         .AddIngredient(ItemID.Tabi)
         .AddIngredient(ItemID.BlackBelt)
         .AddIngredient(ItemID.BlackFairyDust)
-        .AddTile<DvergrForgeTile>()
+        .AddTile<DvergrPowerForgeTile>()
         .Register();
 
     protected override void AddEffects()
