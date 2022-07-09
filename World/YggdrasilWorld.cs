@@ -13,6 +13,8 @@ using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
 using Yggdrasil.Content.Tiles.IronWood;
+using Terraria.ModLoader.IO;
+using System.IO;
 
 namespace Yggdrasil.World
 {
@@ -21,15 +23,44 @@ namespace Yggdrasil.World
 	{
 		
 		public static bool IronWoodBiome = false;
-		public static bool ColdIronGenerated = false;
+		public static bool ColdIronGenerated;
 		public static bool ZoneIronWood;
-		public static int IronWoodTiles = 0;
 		public static bool gennedVikingHouse = false;
+		public static bool downedVikingInvasion;
+
+
+		public static int IronWoodTiles = 0;
 
 		public override void OnWorldLoad()
 		{
 			ZoneIronWood = false;
 			gennedVikingHouse = false;
+			downedVikingInvasion = false;
+			ColdIronGenerated = false;
+		}
+
+		public override void LoadWorldData(TagCompound tag)
+		{
+			downedVikingInvasion = tag.GetBool("downedVikingInvasion");
+			ColdIronGenerated = tag.GetBool("ColdIronGenerated");
+		}
+
+		public override void SaveWorldData(TagCompound tag)
+		{
+			tag["downedVikingInvasion"] = downedVikingInvasion;
+			tag["ColdIronGenerated"] = ColdIronGenerated;
+		}
+
+		public override void NetSend(BinaryWriter writer)
+		{
+			var flags = new BitsByte();
+			flags[0] = downedVikingInvasion;
+		}
+
+		public override void NetReceive(BinaryReader reader)
+		{
+			BitsByte flags = reader.ReadByte();
+			downedVikingInvasion = flags[0];
 		}
 
 		public override void PostWorldGen()
@@ -105,8 +136,8 @@ namespace Yggdrasil.World
 
         public override void PostUpdateEverything()
         {
-			//if (ZoneIronWood)
-			//Main.NewText(IronWoodTiles);
+			//if (downedVikingInvasion)
+			//Main.NewText("It's down");
 		}
 	}	
 }

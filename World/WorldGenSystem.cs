@@ -24,7 +24,7 @@ public class WorldGenSystem : ModSystem
         // The first step is an Ore. Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
-        int vikingHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Temple"));
+        int MicroBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Lakes"));
 
         if (shiniesIndex != -1)
         {
@@ -32,9 +32,9 @@ public class WorldGenSystem : ModSystem
             tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
         }
 
-        if (vikingHouseIndex != -1)
+        if (MicroBiomeIndex != -1)
         {
-            tasks.Insert(vikingHouseIndex + 1, new PassLegacy("Viking House", YggdrasilGenPasses.MicroBiomePass));
+            tasks.Insert(MicroBiomeIndex + 1, new PassLegacy("Micro Biome", YggdrasilGenPasses.MicroBiomePass));
         }
     }
 
@@ -77,7 +77,7 @@ public class WorldGenSystem : ModSystem
 
     private void SpawnColdIron()
     {
-        for (int k = 0; k < 200; k++)
+        for (int k = 0; k < 300; k++)
         {
             // The inside of this for loop corresponds to one single splotch of our Ore.
             // First, we randomly choose any coordinate in the world by choosing a random x and y value.
@@ -94,7 +94,7 @@ public class WorldGenSystem : ModSystem
             if (tile.HasTile && (tile.TileType == TileID.Stone || tile.TileType == TileID.SnowBlock))
             {
 
-                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 1, ModContent.TileType<ColdIronTile>());
+                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 2, ModContent.TileType<ColdIronTile>());
                 WorldGen.SquareTileFrame(x, y, true);
             }
         }

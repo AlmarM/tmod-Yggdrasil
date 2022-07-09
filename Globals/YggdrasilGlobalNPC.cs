@@ -47,6 +47,14 @@ public class YggdrasilGlobalNPC : GlobalNPC
             case NPCID.PirateShip:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CreditSlab>(), 4));
                 break;
+            case NPCID.Golem:
+                if (!Main.expertMode && !Main.masterMode)
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
+                break;
+            case NPCID.Plantera:
+                if (!Main.expertMode && !Main.masterMode)
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
+                break;
         }
     }
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)

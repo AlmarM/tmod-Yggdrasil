@@ -97,12 +97,14 @@ namespace Yggdrasil.Content.NPCs.Town
 		}
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money)
 		{
-			//if (VikingInvasionWorld.downedVikingInvasion)
-			//{
-			//	return true; ModContent.ItemType<VikingDistaff>()
-			//}
-			
-			return Main.player.Any(x => x.active && x.inventory.Any(y => y.type == ModContent.ItemType<VikingDistaff>()));
+			if (YggdrasilWorld.downedVikingInvasion)
+			{
+				return true; 
+			}
+
+			return false;
+
+			//return Main.player.Any(x => x.active && x.inventory.Any(y => y.type == ModContent.ItemType<VikingDistaff>()));
 		}
 
 		public override List<string> SetNPCNameList()

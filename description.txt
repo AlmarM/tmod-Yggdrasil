@@ -23,12 +23,20 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2.5 - A bit more stuff
+0.2.5 - A bit more stuff and refactoring
 New Content
 - New endgame Runemaster armor set
+- New Viking statue
+- Cold Iron ore is now generated "at some point" in hardmode
+- New Nordic Sword
 
 Fixes and Tweaks
 - Lunar Memorial now crafted at the Ancient Manipulator
+- Refactor the viking house generation code and changed it to be an abandonned longhouse
+- Viking chests will spawn deeper down the world now and in tiny ice caves
+- Rune effects don't stack anymore. Only one rune of each type and tier can give effects.
+- Sun Pebbles and Sturdy Leaves willl now be dropped in normal mode too
+- Condition for the Volva town NPC to spawn is now to just overcome the viking invasion once
 
 0.2.4 - First miniboss and town NPC
 New Content

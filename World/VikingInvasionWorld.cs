@@ -14,62 +14,30 @@ using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
 using Terraria.ModLoader.IO;
 using System.IO;
+using Yggdrasil.World;
 
 namespace Yggdrasil.World
 {
     public class VikingInvasionWorld : ModSystem
     {
-        public static bool vikingInvasion;
-        public bool downedVikingInvasion;
-        public static bool valkyrieUp;
         public static int vikingKilled;
+        public static bool vikingInvasion;
+        public static bool valkyrieUp;
+        public static int vikingToKill = 200;
+        public static int vikingToKillHardmode = 300;
+
         public override void OnWorldLoad()
         {
             vikingInvasion = false;
             vikingKilled = 0;
-            downedVikingInvasion = false;
             valkyrieUp = false;
         }
-
-        public override void SaveWorldData(TagCompound tag)
-        {
-            var data = new TagCompound();
-            var downed = new List<string>();
-
-            if (downedVikingInvasion)
-                downed.Add("vikinginvasion");
-
-            data.Add("downed", downed);
-            data.Add("vikinginvasion", vikingInvasion);
-        }
-
-        public override void LoadWorldData(TagCompound tag)
-        {
-            var downed = tag.GetList<string>("downed");
-
-            downedVikingInvasion = downed.Contains("vikinginvasion");
-
-            vikingInvasion = tag.GetBool("vikinginvasion");
-        }
-
-        public override void NetSend(BinaryWriter writer)
-        {
-            var flags = new BitsByte();
-            flags[1] = downedVikingInvasion;
-        }
-
-        public override void NetReceive(BinaryReader reader)
-        {
-            BitsByte flags = reader.ReadByte();
-            downedVikingInvasion = flags[1];
-        }
-
         public override void PostUpdateWorld()
         {
             //Set that the invasion was successfuly repelled at 200kill if it's not done already
-            if (vikingInvasion && vikingKilled >= 200 && !downedVikingInvasion)
+            if (vikingInvasion && vikingKilled >= vikingToKill && !YggdrasilWorld.downedVikingInvasion)
             {
-                downedVikingInvasion = true;
+                YggdrasilWorld.downedVikingInvasion = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendData(MessageID.WorldData);
             }
@@ -83,7 +51,7 @@ namespace Yggdrasil.World
             }
 
             //Hardmode invasion is repelled if 300 vikings are killed
-            if (Main.hardMode && vikingInvasion && vikingKilled >= 300)
+            if (Main.hardMode && vikingInvasion && vikingKilled >= vikingToKillHardmode)
             {
                 Main.NewText("The vikings have been defeated!", 174, 128, 79);
                 vikingInvasion = false;
@@ -91,7 +59,7 @@ namespace Yggdrasil.World
             }
 
             //Invasion is repelled if 200 vikings are killed
-            if (!Main.hardMode && vikingInvasion && vikingKilled >= 200)
+            if (!Main.hardMode && vikingInvasion && vikingKilled >= vikingToKill)
             {
                 Main.NewText("The vikings have been defeated!", 174, 128, 79);
                 vikingInvasion = false;
