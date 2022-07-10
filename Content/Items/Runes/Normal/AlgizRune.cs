@@ -11,7 +11,7 @@ internal class AlgizRune : Rune<AlgizRune>
 {
     public const string RuneName = "Algiz";
 
-    private const int DefenseBonus = 2;
+    private const int DefenseBonus = 5;
 
     public override string Label => RuneName;
 

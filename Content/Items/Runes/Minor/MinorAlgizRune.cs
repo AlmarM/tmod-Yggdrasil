@@ -10,7 +10,7 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorAlgizRune : Rune<MinorAlgizRune>
 {
-    private const int DefenseBonus = 1;
+    private const int DefenseBonus = 2;
 
     public override string Label => AlgizRune.RuneName;
 

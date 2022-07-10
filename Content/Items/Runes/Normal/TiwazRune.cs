@@ -11,7 +11,7 @@ internal class TiwazRune : Rune<TiwazRune>
 {
     public const string RuneName = "Tiwaz";
 
-    private const float RunicDamageBonus = 0.2f;
+    private const float RunicDamageBonus = 0.1f;
 
     public override string Label => RuneName;
 

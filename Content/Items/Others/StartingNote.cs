@@ -9,8 +9,9 @@ public class StartingNote : YggdrasilItem
     {
         DisplayName.SetDefault("[c/AE804F:Starting Note Yggdrasil Mod Alpha]");
         Tooltip.SetDefault("Thank you for trying the alpha version of the Yggdrasil mod." +
-            "\nThe alpha version contains runes that the player can craft and leave in their inventory to get bonuses." +
+            "\nThe mod contains runes that the player can craft and leave in their inventory to get bonuses." +
             "\nTry for yourself and see what you can do with them!" +
+            "\nImportant to note that only one rune of each tier can give benefits. Multiple identical runes won't stack" +
             "\n----" +
             "\nIt also contains progression for a new [c/AE804F:Runemaster] class" +
             "\nTo get you started as a [c/AE804F:Runemaster], craft a Stone Slab as your first [c/AE804F:runic] weapon (go get some stone blocks!)" +
@@ -23,7 +24,7 @@ public class StartingNote : YggdrasilItem
             "\n[c/CD2340:Insanity] also decreases by itself over time" +
             "\nThe content progression for the [c/AE804F:Runemaster] class in term of items is still being developped but goes all the way to moonlord" +
             "\n----" +
-            "\nThe alpha version also containes a bunch of accessories, new enemies, a town NPC, an event, new resources and small things." +
+            "\nThe mod also containes a bunch of accessories, new enemies, a town NPC, an event, new resources, small structure generations and small things." +
             "\nYou should head to the snow biome when you feel like it!" +
             "\nWe hope you enjoy!" +
             "\n[c/AE804F:Skal!]");

@@ -11,7 +11,7 @@ internal class IngwazRune : Rune<IngwazRune>
 {
     public const string RuneName = "Ingwaz";
 
-    private const int HealthBonus = 5;
+    private const int HealthBonus = 25;
 
     public override string Label => RuneName;
 

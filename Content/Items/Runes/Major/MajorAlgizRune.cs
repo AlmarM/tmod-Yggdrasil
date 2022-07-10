@@ -9,7 +9,7 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorAlgizRune : Rune<MajorAlgizRune>
 {
-    private const int DefenseBonus = 3;
+    private const int DefenseBonus = 8;
 
     public override string Label => AlgizRune.RuneName;
 

@@ -55,6 +55,10 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 if (!Main.expertMode && !Main.masterMode)
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
                 break;
+            case NPCID.MoonLordCore:
+                if (!Main.expertMode && !Main.masterMode)
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
+                break;
         }
     }
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)

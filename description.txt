@@ -9,15 +9,16 @@ At a glance:
 - 10+ tiles/furnitures
 - 1 new event The Viking Invasion
 - 1 new class The Runemaster
+- Some structure generations (in the snow biome)
 
 NOTE: 
 - Runemaster class content progression is still in development but goes all the way to moonlord.
 - Runes are probably unbalanced in many ways and will need fine tunning.
-- If you want to help, feel free to reach out!
+- If you want to help, feel free to reach out! (Good spriters would be nice to have)
 - This is an alpha version of the mod!
 
 Feedback is more than welcome on our forum thread here (search for Yggdrasil):
-https://forums.terraria.org/index.php?threads/yggdrasil-wip-1-4-we-need-testers.93660/
+https://forums.terraria.org/index.php?threads/yggdrasil.93660/
 
 or our Discord here:
 https://discord.gg/ZCb8824q4b
@@ -25,18 +26,22 @@ https://discord.gg/ZCb8824q4b
 Lyker & resP
 0.2.5 - A bit more stuff and refactoring
 New Content
-- New endgame Runemaster armor set
+- New post-moonlord Runemaster armor set
 - New Viking statue
 - Cold Iron ore is now generated "at some point" in hardmode
 - New Nordic Sword
+- New Nordic Hamaxe
 
 Fixes and Tweaks
 - Lunar Memorial now crafted at the Ancient Manipulator
 - Refactor the viking house generation code and changed it to be an abandonned longhouse
 - Viking chests will spawn deeper down the world now and in tiny ice caves
 - Rune effects don't stack anymore. Only one rune of each type and tier can give effects.
-- Sun Pebbles and Sturdy Leaves willl now be dropped in normal mode too
+- Sun Pebbles, Sturdy Leaves and Ragnarok willl now be dropped in normal mode too
 - Condition for the Volva town NPC to spawn is now to just overcome the viking invasion once
+- Blank runes are now crafted at work benches
+- Fixed Tiwaz rune not giving the right amount of buffs
+- Buffed Algiz and Ingwaz runes
 
 0.2.4 - First miniboss and town NPC
 New Content
@@ -74,7 +79,7 @@ Fixes and Tweaks
 - Slightly changed Clacier Shards sprite
 - Frost Giant Shard and Hard cost less Frostcore Bar to craft
 - Runic Potion renamed for Runic Mead
-- Runic Necklace can now be seen on the character when equiped
-- Norseman shield can now be seen on the character when equiped
+- Runic Necklace can now be seen on the character when equipped
+- Norseman shield can now be seen on the character when equipped
 - Freya's Necklace drops heart a bit less often
 
