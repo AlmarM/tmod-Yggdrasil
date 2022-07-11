@@ -17,17 +17,6 @@ public abstract class ModActionPlayer : ModPlayer
         CreateModActions();
     }
 
-    // public override ModPlayer NewInstance(Terraria.Player entity)
-    // {
-    //     ModPlayer newInstance = base.NewInstance(entity);
-    //     ModActionPlayer modActionPlayer = (ModActionPlayer)newInstance;
-    //
-    //     modActionPlayer._modActionMap = new Dictionary<Type, IList<IPlayerModAction>>();
-    //     modActionPlayer.CreateModActions();
-    //
-    //     return modActionPlayer;
-    // }
-
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
     {
         IEnumerable<IAddStartingItemsModAction> modActions = FilterModActions<IAddStartingItemsModAction>()
@@ -71,6 +60,31 @@ public abstract class ModActionPlayer : ModPlayer
         }
 
         return base.CanAutoReuseItem(item);
+    }
+
+    public override bool CanBeHitByNPC(NPC npc, ref int cooldownSlot)
+    {
+        IEnumerable<ICanBeHitByNPCModAction> modActions = FilterModActions<ICanBeHitByNPCModAction>()
+            .OrderByDescending(ma => ma.Priority);
+
+        foreach (ICanBeHitByNPCModAction modAction in modActions)
+        {
+            if (!modAction.CanBeHitByNPC(npc, ref cooldownSlot))
+            {
+                return false;
+            }
+        }
+
+        return base.CanBeHitByNPC(npc, ref cooldownSlot);
+    }
+    
+
+    public override bool CanBeHitByProjectile(Projectile proj)
+    {
+        IEnumerable<ICanBeHitByProjectileModAction> modActions = FilterModActions<ICanBeHitByProjectileModAction>()
+            .OrderByDescending(ma => ma.Priority);
+
+        return modActions.All(modAction => modAction.CanBeHitByProjectile(proj)) && base.CanBeHitByProjectile(proj);
     }
 
     protected virtual void CreateModActions()

@@ -34,10 +34,6 @@ public static class RuneConfig
 
     public static readonly string ColoredInsanityLabel = TextUtils.GetColoredText(InsanityTextColor, InsanityLabel);
 
-
-    /* Items Stats */
-    public const int MaxRuneStack = 1;
-
     /* Prefixes */
     public static readonly int[] AllowedRunicVanillaPrefixes =
     {

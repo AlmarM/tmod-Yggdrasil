@@ -262,7 +262,6 @@ public class RunePlayer : ModActionPlayer
 
     protected override void CreateModActions()
     {
-        AddModAction(new TestEffectOne());
     }
 
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,

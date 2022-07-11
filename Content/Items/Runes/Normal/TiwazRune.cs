@@ -9,9 +9,9 @@ namespace Yggdrasil.Content.Items.Runes.Normal;
 
 internal class TiwazRune : Rune<TiwazRune>
 {
-    public const string RuneName = "Tiwaz";
-
     private const float RunicDamageBonus = 0.2f;
+
+    public const string RuneName = "Tiwaz";
 
     public override string Label => RuneName;
 

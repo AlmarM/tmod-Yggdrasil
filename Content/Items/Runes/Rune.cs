@@ -36,7 +36,7 @@ public abstract class Rune<TRune> : YggdrasilItem, IRune where TRune : Rune<TRun
     {
         Item.width = 34;
         Item.height = 34;
-        Item.maxStack = RuneConfig.MaxRuneStack;
+        Item.maxStack = 1;
         Item.rare = Rarity;
         Item.value = Value;
     }
@@ -105,7 +105,7 @@ public abstract class Rune<TRune> : YggdrasilItem, IRune where TRune : Rune<TRun
 
     protected virtual string GetDisplayName()
     {
-        string prefix = Tier.GetDisplayName();
+        string prefix = Tier.GetItemPrefix();
 
         if (!string.IsNullOrEmpty(prefix))
         {
