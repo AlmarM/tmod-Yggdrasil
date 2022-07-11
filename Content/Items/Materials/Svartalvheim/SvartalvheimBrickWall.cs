@@ -1,17 +1,16 @@
 ﻿using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Tiles;
-using Yggdrasil.Content.Tiles.IronWood;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
-namespace Yggdrasil.Content.Items.Materials.IronWood;
+namespace Yggdrasil.Content.Items.Materials.Svartalvheim;
 
-public class IronWoodStone : YggdrasilItem
+public class SvartalvheimBrickWall : YggdrasilItem
 {
 	public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Iron Wood Stone");
-		Tooltip.SetDefault("Hard to break");
+		DisplayName.SetDefault("Svartalvheim Brick Wall");
+		Tooltip.SetDefault("Really hard to break");
 
 		CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
@@ -27,9 +26,14 @@ public class IronWoodStone : YggdrasilItem
 		Item.useTime = 10;
 		Item.autoReuse = true;
 		Item.consumable = true;
-		Item.createTile = ModContent.TileType<IronWoodStoneTile>();
+		Item.createWall = ModContent.WallType<SvartalvheimBrickWallTile>();
 		Item.placeStyle = 0;
 		Item.rare = ItemRarityID.White;
 	}
+
+	public override void AddRecipes() => CreateRecipe()
+		.AddIngredient<SvartalvheimBrick>(4)
+		.AddTile(TileID.WorkBenches)
+		.Register();
 }
 

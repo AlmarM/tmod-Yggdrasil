@@ -34,7 +34,7 @@ New Content
 
 Fixes and Tweaks
 - Lunar Memorial now crafted at the Ancient Manipulator
-- Refactor the viking house generation code and changed it to be an abandonned longhouse
+- Refactor the viking house generation code and changed it to be an abandoned longhouse
 - Viking chests will spawn deeper down the world now and in tiny ice caves
 - Rune effects don't stack anymore. Only one rune of each type and tier can give effects.
 - Sun Pebbles, Sturdy Leaves and Ragnarok willl now be dropped in normal mode too

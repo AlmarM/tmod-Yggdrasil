@@ -2,16 +2,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Tiles;
-using Yggdrasil.Content.Tiles.IronWood;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
-namespace Yggdrasil.Content.Items.Materials.IronWood;
+namespace Yggdrasil.Content.Items.Materials.Svartalvheim;
 
-public class IronWoodSand : YggdrasilItem
+public class SvartalvheimDirtBlock : YggdrasilItem
 {
 	public override void SetStaticDefaults()
 	{
-		DisplayName.SetDefault("Iron Wood Hard Sand");
-		Tooltip.SetDefault("Sand as hard as rock");
+		DisplayName.SetDefault("Svartalvheim Dirt");
+		Tooltip.SetDefault("Dirt as hard as rock");
 
 		CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
@@ -27,7 +27,7 @@ public class IronWoodSand : YggdrasilItem
 		Item.useTime = 10;
 		Item.autoReuse = true;
 		Item.consumable = true;
-		Item.createTile = ModContent.TileType<IronWoodSandTile>();
+		Item.createTile = ModContent.TileType<SvartalvheimDirtTile>();
 		Item.placeStyle = 0;
 		Item.rare = ItemRarityID.White;
 	}

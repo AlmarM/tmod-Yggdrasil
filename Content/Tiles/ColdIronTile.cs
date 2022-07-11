@@ -21,11 +21,12 @@ public class ColdIronTile : YggdrasilTile
         ModTranslation name = CreateMapEntryName();
         name.SetDefault("Cold Iron");
 
-        AddMapEntry(new Color(250, 250, 250), name);
+        AddMapEntry(new Color(100, 130, 139), name);
 
         DustType = DustID.Platinum;
         ItemDrop = ModContent.ItemType<ColdIronOre>();
-        MinPick = 225;
-        MineResist = 1f;
+        
+        MinPick = 210;
+        MineResist = 1.2f;
     }
 }

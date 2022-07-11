@@ -10,25 +10,39 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Content.Tiles.IronWood;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
 namespace Yggdrasil.World;
 
 public class WorldGenSystem : ModSystem
 {
+    /*public static bool JustPressed(Keys key)
+    {
+        return Main.keyState.IsKeyDown(key) && !Main.oldKeyState.IsKeyDown(key);
+    }
+
+    public override void PostUpdateWorld()
+    {
+        if (JustPressed(Keys.D1))
+        {
+
+        }
+    }*/
+
+
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
     {
-
         // Because world generation is like layering several images ontop of each other, we need to do some steps between the original world generation steps.
 
         // The first step is an Ore. Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
         int MicroBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Lakes"));
+        int SvartalvheimIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Dungeon"));
+        int SvartalvheimHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Micro Biomes"));
 
         if (shiniesIndex != -1)
         {
-            // Next, we insert our pass directly after the original "Shinies" pass.
             tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
         }
 
@@ -36,6 +50,17 @@ public class WorldGenSystem : ModSystem
         {
             tasks.Insert(MicroBiomeIndex + 1, new PassLegacy("Micro Biome", YggdrasilGenPasses.MicroBiomePass));
         }
+
+        if (SvartalvheimIndex != -1)
+        {
+            tasks.Insert(SvartalvheimIndex + 1, new PassLegacy("Svartalvheim", SvartalvheimGen));
+        }
+
+        if (SvartalvheimHouseIndex != -1)
+        {
+            tasks.Insert(SvartalvheimHouseIndex + 1, new PassLegacy("Svartalvheim House", YggdrasilGenPasses.SvartalvheimMicroPass));
+        }
+
     }
 
     private void FrostCoreGen(GenerationProgress progress, GameConfiguration configuration)
@@ -65,137 +90,85 @@ public class WorldGenSystem : ModSystem
         }
     }
 
-    public override void PostUpdateNPCs()
+    private void SvartalvheimGen(GenerationProgress progress, GameConfiguration configuration)
     {
-        //TODO: Save/Load that ColdIronGenerated in YggdrasilWorld
-        if (NPC.downedGolemBoss && !YggdrasilWorld.ColdIronGenerated)
-        {
-            YggdrasilWorld.ColdIronGenerated = true;
-            SpawnColdIron();
-        }
-    }
+        Main.NewText("Dwarves diggy diggy hole...", 200, 94, 94);
 
-    private void SpawnColdIron()
-    {
-        for (int k = 0; k < 300; k++)
-        {
-            // The inside of this for loop corresponds to one single splotch of our Ore.
-            // First, we randomly choose any coordinate in the world by choosing a random x and y value.
-            int x = WorldGen.genRand.Next(100, (Main.maxTilesX / 2) - 500);
-            if (Main.dungeonX > Main.maxTilesX / 2) //rightside dungeon
-                x = WorldGen.genRand.Next((Main.maxTilesX / 2) + 300, Main.maxTilesX - 500);
+            StructureMap SvartalvheimBiome = new StructureMap();
 
-            // WorldGen.worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
-            int y = WorldGen.genRand.Next((int)Main.rockLayer + 200, Main.maxTilesY - 200);
+            int SvartX = (Main.maxTilesX / 2);
+            int SvartY = (Main.maxTilesY / 2);
+            int zoneRadius = 150;
 
-            // Then, we call WorldGen.TileRunner with random "strength" and random "steps", as well as the Tile we wish to place.
-            // Feel free to experiment with strength and step to see the shape they generate.
-            Tile tile = Framing.GetTileSafely(x, y);
-            if (tile.HasTile && (tile.TileType == TileID.Stone || tile.TileType == TileID.SnowBlock))
+            ShapeData zoneShapeData = new ShapeData();
+            ShapeData zoneOutsideShapeData = new ShapeData();
+            ShapeData zoneMoreOutsideShapeData = new ShapeData();
+
+            Point point = new Point(SvartX, SvartY); //Used to genreate the zone
+
+            //Generating zone area
+            WorldUtils.Gen(point, new Shapes.Circle(zoneRadius), Actions.Chain(new Actions.ClearTile(frameNeighbors: true).Output(zoneShapeData)));
+            WorldUtils.Gen(point, new Shapes.Circle(zoneRadius), Actions.Chain(new Actions.SetTile((ushort)ModContent.TileType<SvartalvheimDirtTile>()), new Actions.SetFrames(frameNeighbors: true).Output(zoneShapeData)));
+            WorldUtils.Gen(point, new Shapes.Circle(zoneRadius), Actions.Chain(new Modifiers.Dither(.9), new Actions.SetTile((ushort)ModContent.TileType<SvartalvheimStoneTile>()), new Actions.SetFrames(frameNeighbors: true)));
+
+            //Creating the outline shapes
+            WorldUtils.Gen(point, new Shapes.Circle(zoneRadius + 5), new Actions.Blank().Output(zoneOutsideShapeData)); //This one is for a layer of stones all around the area
+            WorldUtils.Gen(point, new Shapes.Circle(zoneRadius + 15), new Actions.Blank().Output(zoneMoreOutsideShapeData)); //This one is for a layer of broken-style stones outside the previous area
+
+            //Digging tunnel through dirt
+            for (int i = 0; i < 50; i++)
             {
-
-                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 2, ModContent.TileType<ColdIronTile>());
-                WorldGen.SquareTileFrame(x, y, true);
-            }
-        }
-
-        YggdrasilWorld.ColdIronGenerated = true;
-        if (Main.netMode == NetmodeID.SinglePlayer)
-            Main.NewText("A cold wave passed through the earth...", 174, 128, 79);
-
-        //WorldGen.TileRunner(x, y, WorldGen.genRand.Next(5, 7), 1, ModContent.TileType<ColdIronTile>(), false, 0f, 0f, true, true);
-    }
-
-
-    //Generation code of the new Iron Wood biome
-    /*private void SpawnIronWoodBiome()
-    {
-        int firstX = WorldGen.genRand.Next(100, (Main.maxTilesX / 2) - 500);
-        if (Main.dungeonX > Main.maxTilesX / 2) //rightside dungeon
-            firstX = WorldGen.genRand.Next((Main.maxTilesX / 2) + 300, Main.maxTilesX - 500);
-
-        int xAxis = firstX;
-        int xAxisMid = xAxis + 70;
-        int xAxisEdge = xAxis + 380;
-        int yAxis = 0;
-
-        int distanceFromCenter = 0;
-
-        int[] Soils = { TileID.Dirt, TileID.Mud, TileID.ClayBlock, TileID.SnowBlock };
-        int[] Grasses = { TileID.Grass, TileID.CorruptGrass, TileID.HallowedGrass, TileID.CrimsonGrass };
-        int[] Ices = { TileID.IceBlock, TileID.CorruptIce, TileID.HallowedIce, TileID.FleshIce };
-        int[] Stones = { TileID.Stone, TileID.Ebonstone, TileID.Pearlstone, TileID.Crimstone, TileID.GreenMoss, 
-            TileID.BrownMoss, TileID.RedMoss, TileID.BlueMoss, TileID.PurpleMoss };
-        int[] Sands = { TileID.Sand, TileID.Ebonsand, TileID.Pearlsand, TileID.Crimsand, TileID.HardenedSand };
-
-        int[] Decors = { TileID.Plants, TileID.CorruptPlants, TileID.CorruptThorns, TileID.Vines, TileID.JungleVines, 
-            TileID.HallowedPlants, TileID.HallowedPlants2, TileID.HallowedVines, TileID.Stalactite, TileID.SmallPiles, 
-            TileID.LargePiles, TileID.LargePiles2, TileID.CrimsonPlants, TileID.CrimsonVines, TileID.FallenLog }; 
-
-        int[] Walls = { WallID.Dirt, WallID.Grass, WallID.SnowWallUnsafe, WallID.DirtUnsafe, WallID.EbonstoneUnsafe, WallID.MudUnsafe, 
-            WallID.PearlstoneBrickUnsafe, WallID.CaveUnsafe, WallID.Cave2Unsafe, WallID.Cave3Unsafe, WallID.Cave4Unsafe, WallID.Cave5Unsafe, 
-            WallID.Cave6Unsafe, WallID.Cave7Unsafe, WallID.GrassUnsafe, WallID.FlowerUnsafe, WallID.CorruptGrassUnsafe, WallID.HallowedGrassUnsafe, 
-            WallID.IceUnsafe, WallID.CrimsonGrassUnsafe, WallID.CrimstoneUnsafe, WallID.Cave8Unsafe, WallID.CorruptionUnsafe1, WallID.CorruptionUnsafe2, 
-            WallID.CorruptionUnsafe3, WallID.CorruptionUnsafe4, WallID.CrimsonUnsafe1, WallID.CrimsonUnsafe2, WallID.CrimsonUnsafe3, WallID.CrimsonUnsafe4, 
-            WallID.DirtUnsafe1, WallID.DirtUnsafe2, WallID.DirtUnsafe3, WallID.DirtUnsafe4, WallID.HallowUnsafe1, WallID.HallowUnsafe2, WallID.HallowUnsafe3, 
-            WallID.HallowUnsafe4, WallID.RocksUnsafe1, WallID.RocksUnsafe2, WallID.RocksUnsafe3, WallID.RocksUnsafe4, WallID.LivingWoodUnsafe, 
-            WallID.CaveWall, WallID.CaveWall2 };
-
-        for (int y = 0; y < (Main.maxTilesY - 400) ; y++)
-        {
-            yAxis++;
-            xAxis = firstX;
-            for (int i = 0; i < 450; i++)
-            {
-                xAxis++;
-                int nullRandom = Main.tile[xAxis, yAxis + 1] == null ? 50 : 1;
-
-                if (xAxis < xAxisMid - 1)
-                    distanceFromCenter = xAxisMid - xAxis;
-                else if (xAxis > xAxisEdge + 1)
-                    distanceFromCenter = xAxis - xAxisEdge;
-
-                if (Grasses.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.Next(distanceFromCenter) < 10)
-                {
-                    Main.tile[xAxis, yAxis].TileType = (ushort)ModContent.TileType<IronWoodGrassTile>();
-                    WorldGen.SquareWallFrame(xAxis, yAxis, true);
-                }
-                if (Soils.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.Next(distanceFromCenter) < 10)
-                {
-                    Main.tile[xAxis, yAxis].TileType = (ushort)ModContent.TileType<IronWoodDirtTile>();
-                    WorldGen.SquareWallFrame(xAxis, yAxis, true);
-                }
-                else if (Ices.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.Next(distanceFromCenter) < 10)
-                    Main.tile[xAxis, yAxis].TileType = (ushort)ModContent.TileType<IronWoodIceTile>();
-                else if (Stones.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.Next(distanceFromCenter) < 10)
-                    Main.tile[xAxis, yAxis].TileType = (ushort)ModContent.TileType<IronWoodStoneTile>();
-                else if (Sands.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.Next(distanceFromCenter) < 10)
-                    Main.tile[xAxis, yAxis].TileType = (ushort)ModContent.TileType<IronWoodSandTile>();
-
-                if (Walls.Contains(Main.tile[xAxis, yAxis].WallType) && Main.rand.Next(distanceFromCenter) < 10)
-                    Main.tile[xAxis, yAxis].WallType = (ushort)ModContent.WallType<IronWoodWallTile>(); //Converts walls
-
-                if (Decors.Contains(Main.tile[xAxis, yAxis].TileType) && Main.rand.NextBool(nullRandom) && Main.rand.Next(distanceFromCenter) < 18)
-                    WorldGen.KillTile(xAxis, yAxis, false, false, false); //Removes decor
-
-                if (Main.tile[xAxis, yAxis].TileType == ModContent.TileType<IronWoodStoneTile>() && yAxis > (int)((Main.rockLayer + Main.maxTilesY - 500) / 2f) && Main.rand.NextBool(150))
-                    WorldGen.TileRunner(xAxis, yAxis, WorldGen.genRand.Next(5, 7), 1, ModContent.TileType<ColdIronTile>(), false, 0f, 0f, true, true); //Adds ore
+                WorldGen.digTunnel(SvartX + Main.rand.NextFloat(-100, 100), SvartY + Main.rand.NextFloat(-100, 100), Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-0.01f, 0.01f), Main.rand.Next(50, 150), Main.rand.Next(2, 8), false);
 
             }
-        }
 
-        //YggdrasilWorld.IronWoodBiome = true;
+            //Adding stone through that dirt
+            for (int i = 0; i < 150; i++)
+            {
+                int x = WorldGen.genRand.Next(SvartX - 150, SvartX + 150);
+                int y = WorldGen.genRand.Next(SvartY - 150, SvartY + 150);
+                int strength = WorldGen.genRand.Next(5, 30);
+                int steps = WorldGen.genRand.Next(8, 15);
 
-        if (Main.netMode == NetmodeID.SinglePlayer)
-            Main.NewText("The Iron Wood grows...", 174, 128, 79);
-        //else if (Main.netMode == NetmodeID.Server)
-        //{
-        //    NetMessage.SendData(MessageID.WorldData);
-        //    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Giants passed over the land..."), Color.Orange, -1); 
-        //}
-    }*/
+                Tile tile = Framing.GetTileSafely(x, y);
+                if (tile.HasTile && tile.TileType == ModContent.TileType<SvartalvheimDirtTile>())
+                {
+                    WorldGen.TileRunner(x, y, strength, steps, ModContent.TileType<SvartalvheimStoneTile>());
+                }
+            }
 
-    //Check if an area is flat enough to spawn the viking houses
+            //Adding layer of stones in the outline shape
+            zoneOutsideShapeData.Subtract(zoneShapeData, point, point);
+            WorldUtils.Gen(point, new ModShapes.All(zoneOutsideShapeData), new Actions.SetTile((ushort)ModContent.TileType<SvartalvheimStoneTile>(), true));
+            
+            //Adding layer of broken-style stones outside the outline shape
+            zoneMoreOutsideShapeData.Subtract(zoneShapeData, point, point);
+            zoneMoreOutsideShapeData.Subtract(zoneOutsideShapeData, point, point);
+            WorldUtils.Gen(point, new ModShapes.All(zoneMoreOutsideShapeData), Actions.Chain(new Modifiers.Dither(.7), new Actions.SetTile((ushort)ModContent.TileType<SvartalvheimStoneTile>(), true)));
+
+            //Adding walls
+            WorldUtils.Gen(point, new ModShapes.All(zoneShapeData), Actions.Chain(new Actions.PlaceWall((ushort)ModContent.WallType<SvartalvheimWallTile>())));
+
+            //Adding Cold Iron in there over dirt and stone
+            for (int k = 0; k < 150; k++)
+            {
+                int ironX = WorldGen.genRand.Next(SvartX - 100, SvartX + 100);
+                int ironY = WorldGen.genRand.Next(SvartY - 100, SvartY + 100);
+
+                Tile tile = Framing.GetTileSafely(ironX, ironY);
+                if (tile.HasTile && (tile.TileType == ModContent.TileType<SvartalvheimStoneTile>() || tile.TileType == ModContent.TileType<SvartalvheimDirtTile>()))
+                {
+                    WorldGen.TileRunner(ironX, ironY, WorldGen.genRand.Next(5, 7), WorldGen.genRand.Next(5, 10), ModContent.TileType<ColdIronTile>());
+                    //WorldGen.SquareTileFrame(ironX, ironY, true);
+                }
+            }
+
+            //Doesn't seem to work, the values are probably wrong
+            //SvartalvheimBiome.AddStructure(new Rectangle(SvartX, SvartY, 300, 300));
+    }
+
+
+    //Check if an area is flat enough to spawn structures
     public static bool CheckFlat(int startX, int startY, int width, float threshold, int goingDownWeight = 0, int goingUpWeight = 0)
     {
         // Fail if the tile at the other end of the check plane isn't also solid
@@ -227,5 +200,4 @@ public class WorldGenSystem : ModSystem
         }
         return totalVariance / width <= threshold;
     }
-
 }

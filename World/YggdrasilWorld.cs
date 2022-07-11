@@ -12,9 +12,9 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
-using Yggdrasil.Content.Tiles.IronWood;
 using Terraria.ModLoader.IO;
 using System.IO;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
 namespace Yggdrasil.World
 {
@@ -24,31 +24,35 @@ namespace Yggdrasil.World
 		
 		public static bool IronWoodBiome = false;
 		public static bool ColdIronGenerated;
-		public static bool ZoneIronWood;
+		public static bool SvartalvheimGenerated;
+		public static bool ZoneSvartalvheim;
 		public static bool gennedVikingHouse = false;
 		public static bool downedVikingInvasion;
 
 
-		public static int IronWoodTiles = 0;
+		public static int SvartalvheimTiles = 0;
 
 		public override void OnWorldLoad()
 		{
-			ZoneIronWood = false;
+			ZoneSvartalvheim = false;
 			gennedVikingHouse = false;
 			downedVikingInvasion = false;
 			ColdIronGenerated = false;
+			SvartalvheimGenerated = false;
 		}
 
 		public override void LoadWorldData(TagCompound tag)
 		{
 			downedVikingInvasion = tag.GetBool("downedVikingInvasion");
 			ColdIronGenerated = tag.GetBool("ColdIronGenerated");
+			SvartalvheimGenerated = tag.GetBool("SvartalvheimGenerated");
 		}
 
 		public override void SaveWorldData(TagCompound tag)
 		{
 			tag["downedVikingInvasion"] = downedVikingInvasion;
 			tag["ColdIronGenerated"] = ColdIronGenerated;
+			tag["SvartalvheimGenerated"] = SvartalvheimGenerated;
 		}
 
 		public override void NetSend(BinaryWriter writer)
@@ -130,14 +134,13 @@ namespace Yggdrasil.World
 
 		public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
 		{
-			IronWoodTiles = tileCounts[ModContent.TileType<IronWoodDirtTile>()] + tileCounts[ModContent.TileType<IronWoodGrassTile>()]
-			+ tileCounts[ModContent.TileType<IronWoodStoneTile>()] + tileCounts[ModContent.TileType<IronWoodIceTile>()] + tileCounts[ModContent.TileType<IronWoodSandTile>()];
+			SvartalvheimTiles = tileCounts[ModContent.TileType<SvartalvheimDirtTile>()] + tileCounts[ModContent.TileType<SvartalvheimBrickTile>()]
+			+ tileCounts[ModContent.TileType<SvartalvheimStoneTile>()];
 		}
 
         public override void PostUpdateEverything()
         {
-			//if (downedVikingInvasion)
-			//Main.NewText("It's down");
+			Main.NewText(SvartalvheimTiles);
 		}
 	}	
 }

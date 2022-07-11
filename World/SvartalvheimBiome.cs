@@ -8,18 +8,18 @@ using Yggdrasil.Extensions;
 
 namespace Yggdrasil.World;
 
-public class IronWoodBiome : ModBiome
+public class SvartalvheimBiome : ModBiome
 {
     public override bool IsBiomeActive(Player player)
     {
 
-        if (YggdrasilWorld.IronWoodTiles > 1200)
+        if (YggdrasilWorld.SvartalvheimTiles > 7000)
         {
-            YggdrasilWorld.ZoneIronWood = true;
+            YggdrasilWorld.ZoneSvartalvheim = true;
             return true;
         }
 
-        YggdrasilWorld.ZoneIronWood = false;
+        YggdrasilWorld.ZoneSvartalvheim = false;
         return false;
     }
 }
@@ -37,7 +37,7 @@ public class IronWoodBiomeEffect : ModSceneEffect
 
     public override bool IsSceneEffectActive(Player player)
     {
-        return YggdrasilWorld.ZoneIronWood;
+        return YggdrasilWorld.ZoneSvartalvheim;
     }
 
     public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
