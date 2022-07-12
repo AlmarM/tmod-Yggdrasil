@@ -869,14 +869,17 @@ namespace Yggdrasil.World
 								WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<VikingChestTile>(), style: 1);
 								break;
 							case 5:
-								WorldGen.PlaceObject(k, l, TileID.Torches, style: 2);
+								if (WorldGen.genRand.NextBool())
+								{
+									WorldGen.PlaceObject(k, l, TileID.Torches, style: 2);
+								}
 								break;
 							case 6:
 								if (WorldGen.genRand.NextBool())
 								{
-									WorldGen.PlaceObject(k, l, TileID.SharpeningStation);
+									WorldGen.PlaceObject(k, l, (ushort)ModContent.TileType<DvergrForgeTile>());
 								}
-								WorldGen.PlaceObject(k, l, TileID.Tables, style: 25);
+								WorldGen.PlaceObject(k, l, TileID.SharpeningStation);
 								break;
 						}
 					}

@@ -12,14 +12,15 @@ public class SvartalvheimBiome : ModBiome
 {
     public override bool IsBiomeActive(Player player)
     {
-
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
         if (YggdrasilWorld.SvartalvheimTiles > 7000)
-        {
-            YggdrasilWorld.ZoneSvartalvheim = true;
+        {         
+            //Main.NewText("In Svartalvheim");
+            RunePlayer.ZoneSvartalvheim = true;
             return true;
         }
-
-        YggdrasilWorld.ZoneSvartalvheim = false;
+        //Main.NewText("NOT in Svartalvheim");
+        RunePlayer.ZoneSvartalvheim = false;
         return false;
     }
 }
@@ -37,7 +38,8 @@ public class IronWoodBiomeEffect : ModSceneEffect
 
     public override bool IsSceneEffectActive(Player player)
     {
-        return YggdrasilWorld.ZoneSvartalvheim;
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
+        return RunePlayer.ZoneSvartalvheim;
     }
 
     public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;

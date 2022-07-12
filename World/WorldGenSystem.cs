@@ -147,7 +147,7 @@ public class WorldGenSystem : ModSystem
             WorldUtils.Gen(point, new ModShapes.All(zoneMoreOutsideShapeData), Actions.Chain(new Modifiers.Dither(.7), new Actions.SetTile((ushort)ModContent.TileType<SvartalvheimStoneTile>(), true)));
 
             //Adding walls
-            WorldUtils.Gen(point, new ModShapes.All(zoneShapeData), Actions.Chain(new Actions.PlaceWall((ushort)ModContent.WallType<SvartalvheimWallTile>())));
+            WorldUtils.Gen(point, new ModShapes.All(zoneShapeData), Actions.Chain(new Actions.PlaceWall((ushort)ModContent.WallType<SvartalvheimWallTileUnsafe>())));
 
             //Adding Cold Iron in there over dirt and stone
             for (int k = 0; k < 150; k++)

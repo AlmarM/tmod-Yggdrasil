@@ -6,11 +6,11 @@ using Yggdrasil.Content.Items.Materials.Svartalvheim;
 
 namespace Yggdrasil.Content.Tiles.Svartalvheim;
 
-public class SvartalvheimWallTile : YggdrasilWall
+public class SvartalvheimWallTileUnsafe : YggdrasilWall
 {
 	public override void SetStaticDefaults()
 	{
-		Main.wallHouse[Type] = true;
+		Main.wallHouse[Type] = false;
 		ItemDrop = ModContent.ItemType<SvartalvheimWall>();
 		AddMapEntry(new Color(59, 38, 29));
 	}

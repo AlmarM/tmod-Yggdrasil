@@ -12,8 +12,10 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.World;
 using Yggdrasil.Content.NPCs.Vikings;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles;
 using Microsoft.Xna.Framework.Input;
+using Yggdrasil.Content.NPCs.Svartalvheim;
 
 namespace Yggdrasil.Globals;
 
@@ -61,7 +63,14 @@ public class YggdrasilGlobalNPC : GlobalNPC
     }
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
     {
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
         //Changing the max spawn and spawn rate
+        if (RunePlayer.ZoneSvartalvheim)
+        {
+            spawnRate = (int)(spawnRate * 0.9f);
+            maxSpawns = (int)(maxSpawns * 1.1f);
+        }
+
         if (VikingInvasionWorld.vikingInvasion && player.ZoneOverworldHeight)
         {
             maxSpawns = (int)(maxSpawns * 4f);
@@ -89,7 +98,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
             if (!NPC.AnyNPCs(ModContent.NPCType<Berserker>()))
                 pool.Add(ModContent.NPCType<Berserker>(), .3f);
 
-            //Hardmode
+            //Hardmode spawns
             if (Main.hardMode)
             {
                 pool.Add(ModContent.NPCType<GrayWolf>(), 1f);
@@ -103,7 +112,25 @@ public class YggdrasilGlobalNPC : GlobalNPC
             }
         }
 
-        return;
+        //Changing the spawnpool when the player is in Svartalvheim
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
+        if (RunePlayer.ZoneSvartalvheim)
+        {
+            pool.Clear();
+
+            pool.Add(ModContent.NPCType<DwarfPeon>(), 4f);
+            pool.Add(ModContent.NPCType<DwarfWarrior>(), 5f);
+            pool.Add(ModContent.NPCType<SvartalvheimBat>(), 5.5f);
+
+            //Hardmode spawns
+            if (Main.hardMode)
+            {
+                pool.Add(ModContent.NPCType<DwarfThunderer>(), 2f);
+                pool.Add(ModContent.NPCType<DwarfSpirit>(), 1f);
+            }
+        }
+
+            return;
     }
 
 }

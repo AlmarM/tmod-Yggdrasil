@@ -25,7 +25,6 @@ namespace Yggdrasil.World
 		public static bool IronWoodBiome = false;
 		public static bool ColdIronGenerated;
 		public static bool SvartalvheimGenerated;
-		public static bool ZoneSvartalvheim;
 		public static bool gennedVikingHouse = false;
 		public static bool downedVikingInvasion;
 
@@ -34,7 +33,6 @@ namespace Yggdrasil.World
 
 		public override void OnWorldLoad()
 		{
-			ZoneSvartalvheim = false;
 			gennedVikingHouse = false;
 			downedVikingInvasion = false;
 			ColdIronGenerated = false;
@@ -140,7 +138,7 @@ namespace Yggdrasil.World
 
         public override void PostUpdateEverything()
         {
-			Main.NewText(SvartalvheimTiles);
+			//Main.NewText("In Svartalvheim");
 		}
 	}	
 }
