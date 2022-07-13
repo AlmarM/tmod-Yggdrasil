@@ -33,7 +33,6 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient(ItemID.WoodYoyo)
             .AddIngredient<NordicWood>(5)
             .AddIngredient<FrostCoreBar>(5)
             .AddTile(TileID.Anvils)

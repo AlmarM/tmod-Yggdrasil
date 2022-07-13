@@ -39,10 +39,11 @@ namespace Yggdrasil.Content.Items.Weapons.Melee
 		}
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<ColdIronBar>(6)
-		.AddIngredient<NordicWood>(10)
-		.AddTile(TileID.MythrilAnvil)
-		.Register();
+			//.AddIngredient<GlacierSpear>()
+			.AddIngredient<ColdIronBar>(6)
+			.AddIngredient<NordicWood>(10)
+			.AddTile(TileID.MythrilAnvil)
+			.Register();
 
 	}
 }

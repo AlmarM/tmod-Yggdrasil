@@ -5,17 +5,16 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.FrostCore;
 using Yggdrasil.Content.Projectiles.Magic;
 
 namespace Yggdrasil.Content.Items.Weapons.Magic
 {
-    public class GlacierStaff : YggdrasilItem
+    public class NordicStaff : YggdrasilItem
     {
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Glacier Staff");
-            Tooltip.SetDefault("That's a cold one" + "\nThrows 2 homings ice chunks that applies Frostburn");
+			DisplayName.SetDefault("Nordic Staff");
+            Tooltip.SetDefault("So cold, they stay in place" + "\nThrows 3 homings nordic ball that applies Frostburn and explode");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
@@ -23,27 +22,27 @@ namespace Yggdrasil.Content.Items.Weapons.Magic
         }
         public override void SetDefaults()
         {
-            Item.damage = 50;
+            Item.damage = 95;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 12;
+            Item.mana = 15;
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 3;
+            Item.knockBack = 4;
             Item.crit = 0;
             Item.value = Item.sellPrice(0, 5);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Yellow;
             Item.UseSound = SoundID.Item20;
-            Item.autoReuse = false;
-            Item.shoot = ModContent.ProjectileType<GlacierStaffProjectile>();
-            Item.shootSpeed = 8f;
+            Item.autoReuse = true;
+            Item.shoot = ModContent.ProjectileType<NordicBallProjectile>();
+            Item.shootSpeed = 10f;
 
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            const int NumProjectiles = 2; // The number of projectiles that this gun will shoot.
+            const int NumProjectiles = 3; // The number of projectiles that this gun will shoot.
 
             for (int i = 0; i < NumProjectiles; i++)
             {
@@ -59,8 +58,9 @@ namespace Yggdrasil.Content.Items.Weapons.Magic
         }
 
         public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<FrostCoreTome>()
-            .AddIngredient<GlacierShards>(10)
+            .AddIngredient<GlacierStaff>()
+            .AddIngredient<ColdIronBar>(5)
+            .AddIngredient<NordicWood>(10)
             .AddTile(TileID.MythrilAnvil)
             .Register();
     }

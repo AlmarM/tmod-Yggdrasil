@@ -12,8 +12,7 @@ namespace Yggdrasil.Content.Items.Ammo
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Frostcore Arrow");
-			Tooltip.SetDefault("Apply Frostburn on hit" +
-							   "\nSlows down target for half a sec");
+			Tooltip.SetDefault("Apply Frostburn on hit");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

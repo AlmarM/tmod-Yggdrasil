@@ -26,12 +26,12 @@ public class SlowDebuff : YggdrasilBuff
 			var slowDebuffValue = player.GetModPlayer<RunePlayer>().SlowDebuffValue;
 			npc.velocity.X *= slowDebuffValue;
 
-			if (Main.rand.NextBool(5))
+			if (Main.rand.NextBool(8))
 			{
-				int dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Dirt);
+				int dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.IceRod);
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 0f;
-				Main.dust[dust].scale *= 1.1f;
+				Main.dust[dust].scale *= 1.3f;
 			}
 		}
 	}

@@ -12,7 +12,7 @@ using Yggdrasil.Content.Items.Others;
 
 namespace Yggdrasil.Content.Tiles.Furniture;
 
-public class VikingChestTile : YggdrasilTile
+public class SvartalvheimChestTile : YggdrasilTile
 {
     public override void SetStaticDefaults()
     {
@@ -28,22 +28,16 @@ public class VikingChestTile : YggdrasilTile
         TileID.Sets.BasicChest[Type] = true;
         TileID.Sets.DisableSmartCursor[Type] = true;
 
-        DustType = DustID.Dirt;
+        DustType = DustID.Stone;
         AdjTiles = new int[] { TileID.Containers };
-        ChestDrop = ModContent.ItemType<VikingChest>();
+        ChestDrop = ModContent.ItemType<SvartalvheimChest>();
 
         // Names
-        ContainerName.SetDefault("Viking Chest");
+        ContainerName.SetDefault("Svartalvheim Chest");
 
         ModTranslation name = CreateMapEntryName();
-        name.SetDefault("Viking Chest");
-
-        AddMapEntry(new Color(16, 7, 71), name, MapChestName);
-
-        name = CreateMapEntryName(Name + "_Locked"); // With multiple map entries, you need unique translation keys.
-        name.SetDefault("Locked Viking Chest");
-
-        AddMapEntry(new Color(255, 0, 255), name, MapChestName);
+        name.SetDefault("Svartalvheim Chest");
+        AddMapEntry(new Color(200, 94, 94), name, MapChestName);
 
         // Placement
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
@@ -62,14 +56,6 @@ public class VikingChestTile : YggdrasilTile
     public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 36);
 
     //public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
-
-    public override bool IsLockedChest(int i, int j) => Main.tile[i, j].TileFrameX / 36 == 1;
-
-    public override bool UnlockChest(int i, int j, ref short frameXAdjustment, ref int dustType, ref bool manual)
-    {
-        return true;
-    }
-
     public static string MapChestName(string name, int i, int j)
     {
         int left = i;
@@ -97,7 +83,7 @@ public class VikingChestTile : YggdrasilTile
         }
 
         return name + ": " + Main.chest[chest].name;
-    }
+     }
 
     public override void NumDust(int i, int j, bool fail, ref int num)
     {
@@ -149,8 +135,7 @@ public class VikingChestTile : YggdrasilTile
             player.editedChestName = false;
         }
 
-        bool isLocked = IsLockedChest(left, top);
-        if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked)
+        if (Main.netMode == NetmodeID.MultiplayerClient)
         {
             if (left == player.chestX && top == player.chestY && player.chest >= 0)
             {
@@ -160,46 +145,31 @@ public class VikingChestTile : YggdrasilTile
             }
             else
             {
-                NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top);
+                NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top, 0f, 0f, 0, 0, 0);
                 Main.stackSplit = 600;
             }
         }
         else
         {
-            if (isLocked)
+            int chest = Chest.FindChest(left, top);
+            if (chest >= 0)
             {
-                int key = ModContent.ItemType<VikingKey>();
-                if (player.ConsumeItem(key) && Chest.Unlock(left, top))
+                Main.stackSplit = 600;
+                if (chest == player.chest)
                 {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        NetMessage.SendData(MessageID.Unlock, -1, -1, null, player.whoAmI, 1f, left, top);
-                    }
+                    player.chest = -1;
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                 }
-            }
-            else
-            {
-                int chest = Chest.FindChest(left, top);
-                if (chest >= 0)
+                else
                 {
-                    Main.stackSplit = 600;
-                    if (chest == player.chest)
-                    {
-                        player.chest = -1;
-                        SoundEngine.PlaySound(SoundID.MenuClose);
-                    }
-                    else
-                    {
-                        player.chest = chest;
-                        Main.playerInventory = true;
-                        Main.recBigList = false;
-                        player.chestX = left;
-                        player.chestY = top;
-                        SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
-                    }
-
-                    Recipe.FindRecipes();
+                    player.chest = chest;
+                    Main.playerInventory = true;
+                    Main.recBigList = false;
+                    player.chestX = left;
+                    player.chestY = top;
+                    SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
                 }
+                Recipe.FindRecipes();
             }
         }
 
@@ -229,15 +199,10 @@ public class VikingChestTile : YggdrasilTile
         }
         else
         {
-            player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Viking Chest";
-            if (player.cursorItemIconText == "Viking Chest")
+            player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Svartalvheim Chest";
+            if (player.cursorItemIconText == "Svartalvheim Chest")
             {
-                player.cursorItemIconID = ModContent.ItemType<VikingChest>();
-                if (Main.tile[left, top].TileFrameX / 36 == 1)
-                {
-                    player.cursorItemIconID = ModContent.ItemType<VikingKey>();
-                }
-
+                player.cursorItemIconID = ModContent.ItemType<SvartalvheimChest>();
                 player.cursorItemIconText = "";
             }
         }

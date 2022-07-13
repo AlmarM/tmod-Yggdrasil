@@ -79,17 +79,7 @@ namespace Yggdrasil.Content.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
 			target.AddBuff(BuffID.Frostburn, 600);
-			target.AddBuff(ModContent.BuffType<SlowDebuff>(), 60);
-
-			const int ExplosionProjectiles = 10;
-			var Type = ProjectileID.BallofFrost;
-
-			for (int i = 0; i < ExplosionProjectiles; i++)
-			{
-				Vector2 Speed = Main.rand.NextVector2Unit();
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), target.Center, Speed * 10, Type, damage, knockback,
-					Projectile.owner);
-			}
+			target.AddBuff(ModContent.BuffType<SlowDebuff>(), 90);
 		}
 	}
 }
