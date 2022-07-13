@@ -10,6 +10,16 @@ namespace Yggdrasil.World;
 
 public class SvartalvheimBiome : ModBiome
 {
+    //public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.Find<ModUndergroundBackgroundStyle>("Yggdrasil/SvartalvheimBiomeBackgroundStyle");
+
+    public override int Music => MusicID.OtherworldlyIce;
+
+    public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
+
+    public override string BestiaryIcon => ("Yggdrasil/Assets/Textures/SvartalvheimBiome/SvartalvheimBiome_Icon");
+    public override string BackgroundPath => base.BackgroundPath;
+    public override Color? BackgroundColor => base.BackgroundColor;
+
     public override bool IsBiomeActive(Player player)
     {
         var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
@@ -23,24 +33,9 @@ public class SvartalvheimBiome : ModBiome
         RunePlayer.ZoneSvartalvheim = false;
         return false;
     }
-}
 
-public class IronWoodBiomeEffect : ModSceneEffect
-{
-    public override int Music => MusicID.OtherworldlyIce;
-
-    //public override virtual ModSurfaceBackgroundStyle =>
-
-    //public override void SpecialVisuals(Player player)
-    //{
-
-    //}
-
-    public override bool IsSceneEffectActive(Player player)
+    public override void SetStaticDefaults()
     {
-        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
-        return RunePlayer.ZoneSvartalvheim;
+        DisplayName.SetDefault("Svartalvheim");
     }
-
-    public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
 }

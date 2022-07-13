@@ -57,13 +57,14 @@ public class DwarfPeon : YggdrasilNPC
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
     {
         // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] 
+        {
+			// Sets the spawning conditions of this NPC that is listed in the bestiary.
+			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The dwarves are skilled craftsmen, and they have crafted some of the best objects in the world. They live inside stones and mountains, in a place called Svartalfheim.")
-            });
+			// Sets the description of this NPC that is listed in the bestiary.
+			new FlavorTextBestiaryInfoElement("The dwarves are skilled craftsmen, and they have crafted some of the best objects in the world. They live inside stones and mountains, in a place called Svartalfheim.")
+        });
     }
 
     //Setting the variable in PreAI to make sure the NPC keeps spawned during the day
@@ -85,7 +86,7 @@ public class DwarfPeon : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoldyCheese>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

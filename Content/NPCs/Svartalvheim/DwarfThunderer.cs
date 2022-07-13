@@ -86,7 +86,7 @@ public class DwarfThunderer : YggdrasilNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoldyCheese>(), 100));
     }
 
     public override void HitEffect(int hitDirection, double damage)

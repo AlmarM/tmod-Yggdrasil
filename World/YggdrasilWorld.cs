@@ -86,6 +86,8 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 2)));
 							itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(1, 2)));
 							itemsToAdd.Add((ItemID.MiningPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 1:
 							itemsToAdd.Add((ModContent.ItemType<RunicSlab>(), 1));
@@ -94,6 +96,8 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(15, 35)));
 							itemsToAdd.Add((ItemID.ClimbingClaws, 1));
 							itemsToAdd.Add((ItemID.RegenerationPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 2:
 							itemsToAdd.Add((ModContent.ItemType<VikingLeatherShirt>(), 1));
@@ -103,14 +107,18 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.IceMirror, 1));
 							itemsToAdd.Add((ItemID.ShoeSpikes, 1));
 							itemsToAdd.Add((ItemID.SwiftnessPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 3:
-							itemsToAdd.Add((ModContent.ItemType<NorsemanShield>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<DwarvenMedallion>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<StoneBlock>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
 							itemsToAdd.Add((ItemID.FlurryBoots, 1));
 							itemsToAdd.Add((ItemID.RecallPotion, Main.rand.Next(2, 4)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 					}
 

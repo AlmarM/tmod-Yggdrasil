@@ -52,7 +52,7 @@ namespace Yggdrasil.World
 			while (true)
 			{
 				HouseAttempts++;
-				if (HouseAttempts > 30 || maxSvartHome >= 5)
+				if (HouseAttempts > 10 || maxSvartHome >= 5)
 					break;
 
 				progress.Message = "Adding dwarven homes...";
@@ -718,14 +718,32 @@ namespace Yggdrasil.World
 
 			bool housePlaced = false;
 			int attempts = 0;
-			while (!housePlaced && attempts++ < 1000)
+			while (!housePlaced && attempts++ < 200)
 			{
 				int houseX = (Main.maxTilesX / 2) + Main.rand.Next(-100, 100);
-				int houseY = (Main.maxTilesY / 2) + Main.rand.Next(-100, 100);
+				int houseY = (Main.maxTilesY / 2) + Main.rand.Next(-100, 10);
 
 				Tile tile = Main.tile[houseX, houseY];
 				// If the type of the tile we are placing the house on doesn't match what we want, try again
 				if (!(tile.TileType == ModContent.TileType<SvartalvheimDirtTile>() || tile.TileType == ModContent.TileType<SvartalvheimStoneTile>()))
+				{
+					continue;
+				}
+
+				//Checking if there are bricks on the way meaning there's another house
+				Point point = new Point(houseX, houseY);
+				Ref<int> brickCont = new Ref<int>(0);
+				WorldUtils.Gen(point, new Shapes.Rectangle(25, 15), Actions.Chain(new GenAction[]
+				{
+					new Actions.ContinueWrapper(Actions.Chain(new GenAction[]
+					{
+						new Modifiers.OnlyTiles((ushort)ModContent.TileType<SvartalvheimBrickTile>()),
+						new Actions.Scanner(brickCont)
+					})),
+				}));
+
+				//If there are more than 5 bricks, try again
+				if (brickCont.Value >= 5)
 				{
 					continue;
 				}
