@@ -12,6 +12,7 @@ public class TooltipBlock
 
     private IList<string> _lines = new List<string>();
     private string _indexSeparator = "_";
+    private Func<List<TooltipLine>, int?> _insertIndexFunc;
 
     public TooltipBlock(Enum type, int order = 0)
     {
@@ -35,14 +36,31 @@ public class TooltipBlock
         _indexSeparator = separator;
     }
 
+    public void SetInsertIndexFunc(Func<List<TooltipLine>, int?> func)
+    {
+        _insertIndexFunc = func;
+    }
+
+    public int? GetInsertIndex(List<TooltipLine> tooltips)
+    {
+        return _insertIndexFunc?.Invoke(tooltips);
+    }
+
     public IList<TooltipLine> GetLines(Mod mod)
     {
         var output = new List<TooltipLine>();
 
-        for (int i = 0; i < _lines.Count; i++)
+        if (_lines.Count == 1)
         {
-            var finalName = $"{Name}{_indexSeparator}{i}";
-            output.Add(new TooltipLine(mod, finalName, _lines[i]));
+            output.Add(new TooltipLine(mod, $"{Name}", _lines[0]));
+        }
+        else
+        {
+            for (var i = 0; i < _lines.Count; i++)
+            {
+                var finalName = $"{Name}{_indexSeparator}{i}";
+                output.Add(new TooltipLine(mod, finalName, _lines[i]));
+            }
         }
 
         return output;

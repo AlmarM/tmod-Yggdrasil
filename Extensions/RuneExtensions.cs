@@ -5,7 +5,7 @@ namespace Yggdrasil.Extensions;
 
 public static class RuneExtensions
 {
-    public static string GetItemPrefix(this RuneTier tier)
+    public static string GetDisplayName(this RuneTier tier)
     {
         switch (tier)
         {

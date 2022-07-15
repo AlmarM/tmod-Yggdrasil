@@ -1,15 +1,20 @@
-using Terraria;
+using System.Collections.Generic;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes;
 
 public abstract class Rune : YggdrasilItem
 {
-    protected abstract string ItemName { get; }
+    protected abstract RuneTooltipText TooltipText { get; }
+
+    protected string ItemName => TooltipText.Name;
+
+    protected string ItemDescription => FormatRuneTier(TooltipText.DescriptionFormat, Tier, true);
 
     protected abstract RuneTier Tier { get; }
 
@@ -17,9 +22,13 @@ public abstract class Rune : YggdrasilItem
 
     protected virtual int Rarity => ItemRarityID.White;
 
+    protected virtual int Value => Terraria.Item.sellPrice(silver: 2);
+
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault(GetFinalItemName());
+        string fullItemName = FormatRuneTier($"{{0}}{ItemName} Rune", Tier);
+
+        DisplayName.SetDefault(fullItemName);
     }
 
     public override void SetDefaults()
@@ -29,28 +38,42 @@ public abstract class Rune : YggdrasilItem
         Item.maxStack = 1;
     }
 
-    public override void AddRecipes()
+    protected override IList<TooltipBlock> CreateTooltipBlocks()
     {
-        Recipe recipe = CreateRecipe().AddIngredient<BlankRune>();
+        var descriptionBlock = new TooltipBlock(RuneTooltipName.RuneDescription);
+        descriptionBlock.AddLine(TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, ItemDescription));
 
-        SetupRecipe(recipe);
+        var effectBlock = new TooltipBlock(RuneTooltipName.RuneEffectDescriptions, 1);
+        effectBlock.AddLine(FormatRuneTier(TooltipText.EffectDescriptionFormat, Tier));
 
-        recipe.AddTile<DvergrPowerForgeTile>().Register();
-    }
-
-    protected virtual void SetupRecipe(Recipe recipe)
-    {
-    }
-
-    protected virtual string GetFinalItemName()
-    {
-        string prefix = Tier.GetItemPrefix();
-
-        if (!string.IsNullOrEmpty(prefix))
+        return new List<TooltipBlock>
         {
-            prefix += " ";
+            descriptionBlock,
+            effectBlock,
+        };
+    }
+
+    /// <summary>
+    /// Insert the display name for a given tier into the string format. It will add an extra space at the end
+    /// if the display name isn't empty. Examples:
+    /// {0}Rune with RuneTier.Minor => Minor Rune
+    /// {0}Rune with RuneTier.Normal => Rune
+    /// A {0}Rune with RuneTier.Major => A Major Rune
+    /// </summary>
+    protected static string FormatRuneTier(string format, RuneTier tier, bool forceLowerCase = false)
+    {
+        string tierName = tier.GetDisplayName();
+
+        if (!string.IsNullOrEmpty(tierName))
+        {
+            if (forceLowerCase)
+            {
+                tierName = tierName.ToLowerInvariant();
+            }
+
+            tierName += " ";
         }
 
-        return $"{prefix}{ItemName} Rune";
+        return string.Format(format, tierName);
     }
 }

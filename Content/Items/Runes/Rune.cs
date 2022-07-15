@@ -99,13 +99,13 @@ public abstract class Rune<TRune> : YggdrasilItem, IRune where TRune : Rune<TRun
             (IRuneEffect effect, IRuneEffectParameters parameters) effectData = _effects[i];
             string description = effectData.effect.GetDescription(effectData.parameters);
 
-            tooltips.Add(new TooltipLine(Mod, $"RuneEffectDescription_{i}", description));
+            tooltips.Add(new TooltipLine(Mod, $"RuneEffectDescriptions_{i}", description));
         }
     }
 
     protected virtual string GetDisplayName()
     {
-        string prefix = Tier.GetItemPrefix();
+        string prefix = Tier.GetDisplayName();
 
         if (!string.IsNullOrEmpty(prefix))
         {
