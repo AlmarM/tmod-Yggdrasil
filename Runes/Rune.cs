@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.ID;
 using Yggdrasil.Configs;

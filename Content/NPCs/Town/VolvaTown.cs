@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
-using Yggdrasil.Content.Items.Runes.Minor;
+//using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.Runes.Content.Items.Minor;
@@ -188,7 +188,7 @@ namespace Yggdrasil.Content.NPCs.Town
             if (NPC.downedBoss1)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MinorAlgizRune>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MinorBerkanoRune>());
+                //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MinorBerkanoRune>()); @todo
             }
 
             if (NPC.downedBoss3)

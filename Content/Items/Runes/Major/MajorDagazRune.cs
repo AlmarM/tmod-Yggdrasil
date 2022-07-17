@@ -30,6 +30,5 @@ internal class MajorDagazRune : Rune<MajorDagazRune>
 
     protected override void AddEffects()
     {
-        AddEffect(RuneEffects.Get<DagazEffect>(), new DagazEffect.Parameters(RangeDamageBoost));
     }
 }

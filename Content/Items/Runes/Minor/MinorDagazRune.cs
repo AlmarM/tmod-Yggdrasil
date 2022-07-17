@@ -29,6 +29,5 @@ internal class MinorDagazRune : Rune<MinorDagazRune>
 
     protected override void AddEffects()
     {
-        AddEffect(RuneEffects.Get<DagazEffect>(), new DagazEffect.Parameters(RangeDamageBoost));
     }
 }
