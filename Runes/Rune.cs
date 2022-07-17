@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Extensions;
@@ -14,7 +16,7 @@ public abstract class Rune : YggdrasilItem
 
     protected string ItemName => TooltipText.Name;
 
-    protected string ItemDescription => FormatRuneTier(TooltipText.DescriptionFormat, Tier, true);
+    protected string ItemDescription => RuneUtils.FormatRuneTier(TooltipText.DescriptionFormat, Tier, true);
 
     protected abstract RuneTier Tier { get; }
 
@@ -22,11 +24,11 @@ public abstract class Rune : YggdrasilItem
 
     protected virtual int Rarity => ItemRarityID.White;
 
-    protected virtual int Value => Terraria.Item.sellPrice(silver: 2);
+    protected virtual int Value => Item.sellPrice(silver: 2);
 
     public override void SetStaticDefaults()
     {
-        string fullItemName = FormatRuneTier($"{{0}}{ItemName} Rune", Tier);
+        string fullItemName = RuneUtils.FormatRuneTier($"{{0}} {ItemName} Rune", Tier);
 
         DisplayName.SetDefault(fullItemName);
     }
@@ -36,6 +38,26 @@ public abstract class Rune : YggdrasilItem
         Item.width = 34;
         Item.height = 34;
         Item.maxStack = 1;
+        Item.value = Value;
+        Item.rare = Rarity;
+    }
+
+    public sealed override void UpdateInventory(Player player)
+    {
+        Type type = GetType();
+
+        if (player.HasEffect(type))
+        {
+            return;
+        }
+
+        OnUpdateInventory(player);
+
+        player.SetEffect(type);
+    }
+
+    protected virtual void OnUpdateInventory(Player player)
+    {
     }
 
     protected override IList<TooltipBlock> CreateTooltipBlocks()
@@ -44,36 +66,23 @@ public abstract class Rune : YggdrasilItem
         descriptionBlock.AddLine(TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, ItemDescription));
 
         var effectBlock = new TooltipBlock(RuneTooltipName.RuneEffectDescriptions, 1);
-        effectBlock.AddLine(FormatRuneTier(TooltipText.EffectDescriptionFormat, Tier));
 
-        return new List<TooltipBlock>
+        ModifyEffectTooltipBlock(effectBlock);
+
+        var blocks = new List<TooltipBlock>
         {
-            descriptionBlock,
-            effectBlock,
+            descriptionBlock
         };
-    }
 
-    /// <summary>
-    /// Insert the display name for a given tier into the string format. It will add an extra space at the end
-    /// if the display name isn't empty. Examples:
-    /// {0}Rune with RuneTier.Minor => Minor Rune
-    /// {0}Rune with RuneTier.Normal => Rune
-    /// A {0}Rune with RuneTier.Major => A Major Rune
-    /// </summary>
-    protected static string FormatRuneTier(string format, RuneTier tier, bool forceLowerCase = false)
-    {
-        string tierName = tier.GetDisplayName();
-
-        if (!string.IsNullOrEmpty(tierName))
+        if (effectBlock.LineCount > 0)
         {
-            if (forceLowerCase)
-            {
-                tierName = tierName.ToLowerInvariant();
-            }
-
-            tierName += " ";
+            blocks.Add(effectBlock);
         }
 
-        return string.Format(format, tierName);
+        return blocks;
+    }
+
+    protected virtual void ModifyEffectTooltipBlock(TooltipBlock block)
+    {
     }
 }

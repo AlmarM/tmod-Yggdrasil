@@ -22,7 +22,7 @@ public abstract class YggdrasilItem : ModItem
 
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        if (_cachedTooltips?.Count > 0 && !ForceUpdateTooltips)
+        if (CacheTooltips && !ForceUpdateTooltips && _cachedTooltips?.Count > 0)
         {
             tooltips.Clear();
             tooltips.AddRange(_cachedTooltips);

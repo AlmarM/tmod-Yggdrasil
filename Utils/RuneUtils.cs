@@ -1,42 +1,24 @@
-using System;
-using Terraria;
+using System.Text.RegularExpressions;
+using Yggdrasil.Extensions;
 using Yggdrasil.Runes;
 
 namespace Yggdrasil.Utils;
 
 public static class RuneUtils
 {
-    public static int CountRunesInInventory(Player player)
+    public static string FormatRuneTier(string format, RuneTier tier, bool forceLowerCase = false, bool clean = true)
     {
-        var count = 0;
+        string tierName = tier.GetDisplayName();
 
-        for (var i = 0; i < 58; i++)
+        if (forceLowerCase)
         {
-            if (player.inventory[i].ModItem is IRune)
-            {
-                count++;
-            }
+            tierName = tierName.ToLowerInvariant();
         }
 
-        return count;
-    }
+        var result = string.Format(format, tierName);
 
-    public static int CountRunesInInventory(Player player, params Type[] runeTypes)
-    {
-        var count = 0;
-
-        for (var i = 0; i < 58; i++)
-        {
-            foreach (Type runeType in runeTypes)
-            {
-                var modItem = player.inventory[i].ModItem;
-                if (modItem != null && modItem.GetType() == runeType)
-                {
-                    count++;
-                }
-            }
-        }
-
-        return count;
+        return clean
+            ? Regex.Replace(result.Trim(), @"\s+", " ")
+            : result;
     }
 }

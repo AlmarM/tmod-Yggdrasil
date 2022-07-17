@@ -2,9 +2,9 @@ using Terraria.ID;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 
-namespace Yggdrasil.Runes.Items.Algiz;
+namespace Yggdrasil.Runes.Content.Items.Minor;
 
-public class MinorAlgizRuneT : AlgizRune
+public class MinorAlgizRune : AlgizRune
 {
     protected override RuneTier Tier => RuneTier.Minor;
 

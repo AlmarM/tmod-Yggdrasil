@@ -28,7 +28,7 @@ public class TooltipBlockProcessor : ITooltipBlockProcessor
                     tooltips.InsertRange(nextGroup.Key.Value + previousBlockLength, lines);
                     blocks.Remove(block);
 
-                    previousBlockLength = lines.Count;
+                    previousBlockLength += lines.Count;
                 }
             }
             else

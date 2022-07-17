@@ -10,9 +10,11 @@ public class TooltipBlock
 
     public int Order { get; }
 
-    private IList<string> _lines = new List<string>();
+    private List<string> _lines = new List<string>();
     private string _indexSeparator = "_";
     private Func<List<TooltipLine>, int?> _insertIndexFunc;
+
+    public int LineCount => _lines.Count;
 
     public TooltipBlock(Enum type, int order = 0)
     {
@@ -29,6 +31,11 @@ public class TooltipBlock
     public void AddLine(string line)
     {
         _lines.Add(line);
+    }
+
+    public void AddLines(IEnumerable<string> lines)
+    {
+        _lines.AddRange(lines);
     }
 
     public void SetIndexSeparator(string separator)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Yggdrasil;
@@ -16,6 +17,11 @@ public class EffectsList
         return Has(typeof(T).FullName);
     }
 
+    public bool Has(Type type)
+    {
+        return Has(type.FullName);
+    }
+
     public bool Has(string key)
     {
         return _effectsList.Contains(key);
@@ -24,6 +30,11 @@ public class EffectsList
     public void Set<T>()
     {
         Set(typeof(T).FullName);
+    }
+
+    public void Set(Type type)
+    {
+        Set(type.FullName);
     }
 
     public void Set(string key)

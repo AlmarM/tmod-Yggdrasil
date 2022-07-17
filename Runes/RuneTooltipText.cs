@@ -11,7 +11,7 @@ public class RuneTooltipText
     public static RuneTooltipText Algiz = new()
     {
         Name = "Algiz",
-        DescriptionFormat = "A {0}rune granting defense.",
+        DescriptionFormat = "A {0} rune granting defense.",
         EffectDescriptionFormat = "Increases defense by {0}"
     };
 }
