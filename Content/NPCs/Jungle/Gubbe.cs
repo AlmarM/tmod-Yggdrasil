@@ -34,7 +34,6 @@ public class Gubbe : YggdrasilNPC
         AIType = NPCID.GrayGrunt;
         AnimationType = NPCID.GrayGrunt;
         NPC.knockBackResist = 0.1f;
-        //npc.buffImmune[BuffID.Confused] = true;
 
     }
 

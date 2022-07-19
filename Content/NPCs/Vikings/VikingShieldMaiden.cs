@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -30,6 +31,15 @@ public class VikingShieldMaiden : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.Confused,
+                    BuffID.Poisoned
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -47,8 +57,6 @@ public class VikingShieldMaiden : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = 28;
         AnimationType = 213;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.Poisoned] = true;
 
         Banner = ModContent.NPCType<VikingShieldMaiden>();
         BannerItem = ModContent.ItemType<VikingBanner>();

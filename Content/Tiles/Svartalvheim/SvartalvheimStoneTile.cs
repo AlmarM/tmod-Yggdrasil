@@ -21,10 +21,12 @@ public class SvartalvheimStoneTile : YggdrasilTile
 
 		AddMapEntry(new Color(64, 30, 30));
 
-		DustType = DustID.Stone;
+		DustType = DustID.GemRuby;
 		ItemDrop = ModContent.ItemType<SvartalvheimStone>();
 
 		MinPick = 210;
 		MineResist = 1.1f;
 	}
+
+	public override bool CanExplode(int i, int j) => false;
 }

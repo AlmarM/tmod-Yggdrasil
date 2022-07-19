@@ -7,6 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
@@ -46,8 +47,9 @@ public class Volva : YggdrasilNPC
         //NPC.aiStyle = 8;
         AIType = 29;
         AnimationType = 29;
-        //Banner = Item.NPCtoBanner(NPCID.Zombie); 
-        //BannerItem = Item.BannerToItem(Banner);
+
+        Banner = ModContent.NPCType<Volva>();
+        BannerItem = ModContent.ItemType<VolvaBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

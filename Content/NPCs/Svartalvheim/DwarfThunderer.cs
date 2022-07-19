@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -32,6 +33,14 @@ public class DwarfThunderer : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -49,10 +58,10 @@ public class DwarfThunderer : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = NPCID.TacticalSkeleton;
         AnimationType = 292;
-        NPC.buffImmune[BuffID.Confused] = true;
+        NPC.lavaImmune = true;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<DwarfThunderer>();
+        BannerItem = ModContent.ItemType<DwarfBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -87,6 +96,7 @@ public class DwarfThunderer : YggdrasilNPC
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoldyCheese>(), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DwarvenMedallion>(), 75));
     }
 
     public override void HitEffect(int hitDirection, double damage)

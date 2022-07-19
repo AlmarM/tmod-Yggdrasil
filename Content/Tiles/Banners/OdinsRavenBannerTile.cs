@@ -31,7 +31,7 @@ namespace Yggdrasil.Content.Tiles.Banners
 
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Odin's Raven Banner");
-			AddMapEntry(new Color(174, 128, 79), name);
+			AddMapEntry(new Color(35, 56, 59), name);
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{

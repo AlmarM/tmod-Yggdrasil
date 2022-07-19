@@ -15,14 +15,14 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
-using Yggdrasil.ModActions.Player;
+using Yggdrasil.Content.Items.Armor.Nordic;
 
 namespace Yggdrasil.Content.Players;
 
 /// <summary>
 /// Class that handles all logic regarding runes and runic effects.
 /// </summary>
-public class RunePlayer : ModActionPlayer
+public class RunePlayer : YggdrasilPlayer
 {
     public bool ZoneSvartalvheim;
     public int RunePower { get; set; }
@@ -106,7 +106,7 @@ public class RunePlayer : ModActionPlayer
 
     public override void OnHitByNPC(NPC npc, int damage, bool crit)
     {
-        if (Player.HasEffect<GlacierHelmet>())
+        if (Player.HasEffect<GlacierHelmet>() || Player.HasEffect<NordicHaume>())
             npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
     }
 
@@ -258,10 +258,6 @@ public class RunePlayer : ModActionPlayer
         {
             new Item(ModContent.ItemType<StartingNote>()),
         };
-    }
-
-    protected override void CreateModActions()
-    {
     }
 
     private void CreateBlizzardExplosionAroundEntity(int projectileCount, float projectileSpeed, float radius,

@@ -48,15 +48,15 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CreditSlab>(), 4));
                 break;
             case NPCID.Golem:
-                if (!Main.expertMode && !Main.masterMode)
+                if (!Main.expertMode || !Main.masterMode)
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
                 break;
             case NPCID.Plantera:
-                if (!Main.expertMode && !Main.masterMode)
+                if (!Main.expertMode || !Main.masterMode)
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
                 break;
             case NPCID.MoonLordCore:
-                if (!Main.expertMode && !Main.masterMode)
+                if (!Main.expertMode || !Main.masterMode)
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
                 break;
         }
@@ -121,12 +121,19 @@ public class YggdrasilGlobalNPC : GlobalNPC
             pool.Add(ModContent.NPCType<DwarfPeon>(), 4f);
             pool.Add(ModContent.NPCType<DwarfWarrior>(), 5f);
             pool.Add(ModContent.NPCType<SvartalvheimBat>(), 5.5f);
+            pool.Add(ModContent.NPCType<Svartalslime>(), 3f);
 
             //Hardmode spawns
             if (Main.hardMode)
             {
                 pool.Add(ModContent.NPCType<DwarfThunderer>(), 2f);
                 pool.Add(ModContent.NPCType<DwarfSpirit>(), 1f);
+            }
+
+            //Hardmode post-plantera spawns
+            if (Main.hardMode && NPC.downedPlantBoss)
+            {
+                pool.Add(ModContent.NPCType<DwarfThunderer>(), 2f);
             }
         }
 

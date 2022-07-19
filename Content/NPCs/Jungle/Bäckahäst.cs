@@ -35,7 +35,6 @@ public class Backahast : YggdrasilNPC
         AIType = NPCID.Unicorn;
         AnimationType = NPCID.Unicorn;
         NPC.knockBackResist = 0.7f;
-        //npc.buffImmune[BuffID.Confused] = true;
 
     }
 

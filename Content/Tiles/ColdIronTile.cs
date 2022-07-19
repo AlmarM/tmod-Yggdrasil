@@ -29,4 +29,6 @@ public class ColdIronTile : YggdrasilTile
         MinPick = 210;
         MineResist = 1.2f;
     }
+
+    public override bool CanExplode(int i, int j) => false;
 }

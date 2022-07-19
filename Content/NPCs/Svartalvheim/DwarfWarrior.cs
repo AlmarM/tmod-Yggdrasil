@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -32,6 +33,14 @@ public class DwarfWarrior : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -47,12 +56,12 @@ public class DwarfWarrior : YggdrasilNPC
         NPC.value = 150f;
         NPC.knockBackResist = 0.8f;
         NPC.aiStyle = 3;
+        NPC.lavaImmune = true;
         AIType = NPCID.GoblinWarrior;
         AnimationType = 213;
-        AnimationType = 213;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<DwarfWarrior>();
+        BannerItem = ModContent.ItemType<DwarfBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -87,6 +96,7 @@ public class DwarfWarrior : YggdrasilNPC
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoldyCheese>(), 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DwarvenMedallion>(), 75));
     }
 
     public override void HitEffect(int hitDirection, double damage)

@@ -76,7 +76,7 @@ namespace Yggdrasil.World
 
             //Add a some water at the bottom
             Point pointWater = new Point(SvartX, SvartY + 50);
-            WorldUtils.Gen(pointWater, new ModShapes.All(zoneShapeData), Actions.Chain(new Modifiers.RectangleMask(-100, 100, 0, 80), new Modifiers.IsEmpty(), new Actions.SetLiquid()));
+            WorldUtils.Gen(pointWater, new ModShapes.All(zoneShapeData), Actions.Chain(new Modifiers.RectangleMask(-100, 100, 0, 80), new Modifiers.IsEmpty(), new Actions.SetLiquid(1)));
 
             //Adding layer of stones in the outline shape
             zoneOutsideShapeData.Subtract(zoneShapeData, point, point);

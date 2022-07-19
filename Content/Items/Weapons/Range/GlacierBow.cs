@@ -46,8 +46,8 @@ namespace Yggdrasil.Content.Items.Weapons.Range
 			{
 				type = ModContent.ProjectileType<FrostCoreArrowProjectile>();
 			}
-			Projectile.NewProjectile(null, position.X, position.Y-5, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
-			Projectile.NewProjectile(null, position.X, position.Y+5, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+			Projectile.NewProjectile(source, position.X, position.Y-5, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+			Projectile.NewProjectile(source, position.X, position.Y+5, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
 			return false;
 
 		}

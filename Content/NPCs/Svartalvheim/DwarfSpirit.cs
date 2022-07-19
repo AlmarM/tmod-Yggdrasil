@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -38,7 +39,8 @@ public class DwarfSpirit : YggdrasilNPC
         NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
         {
             SpecificallyImmuneTo = new int[] {
-                    BuffID.Confused
+                    BuffID.Confused,
+                    BuffID.OnFire
                 }
         };
         NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
@@ -59,11 +61,12 @@ public class DwarfSpirit : YggdrasilNPC
         NPC.aiStyle = 22;
         NPC.noGravity = true;
         NPC.noTileCollide = true;
+        NPC.lavaImmune = true;
         AIType = NPCID.Wraith;
         AnimationType = NPCID.Wraith;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<DwarfSpirit>();
+        BannerItem = ModContent.ItemType<DwarfSpiritBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -74,7 +77,7 @@ public class DwarfSpirit : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The dwarves are skilled craftsmen, and they have crafted some of the best objects in the world. They live inside stones and mountains, in a place called Svartalfheim.")
+				new FlavorTextBestiaryInfoElement("Spirit of a dead dwarf stuck in the world as they were not able to cross the plane to the after life. Stay away from them as much as you can")
             });
     }
 
@@ -95,11 +98,17 @@ public class DwarfSpirit : YggdrasilNPC
         NPC.netUpdate = true;
 
         Lighting.AddLight(NPC.position, .7f, .7f, .7f);
+
+        //Apply frostburn when close enough
+        Player modPlayer = Main.LocalPlayer;
+        if (Vector2.Distance(NPC.Center, modPlayer.Center) < 300)
+            modPlayer.AddBuff(BuffID.Ichor, 60);
+        
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VikingKey>(), 50));
+        npcLoot.Add(ItemDropRule.Common(ItemID.Ectoplasm, 2));    
     }
 
     public override void HitEffect(int hitDirection, double damage)
@@ -113,11 +122,6 @@ public class DwarfSpirit : YggdrasilNPC
             dust.velocity.Y += Main.rand.Next(-50, 51) * 0.01f;
             dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
         }
-    }
-
-    public override void OnHitPlayer(Player player, int damage, bool crit)
-    {
-        player.AddBuff(BuffID.Ichor, TimeUtils.SecondsToTicks(3));
     }
 
     public override void OnKill()

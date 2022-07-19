@@ -34,6 +34,14 @@ public class SvartalvheimBat : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -50,11 +58,12 @@ public class SvartalvheimBat : YggdrasilNPC
         NPC.knockBackResist = 0.4f;
         NPC.aiStyle = 14;
         NPC.noGravity = true;
+        NPC.lavaImmune = true;
         AIType = NPCID.GiantBat;
         AnimationType = NPCID.GiantBat;
 
-        //Banner = ModContent.NPCType<VikingSwordMan>();
-        //BannerItem = ModContent.ItemType<VikingBanner>();
+        Banner = ModContent.NPCType<SvartalvheimBat>();
+        BannerItem = ModContent.ItemType<SvartalvheimBatBanner>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -65,7 +74,7 @@ public class SvartalvheimBat : YggdrasilNPC
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("")
+				//new FlavorTextBestiaryInfoElement("")
             });
     }
 
