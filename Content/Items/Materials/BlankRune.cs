@@ -26,5 +26,6 @@ public class BlankRune : YggdrasilItem
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.StoneBlock, 10)
+        .AddTile(TileID.WorkBenches)
         .Register();
 }

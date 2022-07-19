@@ -9,7 +9,7 @@ public class NormalAlgizRune : AlgizRune
 {
     protected override RuneTier Tier => RuneTier.Normal;
 
-    protected override int DefenseBonus => 2;
+    protected override int DefenseBonus => 5;
 
     protected override int Rarity => ItemRarityID.Lime;
 

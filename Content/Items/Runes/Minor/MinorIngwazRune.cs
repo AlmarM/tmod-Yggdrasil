@@ -10,7 +10,7 @@ namespace Yggdrasil.Content.Items.Runes.Minor;
 
 internal class MinorIngwazRune : Rune<MinorIngwazRune>
 {
-    private const int HealthBonus = 2;
+    private const int HealthBonus = 10;
 
     public override string Label => IngwazRune.RuneName;
 

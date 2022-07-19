@@ -25,6 +25,7 @@ namespace Yggdrasil.Content.Players;
 /// </summary>
 public class RunePlayer : ModActionPlayer
 {
+    public bool ZoneSvartalvheim;
     public int RunePower { get; set; }
     public int FocusPowerTime { get; set; }
     public int FocusThreshold { get; set; }

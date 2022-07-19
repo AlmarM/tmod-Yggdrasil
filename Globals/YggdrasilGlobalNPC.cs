@@ -9,13 +9,13 @@ using Terraria.Localization;
 using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Materials.IronWood;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.World;
 using Yggdrasil.Content.NPCs.Vikings;
-using Yggdrasil.Content.Tiles.IronWood;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles;
 using Microsoft.Xna.Framework.Input;
+using Yggdrasil.Content.NPCs.Svartalvheim;
 
 namespace Yggdrasil.Globals;
 
@@ -47,11 +47,30 @@ public class YggdrasilGlobalNPC : GlobalNPC
             case NPCID.PirateShip:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CreditSlab>(), 4));
                 break;
+            case NPCID.Golem:
+                if (!Main.expertMode && !Main.masterMode)
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
+                break;
+            case NPCID.Plantera:
+                if (!Main.expertMode && !Main.masterMode)
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
+                break;
+            case NPCID.MoonLordCore:
+                if (!Main.expertMode && !Main.masterMode)
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
+                break;
         }
     }
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
     {
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
         //Changing the max spawn and spawn rate
+        if (RunePlayer.ZoneSvartalvheim)
+        {
+            spawnRate = (int)(spawnRate * 0.9f);
+            maxSpawns = (int)(maxSpawns * 1.1f);
+        }
+
         if (VikingInvasionWorld.vikingInvasion && player.ZoneOverworldHeight)
         {
             maxSpawns = (int)(maxSpawns * 4f);
@@ -79,7 +98,7 @@ public class YggdrasilGlobalNPC : GlobalNPC
             if (!NPC.AnyNPCs(ModContent.NPCType<Berserker>()))
                 pool.Add(ModContent.NPCType<Berserker>(), .3f);
 
-            //Hardmode
+            //Hardmode spawns
             if (Main.hardMode)
             {
                 pool.Add(ModContent.NPCType<GrayWolf>(), 1f);
@@ -93,7 +112,25 @@ public class YggdrasilGlobalNPC : GlobalNPC
             }
         }
 
-        return;
+        //Changing the spawnpool when the player is in Svartalvheim
+        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
+        if (RunePlayer.ZoneSvartalvheim)
+        {
+            pool.Clear();
+
+            pool.Add(ModContent.NPCType<DwarfPeon>(), 4f);
+            pool.Add(ModContent.NPCType<DwarfWarrior>(), 5f);
+            pool.Add(ModContent.NPCType<SvartalvheimBat>(), 5.5f);
+
+            //Hardmode spawns
+            if (Main.hardMode)
+            {
+                pool.Add(ModContent.NPCType<DwarfThunderer>(), 2f);
+                pool.Add(ModContent.NPCType<DwarfSpirit>(), 1f);
+            }
+        }
+
+            return;
     }
 
 }

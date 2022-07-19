@@ -9,7 +9,7 @@ namespace Yggdrasil.Content.Items.Runes.Major;
 
 internal class MajorTiwazRune : Rune<MajorTiwazRune>
 {
-    private const float RunicDamageBonus = 0.05f;
+    private const float RunicDamageBonus = 0.2f;
 
     public override string Label => TiwazRune.RuneName;
 

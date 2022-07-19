@@ -7,16 +7,20 @@ using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
 using Terraria.IO;
 using System.Numerics;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
 namespace Yggdrasil.World
 {
 	public class YggdrasilGenPasses
 	{
 		private static int maxIceCave = 0;
+		private static int maxSvartHome = 0;
+
 		public static void MicroBiomePass(GenerationProgress progress, GameConfiguration configuration)
 		{
 			int LonghouseAttempts = 0;
 			int MicroIceCaveAttempts = 0;
+			maxIceCave = 0;
 
 			while (true)
 			{
@@ -38,6 +42,22 @@ namespace Yggdrasil.World
 				GenerateMicroIceRoom();
 			}
 
+		}
+
+		public static void SvartalvheimMicroPass(GenerationProgress progress, GameConfiguration configuration)
+		{
+			int HouseAttempts = 0;
+			maxSvartHome = 0;
+
+			while (true)
+			{
+				HouseAttempts++;
+				if (HouseAttempts > 10 || maxSvartHome >= 5)
+					break;
+
+				progress.Message = "Adding dwarven homes...";
+				GenerateSvartalvheimHouses();
+			}
 		}
 
 		public static int OffsetX = -3;
@@ -211,9 +231,6 @@ namespace Yggdrasil.World
 					continue;
 				}
 
-				// Don't place the house if the area isn't flat
-				//if (!WorldGenSystem.CheckFlat(houseX, houseY, HouseTiles.GetLength(1), 3)) 
-				//	continue;
 
 				// place the house
 				VikingHousePlacement(houseX, houseY, HouseTiles, HouseWalls, HouseSlopes, HouseFurnitures);
@@ -222,7 +239,6 @@ namespace Yggdrasil.World
 				YggdrasilWorld.gennedVikingHouse = true;
 			}
 		}
-
 
 		private static void VikingHousePlacement(int i, int j, int[,] Tiles, int[,] Walls, int[,] Slopes, int[,] Furnitures)
 		{
@@ -645,6 +661,249 @@ namespace Yggdrasil.World
 			}
 		}
 
+		private static void GenerateSvartalvheimHouses()
+		{
+
+			int[,] HouseTiles = new int[,]
+			{
+			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
+			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,},
+			{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,},
+			{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,},
+			{2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,},
+			{0,2,2,2,0,0,0,2,2,2,2,2,0,0,0,2,2,0,0,}
+
+			};
+
+			int[,] HouseWalls = new int[,]
+			{
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,}
+
+			};
+
+			int[,] HouseFurnitures = new int[,]
+			{
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,},
+			{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,},
+			{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,},
+			{2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,},
+			{0,2,2,2,0,0,0,2,2,2,2,2,0,0,0,2,2,0,0,}
+
+			};
+
+
+			bool housePlaced = false;
+			int attempts = 0;
+			while (!housePlaced && attempts++ < 200)
+			{
+				int houseX = (Main.maxTilesX / 2) + Main.rand.Next(-100, 100);
+				int houseY = (Main.maxTilesY / 2) + Main.rand.Next(-100, 10);
+
+				Tile tile = Main.tile[houseX, houseY];
+				// If the type of the tile we are placing the house on doesn't match what we want, try again
+				if (!(tile.TileType == ModContent.TileType<SvartalvheimDirtTile>() || tile.TileType == ModContent.TileType<SvartalvheimStoneTile>()))
+				{
+					continue;
+				}
+
+				//Checking if there are bricks on the way meaning there's another house
+				Point point = new Point(houseX, houseY);
+				Ref<int> brickCont = new Ref<int>(0);
+				WorldUtils.Gen(point, new Shapes.Rectangle(25, 15), Actions.Chain(new GenAction[]
+				{
+					new Actions.ContinueWrapper(Actions.Chain(new GenAction[]
+					{
+						new Modifiers.OnlyTiles((ushort)ModContent.TileType<SvartalvheimBrickTile>()),
+						new Actions.Scanner(brickCont)
+					})),
+				}));
+
+				//If there are more than 5 bricks, try again
+				if (brickCont.Value >= 5)
+				{
+					continue;
+				}
+
+				// place the house
+				SvartalvheimHousePlacement(houseX, houseY, HouseTiles, HouseWalls,HouseFurnitures);
+
+				maxSvartHome++;
+				housePlaced = true;
+			}
+
+		}
+
+		private static void SvartalvheimHousePlacement(int i, int j, int[,] Tiles, int[,] Walls, int[,] Furnitures)
+		{
+			for (int y = 0; y < Tiles.GetLength(0); y++)
+			{
+				for (int x = 0; x < Tiles.GetLength(1); x++)
+				{
+					int k = x + i;
+					int l = y + j;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Tiles[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 2:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 3:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 9:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+						}
+					}
+				}
+			}
+
+			for (int y = 0; y < Walls.GetLength(0); y++)
+			{
+				for (int x = 0; x < Walls.GetLength(1); x++)
+				{
+					int k = x + i;
+					int l = y + j;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Walls[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+							case 2:
+								WorldGen.KillWall(k, l);
+								Framing.GetTileSafely(k, l).ClearTile();
+								break;
+						}
+					}
+				}
+			}
+
+			for (int y = 0; y < Tiles.GetLength(0); y++)
+			{
+				for (int x = 0; x < Tiles.GetLength(1); x++)
+				{
+					int k = x + i;
+					int l = y + j;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Tiles[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.PlaceTile(k, l, ModContent.TileType<SvartalvheimBrickTile>());
+								break;
+							case 2:
+								WorldGen.PlaceTile(k, l, ModContent.TileType<SvartalvheimStoneTile>());
+								break;
+							case 3:
+								WorldGen.PlaceTile(k, l, TileID.IceBlock);
+								break;
+						}
+					}
+				}
+			}
+
+			for (int y = 0; y < Walls.GetLength(0); y++)
+			{
+				for (int x = 0; x < Walls.GetLength(1); x++)
+				{
+					int k = x + i;
+					int l = y + j;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Walls[y, x])
+						{
+							case 0:
+								break;
+							case 1:
+								WorldGen.PlaceWall(k, l, ModContent.WallType<SvartalvheimBrickWallTile>());
+								break;
+							case 2:
+								WorldGen.PlaceWall(k, l, WallID.SnowBrick);
+								break;
+						}
+					}
+				}
+			}
+
+			for (int y = 0; y < Furnitures.GetLength(0); y++)
+			{
+				for (int x = 0; x < Furnitures.GetLength(1); x++)
+				{
+					int k = x + i;
+					int l = y + j;
+					if (WorldGen.InWorld(k, l, 30))
+					{
+						Tile tile = Framing.GetTileSafely(k, l);
+						switch (Furnitures[y, x])
+						{
+							case 0:
+								break;
+							case 4:
+								WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<VikingChestTile>(), style: 1);
+								break;
+							case 5:
+								if (WorldGen.genRand.NextBool())
+								{
+									WorldGen.PlaceObject(k, l, TileID.Torches, style: 2);
+								}
+								break;
+							case 6:
+								if (WorldGen.genRand.NextBool())
+								{
+									WorldGen.PlaceObject(k, l, (ushort)ModContent.TileType<DvergrForgeTile>());
+								}
+								WorldGen.PlaceObject(k, l, TileID.SharpeningStation);
+								break;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 	

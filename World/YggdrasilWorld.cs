@@ -12,7 +12,9 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
-using Yggdrasil.Content.Tiles.IronWood;
+using Terraria.ModLoader.IO;
+using System.IO;
+using Yggdrasil.Content.Tiles.Svartalvheim;
 
 namespace Yggdrasil.World
 {
@@ -21,15 +23,46 @@ namespace Yggdrasil.World
 	{
 		
 		public static bool IronWoodBiome = false;
-		public static bool ColdIronGenerated = false;
-		public static bool ZoneIronWood;
-		public static int IronWoodTiles = 0;
+		public static bool ColdIronGenerated;
+		public static bool SvartalvheimGenerated;
 		public static bool gennedVikingHouse = false;
+		public static bool downedVikingInvasion;
+
+
+		public static int SvartalvheimTiles = 0;
 
 		public override void OnWorldLoad()
 		{
-			ZoneIronWood = false;
 			gennedVikingHouse = false;
+			downedVikingInvasion = false;
+			ColdIronGenerated = false;
+			SvartalvheimGenerated = false;
+		}
+
+		public override void LoadWorldData(TagCompound tag)
+		{
+			downedVikingInvasion = tag.GetBool("downedVikingInvasion");
+			ColdIronGenerated = tag.GetBool("ColdIronGenerated");
+			SvartalvheimGenerated = tag.GetBool("SvartalvheimGenerated");
+		}
+
+		public override void SaveWorldData(TagCompound tag)
+		{
+			tag["downedVikingInvasion"] = downedVikingInvasion;
+			tag["ColdIronGenerated"] = ColdIronGenerated;
+			tag["SvartalvheimGenerated"] = SvartalvheimGenerated;
+		}
+
+		public override void NetSend(BinaryWriter writer)
+		{
+			var flags = new BitsByte();
+			flags[0] = downedVikingInvasion;
+		}
+
+		public override void NetReceive(BinaryReader reader)
+		{
+			BitsByte flags = reader.ReadByte();
+			downedVikingInvasion = flags[0];
 		}
 
 		public override void PostWorldGen()
@@ -53,6 +86,8 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 2)));
 							itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(1, 2)));
 							itemsToAdd.Add((ItemID.MiningPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 1:
 							itemsToAdd.Add((ModContent.ItemType<RunicSlab>(), 1));
@@ -61,6 +96,8 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(15, 35)));
 							itemsToAdd.Add((ItemID.ClimbingClaws, 1));
 							itemsToAdd.Add((ItemID.RegenerationPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 2:
 							itemsToAdd.Add((ModContent.ItemType<VikingLeatherShirt>(), 1));
@@ -70,14 +107,18 @@ namespace Yggdrasil.World
 							itemsToAdd.Add((ItemID.IceMirror, 1));
 							itemsToAdd.Add((ItemID.ShoeSpikes, 1));
 							itemsToAdd.Add((ItemID.SwiftnessPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 						case 3:
-							itemsToAdd.Add((ModContent.ItemType<NorsemanShield>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<DwarvenMedallion>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<StoneBlock>(), 1));
 							itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
 							itemsToAdd.Add((ItemID.SilverCoin, Main.rand.Next(12, 31)));
 							itemsToAdd.Add((ItemID.FlurryBoots, 1));
 							itemsToAdd.Add((ItemID.RecallPotion, Main.rand.Next(2, 4)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 3)));
+							itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(20, 35)));
 							break;
 					}
 
@@ -99,14 +140,13 @@ namespace Yggdrasil.World
 
 		public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
 		{
-			IronWoodTiles = tileCounts[ModContent.TileType<IronWoodDirtTile>()] + tileCounts[ModContent.TileType<IronWoodGrassTile>()]
-			+ tileCounts[ModContent.TileType<IronWoodStoneTile>()] + tileCounts[ModContent.TileType<IronWoodIceTile>()] + tileCounts[ModContent.TileType<IronWoodSandTile>()];
+			SvartalvheimTiles = tileCounts[ModContent.TileType<SvartalvheimDirtTile>()] + tileCounts[ModContent.TileType<SvartalvheimBrickTile>()]
+			+ tileCounts[ModContent.TileType<SvartalvheimStoneTile>()];
 		}
 
         public override void PostUpdateEverything()
         {
-			//if (ZoneIronWood)
-			//Main.NewText(IronWoodTiles);
+			//Main.NewText("In Svartalvheim");
 		}
 	}	
 }

@@ -9,7 +9,7 @@ public class MajorAlgizRune : AlgizRune
 {
     protected override RuneTier Tier => RuneTier.Major;
 
-    protected override int DefenseBonus => 3;
+    protected override int DefenseBonus => 8;
 
     protected override int Rarity => ItemRarityID.Yellow;
 

@@ -24,8 +24,7 @@ public class FrostCoreArrowProjectile : YggdrasilProjectile
 	}
 	public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 	{
-		target.AddBuff(BuffID.Frostburn, 180);
-		target.AddBuff(ModContent.BuffType<SlowDebuff>(), 30);
+		target.AddBuff(BuffID.Frostburn, 120);
 	}
 
 	public override void Kill(int timeLeft)

@@ -8,7 +8,7 @@ public class MinorAlgizRune : AlgizRune
 {
     protected override RuneTier Tier => RuneTier.Minor;
 
-    protected override int DefenseBonus => 1;
+    protected override int DefenseBonus => 2;
 
     protected override int Rarity => ItemRarityID.Blue;
 

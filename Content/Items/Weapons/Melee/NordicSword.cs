@@ -35,25 +35,16 @@ namespace Yggdrasil.Content.Items.Weapons.Melee
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.Frostburn, 600);
-			target.AddBuff(ModContent.BuffType<SlowDebuff>(), 60);
-
-			const int ExplosionProjectiles = 10;
-			var Type = ProjectileID.BallofFrost;
-
-			for (int i = 0; i < ExplosionProjectiles; i++)
-			{
-				Vector2 Speed = Main.rand.NextVector2Unit();
-				Projectile.NewProjectile(null, Main.LocalPlayer.Center, Speed * 10, Type, damage, knockback,
-					player.whoAmI);
-			}
+			target.AddBuff(ModContent.BuffType<SlowDebuff>(), 90);
 		}
 
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<GlacierSword>()
-		.AddIngredient<ColdIronBar>(5)
-		.AddTile(TileID.MythrilAnvil)
-		.Register();
+			.AddIngredient<GlacierSword>()
+			.AddIngredient<ColdIronBar>(5)
+			.AddIngredient<NordicWood>(10)
+			.AddTile(TileID.MythrilAnvil)
+			.Register();
 
 	}
 }

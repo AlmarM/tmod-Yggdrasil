@@ -38,7 +38,7 @@ public class VikingChestTile : YggdrasilTile
         ModTranslation name = CreateMapEntryName();
         name.SetDefault("Viking Chest");
 
-        AddMapEntry(new Color(255, 0, 255), name, MapChestName);
+        AddMapEntry(new Color(16, 7, 71), name, MapChestName);
 
         name = CreateMapEntryName(Name + "_Locked"); // With multiple map entries, you need unique translation keys.
         name.SetDefault("Locked Viking Chest");

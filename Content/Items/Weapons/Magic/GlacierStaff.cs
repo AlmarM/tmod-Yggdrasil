@@ -30,14 +30,14 @@ namespace Yggdrasil.Content.Items.Weapons.Magic
             Item.useAnimation = 15;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 6;
+            Item.knockBack = 3;
             Item.crit = 0;
             Item.value = Item.sellPrice(0, 5);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item20;
             Item.autoReuse = false;
             Item.shoot = ModContent.ProjectileType<GlacierStaffProjectile>();
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 8f;
 
         }
 
