@@ -2,6 +2,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Materials.Svartalvheim;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Furniture;
@@ -24,7 +25,13 @@ public class SvartalvheimChest : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
+        Item.rare = ItemRarityID.Yellow;
         Item.value = 500;
         Item.createTile = ModContent.TileType<SvartalvheimChestTile>();
     }
+    public override void AddRecipes() => CreateRecipe()
+            .AddIngredient<SvartalvheimBrick>(10)
+            .AddIngredient<ColdIronBar>(1)
+            .AddTile(TileID.WorkBenches)
+            .Register();
 }

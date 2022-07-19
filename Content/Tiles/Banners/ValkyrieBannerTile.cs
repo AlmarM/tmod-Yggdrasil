@@ -31,7 +31,7 @@ namespace Yggdrasil.Content.Tiles.Banners
 
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Valkyrie Banner");
-			AddMapEntry(new Color(174, 128, 79), name);
+			AddMapEntry(new Color(250, 232, 136), name);
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{

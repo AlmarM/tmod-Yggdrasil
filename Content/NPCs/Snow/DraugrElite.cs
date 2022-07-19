@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -24,6 +25,14 @@ public class DraugrElite : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.Frostburn
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -36,8 +45,6 @@ public class DraugrElite : YggdrasilNPC
         AIType = 276;
         AnimationType = 276;
         NPC.knockBackResist = 0.4f;
-        //npc.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.Frostburn] = true;
 
         Banner = ModContent.NPCType<DraugrElite>();
         BannerItem = ModContent.ItemType<DraugrBanner>();

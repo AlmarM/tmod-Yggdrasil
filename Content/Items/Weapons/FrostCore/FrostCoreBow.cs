@@ -44,7 +44,7 @@ namespace Yggdrasil.Content.Items.Weapons.FrostCore
 			{
 				type = ModContent.ProjectileType<FrostCoreArrowProjectile>();
 			}
-			Projectile.NewProjectile(null, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+			Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
 			return false;
 
 		}

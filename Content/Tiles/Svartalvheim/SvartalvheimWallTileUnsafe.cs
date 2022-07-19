@@ -15,4 +15,6 @@ public class SvartalvheimWallTileUnsafe : YggdrasilWall
 		AddMapEntry(new Color(59, 38, 29));
 	}
 
+	public override bool CanExplode(int i, int j) => false;
+
 }

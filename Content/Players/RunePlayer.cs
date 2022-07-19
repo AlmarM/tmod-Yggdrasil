@@ -16,6 +16,7 @@ using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Content.Items.Armor.Nordic;
 
 namespace Yggdrasil.Content.Players;
 
@@ -106,7 +107,7 @@ public class RunePlayer : ModPlayer
 
     public override void OnHitByNPC(NPC npc, int damage, bool crit)
     {
-        if (Player.HasEffect<GlacierHelmet>())
+        if (Player.HasEffect<GlacierHelmet>() || Player.HasEffect<NordicHaume>())
             npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
     }
     

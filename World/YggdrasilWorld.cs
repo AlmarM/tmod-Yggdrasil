@@ -30,6 +30,7 @@ namespace Yggdrasil.World
 
 
 		public static int SvartalvheimTiles = 0;
+		public static int SvartalvheimChests = 0;
 
 		public override void OnWorldLoad()
 		{
@@ -37,6 +38,7 @@ namespace Yggdrasil.World
 			downedVikingInvasion = false;
 			ColdIronGenerated = false;
 			SvartalvheimGenerated = false;
+			SvartalvheimChests = 0;
 		}
 
 		public override void LoadWorldData(TagCompound tag)
@@ -67,11 +69,12 @@ namespace Yggdrasil.World
 
 		public override void PostWorldGen()
 		{
-			//Adding item to viking chests
+			//Adding item to chests
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
 			{
 				Chest chest = Main.chest[chestIndex];
 
+				//Viking Chests
 				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<VikingChestTile>())
 				{
 					var itemsToAdd = new List<(int type, int stack)>();
@@ -123,6 +126,33 @@ namespace Yggdrasil.World
 					}
 
 					// Finally, iterate through itemsToAdd and actually create the Item instances and add to the chest.item array
+					int chestItemIndex = 0;
+					foreach (var itemToAdd in itemsToAdd)
+					{
+						Item item = new Item();
+						item.SetDefaults(itemToAdd.type);
+						item.stack = itemToAdd.stack;
+						chest.item[chestItemIndex] = item;
+						chestItemIndex++;
+						if (chestItemIndex >= 40)
+							break; // Make sure not to exceed the capacity of the chest
+					}
+				}
+
+				//Svatalvheim Chests
+				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<SvartalvheimChestTile>())
+				{
+					var itemsToAdd = new List<(int type, int stack)>();
+
+					itemsToAdd.Add((ModContent.ItemType<SvartalvheimMedallion>(), 1));
+					itemsToAdd.Add((ModContent.ItemType<ColdIronBar>(), Main.rand.Next(2, 4)));
+					itemsToAdd.Add((ItemID.Dynamite, Main.rand.Next(2, 4)));
+					itemsToAdd.Add((ItemID.SpelunkerPotion, Main.rand.Next(1, 2)));
+					itemsToAdd.Add((ItemID.ShinePotion, Main.rand.Next(1, 2)));
+					itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 5)));
+					itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(2, 6)));
+
+
 					int chestItemIndex = 0;
 					foreach (var itemToAdd in itemsToAdd)
 					{

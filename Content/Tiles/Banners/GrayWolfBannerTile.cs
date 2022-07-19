@@ -33,7 +33,7 @@ namespace Yggdrasil.Content.Tiles.Banners
 
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Gray Wolf Banner");
-			AddMapEntry(new Color(174, 128, 79), name);
+			AddMapEntry(new Color(100, 100, 100), name);
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{

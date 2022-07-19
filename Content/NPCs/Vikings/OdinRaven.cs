@@ -41,7 +41,6 @@ public class OdinRaven : YggdrasilNPC
         NPC.knockBackResist = 0.7f;
         AIType = NPCID.Parrot;
         AnimationType = NPCID.Parrot;
-        NPC.buffImmune[BuffID.Confused] = true;
 
         Banner = ModContent.NPCType<OdinRaven>();
         BannerItem = ModContent.ItemType<OdinsRavenBanner>();

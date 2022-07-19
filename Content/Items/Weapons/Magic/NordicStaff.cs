@@ -14,7 +14,7 @@ namespace Yggdrasil.Content.Items.Weapons.Magic
 		public override void SetStaticDefaults() 
 		{
 			DisplayName.SetDefault("Nordic Staff");
-            Tooltip.SetDefault("So cold, they stay in place" + "\nThrows 3 homings nordic ball that applies Frostburn and explode");
+            Tooltip.SetDefault("So cold, they stay in place" + "\nThrows 3 homing nordic ball that applies Frostburn and explode");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

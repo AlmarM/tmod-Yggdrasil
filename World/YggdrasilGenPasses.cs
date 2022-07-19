@@ -707,7 +707,7 @@ namespace Yggdrasil.World
 			{0,0,0,0,5,0,0,0,0,0,0,0,0,0,5,0,0,0,0,},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
 			{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,},
-			{0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,},
+			{0,0,0,0,0,0,0,0,6,0,0,0,0,4,0,0,0,0,0,},
 			{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,},
 			{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,},
 			{2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,},
@@ -743,7 +743,7 @@ namespace Yggdrasil.World
 				}));
 
 				//If there are more than 5 bricks, try again
-				if (brickCont.Value >= 5)
+				if (brickCont.Value >= 1)
 				{
 					continue;
 				}
@@ -884,7 +884,11 @@ namespace Yggdrasil.World
 							case 0:
 								break;
 							case 4:
-								WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<VikingChestTile>(), style: 1);
+								if (YggdrasilWorld.SvartalvheimChests <= 2)
+								{
+									WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<SvartalvheimChestTile>(), style: 1);
+									YggdrasilWorld.SvartalvheimChests++;
+								}
 								break;
 							case 5:
 								if (WorldGen.genRand.NextBool())

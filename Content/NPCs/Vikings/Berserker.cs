@@ -1,11 +1,13 @@
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Armor;
+using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
@@ -31,6 +33,15 @@ public class Berserker : YggdrasilNPC
             // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
             Velocity = 1f
         });
+
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[] {
+                    BuffID.Frostburn,
+                    BuffID.Confused
+                }
+        };
+        NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
     }
 
     public override void SetDefaults()
@@ -47,8 +58,9 @@ public class Berserker : YggdrasilNPC
         NPC.aiStyle = 3;
         AIType = 213;
         AnimationType = 482;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.Frostburn] = true;
+
+        Banner = ModContent.NPCType<Berserker>();
+        BannerItem = ModContent.ItemType<BerserkerBanner>();
     }
 
     //Setting the variable in PreAI to make sure the NPC keeps spawned during the day

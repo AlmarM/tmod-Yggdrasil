@@ -23,6 +23,7 @@ using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Runes.Minor;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Projectiles.Magic;
+using Yggdrasil.Content.Items.Others;
 
 namespace Yggdrasil.Content.NPCs.Town
 {
@@ -33,15 +34,15 @@ namespace Yggdrasil.Content.NPCs.Town
 		{
 			// DisplayName automatically assigned from localization files, but the commented line below is the normal approach.
 			DisplayName.SetDefault("Volva");
-			Main.npcFrameCount[Type] = 23; // The amount of frames the NPC has
+			Main.npcFrameCount[Type] = 25; // The amount of frames the NPC has
 
 			NPCID.Sets.ExtraFramesCount[Type] = 9; // Generally for Town NPCs, but this is how the NPC does extra things such as sitting in a chair and talking to other NPCs.
 			NPCID.Sets.AttackFrameCount[Type] = 4;
 			NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the npc that it tries to attack enemies.
 			NPCID.Sets.AttackType[Type] = 0;
-			NPCID.Sets.AttackTime[Type] = 90; // The amount of time it takes for the NPC's attack animation to be over once it starts.
+			NPCID.Sets.AttackTime[Type] = 30; // The amount of time it takes for the NPC's attack animation to be over once it starts.
 			NPCID.Sets.AttackAverageChance[Type] = 30;
-			NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
+			//NPCID.Sets.HatOffsetY[Type] = 4; // For when a party is active, the party hat spawns at a Y offset.
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -69,8 +70,8 @@ namespace Yggdrasil.Content.NPCs.Town
 		{
 			NPC.townNPC = true; // Sets NPC to be a Town NPC
 			NPC.friendly = true; // NPC Will not attack player
-			NPC.width = 18;
-			NPC.height = 60;
+			NPC.width = 30;
+			NPC.height = 54;
 			NPC.aiStyle = 7;
 			NPC.damage = 30;
 			NPC.defense = 15;
@@ -79,7 +80,7 @@ namespace Yggdrasil.Content.NPCs.Town
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.5f;
 
-			AnimationType = NPCID.Wizard;
+			AnimationType = NPCID.Guide;
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -104,7 +105,6 @@ namespace Yggdrasil.Content.NPCs.Town
 
 			return false;
 
-			//return Main.player.Any(x => x.active && x.inventory.Any(y => y.type == ModContent.ItemType<VikingDistaff>()));
 		}
 
 		public override List<string> SetNPCNameList()
@@ -128,6 +128,11 @@ namespace Yggdrasil.Content.NPCs.Town
 			chat.Add(Language.GetTextValue("Hejsan"));
 			chat.Add(Language.GetTextValue("By Freya, this part of the world is lovely"));
 			chat.Add(Language.GetTextValue("On my way here I came across a weird looking merchant"), 0.2);
+
+			if (!NPC.downedGolemBoss)
+			{
+				chat.Add(Language.GetTextValue("There is a strong being living in a temple under the jungle, once you've slain the beast, I may be able to bargain something precious with you"), 0.1);
+			}
 
 			return chat; // chat is implicitly cast to a string.
 		}
@@ -198,8 +203,9 @@ namespace Yggdrasil.Content.NPCs.Town
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SturdyLeaf>());
 
 			if (NPC.downedGolemBoss)
-				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SunPebble>());	
-			
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SunPebble>());
+				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SvartalvheimKey>());
+
 			if (NPC.downedAncientCultist)
 				shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TrueHeroFragment>());
 		}

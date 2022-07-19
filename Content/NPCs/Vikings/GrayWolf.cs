@@ -41,7 +41,6 @@ public class GrayWolf : YggdrasilNPC
         NPC.knockBackResist = 0.7f;
         AIType = NPCID.Wolf;
         AnimationType = NPCID.Wolf;
-        NPC.buffImmune[BuffID.Confused] = true;
 
         Banner = ModContent.NPCType<GrayWolf>();
         BannerItem = ModContent.ItemType<GrayWolfBanner>();

@@ -1,0 +1,55 @@
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Extensions;
+
+namespace Yggdrasil.Content.Items.Armor.Nordic;
+
+[AutoloadEquip(EquipType.Head)]
+public class NordicHaume : YggdrasilItem
+{
+
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Nordic Haume");
+        Tooltip.SetDefault("Increases critical strike chance by 5%");
+
+        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+    }
+
+    public override void SetDefaults()
+    {
+        Item.rare = ItemRarityID.Yellow;
+        Item.defense = 20;
+        Item.value = Item.sellPrice(0, 5);
+    }
+
+    public override bool IsArmorSet(Item head, Item body, Item legs)
+    {
+        return body.type == ModContent.ItemType<NordicPlate>() &&
+               legs.type == ModContent.ItemType<NordicGreaves>();
+    }
+
+    public override void UpdateArmorSet(Player player)
+    {
+        player.setBonus = "Attackers get slowed\nAttackers also take double damage\nGrants 5% damage reduction";
+
+        player.SetEffect<NordicHaume>();
+        player.thorns += 2f;
+        player.endurance += 0.05f;
+
+    }
+
+    public override void UpdateEquip(Player player)
+    {
+        player.GetCritChance(DamageClass.Generic) += 5;
+    }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<FrostCoreHelmet>()
+        .AddIngredient<ColdIronBar>(5)
+        .AddTile(TileID.MythrilAnvil)
+        .Register();
+}

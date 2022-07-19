@@ -16,8 +16,8 @@ public class DwarvenMedallion : YggdrasilItem
     {
         DisplayName.SetDefault("Dwarven Medallion");
         Tooltip.SetDefault("15% increased mining speed" +
-                           "\nGenerate Light" +
-                           $"\nIncreases defense by 1");
+                           "\nGenerates Light" +
+                           "\nIncreases defense by 1");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,9 +31,11 @@ public class DwarvenMedallion : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.SetEffect<DwarvenMedallion>();
         player.pickSpeed -= .15f;
-        player.statDefense += 1;
+        if (player.ZoneRockLayerHeight)
+        {
+            player.statDefense += 1;
+        }
 
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .4f, .5f, .5f);
     }

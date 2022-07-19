@@ -17,14 +17,17 @@ public class SvartalvheimBrickTile : YggdrasilTile
 		Main.tileBlockLight[Type] = true;
 		Main.tileBlendAll[this.Type] = true;
 		Main.tileLighted[Type] = true;
+		Main.tileBrick[Type] = true;
 		TileID.Sets.Conversion.Stone[Type] = true;
 
 		AddMapEntry(new Color(25, 12, 12));
 
-		DustType = DustID.Stone;
+		DustType = DustID.GemRuby;
 		ItemDrop = ModContent.ItemType<SvartalvheimStone>();
 
 		MinPick = 210;
 		MineResist = 1.1f;
 	}
+
+	public override bool CanExplode(int i, int j) => false;
 }

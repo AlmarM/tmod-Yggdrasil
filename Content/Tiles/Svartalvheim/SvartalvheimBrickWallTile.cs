@@ -16,4 +16,6 @@ public class SvartalvheimBrickWallTile : YggdrasilWall
 		AddMapEntry(new Color(96, 46, 46));
 	}
 
+	public override bool CanExplode(int i, int j) => false;
+
 }
