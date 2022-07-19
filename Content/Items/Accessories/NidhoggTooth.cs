@@ -3,8 +3,8 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories

@@ -11,7 +11,6 @@ using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Projectiles.Magic;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;

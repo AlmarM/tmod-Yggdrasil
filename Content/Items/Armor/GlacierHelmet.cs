@@ -6,9 +6,9 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Utils;
 using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster;
 
 namespace Yggdrasil.Content.Items.Armor;
 

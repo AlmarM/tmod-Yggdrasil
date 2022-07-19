@@ -2,8 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;

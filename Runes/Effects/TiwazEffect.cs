@@ -1,6 +1,6 @@
 using Terraria;
 using Yggdrasil.Configs;
-using Yggdrasil.DamageClasses;
+using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Effects;

@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.DamageClasses;
+using Yggdrasil.Runemaster;
 
 namespace Yggdrasil.Content.Projectiles.RuneTablets;
 

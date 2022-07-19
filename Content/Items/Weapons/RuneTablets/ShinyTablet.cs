@@ -6,12 +6,10 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles.RuneTablets;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
-using Yggdrasil.Runic;
+using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Weapons.RuneTablets

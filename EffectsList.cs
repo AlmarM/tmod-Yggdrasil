@@ -17,9 +17,9 @@ public class EffectsList
         return Has(typeof(T).FullName);
     }
 
-    public bool Has(Type type)
+    public bool Has(Type key)
     {
-        return Has(type.FullName);
+        return Has(key.FullName);
     }
 
     public bool Has(string key)
@@ -32,9 +32,9 @@ public class EffectsList
         Set(typeof(T).FullName);
     }
 
-    public void Set(Type type)
+    public void Set(Type key)
     {
-        Set(type.FullName);
+        Set(key.FullName);
     }
 
     public void Set(string key)

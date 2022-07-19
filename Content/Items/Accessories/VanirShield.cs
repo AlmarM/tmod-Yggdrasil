@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.DamageClasses;
 using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 

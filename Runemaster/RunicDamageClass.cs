@@ -1,7 +1,7 @@
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 
-namespace Yggdrasil.DamageClasses;
+namespace Yggdrasil.Runemaster;
 
 public class RunicDamageClass : DamageClass
 {
