@@ -31,8 +31,8 @@ public class SvartalvheimBrickWall : YggdrasilItem
 		Item.rare = ItemRarityID.White;
 	}
 
-	public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<SvartalvheimBrick>(4)
+	public override void AddRecipes() => CreateRecipe(4)
+		.AddIngredient<SvartalvheimBrick>()
 		.AddTile(TileID.WorkBenches)
 		.Register();
 }

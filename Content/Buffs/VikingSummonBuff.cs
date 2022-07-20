@@ -9,7 +9,7 @@ namespace Yggdrasil.Content.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Viking Minion");
-            Description.SetDefault("The example minion will fight for you");
+            Description.SetDefault("The mini viking will fight for you");
 
             // This buff won't save when you exit the world
             Main.buffNoSave[Type] = true;

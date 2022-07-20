@@ -1,17 +1,18 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Materials.Svartalvheim;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture;
+namespace Yggdrasil.Content.Items.Furniture.Svartalvheim;
 
-public class SvartalvheimChest : YggdrasilItem
+public class SvartalvheimWorkbench : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Svartalvheim Chest");
+        Tooltip.SetDefault("Svartalvheim Work Bench");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,13 +26,15 @@ public class SvartalvheimChest : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
+        Item.createTile = ModContent.TileType<SvartalvheimWorkbenchTile>();
         Item.rare = ItemRarityID.Yellow;
-        Item.value = 500;
-        Item.createTile = ModContent.TileType<SvartalvheimChestTile>();
+        Item.value = Item.buyPrice(0, 1, 20);
     }
+
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<SvartalvheimBrick>(10)
-            .AddIngredient<ColdIronBar>(1)
-            .AddTile(TileID.WorkBenches)
-            .Register();
+        .AddIngredient<SvartalvheimStone>(5)
+        .AddIngredient<ColdIronBar>()
+        .Register();
+
+    
 }

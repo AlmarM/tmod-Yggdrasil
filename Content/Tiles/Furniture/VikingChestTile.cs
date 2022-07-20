@@ -43,7 +43,7 @@ public class VikingChestTile : YggdrasilTile
         name = CreateMapEntryName(Name + "_Locked"); // With multiple map entries, you need unique translation keys.
         name.SetDefault("Locked Viking Chest");
 
-        AddMapEntry(new Color(255, 0, 255), name, MapChestName);
+        AddMapEntry(new Color(94, 118, 178), name, MapChestName);
 
         // Placement
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

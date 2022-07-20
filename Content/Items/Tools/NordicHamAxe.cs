@@ -11,7 +11,7 @@ public class NordicHamAxe : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Nordic HamAxe");
-        Tooltip.SetDefault("");
+        Tooltip.SetDefault("Inflict frostburn for 2 sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,6 +31,11 @@ public class NordicHamAxe : YggdrasilItem
         Item.value = Item.buyPrice(0, 4);
         Item.rare = ItemRarityID.Yellow;
         Item.UseSound = SoundID.Item1;
+    }
+
+    public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+    {
+        target.AddBuff(BuffID.Frostburn, 120);     
     }
 
     public override void AddRecipes() => CreateRecipe()

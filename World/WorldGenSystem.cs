@@ -37,7 +37,7 @@ public class WorldGenSystem : ModSystem
         // The first step is an Ore. Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
-        int MicroBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Lakes"));
+        int MicroBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Life Crystals"));
         int SvartalvheimIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Dungeon"));
         int SvartalvheimHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Micro Biomes"));
 

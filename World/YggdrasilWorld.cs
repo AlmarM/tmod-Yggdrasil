@@ -15,6 +15,9 @@ using Yggdrasil.Content.UI;
 using Terraria.ModLoader.IO;
 using System.IO;
 using Yggdrasil.Content.Tiles.Svartalvheim;
+using Yggdrasil.Content.Items.Weapons.Summon;
+using Yggdrasil.Content.Items.Tools;
+using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 
 namespace Yggdrasil.World
 {
@@ -31,6 +34,8 @@ namespace Yggdrasil.World
 
 		public static int SvartalvheimTiles = 0;
 		public static int SvartalvheimChests = 0;
+
+		private int casenumber = 0;
 
 		public override void OnWorldLoad()
 		{
@@ -69,6 +74,7 @@ namespace Yggdrasil.World
 
 		public override void PostWorldGen()
 		{
+		
 			//Adding item to chests
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
 			{
@@ -143,14 +149,40 @@ namespace Yggdrasil.World
 				if (chest != null && Main.tile[chest.x, chest.y].TileType == (ushort)ModContent.TileType<SvartalvheimChestTile>())
 				{
 					var itemsToAdd = new List<(int type, int stack)>();
-
-					itemsToAdd.Add((ModContent.ItemType<SvartalvheimMedallion>(), 1));
-					itemsToAdd.Add((ModContent.ItemType<ColdIronBar>(), Main.rand.Next(2, 4)));
-					itemsToAdd.Add((ItemID.Dynamite, Main.rand.Next(2, 4)));
-					itemsToAdd.Add((ItemID.SpelunkerPotion, Main.rand.Next(1, 2)));
-					itemsToAdd.Add((ItemID.ShinePotion, Main.rand.Next(1, 2)));
-					itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 5)));
-					itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(2, 6)));
+					
+					switch (casenumber)
+					{
+						case 0:
+							itemsToAdd.Add((ModContent.ItemType<SvartalvheimMedallion>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<ColdIronBar>(), Main.rand.Next(2, 4)));
+							itemsToAdd.Add((ItemID.Dynamite, Main.rand.Next(2, 4)));
+							itemsToAdd.Add((ItemID.SpelunkerPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.ShinePotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 5)));
+							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(2, 6)));
+							casenumber++;
+							break;
+						case 1:
+							itemsToAdd.Add((ModContent.ItemType<ThaneHamstaff>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<ColdIronBar>(), Main.rand.Next(2, 4)));
+							itemsToAdd.Add((ItemID.StickyBomb, Main.rand.Next(5, 7)));
+							itemsToAdd.Add((ItemID.ObsidianSkinPotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.LifeforcePotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.Torch, Main.rand.Next(1, 5)));
+							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 4)));
+							casenumber++;
+							break;
+						case 2:
+							itemsToAdd.Add((ModContent.ItemType<DvergrHook>(), 1));
+							itemsToAdd.Add((ModContent.ItemType<ColdIronBar>(), Main.rand.Next(1, 5)));
+							itemsToAdd.Add((ModContent.ItemType<MoldyCheese>(), 1));
+							itemsToAdd.Add((ItemID.PotionOfReturn, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.RagePotion, Main.rand.Next(1, 2)));
+							itemsToAdd.Add((ItemID.StickyGlowstick, Main.rand.Next(3, 7)));
+							itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(2, 3)));
+							casenumber = 0;
+							break;
+					}
 
 
 					int chestItemIndex = 0;

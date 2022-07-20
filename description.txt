@@ -7,15 +7,14 @@ At a glance:
 - 1 miniboss
 - 1 town NPC
 - 10+ tiles/furnitures
-- 1 new event The Viking Invasion
-- 1 new class The Runemaster
+- 1 new event, The Viking Invasion
+- 1 new class, The Runemaster
+- 1 new biome, Svartalvheim
 - Some structure generations (in the snow biome)
 
-NOTE: 
-- Runemaster class content progression is still in development but goes all the way to moonlord.
-- Runes are probably unbalanced in many ways and will need fine tunning.
+NOTE:
 - If you want to help, feel free to reach out! (Good spriters would be nice to have)
-- This is an alpha version of the mod!
+- This is an alpha version of the mod! (meaning that there are bugs)
 
 Feedback is more than welcome on our forum thread here (search for Yggdrasil):
 https://forums.terraria.org/index.php?threads/yggdrasil.93660/
@@ -24,24 +23,25 @@ or our Discord here:
 https://discord.gg/ZCb8824q4b
 
 Lyker & resP
-0.2.5 - A bit more stuff and refactoring
+
+0.3 - A new biome
 New Content
-- New post-moonlord Runemaster armor set
-- New Viking statue
-- Cold Iron ore is now generated "at some point" in hardmode
-- New Nordic Sword
-- New Nordic Hamaxe
+- New biome! Svartalvheim. If you are lucky enough, a minecart track might lead you there. If not, you'll need a lot of mining power to get in. I would not venture there anyway...
+- New Svartalvheim enemies. Let there be Dwarves!
+- New unique gear found in the biome
+- New Nordic gears and armor made out of cold iron
+- New Glacier Spear
+- New food Moldy Cheese (yep...)
+- New Nordic wood furnitures
 
 Fixes and Tweaks
-- Lunar Memorial now crafted at the Ancient Manipulator
-- Refactor the viking house generation code and changed it to be an abandoned longhouse
-- Viking chests will spawn deeper down the world now and in tiny ice caves
-- Rune effects don't stack anymore. Only one rune of each type and tier can give effects.
-- Sun Pebbles, Sturdy Leaves and Ragnarok willl now be dropped in normal mode too
-- Condition for the Volva town NPC to spawn is now to just overcome the viking invasion once
-- Blank runes are now crafted at work benches
-- Fixed Tiwaz rune not giving the right amount of buffs
-- Buffed Algiz and Ingwaz runes
+- Cold Iron is now generated in the Svartalvheim biome upon world creation
+- Added a bit more loot generated in Viking chests upon world creation
+- Frostcore Arrow now only applies frostburn
+- Dwarven Medallion now gives def when underground
+- Fixed Volva town NPC animations
+- Changed the spirtes of nordic wood
+- Stuff I probably forget
 
 0.2.4 - First miniboss and town NPC
 New Content
@@ -63,23 +63,4 @@ Fixes and Tweaks
 - Viking invasion now happens during the day
 - Runes and other materials now have a selling value
 - Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equipped
-
-0.2.3 - The Viking invasion is back
-New Content
-- The Viking invasion is back! Use a norseman horn during the night and brace for impact.
-- Added the Frost Giant Belt
-- Added the Two Worlds Belt
-- Added the Lunar Memorial runemaster weapon
-- Added Viking and Draugr Banner
-- Added the Glacier bow
-- Added new night hardmode enemy, the Sliking
-- Added new jungle hardmode enemy, the Bäckahäst
-
-Fixes and Tweaks
-- Slightly changed Clacier Shards sprite
-- Frost Giant Shard and Hard cost less Frostcore Bar to craft
-- Runic Potion renamed for Runic Mead
-- Runic Necklace can now be seen on the character when equipped
-- Norseman shield can now be seen on the character when equipped
-- Freya's Necklace drops heart a bit less often
 

@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -48,15 +48,15 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CreditSlab>(), 4));
                 break;
             case NPCID.Golem:
-                if (!Main.expertMode || !Main.masterMode)
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
+                if (!(Main.expertMode || Main.masterMode)) //TODO: Doesn't work!
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
                 break;
             case NPCID.Plantera:
-                if (!Main.expertMode || !Main.masterMode)
+                if (!(Main.expertMode || Main.masterMode)) //TODO: Doesn't work!
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
                 break;
             case NPCID.MoonLordCore:
-                if (!Main.expertMode || !Main.masterMode)
+                if (!(Main.expertMode || Main.masterMode)) //TODO: Doesn't work!
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
                 break;
         }

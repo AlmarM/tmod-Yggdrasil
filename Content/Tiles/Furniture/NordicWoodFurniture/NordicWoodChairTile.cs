@@ -114,7 +114,7 @@ public class NordicWoodChairTile : YggdrasilTile
 
 		player.noThrow = 2;
 		player.cursorItemIconEnabled = true;
-		player.cursorItemIconID = ModContent.ItemType<Yggdrasil.Content.Items.Furniture.NordicWoodFurniture.NordicWoodChair>();
+		player.cursorItemIconID = ModContent.ItemType<NordicWoodChair>();
 
 		if (Main.tile[i, j].TileFrameX / 18 < 1)
 		{
