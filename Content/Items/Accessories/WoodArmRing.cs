@@ -24,7 +24,7 @@ public class WoodArmRing : YggdrasilItem
     {
         Item.rare = ItemRarityID.White;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 0, 0, 50);
+        Item.value = Item.sellPrice(0, 0, 0, 50);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

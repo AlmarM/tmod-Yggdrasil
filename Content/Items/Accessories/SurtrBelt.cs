@@ -31,7 +31,7 @@ public class SurtrBelt : YggdrasilItem
         Item.accessory = true;
         Item.rare = ItemRarityID.Yellow;
         Item.buffType = BuffID.Inferno;
-        Item.value = Item.buyPrice(0, 7);
+        Item.value = Item.sellPrice(0, 7);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

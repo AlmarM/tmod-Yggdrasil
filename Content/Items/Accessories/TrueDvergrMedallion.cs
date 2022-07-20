@@ -29,7 +29,7 @@ public class TrueDvergrMedallion : YggdrasilItem
     {
         Item.rare = ItemRarityID.Red;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 10);
+        Item.value = Item.sellPrice(0, 10);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

@@ -27,7 +27,7 @@ namespace Yggdrasil.Content.Items.Banners
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.rare = ItemRarityID.Yellow;
-            Item.value = Item.buyPrice(0, 1);
+            Item.value = Item.sellPrice(0, 1);
             Item.createTile = ModContent.TileType<ValkyrieBannerTile>();
             Item.placeStyle = 0;
         }

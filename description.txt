@@ -2,11 +2,10 @@ Yggdrasil is a small content mod adding Viking and Norse Mythology related items
 This mod wants to be an addition to vanilla terraria respecting the normal progression of this game we all like.
 
 At a glance:
-- Around 150 new items
-- 15+ enemies
+- 250+ new items and furniture
+- 20+ enemies
 - 1 miniboss
 - 1 town NPC
-- 10+ tiles/furnitures
 - 1 new event, The Viking Invasion
 - 1 new class, The Runemaster
 - 1 new biome, Svartalvheim

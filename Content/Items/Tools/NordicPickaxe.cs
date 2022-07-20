@@ -27,7 +27,7 @@ public class NordicPickaxe : YggdrasilItem
         Item.crit = 0;
         Item.knockBack = 5;
         Item.pick = 215;
-        Item.value = Item.buyPrice(0, 4);
+        Item.value = Item.sellPrice(0, 4);
         Item.rare = ItemRarityID.Yellow;
         Item.UseSound = SoundID.Item1;
     }

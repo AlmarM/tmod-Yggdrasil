@@ -32,7 +32,7 @@ public class RunicPotion : YggdrasilItem
         Item.maxStack = 30;
         Item.consumable = true;
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(0, 0, 2);
+        Item.value = Item.sellPrice(0, 0, 2);
         Item.buffType = ModContent.BuffType<RunicBuff>();
         Item.buffTime = TimeUtils.MinutesToTicks(4);
     }

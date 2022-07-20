@@ -6,11 +6,11 @@ using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.Items.Tools;
 
-public class FrostCorePickaxe : YggdrasilItem
+public class FrostcoreHamaxe : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Frostcore Pickaxe");
+        DisplayName.SetDefault("Frostcore Hamaxe");
         Tooltip.SetDefault("50% chance to inflict frostburn for 2 sec");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -23,10 +23,11 @@ public class FrostCorePickaxe : YggdrasilItem
         Item.useTime = 26;
         Item.useAnimation = 26;
         Item.autoReuse = true;
-        Item.damage = 18;
+        Item.damage = 21;
         Item.crit = 0;
-        Item.knockBack = 3;
-        Item.pick = 55;
+        Item.knockBack = 10;
+        Item.hammer = 65;
+        Item.axe = 25; //multiply by 5
         Item.value = Item.sellPrice(0, 0, 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;

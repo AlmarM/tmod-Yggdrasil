@@ -18,7 +18,7 @@ public class Linnen : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.White;
-        Item.value = Item.buyPrice(0, 0, 0, 50);
+        Item.value = Item.sellPrice(0, 0, 0, 50);
     }
 
     public override void AddRecipes() => CreateRecipe()

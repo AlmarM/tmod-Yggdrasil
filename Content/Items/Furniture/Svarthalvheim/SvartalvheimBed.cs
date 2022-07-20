@@ -8,11 +8,11 @@ using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 
 namespace Yggdrasil.Content.Items.Furniture.Svartalvheim;
 
-public class SvartalvheimWorkbench : YggdrasilItem
+public class SvartalvheimBed : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("'For a dwarf, it's also a table!'");
+        Tooltip.SetDefault("Svartalvheim Bed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -26,15 +26,16 @@ public class SvartalvheimWorkbench : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.createTile = ModContent.TileType<SvartalvheimWorkbenchTile>();
+        Item.createTile = ModContent.TileType<SvartalvheimBedTile>();
         Item.rare = ItemRarityID.Yellow;
         Item.value = Item.sellPrice(0, 1, 20);
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<SvartalvheimStone>(5)
+        .AddIngredient<SvartalvheimStone>(15)
         .AddIngredient<ColdIronBar>()
+        .AddTile(TileID.Sawmill)
         .Register();
 
-    
+
 }

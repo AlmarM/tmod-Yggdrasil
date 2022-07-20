@@ -27,7 +27,7 @@ public class MoldyCheese : YggdrasilItem
 		Item.noUseGraphic = true;
 		Item.useStyle = ItemUseStyleID.EatFood;
 		Item.useTime = Item.useAnimation = 30;
-		Item.value = Item.buyPrice(0, 0, 0, 10);
+		Item.value = Item.sellPrice(0, 0, 0, 10);
 
 		Item.buffType = BuffID.WellFed;
 		Item.buffTime = 43200;

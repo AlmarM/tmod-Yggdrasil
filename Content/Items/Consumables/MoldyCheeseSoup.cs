@@ -9,13 +9,13 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Consumables;
 
-public class Raggmunk : YggdrasilItem
+public class MoldyCheeseSoup : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Raggmunk");
+        DisplayName.SetDefault("Moldy Cheese Soup");
 
-        Tooltip.SetDefault("Minor improvements to all stats\nA Sweddish classic! Don't forget the lingon");
+        Tooltip.SetDefault("Medium  improvements to all stats\nAre you seriously going to eat that?");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
     }
@@ -29,13 +29,26 @@ public class Raggmunk : YggdrasilItem
 		Item.useTime = Item.useAnimation = 30;
 		Item.value = Item.sellPrice(0, 0, 0, 10);
 
-		Item.buffType = BuffID.WellFed;
+		Item.buffType = BuffID.WellFed2;
 		Item.buffTime = 36000;
 		Item.noMelee = true;
 		Item.consumable = true;
 		Item.UseSound = SoundID.Item2;
 		Item.autoReuse = false;
-
 	}
+
+    public override void OnConsumeItem(Player player)
+    {
+		player.AddBuff(BuffID.Poisoned, 600);
+		player.AddBuff(BuffID.Stinky, 18000);
+		player.AddBuff(BuffID.WeaponImbueIchor, 36000);
+	}
+
+	public override void AddRecipes() => CreateRecipe()
+		.AddIngredient<MoldyCheese>()
+		.AddIngredient(ItemID.Bowl)
+		.AddIngredient(ItemID.BottledWater)
+		.AddTile(TileID.CookingPots)
+		.Register();
 
 }

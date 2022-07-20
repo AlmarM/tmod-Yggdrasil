@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +27,7 @@ public class SvartalvheimChest : YggdrasilItem
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
         Item.rare = ItemRarityID.Yellow;
-        Item.value = 500;
+        Item.value = Item.sellPrice(0, 1, 20);
         Item.createTile = ModContent.TileType<SvartalvheimChestTile>();
     }
     public override void AddRecipes() => CreateRecipe()

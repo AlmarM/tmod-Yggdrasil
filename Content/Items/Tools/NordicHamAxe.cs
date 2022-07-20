@@ -28,7 +28,7 @@ public class NordicHamAxe : YggdrasilItem
         Item.knockBack = 8;
         Item.hammer = 100;
         Item.axe = 30; // multiplied by 5
-        Item.value = Item.buyPrice(0, 4);
+        Item.value = Item.sellPrice(0, 4);
         Item.rare = ItemRarityID.Yellow;
         Item.UseSound = SoundID.Item1;
     }

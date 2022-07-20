@@ -27,7 +27,7 @@ namespace Yggdrasil.Content.Items.Banners
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(0, 0, 2, 0);
+            Item.value = Item.sellPrice(0, 0, 2, 0);
             Item.createTile = ModContent.TileType<SvartalslimeBannerTile>();
             Item.placeStyle = 0;
         }
