@@ -43,7 +43,7 @@ namespace Yggdrasil.Content.Items.Accessories
             player.GetDamage<RunicDamageClass>() += 0.1f;
             player.GetCritChance<RunicDamageClass>() += 5;
             player.statDefense += 3;
-            player.GetModPlayer<RunePlayer>().InsanityThreshold += 8;
+            player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 8;
 
             Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .5f, .8f, .8f);
 

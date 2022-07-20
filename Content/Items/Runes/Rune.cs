@@ -69,7 +69,7 @@ public abstract class Rune<TRune> : YggdrasilItem, IRune where TRune : Rune<TRun
             InitializeEffects();
         }
 
-        player.GetModPlayer<RunePlayer>().RunePower += RunePower;
+        player.GetModPlayer<RunemasterPlayer>().RunePower += RunePower;
 
         if (player.HasEffect<TRune>())
         {

@@ -16,6 +16,7 @@ using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles;
 using Microsoft.Xna.Framework.Input;
 using Yggdrasil.Content.NPCs.Svartalvheim;
+using Yggdrasil.Extensions;
 
 namespace Yggdrasil.Globals;
 
@@ -25,7 +26,8 @@ public class YggdrasilGlobalNPC : GlobalNPC
     {
         switch (npc.type)
         {
-            case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
+            case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned
+                or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OccultShard>(), 5));
                 break;
             case NPCID.WallofFlesh:
@@ -49,23 +51,34 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 break;
             case NPCID.Golem:
                 if (!Main.expertMode || !Main.masterMode)
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
+                {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 3, 3));
+                }
+
                 break;
             case NPCID.Plantera:
                 if (!Main.expertMode || !Main.masterMode)
+                {
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 30, 30));
+                }
+
                 break;
             case NPCID.MoonLordCore:
                 if (!Main.expertMode || !Main.masterMode)
+                {
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
+                }
+
                 break;
         }
     }
+
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
     {
-        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
+        YggdrasilPlayer yggdrasilPlayer = player.GetYggdrasilPlayer();
+
         //Changing the max spawn and spawn rate
-        if (RunePlayer.ZoneSvartalvheim)
+        if (yggdrasilPlayer.ZoneSvartalvheim)
         {
             spawnRate = (int)(spawnRate * 0.9f);
             maxSpawns = (int)(maxSpawns * 1.1f);
@@ -77,9 +90,9 @@ public class YggdrasilGlobalNPC : GlobalNPC
             spawnRate = 6;
         }
     }
+
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
     {
-
         //Setting the new spawn pool of vikings
         if (VikingInvasionWorld.vikingInvasion && spawnInfo.Player.ZoneOverworldHeight)
         {
@@ -105,7 +118,8 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 pool.Add(ModContent.NPCType<OdinRaven>(), 1.5f);
             }
 
-            if (Main.hardMode && VikingInvasionWorld.vikingKilled >= 200 && !NPC.AnyNPCs(ModContent.NPCType<Valkyrie>()) && !VikingInvasionWorld.valkyrieUp)
+            if (Main.hardMode && VikingInvasionWorld.vikingKilled >= 200 &&
+                !NPC.AnyNPCs(ModContent.NPCType<Valkyrie>()) && !VikingInvasionWorld.valkyrieUp)
             {
                 pool.Add(ModContent.NPCType<Valkyrie>(), 100f);
                 VikingInvasionWorld.valkyrieUp = true;
@@ -113,8 +127,8 @@ public class YggdrasilGlobalNPC : GlobalNPC
         }
 
         //Changing the spawnpool when the player is in Svartalvheim
-        var RunePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
-        if (RunePlayer.ZoneSvartalvheim)
+        YggdrasilPlayer yggdrasilPlayer = spawnInfo.Player.GetYggdrasilPlayer();
+        if (yggdrasilPlayer.ZoneSvartalvheim)
         {
             pool.Clear();
 
@@ -136,8 +150,5 @@ public class YggdrasilGlobalNPC : GlobalNPC
                 pool.Add(ModContent.NPCType<DwarfThunderer>(), 2f);
             }
         }
-
-            return;
     }
-
 }

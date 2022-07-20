@@ -36,7 +36,7 @@ public class ArmRing : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>().Flat += 1;
         player.statDefense += 1;
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 5;
     }
 
     public override void AddRecipes() => CreateRecipe()

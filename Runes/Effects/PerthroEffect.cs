@@ -19,9 +19,9 @@ public class PerthroEffect : RuneEffect<PerthroEffect.Parameters>
     {
         Parameters buffParameters = CastParameters(effectParameters);
 
-        var runePlayer = player.GetModPlayer<RunePlayer>();
-        runePlayer.ApplyRandomBuffChance += buffParameters.ApplyBuffChance;
-        runePlayer.RandomBuffDuration += buffParameters.BuffDuration;
+        var runePlayer = player.GetModPlayer<RunemasterPlayer>();
+        //runePlayer.ApplyRandomBuffChance += buffParameters.ApplyBuffChance;
+        //runePlayer.RandomBuffDuration += buffParameters.BuffDuration;
     }
 
     public struct Parameters : IRuneEffectParameters

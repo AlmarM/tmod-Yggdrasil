@@ -48,9 +48,9 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
 
         public override bool AltFunctionUse(Player player)
         {
-            RunePlayer runePlayer = player.GetRunePlayer();
+            RunemasterPlayer runemasterPlayer = player.GetRunePlayer();
 
-            if (runePlayer.FocusValue >= runePlayer.FocusThreshold)
+            if (runemasterPlayer.FocusValue >= runemasterPlayer.FocusThreshold)
             {
                 return true;
             }
@@ -74,7 +74,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         {
             // THE FOCUS POWER
 
-            RunePlayer runePlayer = player.GetRunePlayer();
+            RunemasterPlayer runemasterPlayer = player.GetRunePlayer();
 
             const int ExplosionProjectiles = 8;
             var Type = ProjectileID.BoulderStaffOfEarth;
@@ -93,14 +93,14 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
             player.AddBuff(ModContent.BuffType<TheSunBuff>(), 300);
 
             // Removing insanity when using a focus power
-            runePlayer.FocusValue = 0;
-            if (runePlayer.InsanityValue >= runePlayer.InsanityRemoverValue)
+            runemasterPlayer.FocusValue = 0;
+            if (runemasterPlayer.InsanityValue >= runemasterPlayer.InsanityRemoverValue)
             {
-                runePlayer.InsanityValue -= runePlayer.InsanityRemoverValue;
+                runemasterPlayer.InsanityValue -= runemasterPlayer.InsanityRemoverValue;
             }
             else
             {
-                runePlayer.InsanityValue = 0;
+                runemasterPlayer.InsanityValue = 0;
             }
         }
 
@@ -109,10 +109,10 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
         {
             // THE ATTACK
 
-            RunePlayer runePlayer = player.GetRunePlayer();
+            RunemasterPlayer runemasterPlayer = player.GetRunePlayer();
             const int NumProjectiles = 10; // The number of projectiles.
             var Type2 = ProjectileID.BoulderStaffOfEarth;
-            runePlayer.InsanityValue++;
+            runemasterPlayer.InsanityValue++;
 
             for (int i = 0; i < NumProjectiles; i++)
             {
@@ -120,7 +120,7 @@ namespace Yggdrasil.Content.Items.Weapons.RuneTablets
                 float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 28);
                 Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 14);
 
-                float SpeedMultiplier = runePlayer.RunicProjectileSpeedMultiplyer;
+                float SpeedMultiplier = runemasterPlayer.RunicProjectileSpeedMultiplyer;
 
                 Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
                     player.whoAmI);

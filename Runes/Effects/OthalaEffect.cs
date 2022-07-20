@@ -18,8 +18,7 @@ public class OthalaEffect : RuneEffect<OthalaEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters consumptionParameters = CastParameters(effectParameters);
-        player.GetModPlayer<RunePlayer>().PreventAmmoConsumptionChance +=
-            consumptionParameters.ReduceAmmoConsumptionBonus;
+        //player.GetModPlayer<RunemasterPlayer>().PreventAmmoConsumptionChance += consumptionParameters.ReduceAmmoConsumptionBonus;
     }
 
     public struct Parameters : IRuneEffectParameters

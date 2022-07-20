@@ -47,13 +47,13 @@ public class BerserkerHelmet : YggdrasilItem
 
         float HealthThreshold = .25f;
         
-        var runePlayer = player.GetModPlayer<RunePlayer>();
+        var runePlayer = player.GetModPlayer<RunemasterPlayer>();
         if (player.statLife < HealthThreshold * player.statLifeMax2)
         {
             player.AddBuff(ModContent.BuffType<BerserkerRageBuff>(), 2);
         }
 
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
     }
 
     public override void UpdateEquip(Player player)

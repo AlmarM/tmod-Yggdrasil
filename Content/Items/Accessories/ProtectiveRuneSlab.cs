@@ -34,7 +34,7 @@ public class ProtectiveRuneSlab : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.statDefense += 8;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 2;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 2;
         player.endurance += 0.05f;
     }
 

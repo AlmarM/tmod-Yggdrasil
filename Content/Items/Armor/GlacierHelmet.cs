@@ -47,8 +47,8 @@ public class GlacierHelmet : YggdrasilItem
         player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1\nIncreases {insanityText} gauge by 5\nGetting hit will slow down the enemy";
 
         player.SetEffect<GlacierHelmet>();
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 5;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
 
     }
 

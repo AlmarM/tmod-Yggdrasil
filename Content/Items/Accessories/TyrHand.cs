@@ -33,7 +33,7 @@ namespace Yggdrasil.Content.Items.Accessories
         {
             player.GetDamage<RunicDamageClass>() += 0.05f;
             player.SetEffect<TyrHand>();
-            player.GetModPlayer<RunePlayer>().RunicProjectileSpeedMultiplyer += 2f;
+            player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplyer += 2f;
         }
 
         public override void AddRecipes()

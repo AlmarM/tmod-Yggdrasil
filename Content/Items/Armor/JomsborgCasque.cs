@@ -49,8 +49,8 @@ public class JomsborgCasque : YggdrasilItem
 
         player.noKnockback = true;
         player.SetEffect<JomsborgCasque>();
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 10;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 2;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 10;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 2;
 
     }
 

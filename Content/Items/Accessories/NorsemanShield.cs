@@ -40,7 +40,7 @@ namespace Yggdrasil.Content.Items.Accessories
             player.noKnockback = true;
             player.statDefense += 3;
             player.GetDamage<RunicDamageClass>() += 0.02f;
-            player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
+            player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
         }
     }
 

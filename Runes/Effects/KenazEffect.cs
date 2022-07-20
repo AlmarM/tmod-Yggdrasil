@@ -18,7 +18,7 @@ public class KenazEffect : RuneEffect<KenazEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters dodgeParameters = CastParameters(effectParameters);
-        player.GetModPlayer<RunePlayer>().DodgeChance += dodgeParameters.DodgeChanceBonus;
+        //player.GetModPlayer<RunemasterPlayer>().DodgeChance += dodgeParameters.DodgeChanceBonus;
     }
 
     public struct Parameters : IRuneEffectParameters

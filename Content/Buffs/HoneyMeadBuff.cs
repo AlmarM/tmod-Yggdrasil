@@ -16,6 +16,6 @@ public class HoneyMeadBuff : YggdrasilBuff
 
     public override void Update(Player player, ref int buffIndex)
     {
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 5;
     }
 }

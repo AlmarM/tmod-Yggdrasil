@@ -48,10 +48,10 @@ public class TrueValhallaHaume : YggdrasilItem
 
         player.endurance += 0.08f;
         player.lifeRegen += 8;
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 15;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 3;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 15;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 3;
         player.noKnockback = true;
-        player.GetModPlayer<RunePlayer>().RunicProjectileSpeedMultiplyer += 2f;
+        player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplyer += 2f;
     }
 
     public override void UpdateEquip(Player player)

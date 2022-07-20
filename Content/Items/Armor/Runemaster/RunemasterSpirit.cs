@@ -50,10 +50,10 @@ public class RunemasterSpirit : YggdrasilItem
 
         player.endurance += 0.1f;
         player.lifeRegen += 10;
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 20;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 6;
-        player.GetModPlayer<RunePlayer>().RunicProjectileSpeedMultiplyer += 5f;
-        player.GetModPlayer<RunePlayer>().FocusThreshold -= 4;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 20;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 6;
+        player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplyer += 5f;
+        player.GetModPlayer<RunemasterPlayer>().FocusThreshold -= 4;
         player.GetDamage<RunicDamageClass>() += 0.10f;
         player.GetCritChance<RunicDamageClass>() += 10;
     }

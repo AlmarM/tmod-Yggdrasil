@@ -15,7 +15,7 @@ public class NauthizEffect : RuneEffect<NauthizEffect.Parameters>
     public override void Apply(Player player, IRuneEffectParameters effectParameters)
     {
         Parameters invincibilityParameters = CastParameters(effectParameters);
-        player.GetModPlayer<RunePlayer>().InvincibilityBonusTime += invincibilityParameters.InvincibilityBonus;
+        //player.GetModPlayer<RunemasterPlayer>().InvincibilityBonusTime += invincibilityParameters.InvincibilityBonus;
     }
 
     public struct Parameters : IRuneEffectParameters

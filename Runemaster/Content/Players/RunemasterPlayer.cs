@@ -12,19 +12,14 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.Extensions;
-using Yggdrasil.Utils;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Items.Armor.Nordic;
 
 namespace Yggdrasil.Content.Players;
 
-/// <summary>
-/// Class that handles all logic regarding runes and runic effects.
-/// </summary>
-public class RunePlayer : YggdrasilPlayer
+public class RunemasterPlayer : YggdrasilPlayer
 {
-    public bool ZoneSvartalvheim;
     public int RunePower { get; set; }
     public int FocusPowerTime { get; set; }
     public int FocusThreshold { get; set; }
@@ -35,35 +30,13 @@ public class RunePlayer : YggdrasilPlayer
     public int InsanityTimer { get; set; }
     public int InsanityRemoverValue { get; set; }
     public int RunicProjectilesAdd { get; set; }
-
-    public float DodgeChance { get; set; }
-    public float InvincibilityBonusTime { get; set; }
-    public float PreventAmmoConsumptionChance { get; set; }
-    public float ApplyRandomBuffChance { get; set; }
-    public float RandomBuffDuration { get; set; }
-    public float SlowDebuffValue { get; set; }
     public float InsanityHurtValue { get; set; }
+    public float SlowDebuffValue { get; set; }
     public float RunicProjectileSpeedMultiplyer { get; set; }
-
-    public override bool CanConsumeAmmo(Item weapon, Item ammo)
-    {
-        if (PreventAmmoConsumptionChance > 0f && Main.rand.NextFloat() <= PreventAmmoConsumptionChance)
-        {
-            return false;
-        }
-
-        return true;
-    }
 
     public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
     {
-        if (damage > 0 && DodgeChance > 0f && Main.rand.NextFloat() <= DodgeChance)
-        {
-            Player.NinjaDodge();
-            return false;
-        }
-
         if (Player.HasEffect<OdinsEye>() && damage > Player.statLife && Main.rand.Next(100) < 10)
         {
             var healBack = 0.2f;
@@ -95,29 +68,10 @@ public class RunePlayer : YggdrasilPlayer
         return true;
     }
 
-    public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-    {
-        if (InvincibilityBonusTime > 0)
-        {
-            int bonusTicks = TimeUtils.SecondsToTicks(InvincibilityBonusTime);
-            Player.immuneTime += bonusTicks;
-        }
-    }
-
     public override void OnHitByNPC(NPC npc, int damage, bool crit)
     {
         if (Player.HasEffect<GlacierHelmet>() || Player.HasEffect<NordicHaume>())
             npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
-    }
-
-
-    public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
-    {
-        if (ApplyRandomBuffChance > 0f && Main.rand.NextFloat() <= ApplyRandomBuffChance)
-        {
-            int duration = TimeUtils.SecondsToTicks(RandomBuffDuration);
-            BuffUtils.ApplyRandomDebuff(target, duration);
-        }
     }
 
     public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
@@ -237,11 +191,6 @@ public class RunePlayer : YggdrasilPlayer
     public override void ResetEffects()
     {
         RunePower = 0;
-        DodgeChance = 0f;
-        InvincibilityBonusTime = 0f;
-        PreventAmmoConsumptionChance = 0f;
-        ApplyRandomBuffChance = 0f;
-        RandomBuffDuration = 0f;
         SlowDebuffValue = 0f;
         FocusPowerTime = 300; //60 = 1sec
         FocusThreshold = 10;

@@ -38,7 +38,7 @@ public class BerserkerRing : YggdrasilItem
         player.GetDamage<RunicDamageClass>() += 0.1f;
         player.GetCritChance<RunicDamageClass>() += 3;
         player.statDefense += 2;
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 5;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 5;
     }
 
     public override void AddRecipes()

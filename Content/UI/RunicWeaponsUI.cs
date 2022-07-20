@@ -71,7 +71,7 @@ namespace Yggdrasil.Content.UI
         {           
             base.DrawSelf(spriteBatch);
 
-            var runePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
+            var runePlayer = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>();
 
             float focusQuotient = (float)runePlayer.FocusValue / runePlayer.FocusThreshold;
             float insanityQuotient = (float)runePlayer.InsanityValue / runePlayer.InsanityThreshold;

@@ -33,7 +33,7 @@ public class RuneBag : YggdrasilItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 2;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 2;
         player.GetDamage<RunicDamageClass>().Flat += 1;
     }
 

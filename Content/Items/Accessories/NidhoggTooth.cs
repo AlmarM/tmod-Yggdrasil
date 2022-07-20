@@ -29,7 +29,7 @@ namespace Yggdrasil.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RunePlayer>().SlowDebuffValue = .75f; //it means 25% slow
+            player.GetModPlayer<RunemasterPlayer>().SlowDebuffValue = .75f; //it means 25% slow
             player.GetCritChance<RunicDamageClass>() += 5;
             player.SetEffect<NidhoggTooth>();
         }

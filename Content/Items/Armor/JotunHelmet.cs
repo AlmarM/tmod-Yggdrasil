@@ -46,8 +46,8 @@ public class JotunHelmet : YggdrasilItem
 
         player.endurance += 0.05f;
         player.statLifeMax2 += 20;
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 8;
-        player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 1;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 8;
+        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
 
     }
 

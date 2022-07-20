@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Extensions;
 
 namespace Yggdrasil.World;
 
@@ -20,17 +21,12 @@ public class SvartalvheimBiome : ModBiome
 
     public override bool IsBiomeActive(Player player)
     {
-        var runePlayer = Main.LocalPlayer.GetModPlayer<RunePlayer>();
-        if (YggdrasilWorld.SvartalvheimTiles > 7000)
-        {
-            //Main.NewText("In Svartalvheim");
-            runePlayer.ZoneSvartalvheim = true;
-            return true;
-        }
+        YggdrasilPlayer yggdrasilPlayer = player.GetYggdrasilPlayer();
+        var isBiomeActive = YggdrasilWorld.SvartalvheimTiles > 7000;
 
-        //Main.NewText("NOT in Svartalvheim");
-        runePlayer.ZoneSvartalvheim = false;
-        return false;
+        yggdrasilPlayer.ZoneSvartalvheim = isBiomeActive;
+
+        return isBiomeActive;
     }
 
     public override void SetStaticDefaults()

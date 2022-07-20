@@ -51,7 +51,7 @@ public class OccultHelmet : YggdrasilItem
     
         player.SetEffect<OccultHelmet>();
         player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
-        player.GetModPlayer<RunePlayer>().InsanityThreshold += 3;
+        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 3;
 
     }
 

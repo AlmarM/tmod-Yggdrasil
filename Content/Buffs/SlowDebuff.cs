@@ -23,7 +23,7 @@ public class SlowDebuff : YggdrasilBuff
 		{
 			Player player = Main.LocalPlayer;
 			
-			var slowDebuffValue = player.GetModPlayer<RunePlayer>().SlowDebuffValue;
+			var slowDebuffValue = player.GetModPlayer<RunemasterPlayer>().SlowDebuffValue;
 			npc.velocity.X *= slowDebuffValue;
 
 			if (Main.rand.NextBool(8))

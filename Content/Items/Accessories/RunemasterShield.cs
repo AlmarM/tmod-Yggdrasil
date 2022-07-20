@@ -60,7 +60,7 @@ namespace Yggdrasil.Content.Items.Accessories
             player.buffImmune[BuffID.Chilled] = true;
             player.SetEffect<RunemasterShield>();
             player.GetDamage<RunicDamageClass>() += 0.1f;
-            player.GetModPlayer<RunePlayer>().InsanityRemoverValue += 5;
+            player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 5;
         }
 
         public override void AddRecipes() => CreateRecipe()

@@ -31,7 +31,7 @@ namespace Yggdrasil.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             
-            if (player.GetModPlayer<RunePlayer>().InsanityValue > 30)
+            if (player.GetModPlayer<RunemasterPlayer>().InsanityValue > 30)
             {
                 player.GetDamage<RunicDamageClass>() += 0.2f;
             }
