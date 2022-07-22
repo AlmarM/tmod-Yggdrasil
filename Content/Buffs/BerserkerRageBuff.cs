@@ -8,13 +8,11 @@ namespace Yggdrasil.Content.Buffs;
 
 public class BerserkerRageBuff : YggdrasilBuff
 {
-    public override string Texture => TextureUtils.GetAssetPath(GetType());
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Berserker Rage Buff");
         Description.SetDefault(
-            "Increases defense by 5"+
+            "Increases defense by 5" +
             "\n20% increase runic damage and critical strike chance");
     }
 

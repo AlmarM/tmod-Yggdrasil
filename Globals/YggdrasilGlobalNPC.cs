@@ -9,7 +9,6 @@ using Terraria.Localization;
 using Terraria.GameContent.ItemDropRules;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.World;
 using Yggdrasil.Content.NPCs.Vikings;
 using Yggdrasil.Content.Players;
@@ -17,6 +16,7 @@ using Yggdrasil.Content.Tiles;
 using Microsoft.Xna.Framework.Input;
 using Yggdrasil.Content.NPCs.Svartalvheim;
 using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
 
 namespace Yggdrasil.Globals;
 

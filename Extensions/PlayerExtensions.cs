@@ -8,7 +8,7 @@ public static class PlayerExtensions
 {
     public static YggdrasilPlayer GetYggdrasilPlayer(this Player player) => player.GetModPlayer<YggdrasilPlayer>();
 
-    public static RunemasterPlayer GetRunePlayer(this Player player) => player.GetModPlayer<RunemasterPlayer>();
+    public static RunemasterPlayer GetRunemasterPlayer(this Player player) => player.GetModPlayer<RunemasterPlayer>();
 
     public static bool HasEffect<T>(this Player player) => player.GetYggdrasilPlayer().HasEffect<T>();
 

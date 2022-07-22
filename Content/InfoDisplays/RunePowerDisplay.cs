@@ -22,9 +22,9 @@ public class RunePowerDisplay : YggdrasilInfoDisplay
         //int runePower = Main.LocalPlayer.GetModPlayer<RunePlayer>().RunePower;
 
         int FocusThreshold = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().FocusThreshold;
-        int FocusValue = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().FocusValue;
+        int FocusValue = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().Focus;
         int InsanityThreshold = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().InsanityThreshold;
-        int InsanityValue = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().InsanityValue;
+        int InsanityValue = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>().Insanity;
 
         string display = $"{FocusValue} / {FocusThreshold} focus";
         display += $"\n{InsanityValue} / {InsanityThreshold} insanity ";

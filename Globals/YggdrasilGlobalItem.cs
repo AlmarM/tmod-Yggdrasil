@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.RuneTablets;
+using Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
 
 namespace Yggdrasil.Globals;
 

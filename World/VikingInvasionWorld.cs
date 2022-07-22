@@ -9,7 +9,6 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.UI;
 using Terraria.ModLoader.IO;

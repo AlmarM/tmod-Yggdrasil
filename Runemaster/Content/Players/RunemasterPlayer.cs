@@ -7,14 +7,14 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Projectiles.Magic;
-using Yggdrasil.Extensions;
+using Yggdrasil.Content.Items.Armor.Nordic;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
-using Yggdrasil.Content.Items.Armor.Nordic;
+using Yggdrasil.Content.Projectiles.Magic;
+using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster.Content.Items;
 
 namespace Yggdrasil.Content.Players;
 
@@ -23,10 +23,10 @@ public class RunemasterPlayer : YggdrasilPlayer
     public int RunePower { get; set; }
     public int FocusPowerTime { get; set; }
     public int FocusThreshold { get; set; }
-    public int FocusValue { get; set; }
+    public int Focus { get; set; }
     public int FocusTimer { get; set; }
     public int InsanityThreshold { get; set; }
-    public int InsanityValue { get; set; }
+    public int Insanity { get; set; }
     public int InsanityTimer { get; set; }
     public int InsanityRemoverValue { get; set; }
     public int RunicProjectilesAdd { get; set; }
@@ -108,27 +108,27 @@ public class RunemasterPlayer : YggdrasilPlayer
     public override float UseSpeedMultiplier(Item item)
     {
         var speed = 1f;
-        if (item.ModItem is RunicItem && Player.HasEffect<TyrHand>())
+        if (item.ModItem is RuneTablet && Player.HasEffect<TyrHand>())
         {
             speed += 0.1f;
         }
 
-        if (item.ModItem is RunicItem && Player.HasEffect<RunemasterCrest>())
+        if (item.ModItem is RuneTablet && Player.HasEffect<RunemasterCrest>())
         {
             speed += 0.15f;
         }
 
-        if (item.ModItem is RunicItem && Player.HasEffect<BerserkerBoots>())
+        if (item.ModItem is RuneTablet && Player.HasEffect<BerserkerBoots>())
         {
             speed += 0.1f;
         }
 
-        if (item.ModItem is RunicItem && Player.HasEffect<JomsborgCasque>())
+        if (item.ModItem is RuneTablet && Player.HasEffect<JomsborgCasque>())
         {
-            speed += (float)InsanityValue / 100;
+            speed += (float)Insanity / 100;
         }
 
-        if (item.ModItem is RunicItem && Player.HasEffect<TheSunBuff>())
+        if (item.ModItem is RuneTablet && Player.HasEffect<TheSunBuff>())
         {
             speed += 0.1f;
         }
@@ -144,12 +144,12 @@ public class RunemasterPlayer : YggdrasilPlayer
 
     public override void PreUpdate()
     {
-        if (FocusValue > FocusThreshold)
+        if (Focus > FocusThreshold)
         {
-            FocusValue = FocusThreshold;
+            Focus = FocusThreshold;
         }
 
-        if (InsanityValue >= InsanityThreshold)
+        if (Insanity >= InsanityThreshold)
         {
             int diff = (int)(Player.statLifeMax2 * InsanityHurtValue);
             Player.statLife -= diff;
@@ -164,25 +164,25 @@ public class RunemasterPlayer : YggdrasilPlayer
 
             //Player.Hurt(PlayerDeathReason.ByCustomReason(Player.name + " went insane"),
             //    (int)(Player.statLifeMax * InsanityHurtValue), 0);
-            InsanityValue = 0;
+            Insanity = 0;
         }
 
-        if (InsanityValue > 0)
+        if (Insanity > 0)
         {
             InsanityTimer++;
             if (InsanityTimer > 60)
             {
-                InsanityValue--;
+                Insanity--;
                 InsanityTimer = 0;
             }
         }
 
-        if (FocusValue < FocusThreshold)
+        if (Focus < FocusThreshold)
         {
             FocusTimer++;
             if (FocusTimer > 60)
             {
-                FocusValue++;
+                Focus++;
                 FocusTimer = 0;
             }
         }

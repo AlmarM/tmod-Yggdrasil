@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Items;
 using Terraria.GameContent;
+using Yggdrasil.Runemaster.Content.Items;
 
 namespace Yggdrasil.Content.UI
 {
@@ -61,7 +62,7 @@ namespace Yggdrasil.Content.UI
         public override void Draw(SpriteBatch spriteBatch)
         {
             // This prevents drawing unless we are using a RunicItem
-            if (!(Main.LocalPlayer.HeldItem.ModItem is RunicItem))
+            if (!(Main.LocalPlayer.HeldItem.ModItem is RuneTablet))
                 return;
 
             base.Draw(spriteBatch);
@@ -73,8 +74,8 @@ namespace Yggdrasil.Content.UI
 
             var runePlayer = Main.LocalPlayer.GetModPlayer<RunemasterPlayer>();
 
-            float focusQuotient = (float)runePlayer.FocusValue / runePlayer.FocusThreshold;
-            float insanityQuotient = (float)runePlayer.InsanityValue / runePlayer.InsanityThreshold;
+            float focusQuotient = (float)runePlayer.Focus / runePlayer.FocusThreshold;
+            float insanityQuotient = (float)runePlayer.Insanity / runePlayer.InsanityThreshold;
             focusQuotient = MathHelper.Clamp(focusQuotient, 0f, 1f);
             insanityQuotient = MathHelper.Clamp(insanityQuotient, 0f, 1f);
 
@@ -113,7 +114,7 @@ namespace Yggdrasil.Content.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (!(Main.LocalPlayer.HeldItem.ModItem is RunicItem))
+            if (!(Main.LocalPlayer.HeldItem.ModItem is RuneTablet))
                 return;
 
             base.Update(gameTime);
