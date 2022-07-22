@@ -52,7 +52,7 @@ public class RunemasterSpirit : YggdrasilItem
         player.lifeRegen += 10;
         player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 20;
         player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 6;
-        player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplyer += 5f;
+        player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplier += 5f;
         player.GetModPlayer<RunemasterPlayer>().FocusThreshold -= 4;
         player.GetDamage<RunicDamageClass>() += 0.10f;
         player.GetCritChance<RunicDamageClass>() += 10;

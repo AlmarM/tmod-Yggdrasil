@@ -6,9 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles.RuneTablets;
-using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
@@ -18,6 +16,10 @@ public class SunTablet : RuneTablet
     private const int ExplosionProjectileCount = 8;
 
     protected override int ProjectileId => ModContent.ProjectileType<SunTabletProjectile>();
+
+    protected override int ProjectileCount => 10;
+
+    protected override float AttackConeSize => 14f;
 
     public override void SetStaticDefaults()
     {
@@ -48,54 +50,28 @@ public class SunTablet : RuneTablet
             Main.projectile[index].friendly = true;
             Main.projectile[index].hostile = false;
         }
-        
+
         player.AddBuff(ModContent.BuffType<TheSunBuff>(), TimeUtils.SecondsToTicks(5));
     }
 
-    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position,
-        Vector2 velocity, int type, int damage, float knockback)
+    protected override void OnConeProjectileCreated(IEntitySource source, Vector2 position, Vector2 velocity, int type,
+        int damage, float knockback, int owner, int index)
     {
-        // THE ATTACK
-
-        RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
-        const int NumProjectiles = 10; // The number of projectiles.
-        var Type2 = ProjectileID.BoulderStaffOfEarth;
-        runemasterPlayer.Insanity++;
-
-        for (int i = 0; i < NumProjectiles; i++)
+        if (!Main.rand.NextBool(50))
         {
-            Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-            float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 28);
-            Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 14);
-
-            float SpeedMultiplier = runemasterPlayer.RunicProjectileSpeedMultiplyer;
-
-            Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
-                player.whoAmI);
-
-            if (Main.rand.Next(100) < 2)
-            {
-                Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * 10, Type2, damage, knockback,
-                    player.whoAmI);
-            }
+            return;
         }
 
-        return false;
+        velocity.Normalize();
+
+        Projectile.NewProjectile(source, position, velocity * 10, ProjectileID.BoulderStaffOfEarth, damage,
+            knockback, owner);
     }
 
-    protected override List<string> GetRunicEffectDescriptions()
+    protected override void ModifyFocusTooltipBlock(TooltipBlock block)
     {
-        List<string> descriptions = base.GetRunicEffectDescriptions();
-
         var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
-
-        string focusLine = $"{focusColored}: ";
-        focusLine += "Releases an explosion of boulders and applies The Sun buff";
-
-        descriptions.Add(focusLine);
-
-        return descriptions;
+        block.AddLine($"{focusColored}: Releases an explosion of boulders");
+        block.AddLine($"{focusColored}: Applies The Sun buff");
     }
-
-    //Dropped by Golem
 }

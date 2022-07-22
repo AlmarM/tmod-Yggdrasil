@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Projectiles.RuneTablets;
-using Yggdrasil.Extensions;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
@@ -18,6 +14,10 @@ public class TabletofFlesh : RuneTablet
     private const int ExplosionProjectileCount = 12;
 
     protected override int ProjectileId => ModContent.ProjectileType<TabletofFleshProjectile>();
+
+    protected override int ProjectileCount => 9;
+
+    protected override float AttackConeSize => 6f;
 
     public override void SetStaticDefaults()
     {
@@ -42,48 +42,14 @@ public class TabletofFlesh : RuneTablet
     {
         int projectileId = ModContent.ProjectileType<TabletofFleshProjectile>();
         CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
-        
+
         player.AddBuff(ModContent.BuffType<SuperHPRegen>(), TimeUtils.SecondsToTicks(5));
     }
 
-    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity,
-        int type, int damage, float knockback)
+    protected override void ModifyFocusTooltipBlock(TooltipBlock block)
     {
-        // THE ATTACK
-
-        RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
-        const int NumProjectiles = 9; // The number of projectiles.
-
-        runemasterPlayer.Insanity++;
-
-        for (int i = 0; i < NumProjectiles; i++)
-        {
-            Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-            float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 12);
-            Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 6);
-
-            float SpeedMultiplier = runemasterPlayer.RunicProjectileSpeedMultiplyer;
-
-            Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
-                player.whoAmI);
-        }
-
-        return false;
-    }
-
-    protected override List<string> GetRunicEffectDescriptions()
-    {
-        List<string> descriptions = base.GetRunicEffectDescriptions();
-
         var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
-
-        string focusLine = $"{focusColored}: ";
-        focusLine += "Releases an explosion of projectiles around you and greatly increases life regeneration";
-
-        descriptions.Add(focusLine);
-
-        return descriptions;
+        block.AddLine($"{focusColored}: Releases an explosion of projectiles around you");
+        block.AddLine($"{focusColored}: Greatly increases life regeneration");
     }
-
-    // Dropped by WoF
 }

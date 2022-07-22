@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -16,6 +17,10 @@ namespace Yggdrasil.Runemaster.Content.Items;
 public abstract class RuneTablet : YggdrasilItem
 {
     protected abstract int ProjectileId { get; }
+
+    protected abstract int ProjectileCount { get; }
+
+    protected abstract float AttackConeSize { get; }
 
     public override void SetStaticDefaults()
     {
@@ -44,24 +49,6 @@ public abstract class RuneTablet : YggdrasilItem
         return allowedPrefixes[prefixIndex];
     }
 
-    public override void ModifyTooltips(List<TooltipLine> tooltips)
-    {
-        // Class title additions
-        int lineIndex = tooltips.FindIndex(x => x.Name == "ItemName" && x.Mod == "Terraria");
-        if (lineIndex >= 0)
-        {
-            string title = RuneConfig.ColoredRunemasterTitleLabel;
-            tooltips.Insert(lineIndex + 1, new TooltipLine(Mod, "ClassTitle", title));
-        }
-
-        List<string> runicDescriptions = GetRunicEffectDescriptions();
-        for (var i = 0; i < runicDescriptions.Count; i++)
-        {
-            string description = runicDescriptions[i];
-            tooltips.Add(new TooltipLine(Mod, $"RunicEffectDescription_{i}", description));
-        }
-    }
-
     public override bool AltFunctionUse(Player player)
     {
         RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
@@ -87,13 +74,51 @@ public abstract class RuneTablet : YggdrasilItem
         return base.UseItem(player);
     }
 
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity,
+        int type, int damage, float knockback)
+    {
+        RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
+
+        CreateConeAttack(source, player, runemasterPlayer.RunicProjectileSpeedMultiplier, type, damage, knockback);
+
+        return false;
+    }
+
     protected virtual void OnFocusActivated(Player player)
     {
     }
 
-    protected virtual List<string> GetRunicEffectDescriptions()
+    protected override IList<TooltipBlock> CreateTooltipBlocks()
     {
-        return new List<string>();
+        var titleBlock = new TooltipBlock(TabletTooltipName.ClassTitle);
+        titleBlock.AddLine(RuneConfig.ColoredRunemasterTitleLabel);
+        titleBlock.SetInsertIndexFunc(tooltips =>
+        {
+            int lineIndex = tooltips.FindIndex(x => x.Name == "ItemName" && x.Mod == "Terraria");
+            return lineIndex >= 0
+                ? lineIndex + 1
+                : null;
+        });
+
+        var focusBlock = new TooltipBlock(TabletTooltipName.Focus);
+
+        ModifyFocusTooltipBlock(focusBlock);
+
+        var blocks = new List<TooltipBlock>
+        {
+            titleBlock
+        };
+
+        if (focusBlock.LineCount > 0)
+        {
+            blocks.Add(focusBlock);
+        }
+
+        return blocks;
+    }
+
+    protected virtual void ModifyFocusTooltipBlock(TooltipBlock block)
+    {
     }
 
     private static void RemoveInsanity(Player player)
@@ -137,5 +162,34 @@ public abstract class RuneTablet : YggdrasilItem
             player.statLife += (int)(insanity * multiplier);
             player.HealEffect(insanity);
         }
+    }
+
+    protected virtual void CreateConeAttack(IEntitySource source, Player player, float speed, int type, int damage,
+        float knockback)
+    {
+        float coneSize = MathHelper.Pi / AttackConeSize;
+        float coneOffset = MathHelper.Pi / (AttackConeSize * 2f);
+
+        RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
+        runemasterPlayer.Insanity++;
+
+        for (var i = 0; i < ProjectileCount; i++)
+        {
+            Vector2 direction = Main.MouseWorld - player.Center;
+            direction.Normalize();
+
+            Vector2 velocity = Main.rand.NextVector2Unit(direction.ToRotation() - coneOffset, coneSize);
+            velocity *= speed;
+
+            int index = Projectile.NewProjectile(source, player.Center, velocity, type, damage, knockback,
+                player.whoAmI);
+
+            OnConeProjectileCreated(source, player.Center, velocity, type, damage, knockback, player.whoAmI, index);
+        }
+    }
+
+    protected virtual void OnConeProjectileCreated(IEntitySource source, Vector2 position, Vector2 velocity, int type,
+        int damage, float knockback, int owner, int index)
+    {
     }
 }

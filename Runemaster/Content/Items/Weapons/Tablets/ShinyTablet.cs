@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
@@ -17,6 +15,10 @@ public class ShinyTablet : RuneTablet
     private const int ExplosionProjectileCount = 9;
 
     protected override int ProjectileId => ModContent.ProjectileType<ShinyTabletProjectile>();
+
+    protected override int ProjectileCount => 3;
+
+    protected override float AttackConeSize => 8f;
 
     public override void SetStaticDefaults()
     {
@@ -37,37 +39,6 @@ public class ShinyTablet : RuneTablet
         Item.rare = ItemRarityID.White;
     }
 
-    protected override void OnFocusActivated(Player player)
-    {
-        int projectileId = ModContent.ProjectileType<ShinyTabletProjectile>();
-        CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
-    }
-
-    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity,
-        int type, int damage, float knockback)
-    {
-        // THE ATTACK
-
-        RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
-        const int NumProjectiles = 3; // The number of projectiles.
-
-        runemasterPlayer.Insanity++;
-
-        for (int i = 0; i < NumProjectiles; i++)
-        {
-            Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-            float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 16);
-            Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 8);
-
-            float SpeedMultiplier = runemasterPlayer.RunicProjectileSpeedMultiplyer;
-
-            Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
-                player.whoAmI);
-        }
-
-        return false;
-    }
-
     public override void HoldItem(Player player)
     {
         base.HoldItem(player);
@@ -77,20 +48,6 @@ public class ShinyTablet : RuneTablet
         var centerY = (int)runemasterPlayer.Player.Center.Y / 16;
 
         Lighting.AddLight(centerX, centerY, 0.4f, 0.4f, 0.1f);
-    }
-
-    protected override List<string> GetRunicEffectDescriptions()
-    {
-        List<string> descriptions = base.GetRunicEffectDescriptions();
-
-        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
-
-        string focusLine = $"{focusColored}: ";
-        focusLine += "Releases a small explosion of projectiles around you & Shows the location of treasure and ore";
-
-        descriptions.Add(focusLine);
-
-        return descriptions;
     }
 
     public override void AddRecipes()
@@ -106,5 +63,18 @@ public class ShinyTablet : RuneTablet
             .AddIngredient(ItemID.PlatinumBar, 5)
             .AddTile(TileID.Anvils)
             .Register();
+    }
+
+    protected override void OnFocusActivated(Player player)
+    {
+        int projectileId = ModContent.ProjectileType<ShinyTabletProjectile>();
+        CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
+    }
+
+    protected override void ModifyFocusTooltipBlock(TooltipBlock block)
+    {
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
+        block.AddLine($"{focusColored}: Releases a small explosion of projectiles around you");
+        block.AddLine($"{focusColored}: Shows the location of treasure and ore");
     }
 }

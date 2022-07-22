@@ -21,18 +21,22 @@ namespace Yggdrasil.Content.Players;
 public class RunemasterPlayer : YggdrasilPlayer
 {
     public int RunePower { get; set; }
+    
     public int FocusPowerTime { get; set; }
     public int FocusThreshold { get; set; }
     public int Focus { get; set; }
     public int FocusTimer { get; set; }
+    
     public int InsanityThreshold { get; set; }
     public int Insanity { get; set; }
     public int InsanityTimer { get; set; }
     public int InsanityRemoverValue { get; set; }
+    public float RunicProjectileSpeedMultiplier { get; set; }
+    
     public int RunicProjectilesAdd { get; set; }
     public float InsanityHurtValue { get; set; }
     public float SlowDebuffValue { get; set; }
-    public float RunicProjectileSpeedMultiplyer { get; set; }
+    
 
     public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -198,7 +202,7 @@ public class RunemasterPlayer : YggdrasilPlayer
         InsanityRemoverValue = 10;
         InsanityHurtValue = 0.25f;
         RunicProjectilesAdd = 0;
-        RunicProjectileSpeedMultiplyer = 10f;
+        RunicProjectileSpeedMultiplier = 10f;
     }
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)

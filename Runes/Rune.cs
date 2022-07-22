@@ -64,7 +64,7 @@ public abstract class Rune : YggdrasilItem
         var descriptionBlock = new TooltipBlock(RuneTooltipName.RuneDescription);
         descriptionBlock.AddLine(TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, ItemDescription));
 
-        var effectBlock = new TooltipBlock(RuneTooltipName.RuneEffectDescriptions, 1);
+        var effectBlock = new TooltipBlock(RuneTooltipName.RuneEffectDescription, 1);
 
         ModifyEffectTooltipBlock(effectBlock);
 

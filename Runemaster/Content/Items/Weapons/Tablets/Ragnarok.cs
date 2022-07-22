@@ -18,10 +18,14 @@ public class Ragnarok : RuneTablet
 
     protected override int ProjectileId => ModContent.ProjectileType<RagnarokProjectile>();
 
+    protected override int ProjectileCount => 15;
+
+    protected override float AttackConeSize => 14f;
+
     public override void SetStaticDefaults()
     {
         base.SetStaticDefaults();
-        
+
         Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(34, 6));
 
         DisplayName.SetDefault("Ragnarök");
@@ -31,7 +35,7 @@ public class Ragnarok : RuneTablet
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Item.damage = 60;
         Item.useTime = 10;
         Item.useAnimation = 10;
@@ -41,60 +45,33 @@ public class Ragnarok : RuneTablet
         Item.rare = ItemRarityID.Red;
     }
 
-    protected override void OnFocusActivated(Player player)
-    {
-        int projectileId = ModContent.ProjectileType<RagnarokProjectileExplosion>();
-        CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
-    }
-
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position,
         Vector2 velocity, int type, int damage, float knockback)
     {
-        // THE ATTACK
-
         RunemasterPlayer runemasterPlayer = player.GetRunemasterPlayer();
-        const int NumProjectiles = 15; // The number of projectiles.
+        var speed = runemasterPlayer.RunicProjectileSpeedMultiplier * 2f;
 
-        runemasterPlayer.Insanity++;
+        CreateConeAttack(source, player, speed, type, damage, knockback);
 
-        for (int i = 0; i < NumProjectiles; i++)
-        {
-            Vector2 MouseToPlayer = Main.MouseWorld - player.Center;
-            float Rotation = (MouseToPlayer.ToRotation() - MathHelper.Pi / 28);
-            Vector2 Speed = Main.rand.NextVector2Unit(Rotation, MathHelper.Pi / 14);
-
-            float SpeedMultiplier =
-                runemasterPlayer.RunicProjectileSpeedMultiplyer *
-                2; // Times 2 cuz that's a badass weapon so projectiles reach farther
-
-            Projectile.NewProjectile(source, Main.LocalPlayer.Center, Speed * SpeedMultiplier, type, damage, knockback,
-                player.whoAmI);
-        }
-
-        // 1/5 chances of shooting a rune projectile when attacking
-        var Type = ModContent.ProjectileType<RagnarokProjectileLazerShot>();
         if (Main.rand.NextBool(5))
         {
-            Projectile.NewProjectile(source, Main.LocalPlayer.Center, velocity, Type, damage * 3, knockback,
+            int projectileId = ModContent.ProjectileType<RagnarokProjectileLazerShot>();
+            Projectile.NewProjectile(source, player.Center, velocity, projectileId, damage * 3, knockback,
                 player.whoAmI);
         }
 
         return false;
     }
 
-    protected override List<string> GetRunicEffectDescriptions()
+    protected override void OnFocusActivated(Player player)
     {
-        List<string> descriptions = base.GetRunicEffectDescriptions();
-
-        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
-
-        string focusLine = $"{focusColored}: ";
-        focusLine += "Bring the end of the world upon your enemies";
-
-        descriptions.Add(focusLine);
-
-        return descriptions;
+        int projectileId = ModContent.ProjectileType<RagnarokProjectileExplosion>();
+        CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
     }
 
-    //Dropped by Moonlord
+    protected override void ModifyFocusTooltipBlock(TooltipBlock block)
+    {
+        var focusColored = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "Focus");
+        block.AddLine($"{focusColored}: Bring the end of the world upon your enemies");
+    }
 }
