@@ -27,7 +27,7 @@ public class ColdIronBar : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<ColdIronBarTile>();
         Item.placeStyle = 0;
-        Item.value = Item.buyPrice(0, 1, 20);
+        Item.value = Item.sellPrice(0, 1, 20);
         Item.rare = ItemRarityID.Yellow;
     }
 

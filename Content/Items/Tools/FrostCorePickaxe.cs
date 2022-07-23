@@ -25,15 +25,15 @@ public class FrostCorePickaxe : YggdrasilItem
         Item.autoReuse = true;
         Item.damage = 18;
         Item.crit = 0;
-        Item.knockBack = 10;
+        Item.knockBack = 3;
         Item.pick = 55;
-        Item.value = Item.buyPrice(0, 0, 23);
+        Item.value = Item.sellPrice(0, 0, 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(11)
+        .AddIngredient<FrostCoreBar>(10)
         .AddIngredient<NordicWood>(5)
         .AddTile(TileID.Anvils)
         .Register();

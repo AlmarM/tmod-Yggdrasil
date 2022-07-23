@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ public class NordicWoodTable : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        //Tooltip.SetDefault("Nordic Wood Chair");
+        Tooltip.SetDefault("Nordic Wood Table");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -26,6 +27,7 @@ public class NordicWoodTable : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<NordicWoodTableTile>();
         Item.rare = ItemRarityID.White;
+        Item.value = Item.sellPrice(0, 0, 0, 60);
     }
 
     public override void AddRecipes() => CreateRecipe()

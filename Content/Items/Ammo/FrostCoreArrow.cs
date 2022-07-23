@@ -20,7 +20,7 @@ namespace Yggdrasil.Content.Items.Ammo
 		public override void SetDefaults()
 		{
 			Item.rare = ItemRarityID.Blue;
-			Item.value = Item.buyPrice(0, 0, 0, 4);
+			Item.value = Item.sellPrice(0, 0, 0, 4);
 
 			Item.maxStack = 999;
 

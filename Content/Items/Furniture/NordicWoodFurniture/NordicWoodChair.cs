@@ -26,6 +26,7 @@ public class NordicWoodChair : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<NordicWoodChairTile>();
         Item.rare = ItemRarityID.White;
+
     }
 
     public override void AddRecipes() => CreateRecipe()

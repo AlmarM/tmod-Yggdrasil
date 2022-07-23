@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +25,7 @@ public class DvergrForge : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.value = 500;
+        Item.value = Item.sellPrice(0, 0, 5);
         Item.createTile = ModContent.TileType<DvergrForgeTile>();
         Item.rare = ItemRarityID.Blue;
     }

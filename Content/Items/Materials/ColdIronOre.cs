@@ -27,7 +27,7 @@ public class ColdIronOre : YggdrasilItem
         Item.createTile = ModContent.TileType<ColdIronTile>();
         Item.width = 12;
         Item.height = 12;
-        Item.value = Item.buyPrice(0, 0, 30);
+        Item.value = Item.sellPrice(0, 0, 30);
         Item.rare = ItemRarityID.Yellow;
     }
 }

@@ -24,7 +24,7 @@ namespace Yggdrasil.Content.Items.Accessories
         {
             Item.rare = ItemRarityID.LightRed;
             Item.accessory = true;
-            Item.value = Item.buyPrice(0, 3);
+            Item.value = Item.sellPrice(0, 3);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

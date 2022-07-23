@@ -28,7 +28,7 @@ public class ProtectiveRuneSlab : YggdrasilItem
     {
         Item.rare = ItemRarityID.Lime;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 7);
+        Item.value = Item.sellPrice(0, 7);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

@@ -24,7 +24,7 @@ public class RunemasterEmblem : YggdrasilItem
     {
         Item.rare = ItemRarityID.LightRed;
         Item.accessory = true;
-        Item.value = Item.buyPrice(0, 2);
+        Item.value = Item.sellPrice(0, 2);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

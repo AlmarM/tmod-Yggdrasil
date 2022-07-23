@@ -7,10 +7,10 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Yggdrasil.Content.Items.Furniture;
+using Yggdrasil.Content.Items.Furniture.Svartalvheim;
 using Yggdrasil.Content.Items.Others;
 
-namespace Yggdrasil.Content.Tiles.Furniture;
+namespace Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 
 public class SvartalvheimChestTile : YggdrasilTile
 {

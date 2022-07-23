@@ -31,7 +31,7 @@ public class MeadBasic : YggdrasilItem
         Item.maxStack = 30;
         Item.consumable = true;
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(0, 0, 0, 10);
+        Item.value = Item.sellPrice(0, 0, 0, 10);
         Item.buffType = ModContent.BuffType<HoneyMeadBuff>();
         Item.buffTime = TimeUtils.MinutesToTicks(4);
     }

@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ public class NordicWoodWorkbench : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        //Tooltip.SetDefault("Nordic Wood Work Bench");
+        Tooltip.SetDefault("Nordic Wood Work Bench");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -26,6 +27,7 @@ public class NordicWoodWorkbench : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<NordicWoodWorkbenchTile>();
         Item.rare = ItemRarityID.White;
+        Item.value = Item.sellPrice(0, 0, 0, 30);
     }
 
     public override void AddRecipes() => CreateRecipe()
