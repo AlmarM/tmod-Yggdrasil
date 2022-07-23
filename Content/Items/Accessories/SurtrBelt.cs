@@ -4,7 +4,6 @@ using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 

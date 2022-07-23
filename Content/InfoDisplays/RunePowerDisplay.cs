@@ -16,6 +16,7 @@ public class RunePowerDisplay : YggdrasilInfoDisplay
     {
         return Main.LocalPlayer.HasEffect<RunicSlab>();
     }
+
     // NOT USED ANYMORE FOR NOW
     public override string DisplayValue()
     {

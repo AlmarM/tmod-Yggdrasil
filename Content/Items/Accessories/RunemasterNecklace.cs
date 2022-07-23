@@ -6,7 +6,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
@@ -16,7 +15,6 @@ namespace Yggdrasil.Content.Items.Accessories
 
     public class RunemasterNecklace : YggdrasilItem
     {
-
         public override void SetStaticDefaults()
         {
             string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");

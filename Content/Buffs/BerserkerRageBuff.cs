@@ -22,7 +22,6 @@ public class BerserkerRageBuff : YggdrasilBuff
         player.GetCritChance<RunicDamageClass>() += 20;
         player.statDefense += 5;
 
-
         // DUST
         if (Main.rand.NextBool(5))
         {
@@ -31,8 +30,7 @@ public class BerserkerRageBuff : YggdrasilBuff
             var velocityY = player.velocity.Y * 0.5f;
 
             //Dust sparkling over the character
-            int d = Dust.NewDust(position, player.width, player.height, DustID.Lava, velocityX, velocityY,
-                100, default, 1f);
+            int d = Dust.NewDust(position, player.width, player.height, DustID.Lava, velocityX, velocityY, 100);
 
             Main.dust[d].noGravity = true;
             Main.dust[d].velocity.X *= 0.5f;

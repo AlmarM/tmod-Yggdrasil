@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 

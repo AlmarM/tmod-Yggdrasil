@@ -2,17 +2,13 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Extensions;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
 [AutoloadEquip(EquipType.Neck)]
 public class TrueDvergrMedallion : YggdrasilItem
 {
-    
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("True Dvergr Medallion");

@@ -2,16 +2,12 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Extensions;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
 [AutoloadEquip(EquipType.Neck)]
 public class DwarvenMedallion : YggdrasilItem
 {
-    
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Dwarven Medallion");

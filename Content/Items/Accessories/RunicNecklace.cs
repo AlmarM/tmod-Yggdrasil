@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
@@ -15,7 +14,6 @@ namespace Yggdrasil.Content.Items.Accessories
 
     public class RunicNecklace : YggdrasilItem
     {
-
         public override void SetStaticDefaults()
         {
             string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");

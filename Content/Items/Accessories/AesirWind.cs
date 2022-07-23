@@ -1,9 +1,6 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Yggdrasil.Configs;
-using Yggdrasil.Extensions;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Accessories;
 
@@ -11,7 +8,6 @@ public class AesirWind : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        
         DisplayName.SetDefault("Aesir Wind");
         Tooltip.SetDefault($"Allows the holder to double jump" +
                            $"\nIncreases jump height" +
