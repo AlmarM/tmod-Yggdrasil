@@ -58,14 +58,13 @@ public class WorldGenSystem : ModSystem
 
         if (SvartalvheimHouseIndex != -1)
         {
-            tasks.Insert(SvartalvheimHouseIndex + 1, new PassLegacy("Svartalvheim House", YggdrasilGenPasses.SvartalvheimMicroPass));
+            tasks.Insert(SvartalvheimHouseIndex + 1,
+                new PassLegacy("Svartalvheim House", YggdrasilGenPasses.SvartalvheimMicroPass));
         }
-
     }
 
     private void FrostCoreGen(GenerationProgress progress, GameConfiguration configuration)
     {
-        
         progress.Message = "Frostcore Ores";
 
         for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 0.0005); k++)
@@ -89,6 +88,4 @@ public class WorldGenSystem : ModSystem
             }
         }
     }
-
-    
 }
