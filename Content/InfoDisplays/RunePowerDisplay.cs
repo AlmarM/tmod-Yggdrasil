@@ -1,7 +1,7 @@
 using Terraria;
-using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
+using Yggdrasil.Runemaster.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.InfoDisplays;
 

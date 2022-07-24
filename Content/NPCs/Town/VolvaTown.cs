@@ -11,9 +11,9 @@ using Yggdrasil.World;
 using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
-using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runes.Content.Items.Minor;
 
 namespace Yggdrasil.Content.NPCs.Town

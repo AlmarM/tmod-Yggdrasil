@@ -28,6 +28,7 @@ public class DwarvenMedallion : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.pickSpeed -= .15f;
+
         if (player.ZoneRockLayerHeight)
         {
             player.statDefense += 1;

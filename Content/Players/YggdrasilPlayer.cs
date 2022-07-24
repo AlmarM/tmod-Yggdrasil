@@ -1,8 +1,8 @@
-using Terraria.ModLoader;
+using Yggdrasil.ModHooks.Player;
 
 namespace Yggdrasil.Content.Players;
 
-public class YggdrasilPlayer : ModPlayer
+public class YggdrasilPlayer : ModHookPlayer
 {
     public bool ZoneSvartalvheim { get; set; }
 
@@ -10,11 +10,15 @@ public class YggdrasilPlayer : ModPlayer
 
     public override void Initialize()
     {
+        base.Initialize();
+
         EffectsList = new EffectsList();
     }
 
     public override void ResetEffects()
     {
+        base.ResetEffects();
+        
         EffectsList.Clear();
     }
 }

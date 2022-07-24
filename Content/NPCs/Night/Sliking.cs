@@ -4,7 +4,6 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Banners;
 
 namespace Yggdrasil.Content.NPCs.Night;

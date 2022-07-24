@@ -20,5 +20,4 @@ public class TrueHeroFragment : YggdrasilItem
         Item.rare = ItemRarityID.Yellow;
         Item.value = Item.sellPrice(0, 10);
     }
-
 }

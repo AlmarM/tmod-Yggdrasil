@@ -31,15 +31,14 @@ public class TrueDvergrMedallion : YggdrasilItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.pickSpeed -= .5f;
+        player.lavaImmune = true;
+        player.fireWalk = true;
 
         if (player.ZoneRockLayerHeight)
         {
             player.statDefense += 10;
             player.endurance += 0.05f;
         }
-
-        player.lavaImmune = true;
-        player.fireWalk = true;
 
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .7f, .8f, .8f);
     }

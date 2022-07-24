@@ -20,5 +20,4 @@ public class BloodDrops : YggdrasilItem
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(0, 0, 0, 50);
     }
-
 }

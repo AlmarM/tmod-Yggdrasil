@@ -1,8 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
 
 namespace Yggdrasil.Globals;

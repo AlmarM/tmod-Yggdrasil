@@ -38,6 +38,4 @@ public class SvartalvheimMedallion : YggdrasilItem
 
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, .7f, .8f, .8f);
     }
-
-    //Found in Svartalvheim chest
 }

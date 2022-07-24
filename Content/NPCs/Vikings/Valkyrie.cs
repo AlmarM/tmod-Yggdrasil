@@ -16,6 +16,7 @@ using Yggdrasil.World;
 using Yggdrasil.Content.Projectiles.EnemyProjectile;
 using Yggdrasil.Content.Items.Weapons.Magic;
 using Yggdrasil.Content.Items.Consumables;
+using Yggdrasil.Runemaster.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 
