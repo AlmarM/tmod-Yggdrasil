@@ -11,7 +11,7 @@ public class SnowPlate : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Snow Plate");
-        Tooltip.SetDefault($"It's cold");
+        Tooltip.SetDefault("It's cold");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -21,11 +21,6 @@ public class SnowPlate : YggdrasilItem
         Item.rare = ItemRarityID.White;
         Item.defense = 3;
         Item.value = Item.sellPrice(0, 0, 5);
-    }
-
-    public override void UpdateEquip(Player player)
-    {
-        
     }
 
     public override void AddRecipes() => CreateRecipe()

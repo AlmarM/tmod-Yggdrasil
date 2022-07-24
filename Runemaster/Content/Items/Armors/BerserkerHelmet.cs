@@ -3,17 +3,16 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Runemaster;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
 public class BerserkerHelmet : YggdrasilItem
 {
-    
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
@@ -39,16 +38,13 @@ public class BerserkerHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
-        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1\nApplies Berserker Rage buff";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1" +
+                          "\nApplies Berserker Rage buff";
 
-        float HealthThreshold = .25f;
-        
-        var runePlayer = player.GetModPlayer<RunemasterPlayer>();
-        if (player.statLife < HealthThreshold * player.statLifeMax2)
+        if (player.statLife < 0.25f * player.statLifeMax2)
         {
             player.AddBuff(ModContent.BuffType<BerserkerRageBuff>(), 2);
         }
@@ -60,5 +56,4 @@ public class BerserkerHelmet : YggdrasilItem
     {
         player.GetDamage<RunicDamageClass>().Flat += 3;
     }
-
 }

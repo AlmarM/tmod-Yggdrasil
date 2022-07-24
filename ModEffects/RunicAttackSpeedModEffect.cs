@@ -30,9 +30,11 @@ public class RunicAttackSpeedModEffect : IPlayerUseSpeedMultiplierModHook
 
     public void PlayerUseSpeedMultiplier(Player player, Item item, ref float currentMultiplier)
     {
-        if (item.ModItem is RuneTablet)
+        if (item.ModItem is not RuneTablet)
         {
-            currentMultiplier += _multiplier;
+            return;
         }
+
+        currentMultiplier += _multiplier;
     }
 }

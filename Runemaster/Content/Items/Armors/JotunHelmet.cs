@@ -3,12 +3,12 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
 public class JotunHelmet : YggdrasilItem
@@ -38,17 +38,20 @@ public class JotunHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-
+        var runemasterPlayer = player.GetModPlayer<RunemasterPlayer>();
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
 
-        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1\nIncreases {insanityText} gauge by 8\nReduces damage taken by 5%\nIncrease max life by 20";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1" +
+                          $"\nIncreases {insanityText} gauge by 8" +
+                          "\nReduces damage taken by 5%" +
+                          "\nIncrease max life by 20";
 
         player.endurance += 0.05f;
         player.statLifeMax2 += 20;
-        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 8;
-        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
 
+        runemasterPlayer.InsanityThreshold += 8;
+        runemasterPlayer.InsanityRemoverValue += 1;
     }
 
     public override void UpdateEquip(Player player)

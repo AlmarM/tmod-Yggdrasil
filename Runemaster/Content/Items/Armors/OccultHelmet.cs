@@ -4,19 +4,21 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
-using Yggdrasil.Runemaster;
+using Yggdrasil.ModHooks.Player;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
-public class OccultHelmet : YggdrasilItem
+public class OccultHelmet : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
 {
-    
+    public int Priority { get; }
 
     public override void SetStaticDefaults()
     {
@@ -47,12 +49,14 @@ public class OccultHelmet : YggdrasilItem
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
 
-        player.setBonus = $"Increases {insanityText} gauge by 3                \nCritical hit caused by {runicText} weapons will confuse target\nApply Occult Buff"; //all the spaces there is a workaround because the text doesnt fit on screen
-    
-        player.SetEffect<OccultHelmet>();
+        //all the spaces there is a workaround because the text doesnt fit on screen
+        player.setBonus = $"Increases {insanityText} gauge by 3" +
+                          $"\nCritical hit caused by {runicText} weapons will confuse target" +
+                          "\nApply Occult Buff";
+
         player.AddBuff(ModContent.BuffType<OccultBuff>(), 2);
         player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 3;
-
+        player.GetYggdrasilPlayer().AddModHooks(this);
     }
 
     public override void UpdateEquip(Player player)
@@ -62,10 +66,20 @@ public class OccultHelmet : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<OccultShard>(15)
-            .AddIngredient(ItemID.Bone, 50)
-            .AddTile<DvergrForgeTile>()
-            .Register();
+        .AddIngredient<OccultShard>(15)
+        .AddIngredient(ItemID.Bone, 50)
+        .AddTile<DvergrForgeTile>()
+        .Register();
 
-     
+
+    public void OnPlayerHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
+        bool crit)
+    {
+        if (!crit || proj.ModProjectile is not RunicProjectile)
+        {
+            return;
+        }
+
+        target.AddBuff(BuffID.Confused, TimeUtils.SecondsToTicks(3));
+    }
 }

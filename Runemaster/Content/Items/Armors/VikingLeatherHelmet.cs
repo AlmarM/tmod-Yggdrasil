@@ -3,22 +3,18 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
 public class VikingLeatherHelmet : YggdrasilItem
 {
-
     public override void SetStaticDefaults()
     {
-
         DisplayName.SetDefault("Viking Helmet");
-        //Tooltip.SetDefault("");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -40,7 +36,9 @@ public class VikingLeatherHelmet : YggdrasilItem
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        player.setBonus = $"Increases {runicText} damage by 1\n1% increased {runicText} critical strike chance\nIncreases defense by 1";
+        player.setBonus = $"Increases {runicText} damage by 1" +
+                          $"\n1% increased {runicText} critical strike chance" +
+                          $"\nIncreases defense by 1";
 
         player.GetDamage<RunicDamageClass>().Flat += 1;
         player.GetCritChance<RunicDamageClass>() += 1;
@@ -50,16 +48,15 @@ public class VikingLeatherHelmet : YggdrasilItem
     public override void AddRecipes()
     {
         CreateRecipe()
-        .AddIngredient<Linnen>(5)
-        .AddIngredient(ItemID.CopperBar)
-        .AddTile(TileID.Anvils)
-        .Register();
+            .AddIngredient<Linnen>(5)
+            .AddIngredient(ItemID.CopperBar)
+            .AddTile(TileID.Anvils)
+            .Register();
 
         CreateRecipe()
-        .AddIngredient<Linnen>(5)
-        .AddIngredient(ItemID.TinBar)
-        .AddTile(TileID.Anvils)
-        .Register();
-
+            .AddIngredient<Linnen>(5)
+            .AddIngredient(ItemID.TinBar)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 }

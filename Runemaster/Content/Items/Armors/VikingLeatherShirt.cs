@@ -2,11 +2,10 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Body)]
 public class VikingLeatherShirt : YggdrasilItem
@@ -14,7 +13,6 @@ public class VikingLeatherShirt : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Viking Leather Shirt");
-        //Tooltip.SetDefault("");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

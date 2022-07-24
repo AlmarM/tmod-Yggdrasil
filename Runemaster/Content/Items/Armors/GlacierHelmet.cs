@@ -3,18 +3,22 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Buffs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Utils;
 using Yggdrasil.Extensions;
-using Yggdrasil.Runemaster;
+using Yggdrasil.ModHooks.Player;
+using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
-public class GlacierHelmet : YggdrasilItem
+public class GlacierHelmet : YggdrasilItem, IPlayerOnHitByNPCModHook
 {
+    public int Priority { get; }
+
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
@@ -40,16 +44,18 @@ public class GlacierHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
 
-        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1\nIncreases {insanityText} gauge by 5\nGetting hit will slow down the enemy";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 1" +
+                          $"\nIncreases {insanityText} gauge by 5" +
+                          "\nGetting hit will slow down the enemy";
 
-        player.SetEffect<GlacierHelmet>();
-        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 5;
-        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 1;
+        player.GetYggdrasilPlayer().AddModHooks(this);
 
+        var runemasterPlayer = player.GetModPlayer<RunemasterPlayer>();
+        runemasterPlayer.InsanityThreshold += 5;
+        runemasterPlayer.InsanityRemoverValue += 1;
     }
 
     public override void UpdateEquip(Player player)
@@ -62,4 +68,9 @@ public class GlacierHelmet : YggdrasilItem
         .AddIngredient<GlacierShards>(10)
         .AddTile<DvergrPowerForgeTile>()
         .Register();
+
+    public void OnHitByNPC(Player player, NPC npc, int damage, bool crit)
+    {
+        npc.AddBuff(ModContent.BuffType<SlowDebuff>(), TimeUtils.SecondsToTicks(2));
+    }
 }

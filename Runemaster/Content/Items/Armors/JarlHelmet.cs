@@ -3,19 +3,17 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
 public class JarlHelmet : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-
         DisplayName.SetDefault("Jarl Helmet");
         Tooltip.SetDefault("The helm of a true leader");
 
@@ -37,14 +35,15 @@ public class JarlHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-        player.setBonus = $"Increases {runicText} damage by 2\n2% increased {runicText} critical strike chance\nSlowly regenerate life";
+
+        player.setBonus = $"Increases {runicText} damage by 2" +
+                          $"\n2% increased {runicText} critical strike chance" +
+                          "\nSlowly regenerate life";
 
         player.GetDamage<RunicDamageClass>().Flat += 2;
         player.GetCritChance<RunicDamageClass>() += 2;
         player.lifeRegen += 5;
-        
     }
 
     public override void UpdateEquip(Player player)

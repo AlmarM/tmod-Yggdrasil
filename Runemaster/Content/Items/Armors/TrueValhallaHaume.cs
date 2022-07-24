@@ -3,13 +3,13 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Runemaster;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
 public class TrueValhallaHaume : YggdrasilItem
@@ -39,19 +39,25 @@ public class TrueValhallaHaume : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-
+        var runemasterPlayer = player.GetModPlayer<RunemasterPlayer>();
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 4\nIncreases {insanityText} gauge by 15\nIncreases {runicText} weapons range\nReduces damage taken by 8%\nRegenerates life\nGrants immunity to knockback";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 4" +
+                          $"\nIncreases {insanityText} gauge by 15" +
+                          $"\nIncreases {runicText} weapons range" +
+                          "\nReduces damage taken by 8%" +
+                          "\nRegenerates life" +
+                          "\nGrants immunity to knockback";
 
         player.endurance += 0.08f;
         player.lifeRegen += 8;
-        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 15;
-        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 3;
         player.noKnockback = true;
-        player.GetModPlayer<RunemasterPlayer>().RunicProjectileSpeedMultiplier += 2f;
+
+        runemasterPlayer.InsanityThreshold += 15;
+        runemasterPlayer.InsanityRemoverValue += 3;
+        runemasterPlayer.RunicProjectileSpeedMultiplier += 2f;
     }
 
     public override void UpdateEquip(Player player)
@@ -60,7 +66,7 @@ public class TrueValhallaHaume : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.SquireAltHead) //Valhalla Helm
+        .AddIngredient(ItemID.SquireAltHead) // Valhalla Helm
         .AddIngredient<TrueHeroFragment>()
         .AddIngredient<SunPebble>()
         .AddTile<DvergrPowerForgeTile>()

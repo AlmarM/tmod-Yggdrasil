@@ -2,39 +2,36 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Runemaster;
-using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor.Runemaster;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
-[AutoloadEquip(EquipType.Body)]
-public class RunemasterCore : YggdrasilItem
+[AutoloadEquip(EquipType.Legs)]
+public class RunemasterSabaton : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
+        DisplayName.SetDefault("Runemaster Sabaton");
+        Tooltip.SetDefault("35% increase movement speed");
 
-        DisplayName.SetDefault("Runemaster Core");
-        Tooltip.SetDefault($"15% increased {runicText} critical strike chance");
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.value = Item.sellPrice(0, 10);
         Item.rare = ItemRarityID.Red;
         Item.defense = 30;
+        Item.value = Item.sellPrice(0, 10);
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.GetCritChance<RunicDamageClass>() += 15;
+        player.moveSpeed += 0.35f;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.LunarBar, 10)
+        .AddIngredient(ItemID.LunarBar, 8)
         .AddIngredient<ColdIronBar>(3)
         .AddTile(TileID.LunarCraftingStation)
         .Register();

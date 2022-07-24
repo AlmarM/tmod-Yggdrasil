@@ -1,11 +1,12 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Tiles.Furniture;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Legs)]
 public class TrueValhallaSabaton : YggdrasilItem
@@ -13,7 +14,7 @@ public class TrueValhallaSabaton : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("True Valhalla Sabaton");
-        Tooltip.SetDefault($"30% increase movement speed");
+        Tooltip.SetDefault("30% increase movement speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -31,7 +32,7 @@ public class TrueValhallaSabaton : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient(ItemID.SquireAltPants) //Valhalla Greaves
+        .AddIngredient(ItemID.SquireAltPants) // Valhalla Greaves
         .AddIngredient<TrueHeroFragment>()
         .AddIngredient<SunPebble>()
         .AddTile<DvergrPowerForgeTile>()

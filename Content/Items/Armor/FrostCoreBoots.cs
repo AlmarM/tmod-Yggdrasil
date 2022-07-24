@@ -13,7 +13,7 @@ public class FrostCoreBoots : YggdrasilItem
     {
         DisplayName.SetDefault("Frostcore Boots");
         Tooltip.SetDefault("It's really cold!" +
-                            "\n5 % increase movement speed");
+                           "\n5 % increase movement speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

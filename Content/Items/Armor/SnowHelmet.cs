@@ -8,11 +8,10 @@ namespace Yggdrasil.Content.Items.Armor;
 [AutoloadEquip(EquipType.Head)]
 public class SnowHelmet : YggdrasilItem
 {
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Snow Helmet");
-        Tooltip.SetDefault($"It's cold");
+        Tooltip.SetDefault("It's cold");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -32,19 +31,14 @@ public class SnowHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "Grants + 1 defense\nGrants an additional 4 defense in snow biome";
-
+        player.setBonus = "Grants + 1 defense" +
+                          "\nGrants an additional 4 defense in snow biome";
         player.statDefense += 1;
 
         if (player.ZoneSnow)
         {
             player.statDefense += 4;
         }
-    }
-
-    public override void UpdateEquip(Player player)
-    {
-        
     }
 
     public override void AddRecipes() => CreateRecipe()

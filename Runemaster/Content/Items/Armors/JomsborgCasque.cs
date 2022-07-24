@@ -3,18 +3,21 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Utils;
 using Yggdrasil.Extensions;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Runemaster;
+using Yggdrasil.ModHooks.Player;
+using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Head)]
-public class JomsborgCasque : YggdrasilItem
+public class JomsborgCasque : YggdrasilItem, IPlayerUseSpeedMultiplierModHook
 {
+    public int Priority { get; }
+
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
@@ -40,18 +43,21 @@ public class JomsborgCasque : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-
+        var runemasterPlayer = player.GetModPlayer<RunemasterPlayer>();
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 2\nIncreases {insanityText} gauge by 10\nGrants immunity to knockback\nThe more {insanityText}, the more {runicText} attack speed";
+        player.setBonus = $"Increases {insanityText} removed by {focusText} power by 2" +
+                          $"\nIncreases {insanityText} gauge by 10" +
+                          "\nGrants immunity to knockback" +
+                          $"\nThe more {insanityText}, the more {runicText} attack speed";
 
         player.noKnockback = true;
         player.SetEffect<JomsborgCasque>();
-        player.GetModPlayer<RunemasterPlayer>().InsanityThreshold += 10;
-        player.GetModPlayer<RunemasterPlayer>().InsanityRemoverValue += 2;
 
+        runemasterPlayer.InsanityThreshold += 10;
+        runemasterPlayer.InsanityRemoverValue += 2;
     }
 
     public override void UpdateEquip(Player player)
@@ -63,4 +69,16 @@ public class JomsborgCasque : YggdrasilItem
         .AddIngredient<SturdyLeaf>(10)
         .AddTile<DvergrPowerForgeTile>()
         .Register();
+
+
+    public void PlayerUseSpeedMultiplier(Player player, Item item, ref float currentMultiplier)
+    {
+        if (item.ModItem is not RuneTablet)
+        {
+            return;
+        }
+
+        var runemasterPlayer = player.GetModPlayer<RunemasterPlayer>();
+        currentMultiplier += runemasterPlayer.Insanity / 100f;
+    }
 }

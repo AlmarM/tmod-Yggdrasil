@@ -5,7 +5,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Items.Armor.Nordic;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Extensions;
@@ -32,38 +31,9 @@ public class RunemasterPlayer : YggdrasilPlayer
     public float InsanityHurtValue { get; set; }
     public float SlowDebuffValue { get; set; }
 
-    public override void OnHitByNPC(NPC npc, int damage, bool crit)
-    {
-        if (Player.HasEffect<GlacierHelmet>() || Player.HasEffect<NordicHaume>())
-        {
-            npc.AddBuff(ModContent.BuffType<SlowDebuff>(), 120);
-        }
-    }
-
-    public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-    {
-        if (crit && proj.ModProjectile is RunicProjectile)
-        {
-            if (Player.HasEffect<OccultHelmet>())
-            {
-                target.AddBuff(BuffID.Confused, 180);
-            }
-        }
-    }
-
     public override float UseSpeedMultiplier(Item item)
     {
         var speed = 1f;
-
-        if (item.ModItem is RuneTablet && Player.HasEffect<BerserkerBoots>())
-        {
-            speed += 0.1f;
-        }
-
-        if (item.ModItem is RuneTablet && Player.HasEffect<JomsborgCasque>())
-        {
-            speed += (float)Insanity / 100;
-        }
 
         if (item.ModItem is RuneTablet && Player.HasEffect<TheSunBuff>())
         {
@@ -71,12 +41,6 @@ public class RunemasterPlayer : YggdrasilPlayer
         }
 
         return speed;
-    }
-
-    //We check for runic power at the absolute end
-    //We make sure these gets activated both with rune and accessories potential +X runicpower
-    public override void PostUpdateEquips()
-    {
     }
 
     public override void PreUpdate()

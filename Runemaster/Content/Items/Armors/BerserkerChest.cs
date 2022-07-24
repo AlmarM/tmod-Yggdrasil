@@ -3,35 +3,33 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Extensions;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
-[AutoloadEquip(EquipType.Legs)]
-public class BerserkerBoots : YggdrasilItem
+[AutoloadEquip(EquipType.Body)]
+public class BerserkerChest : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        DisplayName.SetDefault("Berserker Boots");
-        Tooltip.SetDefault($"10% increase {runicText} attack speed" +
-                           "\n10% increase movement speed");
+        DisplayName.SetDefault("Berserker Chest");
+        Tooltip.SetDefault($"4% increased {runicText} critical strike chance");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.Orange;
-        Item.defense = 8;
         Item.value = Item.sellPrice(0, 0, 65);
+        Item.rare = ItemRarityID.Orange;
+        Item.defense = 6;
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.moveSpeed += 0.1f;
-        player.SetEffect<BerserkerBoots>();
+        player.GetCritChance<RunicDamageClass>() += 4;
     }
 }

@@ -2,20 +2,18 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Body)]
 public class JarlShirt : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        
         DisplayName.SetDefault("Jarl Shirt");
-        Tooltip.SetDefault($"It's pretty warm");
+        Tooltip.SetDefault("It's pretty warm");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,11 +23,6 @@ public class JarlShirt : YggdrasilItem
         Item.value = Item.sellPrice(0, 0, 30);
         Item.rare = ItemRarityID.Green;
         Item.defense = 5;
-    }
-
-    public override void UpdateEquip(Player player)
-    {
-        
     }
 
     public override void AddRecipes()

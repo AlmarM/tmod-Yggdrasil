@@ -16,6 +16,5 @@ public class OccultShard : YggdrasilItem
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Green;
         Item.value = Item.sellPrice(0, 0, 2);
-
     }
 }

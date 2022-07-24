@@ -16,6 +16,7 @@ using Yggdrasil.Content.Items.Weapons.Summon;
 using Yggdrasil.Content.Items.Tools;
 using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
+using Yggdrasil.Runemaster.Content.Items.Armors;
 
 namespace Yggdrasil.World;
 

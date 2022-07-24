@@ -16,6 +16,17 @@ public abstract class ModHookPlayer : ModPlayer
         InitializeModHookMap();
     }
 
+    public override void OnHitByNPC(NPC npc, int damage, bool crit)
+    {
+        IEnumerable<IPlayerOnHitByNPCModHook> hooks = GetModHooks<IPlayerOnHitByNPCModHook>();
+        hooks = hooks.OrderBy(h => h.Priority);
+
+        foreach (IPlayerOnHitByNPCModHook hook in hooks)
+        {
+            hook.OnHitByNPC(Player, npc, damage, crit);
+        }
+    }
+
     public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
     {
         IEnumerable<IPlayerOnHitNPCWithProjModHook> hooks = GetModHooks<IPlayerOnHitNPCWithProjModHook>();

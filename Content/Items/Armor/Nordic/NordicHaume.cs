@@ -10,7 +10,6 @@ namespace Yggdrasil.Content.Items.Armor.Nordic;
 [AutoloadEquip(EquipType.Head)]
 public class NordicHaume : YggdrasilItem
 {
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Nordic Haume");
@@ -39,7 +38,6 @@ public class NordicHaume : YggdrasilItem
         player.SetEffect<NordicHaume>();
         player.thorns += 2f;
         player.endurance += 0.05f;
-
     }
 
     public override void UpdateEquip(Player player)

@@ -9,12 +9,11 @@ namespace Yggdrasil.Content.Items.Armor;
 [AutoloadEquip(EquipType.Head)]
 public class FrostCoreHelmet : YggdrasilItem
 {
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Frostcore Helmet");
-        Tooltip.SetDefault("It's really cold!"+
-                            "\nAttackers also take some damage");
+        Tooltip.SetDefault("It's really cold!" +
+                           "\nAttackers also take some damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -34,12 +33,13 @@ public class FrostCoreHelmet : YggdrasilItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "Provides extra mobility on ice\nIce will not break when you fall on it\nGrants immunity to Chilled and Frozen";
+        player.setBonus = "Provides extra mobility on ice" +
+                          "\nIce will not break when you fall on it" +
+                          "\nGrants immunity to Chilled and Frozen";
 
         player.iceSkate = true;
         player.buffImmune[BuffID.Chilled] = true;
         player.buffImmune[BuffID.Frozen] = true;
-
     }
 
     public override void UpdateEquip(Player player)

@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Legs)]
 public class VikingLeatherBoots : YggdrasilItem
@@ -12,7 +13,6 @@ public class VikingLeatherBoots : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Viking Leather Boots");
-        //Tooltip.SetDefault("");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

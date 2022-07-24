@@ -1,37 +1,37 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Content.Items.Materials;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Legs)]
-public class JomsborgBoots : YggdrasilItem
+public class JotunGreaves : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        DisplayName.SetDefault("Jomsborg Boots");
-        Tooltip.SetDefault($"20% increase movement speed");
+        DisplayName.SetDefault("Jotun Greaves");
+        Tooltip.SetDefault("15% increase movement speed");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
 
     public override void SetDefaults()
     {
-        Item.rare = ItemRarityID.Lime;
-        Item.defense = 15;
-        Item.value = Item.sellPrice(0, 4, 80);
+        Item.rare = ItemRarityID.Pink;
+        Item.defense = 12;
+        Item.value = Item.sellPrice(0, 4);
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.moveSpeed += 0.2f;
+        player.moveSpeed += 0.15f;
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<SturdyLeaf>(10)
+        .AddIngredient(ItemID.HallowedBar, 10)
         .AddTile<DvergrPowerForgeTile>()
         .Register();
 }

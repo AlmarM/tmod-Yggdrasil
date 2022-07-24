@@ -13,7 +13,7 @@ public class FrostCorePlate : YggdrasilItem
     {
         DisplayName.SetDefault("Frostcore Plate");
         Tooltip.SetDefault("It's really cold!" +
-                            "\nAttackers also take some damage");
+                           "\nAttackers also take some damage");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

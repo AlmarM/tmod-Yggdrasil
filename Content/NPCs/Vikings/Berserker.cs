@@ -12,6 +12,7 @@ using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Others;
 using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Runemaster.Content.Items.Armors;
 using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;

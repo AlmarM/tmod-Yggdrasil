@@ -1,12 +1,11 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Configs;
+using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Items.Armor;
+namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
 [AutoloadEquip(EquipType.Legs)]
 public class OccultBoots : YggdrasilItem
@@ -14,7 +13,7 @@ public class OccultBoots : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Occult Boots");
-        Tooltip.SetDefault($"10% increase movement speed");
+        Tooltip.SetDefault("10% increase movement speed");
     }
 
     public override void SetDefaults()
@@ -30,8 +29,8 @@ public class OccultBoots : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<OccultShard>(15)
-            .AddIngredient(ItemID.Bone, 50)
-            .AddTile<DvergrForgeTile>()
-            .Register();
+        .AddIngredient<OccultShard>(15)
+        .AddIngredient(ItemID.Bone, 50)
+        .AddTile<DvergrForgeTile>()
+        .Register();
 }
