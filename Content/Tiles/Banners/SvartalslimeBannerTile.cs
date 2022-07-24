@@ -1,59 +1,17 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.NPCs.Svartalvheim;
 
-namespace Yggdrasil.Content.Tiles.Banners
+namespace Yggdrasil.Content.Tiles.Banners;
+
+public class SvartalslimeBannerTile : YggdrasilBannerTile
 {
-	public class SvartalslimeBannerTile : YggdrasilTile
-	{
-        public override void SetStaticDefaults()
-        {
-			Main.tileFrameImportant[Type] = true;
-			Main.tileNoAttach[Type] = true;
-			Main.tileLavaDeath[Type] = true;
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
-			TileObjectData.newTile.Height = 3;
-			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };		
-			TileObjectData.newTile.StyleHorizontal = true;
-			TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
-			TileObjectData.newTile.StyleWrapLimit = 111;
-			TileObjectData.addTile(Type);
+    protected override int BannerType => ModContent.ItemType<SvartalslimeBanner>();
 
-			DustType = -1;
-			TileID.Sets.DisableSmartCursor[Type] = true;
+    protected override int[] NpcTypes => new[] { ModContent.NPCType<Svartalslime>() };
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Svartalslime Banner");
-			AddMapEntry(new Color(125, 64, 64), name);
-		}
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<SvartalslimeBanner>());
-		}
+    protected override string MapEntryName => "Svartalslime Banner";
 
-		public override void NearbyEffects(int i, int j, bool closer)
-		{
-			if (closer)
-			{
-				Player player = Main.LocalPlayer;
-				Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<Svartalslime>()] = true;
-				Main.SceneMetrics.hasBanner = true;
-			}
-		}
-
-		public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
-		{
-			if (i % 2 == 1)
-			{
-				spriteEffects = SpriteEffects.FlipHorizontally;
-			}
-		}
-	}
+    protected override Color MapEntryColor => new(125, 64, 64);
 }

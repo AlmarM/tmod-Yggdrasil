@@ -1,36 +1,17 @@
-using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Tiles.Banners;
 
-namespace Yggdrasil.Content.Items.Banners
+namespace Yggdrasil.Content.Items.Banners;
+
+public class SvartalslimeBanner : YggdrasilBannerItem
 {
-    public class SvartalslimeBanner : YggdrasilItem
+    protected override int BannerTileType => ModContent.TileType<SvartalslimeBannerTile>();
+
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        { 
-            DisplayName.SetDefault("Svartalslime Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Svartalslime");
+        base.SetStaticDefaults();
 
-          CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-        public override void SetDefaults()
-        {
-            Item.width = 10;
-            Item.height = 24;
-            Item.maxStack = 99;
-            Item.useTurn = true;
-            Item.autoReuse = true;
-            Item.useAnimation = 15;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.consumable = true;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(0, 0, 2, 0);
-            Item.createTile = ModContent.TileType<SvartalslimeBannerTile>();
-            Item.placeStyle = 0;
-        }
+        DisplayName.SetDefault("Svartalslime Banner");
+        Tooltip.SetDefault("Nearby players get a bonus against: Svartalslime");
     }
-
 }
