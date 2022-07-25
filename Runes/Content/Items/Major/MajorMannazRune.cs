@@ -10,6 +10,7 @@ public class MajorMannazRune : MannazRune
     protected override RuneTier Tier => RuneTier.Major;
 
     protected override float DamageBonus => 0.2f;
+
     protected override float Distance => 500f;
 
     protected override int Rarity => ItemRarityID.Yellow;

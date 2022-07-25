@@ -1,3 +1,5 @@
+using Yggdrasil.Configs;
+
 namespace Yggdrasil.Runes;
 
 public class RuneTooltipText
@@ -89,7 +91,7 @@ public class RuneTooltipText
     {
         Name = "Jera",
         DescriptionFormat = "A {0} rune granting peace.",
-        EffectDescriptionFormat = "Removes {0} Aggro"
+        EffectDescriptionFormat = "Removes {0} aggro"
     };
 
     public static RuneTooltipText Kenaz = new()
@@ -123,7 +125,7 @@ public class RuneTooltipText
     public static RuneTooltipText Othala = new()
     {
         Name = "Othala",
-        DescriptionFormat = "A {0} rune granting pocession.",
+        DescriptionFormat = "A {0} rune granting possession.",
         EffectDescriptionFormat = "Grants {0}% chance to not consume ammo"
     };
 
@@ -137,8 +139,8 @@ public class RuneTooltipText
     public static RuneTooltipText Raidho = new()
     {
         Name = "Raidho",
-        DescriptionFormat = "A {0} rune granting fury.",
-        EffectDescriptionFormat = "Grants +{0}% throw damage"
+        DescriptionFormat = "A {0} rune granting celerity.",
+        EffectDescriptionFormat = $"Grants +{{0}}% {RuneConfig.ColoredRunicDamageLabel} damage"
     };
 
     public static RuneTooltipText Sowilo = new()
@@ -159,7 +161,7 @@ public class RuneTooltipText
     {
         Name = "Tiwaz",
         DescriptionFormat = "A {0} rune granting honor.",
-        EffectDescriptionFormat = "Grants +{0}% runic damage"
+        EffectDescriptionFormat = $"Grants +{{0}}% {RuneConfig.ColoredRunicDamageLabel} damage"
     };
 
     public static RuneTooltipText Uruz = new()

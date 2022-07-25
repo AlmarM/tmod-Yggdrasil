@@ -18,5 +18,4 @@ public class MinorIngwazRune : IngwazRune
         .AddIngredient(ItemID.HealingPotion, 5)
         .AddTile<DvergrForgeTile>()
         .Register();
-
 }

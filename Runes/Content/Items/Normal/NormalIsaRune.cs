@@ -10,6 +10,7 @@ public class NormalIsaRune : IsaRune
     protected override RuneTier Tier => RuneTier.Normal;
 
     protected override float DamageBonus => 0.5f;
+    
     protected override float HealthThreshold => 0.12f;
 
     protected override int Rarity => ItemRarityID.Lime;

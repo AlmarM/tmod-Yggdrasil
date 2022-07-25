@@ -18,5 +18,4 @@ public class MinorJeraRune : JeraRune
         .AddIngredient(ItemID.Shiverthorn, 5)
         .AddTile<DvergrForgeTile>()
         .Register();
-
 }

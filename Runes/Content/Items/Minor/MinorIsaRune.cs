@@ -9,6 +9,7 @@ public class MinorIsaRune : IsaRune
     protected override RuneTier Tier => RuneTier.Minor;
 
     protected override float DamageBonus => 0.25f;
+
     protected override float HealthThreshold => 0.1f;
 
     protected override int Rarity => ItemRarityID.Green;

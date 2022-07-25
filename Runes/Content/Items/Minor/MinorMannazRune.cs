@@ -9,6 +9,7 @@ public class MinorMannazRune : MannazRune
     protected override RuneTier Tier => RuneTier.Minor;
 
     protected override float DamageBonus => 0.1f;
+
     protected override float Distance => 500f;
 
     protected override int Rarity => ItemRarityID.Blue;

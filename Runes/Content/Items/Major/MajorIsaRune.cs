@@ -10,6 +10,7 @@ public class MajorIsaRune : IsaRune
     protected override RuneTier Tier => RuneTier.Major;
 
     protected override float DamageBonus => 1f;
+
     protected override float HealthThreshold => 0.15f;
 
     protected override int Rarity => ItemRarityID.Cyan;

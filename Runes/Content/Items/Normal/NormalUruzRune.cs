@@ -9,7 +9,7 @@ public class NormalUruzRune : UruzRune
 {
     protected override RuneTier Tier => RuneTier.Normal;
 
-    protected override float MeleeSpeedBonus => 0.05f;
+    protected override float MeleeSpeedBonus => 0.1f;
 
     protected override int Rarity => ItemRarityID.LightRed;
 

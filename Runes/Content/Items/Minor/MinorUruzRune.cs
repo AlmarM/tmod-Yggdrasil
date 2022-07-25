@@ -8,7 +8,7 @@ public class MinorUruzRune : UruzRune
 {
     protected override RuneTier Tier => RuneTier.Minor;
 
-    protected override float MeleeSpeedBonus => 0.03f;
+    protected override float MeleeSpeedBonus => 0.05f;
 
     protected override int Rarity => ItemRarityID.Blue;
 
