@@ -11,7 +11,7 @@ public class MajorEihwazRune : EihwazRune
 
     protected override float MeleeDamageBonus => 0.2f;
 
-    protected override int Rarity => ItemRarityID.LightRed;
+    protected override int Rarity => ItemRarityID.Yellow;
 
     protected override int Value => Item.sellPrice(silver: 20);
 
