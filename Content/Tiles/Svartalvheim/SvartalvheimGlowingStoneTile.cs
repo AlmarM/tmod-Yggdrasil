@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ObjectData;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Materials.Svartalvheim;
 using Terraria.DataStructures;
 
 namespace Yggdrasil.Content.Tiles.Svartalvheim;

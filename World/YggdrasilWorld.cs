@@ -10,13 +10,16 @@ using Yggdrasil.Content.Tiles.Furniture;
 using Terraria.ModLoader.IO;
 using System.IO;
 using Yggdrasil.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Ores;
 using Yggdrasil.Content.Tiles.Svartalvheim;
 using Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
 using Yggdrasil.Content.Items.Weapons.Summon;
 using Yggdrasil.Content.Items.Tools;
 using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runemaster.Content.Items.Armors;
+using Yggdrasil.Svartalvheim.Content.Items.Accessories;
 
 namespace Yggdrasil.World;
 
@@ -86,7 +89,7 @@ public class YggdrasilWorld : ModSystem
                 {
                     case 0:
                         itemsToAdd.Add((ModContent.ItemType<RunicPotion>(), Main.rand.Next(1, 2)));
-                        itemsToAdd.Add((ModContent.ItemType<FrostCoreBar>(), Main.rand.Next(1, 3)));
+                        itemsToAdd.Add((ModContent.ItemType<FrostcoreBar>(), Main.rand.Next(1, 3)));
                         itemsToAdd.Add((ModContent.ItemType<Linnen>(), Main.rand.Next(9, 15)));
                         itemsToAdd.Add((ItemID.GoldCoin, Main.rand.Next(1, 2)));
                         itemsToAdd.Add((ItemID.HealingPotion, Main.rand.Next(1, 2)));

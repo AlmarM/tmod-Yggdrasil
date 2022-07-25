@@ -5,8 +5,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.FrostCore;
 using Yggdrasil.Content.Projectiles.Ammo;
+using Yggdrasil.Frostcore.Content.Items.Weapons;
 
 namespace Yggdrasil.Content.Items.Weapons.Range
 {
@@ -53,7 +53,7 @@ namespace Yggdrasil.Content.Items.Weapons.Range
 		}
 
 		public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<FrostCoreBow>()
+            .AddIngredient<FrostcoreBow>()
 			.AddIngredient<GlacierShards>(10)
 			.AddTile(TileID.MythrilAnvil)
 			.Register();

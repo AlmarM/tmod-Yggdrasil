@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Accessories;
@@ -42,7 +43,7 @@ public class FrostGiantShard : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(10)
+        .AddIngredient<FrostcoreBar>(10)
         .AddIngredient(ItemID.FrostCore)
         .AddTile<DvergrForgeTile>()
         .Register();

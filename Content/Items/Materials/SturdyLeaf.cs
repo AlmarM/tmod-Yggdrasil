@@ -18,7 +18,6 @@ public class SturdyLeaf : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Lime;
-        Item.value = Item.sellPrice(0, 1);
+        Item.value = Item.sellPrice(gold: 1);
     }
-
 }

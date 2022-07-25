@@ -18,7 +18,6 @@ public class GlacierShards : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.LightRed;
-        Item.value = Item.sellPrice(0, 0, 15);
+        Item.value = Item.sellPrice(silver: 15);
     }
-
 }

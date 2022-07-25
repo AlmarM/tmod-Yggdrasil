@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 
 namespace Yggdrasil.Runemaster.Content.Items.Armors;
 
@@ -32,7 +33,7 @@ public class GlacierGreaves : YggdrasilItem
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(5)
+        .AddIngredient<FrostcoreBar>(5)
         .AddIngredient<GlacierShards>(10)
         .AddTile<DvergrPowerForgeTile>()
         .Register();

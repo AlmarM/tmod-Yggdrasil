@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.FrostCore;
+using Yggdrasil.Frostcore.Content.Items.Weapons;
 
 namespace Yggdrasil.Content.Items.Weapons.Melee
 {
@@ -38,7 +38,7 @@ namespace Yggdrasil.Content.Items.Weapons.Melee
 
 
 		public override void AddRecipes() => CreateRecipe()
-		.AddIngredient<FrostCoreSword>()
+		.AddIngredient<FrostcoreSword>()
 		.AddIngredient<GlacierShards>(10)
 		.AddTile(TileID.MythrilAnvil)
 		.Register();

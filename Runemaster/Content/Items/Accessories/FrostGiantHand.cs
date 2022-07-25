@@ -7,6 +7,7 @@ using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.ModEffects;
 using Yggdrasil.Utils;
 
@@ -48,7 +49,7 @@ public class FrostGiantHand : YggdrasilItem
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient(ItemID.TitanGlove)
         .AddIngredient(ItemID.FrostDaggerfish)
-        .AddIngredient<FrostCoreBar>(10)
+        .AddIngredient<FrostcoreBar>(10)
         .AddTile<DvergrForgeTile>()
         .Register();
 }

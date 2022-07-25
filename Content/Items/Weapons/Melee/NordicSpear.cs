@@ -3,7 +3,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Ores;
 using Yggdrasil.Content.Projectiles.Melee;
+using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Content.Items.Weapons.Melee
 {

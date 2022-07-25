@@ -9,6 +9,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.ModHooks.Player;
 using Yggdrasil.Utils;
 
@@ -64,7 +65,7 @@ public class GlacierHelmet : YggdrasilItem, IPlayerOnHitByNPCModHook
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<FrostCoreBar>(5)
+        .AddIngredient<FrostcoreBar>(5)
         .AddIngredient<GlacierShards>(10)
         .AddTile<DvergrPowerForgeTile>()
         .Register();

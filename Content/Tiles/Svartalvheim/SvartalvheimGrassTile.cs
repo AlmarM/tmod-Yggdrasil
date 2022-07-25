@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Materials.Svartalvheim;
 
 namespace Yggdrasil.Content.Tiles.Svartalvheim;
 

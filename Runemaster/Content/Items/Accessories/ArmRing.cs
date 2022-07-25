@@ -5,6 +5,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Nordic.Content.Items.Blocks;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Accessories;

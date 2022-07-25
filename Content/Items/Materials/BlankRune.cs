@@ -21,7 +21,7 @@ public class BlankRune : YggdrasilItem
         Item.height = 32;
         Item.rare = ItemRarityID.White;
         Item.maxStack = 999;
-        Item.value = Item.sellPrice(0, 0, 0, 4);
+        Item.value = Item.sellPrice(copper: 4);
     }
 
     public override void AddRecipes() => CreateRecipe()

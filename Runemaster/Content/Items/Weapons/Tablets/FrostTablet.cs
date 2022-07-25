@@ -6,6 +6,7 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
@@ -41,7 +42,7 @@ public class FrostTablet : RuneTablet
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<StoneBlock>()
-        .AddIngredient<FrostCoreBar>(5)
+        .AddIngredient<FrostcoreBar>(5)
         .AddTile<DvergrForgeTile>()
         .Register();
 

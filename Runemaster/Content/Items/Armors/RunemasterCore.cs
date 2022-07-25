@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Content.Items.Ores;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Armors;

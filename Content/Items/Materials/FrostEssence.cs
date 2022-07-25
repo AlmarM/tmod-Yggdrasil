@@ -24,7 +24,7 @@ public class FrostEssence : YggdrasilItem
     {
         Item.maxStack = 999;
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.sellPrice(0, 0, 5);
+        Item.value = Item.sellPrice(silver: 5);
     }
 
     public override void PostUpdate()

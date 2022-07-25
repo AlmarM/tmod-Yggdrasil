@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Content.Tiles;
 

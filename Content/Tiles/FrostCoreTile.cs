@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
+using Yggdrasil.Frostcore.Content.Items.Ores;
 
 namespace Yggdrasil.Content.Tiles;
 
@@ -31,7 +32,7 @@ public class FrostCoreTile : YggdrasilTile
         AddMapEntry(new Color(51, 255, 255), name);
 
         DustType = DustID.NorthPole;
-        ItemDrop = ModContent.ItemType<FrostCoreOre>();
+        ItemDrop = ModContent.ItemType<FrostcoreOre>();
         //SoundType = SoundID.Tink;
         MinPick = 55;
         MineResist = 1f;

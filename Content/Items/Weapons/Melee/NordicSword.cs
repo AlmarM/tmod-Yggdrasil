@@ -5,7 +5,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Weapons.FrostCore;
+using Yggdrasil.Content.Items.Ores;
+using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Content.Items.Weapons.Melee
 {
