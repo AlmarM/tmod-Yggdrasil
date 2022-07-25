@@ -26,13 +26,10 @@ public class SvartalvheimChair : YggdrasilItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<SvartalvheimChairTile>();
         Item.rare = ItemRarityID.White;
-
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<SvartalvheimStone>(4)
         .AddTile(TileID.WorkBenches)
         .Register();
-
-    
 }

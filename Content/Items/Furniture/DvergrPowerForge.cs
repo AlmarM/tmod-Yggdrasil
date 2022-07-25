@@ -7,25 +7,20 @@ using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Furniture;
 
-public class DvergrPowerForge : YggdrasilItem
+public class DvergrPowerForge : DvergrForge
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Dvergr Power Forge");
+        base.SetStaticDefaults();
 
-        CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        Tooltip.SetDefault("Dvergr Power Forge");
     }
 
     public override void SetDefaults()
     {
-        Item.maxStack = 99;
-        Item.useTurn = true;
-        Item.autoReuse = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.consumable = true;
-        Item.value = Item.sellPrice(0, 0, 15);
+        base.SetDefaults();
+
+        Item.value = Item.sellPrice(silver: 15);
         Item.createTile = ModContent.TileType<DvergrPowerForgeTile>();
         Item.rare = ItemRarityID.Orange;
     }
@@ -33,17 +28,17 @@ public class DvergrPowerForge : YggdrasilItem
     public override void AddRecipes()
     {
         CreateRecipe()
-        .AddIngredient<DvergrForge>()
-        .AddIngredient<GlacierShards>(10)
-        .AddIngredient(ItemID.MythrilAnvil)
-        .AddTile(TileID.TinkerersWorkbench)
-        .Register();
+            .AddIngredient<DvergrForge>()
+            .AddIngredient<GlacierShards>(10)
+            .AddIngredient(ItemID.MythrilAnvil)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
 
         CreateRecipe()
-        .AddIngredient<DvergrForge>()
-        .AddIngredient<GlacierShards>(10)
-        .AddIngredient(ItemID.OrichalcumAnvil)
-        .AddTile(TileID.TinkerersWorkbench)
-        .Register();
+            .AddIngredient<DvergrForge>()
+            .AddIngredient<GlacierShards>(10)
+            .AddIngredient(ItemID.OrichalcumAnvil)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
     }
 }

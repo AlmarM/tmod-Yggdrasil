@@ -35,6 +35,4 @@ public class SvartalvheimWorkbench : YggdrasilItem
         .AddIngredient<SvartalvheimStone>(5)
         .AddIngredient<ColdIronBar>()
         .Register();
-
-    
 }

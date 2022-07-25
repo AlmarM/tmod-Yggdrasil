@@ -33,17 +33,17 @@ public class DvergrForge : YggdrasilItem
     public override void AddRecipes()
     {
         CreateRecipe()
-        .AddIngredient<FrostCoreBar>(5)
-        .AddIngredient<FrostEssence>(2)
-        .AddIngredient(ItemID.GoldBar, 5)
-        .AddTile(TileID.Anvils)
-        .Register();
+            .AddIngredient<FrostCoreBar>(5)
+            .AddIngredient<FrostEssence>(2)
+            .AddIngredient(ItemID.GoldBar, 5)
+            .AddTile(TileID.Anvils)
+            .Register();
 
         CreateRecipe()
-        .AddIngredient<FrostCoreBar>(5)
-        .AddIngredient<FrostEssence>(2)
-        .AddIngredient(ItemID.PlatinumBar, 5)
-        .AddTile(TileID.Anvils)
-        .Register();
+            .AddIngredient<FrostCoreBar>(5)
+            .AddIngredient<FrostEssence>(2)
+            .AddIngredient(ItemID.PlatinumBar, 5)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 }

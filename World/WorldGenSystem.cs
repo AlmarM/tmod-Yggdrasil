@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -9,8 +6,7 @@ using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Yggdrasil.Content.Tiles;
-using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Content.Tiles.Svartalvheim;
+using Yggdrasil.Svartalvheim;
 
 namespace Yggdrasil.World;
 
@@ -29,7 +25,6 @@ public class WorldGenSystem : ModSystem
         }
     }*/
 
-
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
     {
         // Because world generation is like layering several images ontop of each other, we need to do some steps between the original world generation steps.
@@ -37,28 +32,28 @@ public class WorldGenSystem : ModSystem
         // The first step is an Ore. Most vanilla ores are generated in a step called "Shinies", so for maximum compatibility, we will also do this.
         // First, we find out which step "Shinies" is.
         int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
-        int MicroBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Life Crystals"));
-        int SvartalvheimIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Dungeon"));
-        int SvartalvheimHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Micro Biomes"));
+        int microBiomeIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Life Crystals"));
+        int svartalvheimIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Dungeon"));
+        int svartalvheimHouseIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Micro Biomes"));
 
         if (shiniesIndex != -1)
         {
             tasks.Insert(shiniesIndex + 1, new PassLegacy("Frostcore Ores", FrostCoreGen));
         }
 
-        if (MicroBiomeIndex != -1)
+        if (microBiomeIndex != -1)
         {
-            tasks.Insert(MicroBiomeIndex + 1, new PassLegacy("Micro Biome", YggdrasilGenPasses.MicroBiomePass));
+            tasks.Insert(microBiomeIndex + 1, new PassLegacy("Micro Biome", YggdrasilGenPasses.MicroBiomePass));
         }
 
-        if (SvartalvheimIndex != -1)
+        if (svartalvheimIndex != -1)
         {
-            tasks.Insert(SvartalvheimIndex + 1, new PassLegacy("Svartalvheim", SvartalvheimGen.SvartalvheimGenPass));
+            tasks.Insert(svartalvheimIndex + 1, new PassLegacy("Svartalvheim", SvartalvheimGen.SvartalvheimGenPass));
         }
 
-        if (SvartalvheimHouseIndex != -1)
+        if (svartalvheimHouseIndex != -1)
         {
-            tasks.Insert(SvartalvheimHouseIndex + 1,
+            tasks.Insert(svartalvheimHouseIndex + 1,
                 new PassLegacy("Svartalvheim House", YggdrasilGenPasses.SvartalvheimMicroPass));
         }
     }

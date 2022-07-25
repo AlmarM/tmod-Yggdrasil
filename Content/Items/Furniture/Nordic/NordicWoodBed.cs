@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture.NordicWoodFurniture;
+namespace Yggdrasil.Content.Items.Furniture.Nordic;
 
 public class NordicWoodBed : YggdrasilItem
 {
@@ -35,6 +35,4 @@ public class NordicWoodBed : YggdrasilItem
         .AddIngredient<Linnen>(5)
         .AddTile(TileID.Sawmill)
         .Register();
-
-    
 }

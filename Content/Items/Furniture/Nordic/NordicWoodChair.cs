@@ -1,17 +1,16 @@
-using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture.NordicWoodFurniture;
+namespace Yggdrasil.Content.Items.Furniture.Nordic;
 
-public class NordicWoodDoor : YggdrasilItem
+public class NordicWoodChair : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Nordic Wood Door");
+        Tooltip.SetDefault("Nordic Wood Chair");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,15 +24,12 @@ public class NordicWoodDoor : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.createTile = ModContent.TileType<NordicWoodDoorClosed>();
+        Item.createTile = ModContent.TileType<NordicWoodChairTile>();
         Item.rare = ItemRarityID.White;
-        Item.value = Item.sellPrice(0, 0, 0, 40);
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<NordicWood>(6)
+        .AddIngredient<NordicWood>(4)
         .AddTile(TileID.WorkBenches)
         .Register();
-
-    
 }

@@ -30,9 +30,10 @@ public class SvartalvheimChest : YggdrasilItem
         Item.value = Item.sellPrice(0, 1, 20);
         Item.createTile = ModContent.TileType<SvartalvheimChestTile>();
     }
+
     public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<SvartalvheimBrick>(10)
-            .AddIngredient<ColdIronBar>(1)
-            .AddTile(TileID.WorkBenches)
-            .Register();
+        .AddIngredient<SvartalvheimBrick>(10)
+        .AddIngredient<ColdIronBar>(1)
+        .AddTile(TileID.WorkBenches)
+        .Register();
 }

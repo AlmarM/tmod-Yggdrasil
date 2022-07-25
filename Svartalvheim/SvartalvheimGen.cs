@@ -1,14 +1,14 @@
 using Microsoft.Xna.Framework;
-using Terraria.WorldBuilding;
 using Terraria;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 using Yggdrasil.Content.Tiles;
 using Yggdrasil.Content.Tiles.Furniture;
-using Terraria.IO;
 using Yggdrasil.Content.Tiles.Svartalvheim;
 
-namespace Yggdrasil.World;
+namespace Yggdrasil.Svartalvheim;
 
 public class SvartalvheimGen
 {
@@ -25,14 +25,14 @@ public class SvartalvheimGen
         ShapeData zoneMoreOutsideShapeData = new ShapeData();
         ShapeData zoneHoleData = new ShapeData();
 
-        ushort SvartDirt = (ushort)ModContent.TileType<SvartalvheimDirtTile>();
-        ushort SvartGrass = (ushort)ModContent.TileType<SvartalvheimGrassTile>();
-        ushort SvartStone = (ushort)ModContent.TileType<SvartalvheimStoneTile>();
-        ushort SvartWallUnsafe = (ushort)ModContent.WallType<SvartalvheimWallTileUnsafe>();
-        ushort SvartChest = (ushort)ModContent.TileType<VikingChestTile>();
-        ushort SvartGlowingStone = (ushort)ModContent.TileType<SvartalvheimGlowingStoneTile>();
-        ushort SvartBrickWall = (ushort)ModContent.WallType<SvartalvheimBrickWallTile>();
-        ushort SvartBrick = (ushort)ModContent.TileType<SvartalvheimBrickTile>();
+        ushort svartDirt = (ushort)ModContent.TileType<SvartalvheimDirtTile>();
+        ushort svartGrass = (ushort)ModContent.TileType<SvartalvheimGrassTile>();
+        ushort svartStone = (ushort)ModContent.TileType<SvartalvheimStoneTile>();
+        ushort svartWallUnsafe = (ushort)ModContent.WallType<SvartalvheimWallTileUnsafe>();
+        ushort svartChest = (ushort)ModContent.TileType<VikingChestTile>();
+        ushort svartGlowingStone = (ushort)ModContent.TileType<SvartalvheimGlowingStoneTile>();
+        ushort svartBrickWall = (ushort)ModContent.WallType<SvartalvheimBrickWallTile>();
+        ushort svartBrick = (ushort)ModContent.TileType<SvartalvheimBrickTile>();
 
         //Used to genreate the zone
         Point point = new Point(originX, originY);
@@ -43,12 +43,12 @@ public class SvartalvheimGen
 
         //Adding Dirt and Grass
         WorldUtils.Gen(point, new Shapes.Circle(zoneRadius),
-            Actions.Chain(new Actions.SetTile(SvartDirt), new Actions.SetFrames(true).Output(zoneShapeData)));
+            Actions.Chain(new Actions.SetTile(svartDirt), new Actions.SetFrames(true).Output(zoneShapeData)));
         //WorldUtils.Gen(point, new Shapes.Circle(zoneRadius), Actions.Chain(new Actions.SetTile(SvartGrass), new Actions.SetFrames(frameNeighbors: true)));
 
         //Adding little stones randomly everywhere
         WorldUtils.Gen(point, new Shapes.Circle(zoneRadius),
-            Actions.Chain(new Modifiers.Dither(.9), new Actions.SetTile(SvartStone), new Actions.SetFrames(true)));
+            Actions.Chain(new Modifiers.Dither(.9), new Actions.SetTile(svartStone), new Actions.SetFrames(true)));
 
         //Creating the outline shapes
         //This one is for a layer of stones all around the area
@@ -74,9 +74,9 @@ public class SvartalvheimGen
             int steps = WorldGen.genRand.Next(8, 15);
 
             Tile tile = Framing.GetTileSafely(x, y);
-            if (tile.HasTile && tile.TileType == SvartDirt)
+            if (tile.HasTile && tile.TileType == svartDirt)
             {
-                WorldGen.TileRunner(x, y, strength, steps, SvartStone);
+                WorldGen.TileRunner(x, y, strength, steps, svartStone);
             }
         }
 
@@ -88,16 +88,16 @@ public class SvartalvheimGen
 
         //Adding layer of stones in the outline shape
         zoneOutsideShapeData.Subtract(zoneShapeData, point, point);
-        WorldUtils.Gen(point, new ModShapes.All(zoneOutsideShapeData), new Actions.SetTile(SvartStone, true));
+        WorldUtils.Gen(point, new ModShapes.All(zoneOutsideShapeData), new Actions.SetTile(svartStone, true));
 
         //Adding layer of broken-style stones outside the outline shape
         zoneMoreOutsideShapeData.Subtract(zoneShapeData, point, point);
         zoneMoreOutsideShapeData.Subtract(zoneOutsideShapeData, point, point);
         WorldUtils.Gen(point, new ModShapes.All(zoneMoreOutsideShapeData),
-            Actions.Chain(new Modifiers.Dither(.7), new Actions.SetTile(SvartStone, true)));
+            Actions.Chain(new Modifiers.Dither(.7), new Actions.SetTile(svartStone, true)));
 
         //Adding walls
-        WorldUtils.Gen(point, new ModShapes.All(zoneShapeData), Actions.Chain(new Actions.PlaceWall(SvartWallUnsafe)));
+        WorldUtils.Gen(point, new ModShapes.All(zoneShapeData), Actions.Chain(new Actions.PlaceWall(svartWallUnsafe)));
 
         //Adding Cold Iron in there over dirt and stone
         for (int k = 0; k < 150; k++)
@@ -106,10 +106,13 @@ public class SvartalvheimGen
             int ironY = WorldGen.genRand.Next(originY - 100, originY + 100);
 
             Tile tile = Framing.GetTileSafely(ironX, ironY);
-            if (tile.HasTile && (tile.TileType == SvartStone || tile.TileType == SvartDirt))
+            if (tile.HasTile && (tile.TileType == svartStone || tile.TileType == svartDirt))
             {
-                WorldGen.TileRunner(ironX, ironY, WorldGen.genRand.Next(5, 7), WorldGen.genRand.Next(5, 10),
-                    ModContent.TileType<ColdIronTile>());
+                int strength = WorldGen.genRand.Next(5, 7);
+                int steps = WorldGen.genRand.Next(5, 10);
+
+                WorldGen.TileRunner(ironX, ironY, strength, steps, ModContent.TileType<ColdIronTile>());
+
                 //WorldGen.SquareTileFrame(ironX, ironY, true);
             }
         }
@@ -121,16 +124,16 @@ public class SvartalvheimGen
             int y = WorldGen.genRand.Next(originY - 150, originY + 150);
 
             Tile tile = Framing.GetTileSafely(x, y);
-            if (!WorldGen.SolidTile(x, y) && tile.TileType != SvartBrickWall)
+            if (!WorldGen.SolidTile(x, y) && tile.TileType != svartBrickWall)
             {
-                WorldGen.PlaceTile(x, y, SvartGlowingStone);
+                WorldGen.PlaceTile(x, y, svartGlowingStone);
             }
         }
 
         Rectangle bounds = ShapeData.GetBounds(point, zoneShapeData, zoneOutsideShapeData, zoneMoreOutsideShapeData);
         WorldGen.structures.AddProtectedStructure(bounds, 2);
 
-        TileID.Sets.GeneralPlacementTiles[SvartStone] = false;
-        TileID.Sets.GeneralPlacementTiles[SvartBrick] = false;
+        TileID.Sets.GeneralPlacementTiles[svartStone] = false;
+        TileID.Sets.GeneralPlacementTiles[svartBrick] = false;
     }
 }

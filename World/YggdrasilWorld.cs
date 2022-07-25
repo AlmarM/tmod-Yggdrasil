@@ -28,7 +28,6 @@ public class YggdrasilWorld : ModSystem
     public static bool gennedVikingHouse = false;
     public static bool downedVikingInvasion;
 
-
     public static int SvartalvheimTiles = 0;
     public static int SvartalvheimChests = 0;
 

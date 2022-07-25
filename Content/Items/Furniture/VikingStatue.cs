@@ -24,7 +24,6 @@ public class VikingStatue : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        //Item.value = 500;
         Item.createTile = ModContent.TileType<VikingStatueTile>();
         Item.rare = ItemRarityID.White;
         Item.scale = 0.7f;
@@ -34,6 +33,4 @@ public class VikingStatue : YggdrasilItem
         .AddIngredient(ItemID.StoneBlock, 50)
         .AddTile(TileID.WorkBenches)
         .Register();
-
-    
 }

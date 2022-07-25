@@ -36,6 +36,4 @@ public class SvartalvheimBed : YggdrasilItem
         .AddIngredient<ColdIronBar>()
         .AddTile(TileID.Sawmill)
         .Register();
-
-
 }

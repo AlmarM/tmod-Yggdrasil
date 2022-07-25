@@ -3,15 +3,15 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Tiles.Furniture;
+using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture;
+namespace Yggdrasil.Content.Items.Furniture.Nordic;
 
-public class VikingChest : YggdrasilItem
+public class NordicWoodWorkbench : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Viking chest");
+        Tooltip.SetDefault("Nordic Wood Work Bench");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,13 +25,12 @@ public class VikingChest : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.value = Item.sellPrice(0, 0, 5);
-        Item.createTile = ModContent.TileType<VikingChestTile>();
+        Item.createTile = ModContent.TileType<NordicWoodWorkbenchTile>();
+        Item.rare = ItemRarityID.White;
+        Item.value = Item.sellPrice(0, 0, 0, 30);
     }
 
     public override void AddRecipes() => CreateRecipe()
         .AddIngredient<NordicWood>(5)
-        .AddIngredient<FrostCoreBar>(1)
-        .AddTile(TileID.WorkBenches)
         .Register();
 }

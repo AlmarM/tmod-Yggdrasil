@@ -3,8 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Extensions;
+using Yggdrasil.World;
 
-namespace Yggdrasil.World;
+namespace Yggdrasil.Svartalvheim.Content.Biome;
 
 public class SvartalvheimBiome : ModBiome
 {

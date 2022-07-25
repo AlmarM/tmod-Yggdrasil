@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
-namespace Yggdrasil.Content.Items.Furniture.NordicWoodFurniture;
+namespace Yggdrasil.Content.Items.Furniture.Nordic;
 
-public class NordicWoodBookcase : YggdrasilItem
+public class NordicWoodDoor : YggdrasilItem
 {
     public override void SetStaticDefaults()
     {
-        Tooltip.SetDefault("Nordic Wood Bookcase");
+        Tooltip.SetDefault("Nordic Wood Door");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }
@@ -25,16 +25,13 @@ public class NordicWoodBookcase : YggdrasilItem
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
-        Item.createTile = ModContent.TileType<NordicWoodBookcaseTile>();
+        Item.createTile = ModContent.TileType<NordicWoodDoorClosed>();
         Item.rare = ItemRarityID.White;
-        Item.value = Item.sellPrice(0, 0, 0, 60);
+        Item.value = Item.sellPrice(0, 0, 0, 40);
     }
 
     public override void AddRecipes() => CreateRecipe()
-        .AddIngredient<NordicWood>(20)
-        .AddIngredient(ItemID.Book, 10)
-        .AddTile(TileID.Sawmill)
+        .AddIngredient<NordicWood>(6)
+        .AddTile(TileID.WorkBenches)
         .Register();
-
-    
 }
