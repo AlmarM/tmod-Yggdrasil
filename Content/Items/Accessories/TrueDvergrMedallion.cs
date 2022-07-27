@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Svartalvheim.Content.Items.Accessories;
+using Yggdrasil.World.Svartalvheim.Content.Items.Accessories;
 
 namespace Yggdrasil.Content.Items.Accessories;
 

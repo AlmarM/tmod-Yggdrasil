@@ -19,7 +19,7 @@ using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runemaster.Content.Items.Armors;
-using Yggdrasil.Svartalvheim.Content.Items.Accessories;
+using Yggdrasil.World.Svartalvheim.Content.Items.Accessories;
 
 namespace Yggdrasil.World;
 

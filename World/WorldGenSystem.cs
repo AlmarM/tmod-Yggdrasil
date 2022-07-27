@@ -6,7 +6,7 @@ using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Yggdrasil.Content.Tiles;
-using Yggdrasil.Svartalvheim;
+using Yggdrasil.World.Svartalvheim;
 
 namespace Yggdrasil.World;
 

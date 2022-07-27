@@ -16,25 +16,63 @@ public abstract class ModHookPlayer : ModPlayer
         InitializeModHookMap();
     }
 
+    public override bool CanConsumeAmmo(Item weapon, Item ammo)
+    {
+        IEnumerable<IPlayerCanConsumeAmmoModHook> hooks = GetModHooks<IPlayerCanConsumeAmmoModHook>();
+        hooks = hooks.OrderByDescending(h => h.Priority);
+
+        foreach (IPlayerCanConsumeAmmoModHook hook in hooks)
+        {
+            if (!hook.PlayerCanConsumeAmmo(Player, weapon, ammo))
+            {
+                return false;
+            }
+        }
+
+        return base.CanConsumeAmmo(weapon, ammo);
+    }
+
+    public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+    {
+        IEnumerable<IPlayerOnHitNPCModHook> hooks = GetModHooks<IPlayerOnHitNPCModHook>();
+        hooks = hooks.OrderByDescending(h => h.Priority);
+
+        foreach (IPlayerOnHitNPCModHook hook in hooks)
+        {
+            hook.PlayerOnHitNPC(Player, item, target, damage, knockback, crit);
+        }
+    }
+
     public override void OnHitByNPC(NPC npc, int damage, bool crit)
     {
         IEnumerable<IPlayerOnHitByNPCModHook> hooks = GetModHooks<IPlayerOnHitByNPCModHook>();
-        hooks = hooks.OrderBy(h => h.Priority);
+        hooks = hooks.OrderByDescending(h => h.Priority);
 
         foreach (IPlayerOnHitByNPCModHook hook in hooks)
         {
-            hook.OnHitByNPC(Player, npc, damage, crit);
+            hook.PlayerOnHitByNPC(Player, npc, damage, crit);
         }
     }
 
     public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
     {
         IEnumerable<IPlayerOnHitNPCWithProjModHook> hooks = GetModHooks<IPlayerOnHitNPCWithProjModHook>();
-        hooks = hooks.OrderBy(h => h.Priority);
+        hooks = hooks.OrderByDescending(h => h.Priority);
 
         foreach (IPlayerOnHitNPCWithProjModHook hook in hooks)
         {
-            hook.OnPlayerHitNPCWithProj(Player, proj, target, damage, knockback, crit);
+            hook.PlayerOnHitNPCWithProj(Player, proj, target, damage, knockback, crit);
+        }
+    }
+
+    public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+    {
+        IEnumerable<IPlayerPostHurtModHook> hooks = GetModHooks<IPlayerPostHurtModHook>();
+        hooks = hooks.OrderByDescending(h => h.Priority);
+
+        foreach (IPlayerPostHurtModHook hook in hooks)
+        {
+            hook.PlayerPostHurt(Player, pvp, quiet, damage, hitDirection, crit);
         }
     }
 
@@ -42,24 +80,25 @@ public abstract class ModHookPlayer : ModPlayer
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
     {
         IEnumerable<IPlayerPreHurtModHook> hooks = GetModHooks<IPlayerPreHurtModHook>();
-        hooks = hooks.OrderBy(h => h.Priority);
+        hooks = hooks.OrderByDescending(h => h.Priority);
 
         foreach (IPlayerPreHurtModHook hook in hooks)
         {
-            if (!hook.PreHurt(Player, pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage,
+            if (!hook.PlayerPreHurt(Player, pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage,
                     ref playSound, ref genGore, ref damageSource))
             {
                 return false;
             }
         }
 
-        return true;
+        return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound,
+            ref genGore, ref damageSource);
     }
 
     public override float UseSpeedMultiplier(Item item)
     {
         IEnumerable<IPlayerUseSpeedMultiplierModHook> hooks = GetModHooks<IPlayerUseSpeedMultiplierModHook>();
-        hooks = hooks.OrderBy(h => h.Priority);
+        hooks = hooks.OrderByDescending(h => h.Priority);
 
         float speedMultiplier = base.UseSpeedMultiplier(item);
 

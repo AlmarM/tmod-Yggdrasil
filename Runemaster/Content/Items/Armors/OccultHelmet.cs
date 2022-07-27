@@ -72,7 +72,7 @@ public class OccultHelmet : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
         .Register();
 
 
-    public void OnPlayerHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
+    public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
         bool crit)
     {
         if (!crit || proj.ModProjectile is not RunicProjectile)

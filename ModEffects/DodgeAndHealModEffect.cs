@@ -21,8 +21,8 @@ public class DodgeAndHealModEffect : IPlayerPreHurtModHook
         }
     }
 
-    private int _consequent;
-    private float _healthRestored;
+    private readonly int _consequent;
+    private readonly float _healthRestored;
 
     public DodgeAndHealModEffect(int dodgeConsequent, float healthRestored)
     {
@@ -30,7 +30,7 @@ public class DodgeAndHealModEffect : IPlayerPreHurtModHook
         _healthRestored = healthRestored;
     }
 
-    public bool PreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+    public bool PlayerPreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
     {
         if (damage < player.statLife || !Main.rand.NextBool(_consequent))

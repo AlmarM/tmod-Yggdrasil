@@ -70,7 +70,7 @@ public class GlacierHelmet : YggdrasilItem, IPlayerOnHitByNPCModHook
         .AddTile<DvergrPowerForgeTile>()
         .Register();
 
-    public void OnHitByNPC(Player player, NPC npc, int damage, bool crit)
+    public void PlayerOnHitByNPC(Player player, NPC npc, int damage, bool crit)
     {
         npc.AddBuff(ModContent.BuffType<SlowDebuff>(), TimeUtils.SecondsToTicks(2));
     }

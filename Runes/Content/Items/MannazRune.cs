@@ -10,6 +10,7 @@ public abstract class MannazRune : Rune
     protected override RuneTooltipText TooltipText => RuneTooltipText.Mannaz;
 
     protected abstract float DamageBonus { get; }
+    
     protected abstract float Distance { get; }
 
     protected override void OnUpdateInventory(Player player)

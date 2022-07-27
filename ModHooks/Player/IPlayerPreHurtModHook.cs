@@ -6,6 +6,6 @@ public interface IPlayerPreHurtModHook : IPlayerModHook
 {
     int Priority { get; }
 
-    bool PreHurt(Terraria.Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+    bool PlayerPreHurt(Terraria.Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
         ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource);
 }

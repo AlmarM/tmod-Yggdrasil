@@ -30,7 +30,7 @@ public class BlizzardExplosionModEffect : IPlayerOnHitNPCWithProjModHook
         _source = source;
     }
 
-    public void OnPlayerHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
+    public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
         bool crit)
     {
         if (proj.ModProjectile is not RunicProjectile || !crit)

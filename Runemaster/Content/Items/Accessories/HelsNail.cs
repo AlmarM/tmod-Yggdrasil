@@ -41,7 +41,8 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories
             .AddTile<DvergrForgeTile>()
             .Register();
 
-        public void OnPlayerHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
+            bool crit)
         {
             if (proj.ModProjectile is not RunicProjectile)
             {

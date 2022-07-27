@@ -6,5 +6,5 @@ public interface IPlayerOnHitNPCWithProjModHook : IPlayerModHook
 {
     int Priority { get; }
 
-    void OnPlayerHitNPCWithProj(Terraria.Player player, Projectile proj, NPC target, int damage, float knockback, bool crit);
+    void PlayerOnHitNPCWithProj(Terraria.Player player, Projectile proj, NPC target, int damage, float knockback, bool crit);
 }
