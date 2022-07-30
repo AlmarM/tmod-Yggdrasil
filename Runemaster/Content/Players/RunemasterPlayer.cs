@@ -4,15 +4,13 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Items.Misc;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster.Content.Items;
 
 namespace Yggdrasil.Content.Players;
 
-public class RunemasterPlayer : YggdrasilPlayer
+public class RunemasterPlayer : ModPlayer
 {
     public int RunePower { get; set; }
 
@@ -91,8 +89,6 @@ public class RunemasterPlayer : YggdrasilPlayer
 
     public override void ResetEffects()
     {
-        base.ResetEffects();
-
         RunePower = 0;
         SlowDebuffValue = 0f;
         FocusPowerTime = 300; //60 = 1sec

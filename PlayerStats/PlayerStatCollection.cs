@@ -12,7 +12,6 @@ public abstract class PlayerStatCollection
     protected PlayerStatCollection()
     {
         Hooks = new List<IPlayerModHook>();
-
         _stats = new List<IPlayerStat>();
     }
 

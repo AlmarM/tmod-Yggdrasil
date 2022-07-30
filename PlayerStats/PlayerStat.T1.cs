@@ -13,7 +13,7 @@ public abstract class PlayerStat<TValue> : IPlayerStat<TValue>
         if (!typeof(TValue).IsValueType)
         {
             defaultValue = Activator.CreateInstance<TValue>();
-            Value = defaultValue;
+            Value = Activator.CreateInstance<TValue>();
         }
     }
 
