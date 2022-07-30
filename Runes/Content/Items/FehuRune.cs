@@ -17,7 +17,6 @@ public abstract class FehuRune : Rune
 
     protected override void ModifyEffectTooltipBlock(TooltipBlock block)
     {
-        var percentage = TextUtils.GetPercentage(CritChanceBonus);
-        block.AddLine(string.Format(TooltipText.EffectDescriptionFormat, percentage));
+        block.AddLine(string.Format(TooltipText.EffectDescriptionFormat, CritChanceBonus));
     }
 }

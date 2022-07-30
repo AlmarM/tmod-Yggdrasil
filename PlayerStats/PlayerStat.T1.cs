@@ -1,3 +1,5 @@
+using System;
+
 namespace Yggdrasil.PlayerStats;
 
 public abstract class PlayerStat<TValue> : IPlayerStat<TValue>
@@ -6,12 +8,21 @@ public abstract class PlayerStat<TValue> : IPlayerStat<TValue>
 
     protected TValue defaultValue;
 
+    public PlayerStat()
+    {
+        if (!typeof(TValue).IsValueType)
+        {
+            defaultValue = Activator.CreateInstance<TValue>();
+            Value = defaultValue;
+        }
+    }
+
     public void SetDefaultValue(TValue value)
     {
         defaultValue = value;
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         Value = defaultValue;
     }

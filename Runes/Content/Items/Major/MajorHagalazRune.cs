@@ -5,7 +5,7 @@ using Yggdrasil.Runes.Content.Items.Normal;
 
 namespace Yggdrasil.Runes.Content.Items.Major;
 
-public class MajorHagalazzRune : HagalazRune
+public class MajorHagalazRune : HagalazRune
 {
     protected override RuneTier Tier => RuneTier.Major;
 

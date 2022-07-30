@@ -12,7 +12,7 @@ using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Projectiles.Magic;
-using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Misc;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runes.Content.Items.Minor;
 

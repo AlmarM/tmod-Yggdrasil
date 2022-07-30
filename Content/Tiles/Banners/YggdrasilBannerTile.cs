@@ -29,15 +29,15 @@ public abstract class YggdrasilBannerTile : YggdrasilTile
         Main.tileNoAttach[Type] = true;
         Main.tileLavaDeath[Type] = true;
 
-        TileObjectData.addTile(Type);
+        var anchorFlags = AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom;
+        TileObjectData.newTile.AnchorTop = new AnchorData(anchorFlags, TileObjectData.newTile.Width, 0);
+
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
         TileObjectData.newTile.Height = 3;
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.StyleWrapLimit = 111;
-
-        var anchorFlags = AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom;
-        TileObjectData.newTile.AnchorTop = new AnchorData(anchorFlags, TileObjectData.newTile.Width, 0);
+        TileObjectData.addTile(Type);
 
         ModTranslation name = CreateMapEntryName();
         name.SetDefault(MapEntryName);

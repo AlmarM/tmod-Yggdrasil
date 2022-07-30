@@ -5,7 +5,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Yggdrasil.Content.Items.Furniture;
+using Yggdrasil.Content.Items.Decorations;
 
 namespace Yggdrasil.Content.Tiles.Furniture;
 

@@ -9,7 +9,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 using Yggdrasil.World;
 
-namespace Yggdrasil.Content.Items.Others;
+namespace Yggdrasil.Content.Items.Misc;
 
 public class NorsemanHorn : YggdrasilItem
 {

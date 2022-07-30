@@ -1,6 +1,6 @@
 using Terraria.ID;
 
-namespace Yggdrasil.Content.Items.Others;
+namespace Yggdrasil.Content.Items.Misc;
 
 public class StartingNote : YggdrasilItem
 {

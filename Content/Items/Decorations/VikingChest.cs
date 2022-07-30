@@ -7,7 +7,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 
-namespace Yggdrasil.Content.Items.Furniture;
+namespace Yggdrasil.Content.Items.Decorations;
 
 public class VikingChest : YggdrasilItem
 {

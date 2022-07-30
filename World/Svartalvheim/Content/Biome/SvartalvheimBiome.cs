@@ -15,7 +15,7 @@ public class SvartalvheimBiome : ModBiome
 
     public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
 
-    public override string BestiaryIcon => "Yggdrasil/Assets/Textures/SvartalvheimBiome/Icons/SvartalvheimBiome_Icon";
+    public override string BestiaryIcon => "Yggdrasil/Assets/World/Svartalvheim/Textures/Icons/SvartalvheimBiome_Icon";
     // public override string BackgroundPath => base.BackgroundPath;
     // public override Color? BackgroundColor => base.BackgroundColor;
 

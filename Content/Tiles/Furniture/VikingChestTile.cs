@@ -7,8 +7,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Yggdrasil.Content.Items.Furniture;
-using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Decorations;
+using Yggdrasil.Content.Items.Misc;
 
 namespace Yggdrasil.Content.Tiles.Furniture;
 

@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Misc;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Extensions;
 using Yggdrasil.Runemaster.Content.Items;

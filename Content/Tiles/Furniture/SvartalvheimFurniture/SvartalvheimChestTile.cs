@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Misc;
 using Yggdrasil.World.Svartalvheim.Content.Items.Decorations;
 
 namespace Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;

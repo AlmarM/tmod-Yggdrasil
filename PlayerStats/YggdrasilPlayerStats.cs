@@ -16,5 +16,12 @@ public class YggdrasilPlayerStats : PlayerStatCollection
         InvincibilityTime = CreateStat<InvincibilityTimeStat>();
         NoAmmoConsumptionChance = CreateStat<NoAmmoConsumptionChanceStat>();
         ApplyRandomBuff = CreateStat<ApplyRandomBuffStat>();
+
+        SetDefaultValues();
+    }
+
+    private void SetDefaultValues()
+    {
+        //ApplyRandomBuff.SetDefaultValue(new ApplyRandomBuffStat.Parameters(0f, 0f));
     }
 }

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
@@ -14,9 +15,6 @@ public class OdinsEye : YggdrasilItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Odin's Eye");
-
-        _dodgeAndHealEffect = new DodgeAndHealModEffect(10, 0.2f);
-
         Tooltip.SetDefault(_dodgeAndHealEffect.EffectDescription);
     }
 
@@ -25,6 +23,21 @@ public class OdinsEye : YggdrasilItem
         Item.rare = ItemRarityID.Pink;
         Item.accessory = true;
         Item.value = Item.sellPrice(0, 4);
+    }
+
+    public override void OnCreate(ItemCreationContext context)
+    {
+        base.OnCreate(context);
+
+        _dodgeAndHealEffect = new DodgeAndHealModEffect(10, 0.2f);
+    }
+
+    public override ModItem Clone(Item newEntity)
+    {
+        var clone = (OdinsEye)base.Clone(newEntity);
+        clone.OnCreate(new InitializationContext());
+
+        return clone;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

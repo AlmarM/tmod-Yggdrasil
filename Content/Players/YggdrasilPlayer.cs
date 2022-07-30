@@ -27,16 +27,13 @@ public class YggdrasilPlayer : ModHookPlayer
 
         EffectsList.Clear();
         Stats.Reset();
-    }
 
-    public override void PreUpdate()
-    {
         AddStatHooks();
     }
 
     private void AddStatHooks()
     {
-        foreach (IPlayerStat stat in Stats.Hooks)
+        foreach (IPlayerModHook stat in Stats.Hooks)
         {
             AddModHooks(stat);
         }

@@ -6,7 +6,7 @@ using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 
-namespace Yggdrasil.Content.Items.Furniture;
+namespace Yggdrasil.Content.Items.Decorations;
 
 public class DvergrForge : YggdrasilItem
 {

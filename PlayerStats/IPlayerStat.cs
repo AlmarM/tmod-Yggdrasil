@@ -1,8 +1,6 @@
-using Yggdrasil.ModHooks.Player;
-
 namespace Yggdrasil.PlayerStats;
 
-public interface IPlayerStat : IPlayerModHook
+public interface IPlayerStat
 {
     void Reset();
 }

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Others;
+using Yggdrasil.Content.Items.Misc;
 using Yggdrasil.Content.Items.Weapons.Vikings;
 using Yggdrasil.World;
 

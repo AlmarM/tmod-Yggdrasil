@@ -24,5 +24,17 @@ public class ApplyRandomBuffStat : PlayerStat<ApplyRandomBuffStat.Parameters>, I
         public float Chance { get; set; }
 
         public float Duration { get; set; }
+
+        public Parameters()
+        {
+            Chance = 0f;
+            Duration = 0f;
+        }
+
+        public Parameters(float chance, float duration)
+        {
+            Chance = chance;
+            Duration = duration;
+        }
     }
 }

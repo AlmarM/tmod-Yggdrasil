@@ -2,7 +2,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria;
 
-namespace Yggdrasil.Content.Items.Others;
+namespace Yggdrasil.Content.Items.Misc;
 
 public class SvartalvheimKey : YggdrasilItem
 {

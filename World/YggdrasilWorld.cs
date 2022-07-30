@@ -25,7 +25,6 @@ namespace Yggdrasil.World;
 
 public class YggdrasilWorld : ModSystem
 {
-    public static bool IronWoodBiome = false;
     public static bool ColdIronGenerated;
     public static bool SvartalvheimGenerated;
     public static bool gennedVikingHouse = false;
