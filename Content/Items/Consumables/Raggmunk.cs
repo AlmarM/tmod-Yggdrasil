@@ -1,11 +1,6 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Configs;
-using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Items.Consumables;
 

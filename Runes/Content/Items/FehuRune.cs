@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.ModLoader;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runes.Content.Items;
 

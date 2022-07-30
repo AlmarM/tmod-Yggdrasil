@@ -4,7 +4,6 @@ using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using Yggdrasil.PlayerStats;
 
 namespace Yggdrasil.ModHooks.Player;
 

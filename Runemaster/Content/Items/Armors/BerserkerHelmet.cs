@@ -3,9 +3,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Players;
+using Yggdrasil.Runemaster.Content.Buffs;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Armors;

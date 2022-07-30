@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Projectiles.Ammo;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Nordic.Content.Items.Blocks;

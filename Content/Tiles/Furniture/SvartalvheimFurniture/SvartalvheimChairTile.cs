@@ -5,7 +5,6 @@ using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Yggdrasil.World.Svartalvheim.Content.Items.Decorations;

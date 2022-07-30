@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Players;
 using Yggdrasil.Runemaster;
 
 namespace Yggdrasil.Content.Projectiles.RuneTablets;

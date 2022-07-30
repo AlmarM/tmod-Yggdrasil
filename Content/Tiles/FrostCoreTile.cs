@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 
 namespace Yggdrasil.Content.Tiles;

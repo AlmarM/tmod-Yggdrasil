@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Projectiles.RuneTablets;
+using Yggdrasil.Runemaster.Content.Buffs;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;

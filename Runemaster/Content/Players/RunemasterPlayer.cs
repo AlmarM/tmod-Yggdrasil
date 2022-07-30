@@ -3,10 +3,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items.Misc;
-using Yggdrasil.Extensions;
-using Yggdrasil.Runemaster.Content.Items;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Players;
 
@@ -29,25 +27,13 @@ public class RunemasterPlayer : ModPlayer
     public float InsanityHurtValue { get; set; }
     public float SlowDebuffValue { get; set; }
 
-    public override float UseSpeedMultiplier(Item item)
-    {
-        var speed = 1f;
-
-        if (item.ModItem is RuneTablet && Player.HasEffect<TheSunBuff>())
-        {
-            speed += 0.1f;
-        }
-
-        return speed;
-    }
-
     public override void PreUpdate()
     {
         if (Focus > FocusThreshold)
         {
             Focus = FocusThreshold;
         }
-
+        
         if (Insanity >= InsanityThreshold)
         {
             int diff = (int)(Player.statLifeMax2 * InsanityHurtValue);
@@ -91,7 +77,7 @@ public class RunemasterPlayer : ModPlayer
     {
         RunePower = 0;
         SlowDebuffValue = 0f;
-        FocusPowerTime = 300; //60 = 1sec
+        FocusPowerTime = TimeUtils.SecondsToTicks(5);
         FocusThreshold = 10;
         InsanityThreshold = 25;
         InsanityRemoverValue = 10;

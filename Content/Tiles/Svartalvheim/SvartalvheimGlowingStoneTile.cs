@@ -1,9 +1,6 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ObjectData;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace Yggdrasil.Content.Tiles.Svartalvheim;
 

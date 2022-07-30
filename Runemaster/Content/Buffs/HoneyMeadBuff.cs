@@ -1,13 +1,11 @@
 using Terraria;
+using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Buffs;
+namespace Yggdrasil.Runemaster.Content.Buffs;
 
 public class HoneyMeadBuff : YggdrasilBuff
 {
-    public override string Texture => TextureUtils.GetAssetPath(GetType());
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Honey Mead Buff");

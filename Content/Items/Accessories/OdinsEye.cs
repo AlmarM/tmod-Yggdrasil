@@ -10,7 +10,7 @@ namespace Yggdrasil.Content.Items.Accessories;
 
 public class OdinsEye : YggdrasilItem
 {
-    private DodgeAndHealModEffect _dodgeAndHealEffect;
+    [CloneByReference] private DodgeAndHealModEffect _dodgeAndHealEffect;
 
     public override void SetStaticDefaults()
     {
@@ -30,14 +30,6 @@ public class OdinsEye : YggdrasilItem
         base.OnCreate(context);
 
         _dodgeAndHealEffect = new DodgeAndHealModEffect(10, 0.2f);
-    }
-
-    public override ModItem Clone(Item newEntity)
-    {
-        var clone = (OdinsEye)base.Clone(newEntity);
-        clone.OnCreate(new InitializationContext());
-
-        return clone;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

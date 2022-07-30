@@ -1,18 +1,6 @@
-using Terraria.UI;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Armor;
-using Yggdrasil.Content.Items.Consumables;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Content.UI;
-using Terraria.ModLoader.IO;
-using System.IO;
-using Yggdrasil.World;
 
 namespace Yggdrasil.World
 {

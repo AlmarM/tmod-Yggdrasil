@@ -1,22 +1,17 @@
-using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Banners;
-using Yggdrasil.Content.Items.Materials;
-using Yggdrasil.Content.Items.Misc;
-using Yggdrasil.Content.Items.Weapons.Vikings;
-using Yggdrasil.World;
-using Yggdrasil.Content.Projectiles.EnemyProjectile;
-using Yggdrasil.Content.Items.Weapons.Magic;
 using Yggdrasil.Content.Items.Consumables;
-using Yggdrasil.Runemaster.Content.Items.Accessories;
+using Yggdrasil.Content.Items.Weapons.Magic;
+using Yggdrasil.Content.Projectiles.EnemyProjectile;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;
 

@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Ores;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Utils;
@@ -51,8 +50,8 @@ public class RunemasterSpirit : YggdrasilItem
                           $"\n{focusText2} power can be used faster" +
                           $"\nIncreases {insanityText} gauge by 20" +
                           $"\nGreatly increases {runicText} weapons range" +
-                          $"\nReduces damage taken by 10%" +
-                          $"\nGreatly Regenerates life";
+                          "\nReduces damage taken by 10%" +
+                          "\nGreatly Regenerates life";
 
         player.endurance += 0.1f;
         player.lifeRegen += 10;

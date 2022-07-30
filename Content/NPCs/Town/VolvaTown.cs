@@ -1,20 +1,20 @@
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Personalities;
-using System.Collections.Generic;
-using Yggdrasil.World;
-using Yggdrasil.Content.Items.Weapons.Vikings;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Consumables;
-using Yggdrasil.Content.Projectiles.Magic;
+using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Misc;
+using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runes.Content.Items.Minor;
+using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Town
 {

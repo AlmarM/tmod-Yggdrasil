@@ -1,10 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Yggdrasil.Runemaster;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
 
-namespace Yggdrasil.Content.Buffs;
+namespace Yggdrasil.Runemaster.Content.Buffs;
 
 public class BerserkerRageBuff : YggdrasilBuff
 {

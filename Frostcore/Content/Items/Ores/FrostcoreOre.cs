@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
@@ -30,7 +31,7 @@ public class FrostcoreOre : YggdrasilItem
         Item.createTile = ModContent.TileType<FrostCoreTile>();
         Item.width = 12;
         Item.height = 12;
-        Item.value = Terraria.Item.sellPrice(silver: 2);
+        Item.value = Item.sellPrice(silver: 2);
         Item.rare = ItemRarityID.Blue;
     }
 }

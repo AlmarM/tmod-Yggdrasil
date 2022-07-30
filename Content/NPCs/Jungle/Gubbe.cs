@@ -3,7 +3,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 using Yggdrasil.Content.Items.Materials;
 
 namespace Yggdrasil.Content.NPCs.Jungle;

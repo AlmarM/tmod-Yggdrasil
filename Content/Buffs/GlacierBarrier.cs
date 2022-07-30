@@ -1,18 +1,14 @@
 using Terraria;
 using Terraria.ID;
-using Yggdrasil.Configs;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Buffs;
 
 public class GlacierBarrier : YggdrasilBuff
 {
-    public override string Texture => TextureUtils.GetAssetPath(GetType());
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Glacier Barrier");
-        Description.SetDefault($"Reduces damage taken by 25%");
+        Description.SetDefault("Reduces damage taken by 25%");
     }
 
     public override void Update(Player player, ref int buffIndex)

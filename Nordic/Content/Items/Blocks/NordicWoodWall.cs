@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture.NordicWoodFurniture;
 
 namespace Yggdrasil.Nordic.Content.Items.Blocks;

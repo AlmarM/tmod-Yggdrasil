@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Players;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 using Yggdrasil.Utils;

@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Creative;
+﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
@@ -22,7 +23,7 @@ public class FrostcoreBar : YggdrasilItem
     public override void SetDefaults()
     {
         Item.maxStack = 999;
-        Item.value = Terraria.Item.sellPrice(silver: 7, copper: 50);
+        Item.value = Item.sellPrice(silver: 7, copper: 50);
         Item.useStyle = ItemUseStyleID.Swing;
         Item.useTurn = true;
         Item.useAnimation = 15;

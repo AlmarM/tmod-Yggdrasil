@@ -1,5 +1,5 @@
-using Terraria.ID;
 using Terraria;
+using Terraria.ID;
 
 namespace Yggdrasil.Content.Items.Materials;
 

@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Banners;
-using Yggdrasil.Content.NPCs.Vikings;
 using Yggdrasil.Content.NPCs.Night;
+using Yggdrasil.Content.NPCs.Vikings;
 
 namespace Yggdrasil.Content.Tiles.Banners;
 

@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Yggdrasil.Content.Tiles.Furniture;
-using Yggdrasil.Runes.Content.Items.Normal;
 
 namespace Yggdrasil.Runes.Content.Items.Major;
 

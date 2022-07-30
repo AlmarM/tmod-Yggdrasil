@@ -1,8 +1,6 @@
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Buffs;
 
 namespace Yggdrasil.Content.Projectiles.Ammo;
 

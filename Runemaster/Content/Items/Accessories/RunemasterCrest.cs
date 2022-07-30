@@ -5,7 +5,6 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Extensions;
 using Yggdrasil.ModEffects;
-using Yggdrasil.ModHooks.Player;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Accessories;

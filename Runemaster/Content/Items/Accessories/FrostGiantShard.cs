@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Frostcore.Content.Items.Ores;
 using Yggdrasil.Utils;

@@ -4,7 +4,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Ores;
 using Yggdrasil.Content.Projectiles.Ammo;
 using Yggdrasil.Content.Projectiles.Magic;

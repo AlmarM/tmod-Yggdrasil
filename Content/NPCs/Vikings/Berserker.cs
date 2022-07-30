@@ -6,7 +6,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Armor;
 using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;

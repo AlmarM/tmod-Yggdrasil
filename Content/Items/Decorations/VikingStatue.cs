@@ -1,7 +1,6 @@
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Tiles.Furniture;
 
 namespace Yggdrasil.Content.Items.Decorations;

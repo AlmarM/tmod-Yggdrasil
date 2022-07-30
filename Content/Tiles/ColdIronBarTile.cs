@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Ores;
 
 namespace Yggdrasil.Content.Tiles;

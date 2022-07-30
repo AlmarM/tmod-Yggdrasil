@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Projectiles.RuneTablets;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Frostcore.Content.Items.Ores;

@@ -1,18 +1,14 @@
 using Terraria;
-using Yggdrasil.Configs;
-using Yggdrasil.Runemaster;
-using Yggdrasil.Utils;
+using Yggdrasil.Content.Buffs;
 
-namespace Yggdrasil.Content.Buffs;
+namespace Yggdrasil.Runemaster.Content.Buffs;
 
 public class RunicBuff : YggdrasilBuff
 {
-    public override string Texture => TextureUtils.GetAssetPath(GetType());
-
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Runic Buff");
-        Description.SetDefault($"20% increased runic damage");
+        Description.SetDefault("20% increased runic damage");
     }
 
     public override void Update(Player player, ref int buffIndex)

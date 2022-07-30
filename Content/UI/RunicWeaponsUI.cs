@@ -1,12 +1,11 @@
-﻿using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Items;
+using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
+using Terraria.UI;
+using Yggdrasil.Content.Players;
 using Yggdrasil.Runemaster.Content.Items;
 
 namespace Yggdrasil.Content.UI
