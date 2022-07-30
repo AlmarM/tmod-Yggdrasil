@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -10,18 +11,9 @@ public class CreditSlabProjectileExplosion : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = true;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 180;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        //Projectile.alpha = 255;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
+        base.SetDefaults();
+        
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(2);
     }
 
     public override void AI()
@@ -35,6 +27,6 @@ public class CreditSlabProjectileExplosion : RuneTabletProjectile
 
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {
-        target.AddBuff(BuffID.Midas, 600);
+        target.AddBuff(BuffID.Midas, TimeUtils.SecondsToTicks(10));
     }
 }

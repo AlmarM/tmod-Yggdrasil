@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -11,26 +12,18 @@ public class RagnarokProjectileLazerShot : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
+        base.SetDefaults();
+        
         Projectile.width = 16;
         Projectile.height = 26;
-        Projectile.tileCollide = true;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 300;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        //Projectile.alpha = 255;
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(5);
     }
 
     public override void SetStaticDefaults()
     {
-        ProjectileID.Sets.CultistIsResistantTo[Projectile.type] =
-            true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+        SetCultistResistance();
+        
         Main.projFrames[Projectile.type] = 3;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()

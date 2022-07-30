@@ -10,18 +10,9 @@ public class CreditSlabProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        base.SetDefaults();
+        
         Projectile.timeLeft = 40;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        //Projectile.alpha = 255;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()
@@ -32,9 +23,4 @@ public class CreditSlabProjectile : RuneTabletProjectile
 
         Lighting.AddLight(Projectile.position, 0.6f, 0.6f, 0.1f);
     }
-
-    //public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-    //{
-    //    target.AddBuff(BuffID.Midas, 300);
-    //}
 }

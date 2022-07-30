@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -10,18 +11,10 @@ public class JotunTabletProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = true;
-        Projectile.friendly = true;
+        base.SetDefaults();
+        
         Projectile.timeLeft = 33;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Projectile.alpha = 255;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()
@@ -35,6 +28,6 @@ public class JotunTabletProjectile : RuneTabletProjectile
 
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {
-        target.AddBuff(BuffID.CursedInferno, 120);
+        target.AddBuff(BuffID.CursedInferno, TimeUtils.SecondsToTicks(2));
     }
 }

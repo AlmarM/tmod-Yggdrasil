@@ -6,6 +6,8 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Projectiles.Magic;
 using Yggdrasil.ModHooks.Player;
+using Yggdrasil.Runemaster.Content.Projectiles;
+using Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.ModEffects;

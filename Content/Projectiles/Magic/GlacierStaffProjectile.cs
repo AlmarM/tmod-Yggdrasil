@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Runemaster;
+using Yggdrasil.Runemaster.Content.Projectiles;
+using Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Projectiles.Magic;

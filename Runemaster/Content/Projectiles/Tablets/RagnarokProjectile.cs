@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -10,18 +11,10 @@ public class RagnarokProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 30;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
+        base.SetDefaults();
+        
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(0.5f);
         Projectile.alpha = 255;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()

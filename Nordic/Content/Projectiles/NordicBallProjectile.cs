@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Runemaster;
+using Yggdrasil.Runemaster.Content.Projectiles;
+using Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Nordic.Content.Projectiles;

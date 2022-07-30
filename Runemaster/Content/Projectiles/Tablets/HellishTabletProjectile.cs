@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -10,19 +11,10 @@ public class HellishTabletProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = true;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 30;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        Projectile.alpha = 255;
-        //Projectile.penetrate = 3;
-    }
+        base.SetDefaults();
 
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(0.5f);
+        Projectile.alpha = 255;
     }
 
     public override void AI()
@@ -34,6 +26,6 @@ public class HellishTabletProjectile : RuneTabletProjectile
 
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {
-        target.AddBuff(BuffID.OnFire, 180);
+        target.AddBuff(BuffID.OnFire, TimeUtils.SecondsToTicks(3));
     }
 }

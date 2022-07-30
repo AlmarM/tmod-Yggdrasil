@@ -9,20 +9,12 @@ public class LunarMemorialNormalProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        base.SetDefaults();
+
         Projectile.timeLeft = 55;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
         Projectile.alpha = 255;
     }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
-    }
-
+    
     public override void AI()
     {
         int choice = Main.rand.Next(4);

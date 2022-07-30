@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -11,18 +12,10 @@ public class MeadowProjectileExplosion : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = true;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 30;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
+        base.SetDefaults();
+        
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(0.5f);
         Projectile.alpha = 255;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()
@@ -34,6 +27,6 @@ public class MeadowProjectileExplosion : RuneTabletProjectile
 
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {
-        target.AddBuff(ModContent.BuffType<SlowDebuff>(), 180);
+        target.AddBuff(ModContent.BuffType<SlowDebuff>(), TimeUtils.SecondsToTicks(3));
     }
 }

@@ -10,23 +10,14 @@ public class SturdyBlockProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
-        // Can the Projectile collide with tiles?
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        base.SetDefaults();
+        
         Projectile.timeLeft = 45;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        //Projectile.alpha = 255;
     }
 
     public override void SetStaticDefaults()
     {
         Main.projFrames[Projectile.type] = 2;
-    }
-
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
     }
 
     public override void AI()
@@ -48,9 +39,4 @@ public class SturdyBlockProjectile : RuneTabletProjectile
         d.fadeIn = 0.5f;
         Lighting.AddLight(Projectile.position, 0.55f, 0.05f, 0.6f);
     }
-
-    //public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-    //{
-    //    target.AddBuff(BuffID.Poisoned, 180);
-    //}
 }

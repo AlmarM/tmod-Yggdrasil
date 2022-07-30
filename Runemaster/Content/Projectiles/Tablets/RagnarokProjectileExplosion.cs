@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Projectiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -10,27 +11,19 @@ public class RagnarokProjectileExplosion : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
+        base.SetDefaults();
+
         Projectile.width = 16;
         Projectile.height = 26;
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
-        Projectile.timeLeft = 600;
-        Projectile.DamageType = ModContent.GetInstance<RunicDamageClass>();
-        //Projectile.alpha = 255;
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(10);
         Projectile.penetrate = 10;
     }
 
     public override void SetStaticDefaults()
     {
-        ProjectileID.Sets.CultistIsResistantTo[Projectile.type] =
-            true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
-        Main.projFrames[Projectile.type] = 3;
-    }
+        SetCultistResistance();
 
-    public override bool OnTileCollide(Vector2 oldVelocity)
-    {
-        Projectile.Kill();
-        return true;
+        Main.projFrames[Projectile.type] = 3;
     }
 
     public override void AI()
@@ -82,10 +75,5 @@ public class RagnarokProjectileExplosion : RuneTabletProjectile
         d.noGravity = true;
 
         Lighting.AddLight(Projectile.position, 0.1f, 0.5f, 0.25f);
-    }
-
-    public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-    {
-        //target.AddBuff(ModContent.BuffType<SicknessDebuff>(), 300);
     }
 }
