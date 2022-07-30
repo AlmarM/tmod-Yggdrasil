@@ -15,7 +15,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 [AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
 public class FrostGiantHand : YggdrasilItem
 {
-    private BlizzardExplosionModEffect _blizzardExplosionEffect;
+    [CloneByReference] private BlizzardExplosionModEffect _blizzardExplosionEffect;
 
     public override void SetStaticDefaults()
     {

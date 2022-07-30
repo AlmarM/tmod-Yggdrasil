@@ -13,7 +13,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Armors;
 [AutoloadEquip(EquipType.Legs)]
 public class BerserkerBoots : YggdrasilItem
 {
-    private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
 
     public override void SetStaticDefaults()
     {

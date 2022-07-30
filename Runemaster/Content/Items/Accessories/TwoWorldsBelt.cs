@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
@@ -12,7 +13,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class TwoWorldsBelt : YggdrasilItem
 {
-    private BlizzardExplosionModEffect _blizzardExplosionEffect;
+    [CloneByReference] private BlizzardExplosionModEffect _blizzardExplosionEffect;
 
     public override void SetStaticDefaults()
     {

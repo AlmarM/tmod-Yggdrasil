@@ -16,7 +16,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 [AutoloadEquip(EquipType.Shield)]
 public class RunemasterShield : YggdrasilItem
 {
-    private DodgeAndHealModEffect _dodgeAndHealEffect;
+    [CloneByReference] private DodgeAndHealModEffect _dodgeAndHealEffect;
 
     public override void SetStaticDefaults()
     {

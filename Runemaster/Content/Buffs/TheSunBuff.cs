@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.ModEffects;
 
@@ -7,7 +8,7 @@ namespace Yggdrasil.Runemaster.Content.Buffs;
 
 public class TheSunBuff : YggdrasilBuff
 {
-    private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
 
     public override void SetStaticDefaults()
     {

@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Extensions;
@@ -11,7 +12,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class RunemasterCrest : YggdrasilItem
 {
-    private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
 
     public override void SetStaticDefaults()
     {

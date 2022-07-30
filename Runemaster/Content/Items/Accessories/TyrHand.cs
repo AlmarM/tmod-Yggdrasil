@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Yggdrasil.Configs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Items.Materials;
@@ -13,7 +14,7 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class TyrHand : YggdrasilItem
 {
-    private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
 
     public override void SetStaticDefaults()
     {
