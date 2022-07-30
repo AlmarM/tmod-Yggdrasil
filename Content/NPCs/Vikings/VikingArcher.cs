@@ -7,7 +7,7 @@ using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Materials;
 using Yggdrasil.Content.Items.Misc;
-using Yggdrasil.Content.Items.Weapons.Vikings;
+using Yggdrasil.Content.Items.Weapons.Ranged;
 using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;

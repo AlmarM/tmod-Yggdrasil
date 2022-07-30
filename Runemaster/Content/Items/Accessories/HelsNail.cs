@@ -9,47 +9,46 @@ using Yggdrasil.Extensions;
 using Yggdrasil.ModHooks.Player;
 using Yggdrasil.Utils;
 
-namespace Yggdrasil.Runemaster.Content.Items.Accessories
+namespace Yggdrasil.Runemaster.Content.Items.Accessories;
+
+public class HelsNail : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
 {
-    public class HelsNail : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
+    public int Priority { get; }
+
+    public override void SetStaticDefaults()
     {
-        public int Priority { get; }
+        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
-        public override void SetStaticDefaults()
+        DisplayName.SetDefault("Hel's Nail");
+        Tooltip.SetDefault($"All {runicText} weapons now inflict poison for 5 sec");
+    }
+
+    public override void SetDefaults()
+    {
+        Item.rare = ItemRarityID.Orange;
+        Item.accessory = true;
+        Item.value = Item.sellPrice(0, 1);
+    }
+
+    public override void UpdateAccessory(Player player, bool hideVisual)
+    {
+        player.GetYggdrasilPlayer().AddModHooks(this);
+    }
+
+    public override void AddRecipes() => CreateRecipe()
+        .AddIngredient<BloodDrops>(10)
+        .AddIngredient(ItemID.Stinger, 5)
+        .AddTile<DvergrForgeTile>()
+        .Register();
+
+    public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
+        bool crit)
+    {
+        if (proj.ModProjectile is not RuneTabletProjectile)
         {
-            string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
-            DisplayName.SetDefault("Hel's Nail");
-            Tooltip.SetDefault($"All {runicText} weapons now inflict poison for 5 sec");
+            return;
         }
 
-        public override void SetDefaults()
-        {
-            Item.rare = ItemRarityID.Orange;
-            Item.accessory = true;
-            Item.value = Item.sellPrice(0, 1);
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetYggdrasilPlayer().AddModHooks(this);
-        }
-
-        public override void AddRecipes() => CreateRecipe()
-            .AddIngredient<BloodDrops>(10)
-            .AddIngredient(ItemID.Stinger, 5)
-            .AddTile<DvergrForgeTile>()
-            .Register();
-
-        public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
-            bool crit)
-        {
-            if (proj.ModProjectile is not RunicProjectile)
-            {
-                return;
-            }
-
-            target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
-        }
+        target.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(5));
     }
 }

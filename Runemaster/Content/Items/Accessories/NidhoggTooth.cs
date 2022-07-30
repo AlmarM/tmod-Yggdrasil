@@ -50,7 +50,7 @@ public class NidhoggTooth : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
     public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
         bool crit)
     {
-        if (proj.ModProjectile is not RunicProjectile)
+        if (proj.ModProjectile is not RuneTabletProjectile)
         {
             return;
         }

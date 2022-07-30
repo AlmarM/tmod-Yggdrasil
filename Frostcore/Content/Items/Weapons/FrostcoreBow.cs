@@ -5,8 +5,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Projectiles.Ammo;
 using Yggdrasil.Frostcore.Content.Items.Ores;
+using Yggdrasil.Frostcore.Content.Projectiles;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Frostcore.Content.Items.Weapons;
@@ -46,7 +46,7 @@ public class FrostcoreBow : YggdrasilItem
     {
         if (type == ProjectileID.WoodenArrowFriendly)
         {
-            type = ModContent.ProjectileType<FrostCoreArrowProjectile>();
+            type = ModContent.ProjectileType<FrostcoreArrowProjectile>();
         }
 
         Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback,

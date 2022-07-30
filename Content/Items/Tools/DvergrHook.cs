@@ -21,5 +21,4 @@ public class DvergrHook : YggdrasilItem
         Item.shootSpeed = 18f;
         Item.shoot = ModContent.ProjectileType<DvergrHookProjectile>();
     }
-
 }

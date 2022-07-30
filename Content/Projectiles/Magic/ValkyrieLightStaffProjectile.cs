@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Content.Projectiles.Magic;
 
@@ -10,6 +11,7 @@ public class ValkyrieLightStaffProjectile : YggdrasilProjectile
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Valkyrie Light Staff Projectile");
+        
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
     }
@@ -21,7 +23,7 @@ public class ValkyrieLightStaffProjectile : YggdrasilProjectile
         Projectile.tileCollide = true;
         Projectile.friendly = true;
         Projectile.hostile = false;
-        Projectile.timeLeft = 300;
+        Projectile.timeLeft = TimeUtils.SecondsToTicks(5);
         Projectile.penetrate = 1;
         AIType = ProjectileID.DeathLaser;
     }
@@ -32,12 +34,12 @@ public class ValkyrieLightStaffProjectile : YggdrasilProjectile
         return true;
     }
 
-
     public override void AI()
     {
         Projectile.rotation = Projectile.velocity.ToRotation() + 1.57f;
 
-        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror, Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
+        Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror,
+            Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
         d.noGravity = true;
 
         //Lighting.AddLight(Projectile.position, .5f, .45f, .05f);
@@ -50,7 +52,8 @@ public class ValkyrieLightStaffProjectile : YggdrasilProjectile
 
         for (int k = 0; k < 10; k++)
         {
-            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.MagicMirror, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height,
+                DustID.MagicMirror, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
         }
     }
 

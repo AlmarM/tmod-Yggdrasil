@@ -23,7 +23,8 @@ public class MoldyCheese : YggdrasilItem
         Item.maxStack = 99;
         Item.noUseGraphic = true;
         Item.useStyle = ItemUseStyleID.EatFood;
-        Item.useTime = Item.useAnimation = 30;
+        Item.useTime = 30;
+        Item.useAnimation = 30;
         Item.value = Item.sellPrice(copper: 10);
         Item.buffType = BuffID.WellFed;
         Item.buffTime = TimeUtils.MinutesToTicks(12);
@@ -35,6 +36,6 @@ public class MoldyCheese : YggdrasilItem
 
     public override void OnConsumeItem(Player player)
     {
-        player.AddBuff(BuffID.Poisoned, 600);
+        player.AddBuff(BuffID.Poisoned, TimeUtils.SecondsToTicks(10));
     }
 }

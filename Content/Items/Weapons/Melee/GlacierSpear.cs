@@ -33,8 +33,7 @@ public class GlacierSpear : YggdrasilItem
         Item.noMelee = true;
         Item.shootSpeed = 6f;
         Item.shoot = ModContent.ProjectileType<GlacierSpearProjectile>();
-
-        Item.value = Item.sellPrice(0, 2);
+        Item.value = Item.sellPrice(gold: 2);
         Item.rare = ItemRarityID.LightRed;
         Item.UseSound = SoundID.Item1;
         Item.autoReuse = true;

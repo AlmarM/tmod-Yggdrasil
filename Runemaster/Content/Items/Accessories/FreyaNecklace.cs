@@ -46,7 +46,7 @@ public class FreyaNecklace : YggdrasilItem, IPlayerOnHitNPCWithProjModHook
     public void PlayerOnHitNPCWithProj(Player player, Projectile proj, NPC target, int damage, float knockback,
         bool crit)
     {
-        if (proj.ModProjectile is not RunicProjectile || target.type == NPCID.TargetDummy)
+        if (proj.ModProjectile is not RuneTabletProjectile || target.type == NPCID.TargetDummy)
         {
             return;
         }

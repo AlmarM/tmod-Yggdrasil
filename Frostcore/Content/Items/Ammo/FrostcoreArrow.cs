@@ -3,8 +3,8 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
-using Yggdrasil.Content.Projectiles.Ammo;
 using Yggdrasil.Frostcore.Content.Items.Ores;
+using Yggdrasil.Frostcore.Content.Projectiles;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Frostcore.Content.Items.Ammo;
@@ -33,7 +33,7 @@ public class FrostcoreArrow : YggdrasilItem
         Item.DamageType = DamageClass.Ranged;
         Item.consumable = true;
 
-        Item.shoot = ModContent.ProjectileType<FrostCoreArrowProjectile>();
+        Item.shoot = ModContent.ProjectileType<FrostcoreArrowProjectile>();
         Item.shootSpeed = 5f;
     }
 

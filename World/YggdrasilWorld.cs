@@ -15,6 +15,7 @@ using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Content.Tiles.Furniture.SvartalvheimFurniture;
 using Yggdrasil.Content.Tiles.Svartalvheim;
 using Yggdrasil.Frostcore.Content.Items.Ores;
+using Yggdrasil.Runemaster.Content.Consumables;
 using Yggdrasil.Runemaster.Content.Items.Accessories;
 using Yggdrasil.Runemaster.Content.Items.Armors;
 using Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;

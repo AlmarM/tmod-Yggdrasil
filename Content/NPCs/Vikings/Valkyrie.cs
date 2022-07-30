@@ -10,7 +10,7 @@ using Yggdrasil.Content.Items.Accessories;
 using Yggdrasil.Content.Items.Banners;
 using Yggdrasil.Content.Items.Consumables;
 using Yggdrasil.Content.Items.Weapons.Magic;
-using Yggdrasil.Content.Projectiles.EnemyProjectile;
+using Yggdrasil.Content.Projectiles;
 using Yggdrasil.World;
 
 namespace Yggdrasil.Content.NPCs.Vikings;

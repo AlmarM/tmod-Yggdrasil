@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Projectiles.Melee;
 using Yggdrasil.Frostcore.Content.Items.Ores;
+using Yggdrasil.Frostcore.Content.Projectiles;
 using Yggdrasil.Nordic.Content.Items.Blocks;
 
 namespace Yggdrasil.Frostcore.Content.Items.Weapons;
@@ -33,7 +34,7 @@ public class FrostcoreSpear : YggdrasilItem
         Item.DamageType = DamageClass.Melee;
         Item.noMelee = true;
         Item.shootSpeed = 3.5f;
-        Item.shoot = ModContent.ProjectileType<FrostCoreSpearProjectile>();
+        Item.shoot = ModContent.ProjectileType<FrostcoreSpearProjectile>();
         Item.value = Item.sellPrice(silver: 23);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item1;

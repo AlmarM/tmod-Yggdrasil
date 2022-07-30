@@ -2,85 +2,92 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Yggdrasil.Utils;
 
-namespace Yggdrasil.Content.Projectiles.Melee
+namespace Yggdrasil.Content.Projectiles.Melee;
+
+public class GlacierSpearProjectile : YggdrasilProjectile
 {
-	public class GlacierSpearProjectile : YggdrasilProjectile
-	{
-		protected virtual float HoldoutRangeMin => 24f;
-		protected virtual float HoldoutRangeMax => 150f;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Glacier Spear Projectile");
+    protected virtual float HoldoutRangeMin => 24f;
+    protected virtual float HoldoutRangeMax => 150f;
 
-		}
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Glacier Spear Projectile");
+    }
 
-		public override void SetDefaults()
-		{
-			//Projectile.CloneDefaults(ProjectileID.Spear);
-			Projectile.width = 18;
-			Projectile.height = 18;
-			Projectile.aiStyle = 19;
-			Projectile.penetrate = -1;
-			Projectile.scale = 1.1f;
-			Projectile.alpha = 0;
+    public override void SetDefaults()
+    {
+        //Projectile.CloneDefaults(ProjectileID.Spear);
+        Projectile.width = 18;
+        Projectile.height = 18;
+        Projectile.aiStyle = 19;
+        Projectile.penetrate = -1;
+        Projectile.scale = 1.1f;
+        Projectile.alpha = 0;
 
-			Projectile.hide = true;
-			Projectile.ownerHitCheck = true;
-			Projectile.DamageType = DamageClass.Melee;
-			Projectile.tileCollide = false;
-			Projectile.friendly = true;
-		}
-		public override bool PreAI()
-		{
-			Player player = Main.player[Projectile.owner]; // Since we access the owner player instance so much, it's useful to create a helper local variable for this
-			int duration = player.itemAnimationMax; // Define the duration the projectile will exist in frames
+        Projectile.hide = true;
+        Projectile.ownerHitCheck = true;
+        Projectile.DamageType = DamageClass.Melee;
+        Projectile.tileCollide = false;
+        Projectile.friendly = true;
+    }
 
-			player.heldProj = Projectile.whoAmI; // Update the player's held projectile id
+    public override bool PreAI()
+    {
+        // Since we access the owner player instance so much, it's useful to create a helper local variable for this
+        Player player = Main.player[Projectile.owner];
 
-			// Reset projectile time left if necessary
-			if (Projectile.timeLeft > duration)
-			{
-				Projectile.timeLeft = duration;
-			}
+        // Define the duration the projectile will exist in frames
+        int duration = player.itemAnimationMax;
 
-			Projectile.velocity = Vector2.Normalize(Projectile.velocity); // Velocity isn't used in this spear implementation, but we use the field to store the spear's attack direction.
+        // Update the player's held projectile id
+        player.heldProj = Projectile.whoAmI;
 
-			float halfDuration = duration * 0.5f;
-			float progress;
+        // Reset projectile time left if necessary
+        if (Projectile.timeLeft > duration)
+        {
+            Projectile.timeLeft = duration;
+        }
 
-			// Here 'progress' is set to a value that goes from 0.0 to 1.0 and back during the item use animation.
-			if (Projectile.timeLeft < halfDuration)
-			{
-				progress = Projectile.timeLeft / halfDuration;
-			}
-			else
-			{
-				progress = (duration - Projectile.timeLeft) / halfDuration;
-			}
+        // Velocity isn't used in this spear implementation, but we use the field to store the spear's attack direction.
+        Projectile.velocity = Vector2.Normalize(Projectile.velocity);
 
-			// Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
-			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
+        float halfDuration = duration * 0.5f;
+        float progress;
 
-			// Apply proper rotation to the sprite.
-			if (Projectile.spriteDirection == -1)
-			{
-				// If sprite is facing left, rotate 45 degrees
-				Projectile.rotation += MathHelper.ToRadians(45f);
-			}
-			else
-			{
-				// If sprite is facing right, rotate 135 degrees
-				Projectile.rotation += MathHelper.ToRadians(135f);
-			}
+        // Here 'progress' is set to a value that goes from 0.0 to 1.0 and back during the item use animation.
+        if (Projectile.timeLeft < halfDuration)
+        {
+            progress = Projectile.timeLeft / halfDuration;
+        }
+        else
+        {
+            progress = (duration - Projectile.timeLeft) / halfDuration;
+        }
 
-			return false; // Don't execute vanilla AI.
-		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			
-			target.AddBuff(BuffID.Frostburn, 240);
-			
-		}
-	}
+        // Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
+        Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin,
+            Projectile.velocity * HoldoutRangeMax, progress);
+
+        // Apply proper rotation to the sprite.
+        if (Projectile.spriteDirection == -1)
+        {
+            // If sprite is facing left, rotate 45 degrees
+            Projectile.rotation += MathHelper.ToRadians(45f);
+        }
+        else
+        {
+            // If sprite is facing right, rotate 135 degrees
+            Projectile.rotation += MathHelper.ToRadians(135f);
+        }
+
+        // Don't execute vanilla AI.
+        return false;
+    }
+
+    public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+    {
+        target.AddBuff(BuffID.Frostburn, TimeUtils.SecondsToTicks(4));
+    }
 }

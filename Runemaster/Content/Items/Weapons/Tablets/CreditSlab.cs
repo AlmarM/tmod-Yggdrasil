@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Configs;
-using Yggdrasil.Content.Projectiles.RuneTablets;
+using Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
