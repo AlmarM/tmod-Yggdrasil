@@ -31,7 +31,8 @@ public class DodgeAndHealModEffect : IPlayerPreHurtModHook
     }
 
     public bool PlayerPreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
-        ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource,
+        ref int cooldownCounter)
     {
         if (damage < player.statLife || !Main.rand.NextBool(_consequent))
         {
