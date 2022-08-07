@@ -8,7 +8,8 @@ public class InvincibilityTimeStat : PlayerStat<float>, IPlayerPostHurtModHook
 {
     public int Priority { get; }
 
-    public void PlayerPostHurt(Player player, bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+    public void PlayerPostHurt(Player player, bool pvp, bool quiet, double damage, int hitDirection, bool crit,
+        int cooldownCounter)
     {
         if (Value <= 0)
         {

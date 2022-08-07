@@ -33,22 +33,23 @@ public class Gubbe : YggdrasilNPC
         AIType = NPCID.GrayGrunt;
         AnimationType = NPCID.GrayGrunt;
         NPC.knockBackResist = 0.1f;
-
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
     {
         // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+        {
+            // Sets the spawning conditions of this NPC that is listed in the bestiary.
+            BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The Gubbe is notoriously grumpy and bad-tempered, and prefers to keep himself to himself")
-            });
+            // Sets the description of this NPC that is listed in the bestiary.
+            new FlavorTextBestiaryInfoElement(
+                "The Gubbe is notoriously grumpy and bad-tempered, and prefers to keep himself to himself")
+        });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle ? 0.3f : 0f;
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle ? 0.2f : 0f;
 
     public override void AI()
     {

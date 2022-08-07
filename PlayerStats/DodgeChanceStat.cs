@@ -9,7 +9,8 @@ public class DodgeChanceStat : PlayerStat<float>, IPlayerPreHurtModHook
     public int Priority => 1;
 
     public bool PlayerPreHurt(Player player, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
-        ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource,
+        ref int cooldownCounter)
     {
         if (damage <= 0 || Main.rand.NextFloat() > Value)
         {
@@ -17,6 +18,7 @@ public class DodgeChanceStat : PlayerStat<float>, IPlayerPreHurtModHook
         }
 
         player.NinjaDodge();
+
         return false;
     }
 }
