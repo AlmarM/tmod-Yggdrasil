@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Items.Materials;
@@ -20,26 +21,22 @@ public class YggdrasilGlobalItem : GlobalItem
         recipe.Register();
     }
 
-    public override void OpenVanillaBag(string context, Player player, int arg)
+    public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
     {
-        if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
+        switch (item.type)
         {
-            player.QuickSpawnItem(null, ModContent.ItemType<SturdyLeaf>(), 30);
-        }
+            case ItemID.PlanteraBossBag:
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SturdyLeaf>(), 1, 25, 35));
+                break;
 
-        if (context == "bossBag" && arg == ItemID.GolemBossBag)
-        {
-            player.QuickSpawnItem(null, ModContent.ItemType<SunPebble>(), 3);
+            case ItemID.GolemBossBag:
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunPebble>(), 1, 2, 4));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunTablet>(), 4));
+                break;
 
-            if (Main.rand.NextBool(4))
-                player.QuickSpawnItem(null, ModContent.ItemType<SunTablet>(), 1);
-            
-        }
-
-        if (context == "bossBag" && arg == ItemID.MoonLordBossBag)
-        {
-            if (Main.rand.NextBool(4))
-                player.QuickSpawnItem(null, ModContent.ItemType<Ragnarok>(), 1);
+            case ItemID.MoonLordBossBag:
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Ragnarok>(), 4));
+                break;
         }
     }
 }

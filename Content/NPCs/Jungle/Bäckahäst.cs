@@ -33,22 +33,24 @@ public class Backahast : YggdrasilNPC
         AIType = NPCID.Unicorn;
         AnimationType = NPCID.Unicorn;
         NPC.knockBackResist = 0.7f;
-
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
     {
         // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
+        bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+        {
+            // Sets the spawning conditions of this NPC that is listed in the bestiary.
+            BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("The Brook Horse is a treacherous predator that lurks in streams and lakes.")
-            });
+            // Sets the description of this NPC that is listed in the bestiary.
+            new FlavorTextBestiaryInfoElement(
+                "The Brook Horse is a treacherous predator that lurks in streams and lakes.")
+        });
     }
 
-    public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneJungle && Main.hardMode ? 0.3f : 0f;
+    public override float SpawnChance(NPCSpawnInfo spawnInfo) =>
+        spawnInfo.Player.ZoneJungle && Main.hardMode ? 0.2f : 0f;
 
     public override void AI()
     {

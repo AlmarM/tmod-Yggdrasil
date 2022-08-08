@@ -18,6 +18,7 @@ public class DodgeChanceStat : PlayerStat<float>, IPlayerPreHurtModHook
         }
 
         player.NinjaDodge();
+
         return false;
     }
 }

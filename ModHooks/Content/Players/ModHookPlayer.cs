@@ -65,15 +65,17 @@ public abstract class ModHookPlayer : ModPlayer
         }
     }
 
-    public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+    public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
     {
         IEnumerable<IPlayerPostHurtModHook> hooks = GetModHooks<IPlayerPostHurtModHook>();
         hooks = hooks.OrderByDescending(h => h.Priority);
 
         foreach (IPlayerPostHurtModHook hook in hooks)
         {
-            hook.PlayerPostHurt(Player, pvp, quiet, damage, hitDirection, crit);
+            hook.PlayerPostHurt(Player, pvp, quiet, damage, hitDirection, crit, cooldownCounter);
         }
+
+        base.PostHurt(pvp, quiet, damage, hitDirection, crit, cooldownCounter);
     }
 
     public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
