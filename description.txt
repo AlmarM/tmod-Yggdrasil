@@ -23,6 +23,18 @@ https://discord.gg/ZCb8824q4b
 
 Lyker & resP
 
+0.3.1 - Lots of code refactor and a few tweaks
+New Content
+- New Moldy Cheese Soup (someone asked for more moldy stuff so, why not?)
+- New Toy Wooden Sword (it's good if you don't want to spam click at the start of the game)
+
+Fixes and Tweaks
+- Tons of code refactor that is absolutely invisible for you (backend work is what it is)
+- Icy Merman and Ice Mimic will drop more glacier shards more often
+- Zombiking should spawn less often
+- Angry bones will drop more occult shards more often
+- Frostcore now shows up with spelunker potion
+
 0.3 - A new biome
 New Content
 - New biome! Svartalvheim. If you are lucky enough, a minecart track might lead you there. If not, you'll need a lot of mining power to get in. I would not venture there anyway...
@@ -42,24 +54,4 @@ Fixes and Tweaks
 - Changed the spirtes of nordic wood
 - Stuff I probably forget
 
-0.2.4 - First miniboss and town NPC
-New Content
-- Added new viking invasion hardmode enemies, Graywolf and Odin's Raven
-- New Volva town NPC (will spawn if the player has a Viking Distaff and has a free house available)
-- New nordic wood table and chair
-- New viking invasion miniboss Valkyrie
-- New Valkyrie Golden Shield
-- New Vanir Shield
-- New Runemaster Shield
-- New Frostcore Yoyo
-- New food Raggmunk
-- New banners, Valkyrie, Graywolf, Odin's Raven
-- New Credit Slab runemaster weapon
-- New Sturdy Block runemaster weapon
-- New Runemaster Necklace
-
-Fixes and Tweaks
-- Viking invasion now happens during the day
-- Runes and other materials now have a selling value
-- Dwarven medallion, Frost Giant Hand and Freya'a Necklace now have a visual when equipped
 
