@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
@@ -13,16 +12,17 @@ public class RagnarokProjectileLazerShot : RuneTabletProjectile
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Projectile.width = 16;
         Projectile.height = 26;
         Projectile.timeLeft = TimeUtils.SecondsToTicks(5);
+        Projectile.tileCollide = false;
     }
 
     public override void SetStaticDefaults()
     {
         SetCultistResistance();
-        
+
         Main.projFrames[Projectile.type] = 3;
     }
 

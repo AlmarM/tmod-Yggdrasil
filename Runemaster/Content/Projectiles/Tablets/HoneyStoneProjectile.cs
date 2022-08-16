@@ -1,8 +1,5 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 

@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Yggdrasil.Content.Buffs;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;

@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
@@ -17,6 +15,7 @@ public class RagnarokProjectileExplosion : RuneTabletProjectile
         Projectile.height = 26;
         Projectile.timeLeft = TimeUtils.SecondsToTicks(10);
         Projectile.penetrate = 10;
+        Projectile.tileCollide = false;
     }
 
     public override void SetStaticDefaults()
