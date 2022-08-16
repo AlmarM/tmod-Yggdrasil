@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Yggdrasil.CheeseMaking;
 using Yggdrasil.CheeseMaking.Content.Tiles;
+using Yggdrasil.Utils;
 
 namespace Yggdrasil.Assets.CheeseMaking.Content.TileEntities;
 
@@ -12,8 +13,11 @@ public class FermentingBarrelTileEntity : ModTileEntity
 {
     private int _firstItemType = -1;
     private int _storedAmount;
+    private int _storedTime;
 
     public bool IsFull => _storedAmount == 5;
+
+    public bool IsDone => _storedTime >= TimeUtils.MinutesToTicks(24);
 
     public override bool IsTileValidForEntity(int x, int y)
     {
@@ -30,8 +34,6 @@ public class FermentingBarrelTileEntity : ModTileEntity
         }
 
         int id = Place(i, j);
-
-        Main.NewText($"{i}, {j}");
 
         return id;
     }
@@ -69,12 +71,14 @@ public class FermentingBarrelTileEntity : ModTileEntity
     {
         tag.Set("StoredItemType", _firstItemType);
         tag.Set("StoredAmount", _storedAmount);
+        tag.Set("StoredTime", _storedTime);
     }
 
     public override void LoadData(TagCompound tag)
     {
         _firstItemType = tag.GetInt("StoredItemType");
         _storedAmount = tag.GetInt("StoredAmount");
+        _storedTime = tag.GetInt("StoredTime");
     }
 
     public bool CanAddItem(int itemType)
@@ -99,5 +103,20 @@ public class FermentingBarrelTileEntity : ModTileEntity
         }
 
         return true;
+    }
+
+    public override void Update()
+    {
+        if (!IsFull && IsDone)
+        {
+            return;
+        }
+
+        _storedTime += (int)Main.dayRate;
+
+        if (IsDone)
+        {
+            // do something
+        }
     }
 }
