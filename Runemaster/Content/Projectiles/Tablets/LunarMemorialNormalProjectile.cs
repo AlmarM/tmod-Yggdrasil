@@ -1,7 +1,4 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -13,8 +10,9 @@ public class LunarMemorialNormalProjectile : RuneTabletProjectile
 
         Projectile.timeLeft = 55;
         Projectile.alpha = 255;
+        Projectile.tileCollide = false;
     }
-    
+
     public override void AI()
     {
         int choice = Main.rand.Next(4);

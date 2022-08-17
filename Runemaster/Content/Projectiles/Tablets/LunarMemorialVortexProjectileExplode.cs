@@ -2,8 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
@@ -15,6 +13,7 @@ public class LunarMemorialVortexProjectileExplode : RuneTabletProjectile
         base.SetDefaults();
 
         Projectile.timeLeft = TimeUtils.SecondsToTicks(2);
+        Projectile.tileCollide = false;
     }
 
     public override void AI()

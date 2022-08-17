@@ -8,11 +8,11 @@ using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Items.Weapons.Tablets;
 
-public class DevelishPlate : RuneTablet
+public class DevilishPlate : RuneTablet
 {
     private const int ExplosionProjectileCount = 12;
 
-    protected override int ProjectileId => ModContent.ProjectileType<DevelishPlateProjectile>();
+    protected override int ProjectileId => ModContent.ProjectileType<DevilishPlateProjectile>();
 
     protected override int ProjectileCount => 10;
 
@@ -22,7 +22,7 @@ public class DevelishPlate : RuneTablet
     {
         base.SetStaticDefaults();
 
-        DisplayName.SetDefault("Develish Plate");
+        DisplayName.SetDefault("Devilish Plate");
         Tooltip.SetDefault("");
     }
 
@@ -47,7 +47,7 @@ public class DevelishPlate : RuneTablet
 
     protected override void OnFocusActivated(Player player)
     {
-        var projectileId = ModContent.ProjectileType<DevelishPlateProjectileExplosion>();
+        var projectileId = ModContent.ProjectileType<DevilishPlateProjectileExplosion>();
         CreateCircleExplosion(ExplosionProjectileCount, Item, player, projectileId);
     }
 

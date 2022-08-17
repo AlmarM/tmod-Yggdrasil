@@ -1,20 +1,18 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
-public class DevelishPlateProjectileExplosion : RuneTabletProjectile
+public class DevilishPlateProjectileExplosion : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Projectile.timeLeft = TimeUtils.SecondsToTicks(0.5f);
         Projectile.alpha = 255;
+        Projectile.tileCollide = false;
     }
 
     public override void AI()

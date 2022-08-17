@@ -22,17 +22,17 @@ public class YggdrasilGlobalNPC : GlobalNPC
         {
             case NPCID.AngryBones or NPCID.ShortBones or NPCID.BigBoned
                 or >= NPCID.AngryBonesBig and <= NPCID.AngryBonesBigMuscle:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OccultShard>(), 5));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OccultShard>(), 3, 2, 3));
                 break;
             case NPCID.WallofFlesh:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RunemasterEmblem>(), 4));
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TabletofFlesh>(), 4));
                 break;
             case NPCID.IcyMerman:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 10));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 6, 2, 3));
                 break;
             case NPCID.IceMimic:
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 6));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GlacierShards>(), 3, 3, 5));
                 break;
             case NPCID.BigMimicHallow:
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LokisGift>(), 4));

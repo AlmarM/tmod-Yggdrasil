@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
@@ -12,8 +10,9 @@ public class SturdyBlockProjectileSeed : RuneTabletProjectile
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Projectile.timeLeft = TimeUtils.SecondsToTicks(5);
+        Projectile.tileCollide = false;
     }
 
     public override void SetStaticDefaults()

@@ -1,8 +1,5 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
@@ -11,8 +8,9 @@ public class CreditSlabProjectile : RuneTabletProjectile
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Projectile.timeLeft = 40;
+        Projectile.tileCollide = false;
     }
 
     public override void AI()

@@ -1,26 +1,27 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Utils;
 
 namespace Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 
-public class DevelishPlateProjectile : RuneTabletProjectile
+public class DevilishPlateProjectile : RuneTabletProjectile
 {
     public override void SetDefaults()
     {
         base.SetDefaults();
-        
+
         Projectile.timeLeft = 40;
         Projectile.alpha = 255;
+        Projectile.tileCollide = false;
     }
 
     public override void AI()
     {
+        var velocityX = Projectile.velocity.X / 2f;
+        var velocityY = Projectile.velocity.Y / 2f;
+
         Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame,
-            Projectile.velocity.X / 2, Projectile.velocity.Y / 2, 0, default, 1.5f);
+            velocityX, velocityY, 0, default, 1.5f);
         d.noGravity = true;
     }
 

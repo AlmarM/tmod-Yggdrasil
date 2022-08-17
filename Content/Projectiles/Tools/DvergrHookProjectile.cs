@@ -12,14 +12,16 @@ public class DvergrHookProjectile : YggdrasilProjectile
     private static Asset<Texture2D> chainTexture;
 
     public override void Load()
-    { // This is called once on mod (re)load when this piece of content is being loaded.
-      // This is the path to the texture that we'll use for the hook's chain. Make sure to update it.
+    {
+        // This is called once on mod (re)load when this piece of content is being loaded.
+        // This is the path to the texture that we'll use for the hook's chain. Make sure to update it.
         chainTexture = ModContent.Request<Texture2D>("Yggdrasil/Assets/Content/Projectiles/Tools/DvergrHookChain");
     }
 
     public override void Unload()
-    { // This is called once on mod reload when this piece of content is being unloaded.
-      // It's currently pretty important to unload your static fields like this, to avoid having parts of your mod remain in memory when it's been unloaded.
+    {
+        // This is called once on mod reload when this piece of content is being unloaded.
+        // It's currently pretty important to unload your static fields like this, to avoid having parts of your mod remain in memory when it's been unloaded.
         chainTexture = null;
     }
 
@@ -30,7 +32,7 @@ public class DvergrHookProjectile : YggdrasilProjectile
 
     public override void SetDefaults()
     {
-        Projectile.CloneDefaults(ProjectileID.GemHookAmethyst); // Copies the attributes of the Amethyst hook's projectile.
+        Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
     }
 
     // Use this hook for hooks that can have multiple hooks mid-flight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook.
@@ -39,7 +41,8 @@ public class DvergrHookProjectile : YggdrasilProjectile
         int hooksOut = 0;
         for (int l = 0; l < 1000; l++)
         {
-            if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type)
+            if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer &&
+                Main.projectile[l].type == Projectile.type)
             {
                 hooksOut++;
             }
@@ -56,12 +59,14 @@ public class DvergrHookProjectile : YggdrasilProjectile
 
     public override void NumGrappleHooks(Player player, ref int numHooks)
     {
-        numHooks = 2; // The amount of hooks that can be shot out
+        // The amount of hooks that can be shot out
+        numHooks = 2;
     }
 
     public override void GrappleRetreatSpeed(Player player, ref float speed)
     {
-        speed = 18f; // How fast the grapple returns to you after meeting its max shoot distance
+        // How fast the grapple returns to you after meeting its max shoot distance
+        speed = 18f;
     }
 
     public override void GrapplePullSpeed(Player player, ref float speed)
@@ -76,7 +81,8 @@ public class DvergrHookProjectile : YggdrasilProjectile
 
         player.endurance += 0.05f;
 
-        speed = 10; // How fast you get pulled to the grappling hook projectile's landing position
+        // How fast you get pulled to the grappling hook projectile's landing position
+        speed = 10;
     }
 
     // Adjusts the position that the player will be pulled towards. This will make them hang 50 pixels away from the tile being grappled.
@@ -113,6 +119,7 @@ public class DvergrHookProjectile : YggdrasilProjectile
                 chainTexture.Value.Bounds, drawColor, chainRotation,
                 chainTexture.Size() * 0.5f, 1f, SpriteEffects.None, 0);
         }
+
         // Stop vanilla from drawing the default chain.
         return false;
     }

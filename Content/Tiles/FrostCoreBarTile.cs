@@ -15,6 +15,7 @@ public class FrostCoreBarTile : YggdrasilTile
         Main.tileSolid[Type] = true;
         Main.tileSolidTop[Type] = true;
         Main.tileFrameImportant[Type] = true;
+        Main.tileSpelunker[Type] = true;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         TileObjectData.newTile.StyleHorizontal = true;

@@ -10,7 +10,7 @@ namespace Yggdrasil.Content.Items.Accessories;
 
 public class OdinsEye : YggdrasilItem
 {
-    [CloneByReference] private DodgeAndHealModEffect _dodgeAndHealEffect;
+    [CloneByReference] private readonly DodgeAndHealModEffect _dodgeAndHealEffect = new(10, 0.2f);
 
     public override void SetStaticDefaults()
     {
@@ -23,13 +23,6 @@ public class OdinsEye : YggdrasilItem
         Item.rare = ItemRarityID.Pink;
         Item.accessory = true;
         Item.value = Item.sellPrice(0, 4);
-    }
-
-    public override void OnCreate(ItemCreationContext context)
-    {
-        base.OnCreate(context);
-
-        _dodgeAndHealEffect = new DodgeAndHealModEffect(10, 0.2f);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)

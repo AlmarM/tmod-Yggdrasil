@@ -11,7 +11,7 @@ public class FrostCoreTile : YggdrasilTile
     public override void SetStaticDefaults()
     {
         // The tile will be affected by spelunker highlighting
-        Main.tileSpelunker[Type] = false;
+        Main.tileSpelunker[Type] = true;
 
         // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
         Main.tileOreFinderPriority[Type] = 400;

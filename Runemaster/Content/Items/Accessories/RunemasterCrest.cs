@@ -12,12 +12,10 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class RunemasterCrest : YggdrasilItem
 {
-    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private readonly RunicAttackSpeedModEffect _runicAttackSpeedEffect = new(0.15f);
 
     public override void SetStaticDefaults()
     {
-        _runicAttackSpeedEffect = new RunicAttackSpeedModEffect(0.15f);
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Runemaster Crest");

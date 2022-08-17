@@ -13,12 +13,23 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class TwoWorldsBelt : YggdrasilItem
 {
-    [CloneByReference] private BlizzardExplosionModEffect _blizzardExplosionEffect;
+    private BlizzardExplosionModEffect _blizzardExplosionEffect;
+
+    public override ModItem Clone(Item newEntity)
+    {
+        var clone = (TwoWorldsBelt)base.Clone(newEntity);
+        clone.SetupData(newEntity);
+
+        return clone;
+    }
+
+    protected override void SetupData(Item item)
+    {
+        _blizzardExplosionEffect = new BlizzardExplosionModEffect(item);
+    }
 
     public override void SetStaticDefaults()
     {
-        _blizzardExplosionEffect = new BlizzardExplosionModEffect(Item);
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Two Worlds Belt");
