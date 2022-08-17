@@ -5,11 +5,9 @@ using Yggdrasil.Configs;
 using Yggdrasil.Content.Buffs;
 using Yggdrasil.Content.Items;
 using Yggdrasil.Content.Players;
-using Yggdrasil.Content.Projectiles;
 using Yggdrasil.Content.Tiles.Furniture;
 using Yggdrasil.Extensions;
 using Yggdrasil.ModHooks.Player;
-using Yggdrasil.Runemaster.Content.Projectiles;
 using Yggdrasil.Runemaster.Content.Projectiles.Tablets;
 using Yggdrasil.Utils;
 

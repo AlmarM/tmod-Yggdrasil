@@ -8,12 +8,10 @@ namespace Yggdrasil.Runemaster.Content.Buffs;
 
 public class TheSunBuff : YggdrasilBuff
 {
-    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private readonly RunicAttackSpeedModEffect _runicAttackSpeedEffect = new(0.1f);
 
     public override void SetStaticDefaults()
     {
-        _runicAttackSpeedEffect = new RunicAttackSpeedModEffect(0.1f);
-
         DisplayName.SetDefault("The Sun Buff");
         Description.SetDefault(
             "Increases defense by 5" +

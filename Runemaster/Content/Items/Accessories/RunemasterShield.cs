@@ -16,12 +16,10 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 [AutoloadEquip(EquipType.Shield)]
 public class RunemasterShield : YggdrasilItem
 {
-    [CloneByReference] private DodgeAndHealModEffect _dodgeAndHealEffect;
+    [CloneByReference] private readonly DodgeAndHealModEffect _dodgeAndHealEffect = new(5, 0.5f);
 
     public override void SetStaticDefaults()
     {
-        _dodgeAndHealEffect = new DodgeAndHealModEffect(5, 0.5f);
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
         string focusText = TextUtils.GetColoredText(RuneConfig.FocusTooltipColor, "focus");
         string insanityText = TextUtils.GetColoredText(RuneConfig.InsanityTextColor, "insanity");

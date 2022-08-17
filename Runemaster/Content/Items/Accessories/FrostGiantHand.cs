@@ -15,18 +15,29 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 [AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
 public class FrostGiantHand : YggdrasilItem
 {
-    [CloneByReference] private BlizzardExplosionModEffect _blizzardExplosionEffect;
+    private BlizzardExplosionModEffect _blizzardExplosionEffect;
+
+    public override ModItem Clone(Item newEntity)
+    {
+        var clone = (FrostGiantHand)base.Clone(newEntity);
+        clone.SetupData(newEntity);
+
+        return clone;
+    }
+
+    protected override void SetupData(Item item)
+    {
+        _blizzardExplosionEffect = new BlizzardExplosionModEffect(item);
+    }
 
     public override void SetStaticDefaults()
     {
-        _blizzardExplosionEffect = new BlizzardExplosionModEffect(Item);
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Frost Giant Hand");
         Tooltip.SetDefault($"5% increased {runicText} critical strike chance" +
                            "\nGrants immunity to fire blocks" +
-                           $"{_blizzardExplosionEffect.EffectDescription}");
+                           $"\n{_blizzardExplosionEffect.EffectDescription}");
 
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
     }

@@ -10,7 +10,7 @@ public class TooltipBlock
 
     public int Order { get; }
 
-    private List<string> _lines = new List<string>();
+    private readonly List<string> _lines = new();
     private string _indexSeparator = "_";
     private Func<List<TooltipLine>, int?> _insertIndexFunc;
 

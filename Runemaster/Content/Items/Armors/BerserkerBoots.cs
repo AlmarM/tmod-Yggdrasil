@@ -13,14 +13,10 @@ namespace Yggdrasil.Runemaster.Content.Items.Armors;
 [AutoloadEquip(EquipType.Legs)]
 public class BerserkerBoots : YggdrasilItem
 {
-    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private readonly RunicAttackSpeedModEffect _runicAttackSpeedEffect = new(0.1f);
 
     public override void SetStaticDefaults()
     {
-        _runicAttackSpeedEffect = new RunicAttackSpeedModEffect(0.1f);
-
-        string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
-
         DisplayName.SetDefault("Berserker Boots");
         Tooltip.SetDefault($"'{_runicAttackSpeedEffect.EffectDescription}" +
                            "\n10% increase movement speed");

@@ -14,12 +14,10 @@ namespace Yggdrasil.Runemaster.Content.Items.Accessories;
 
 public class TyrHand : YggdrasilItem
 {
-    [CloneByReference] private RunicAttackSpeedModEffect _runicAttackSpeedEffect;
+    [CloneByReference] private readonly RunicAttackSpeedModEffect _runicAttackSpeedEffect = new(0.1f);
 
     public override void SetStaticDefaults()
     {
-        _runicAttackSpeedEffect = new RunicAttackSpeedModEffect(0.1f);
-
         string runicText = TextUtils.GetColoredText(RuneConfig.RuneTooltipColor, "runic");
 
         DisplayName.SetDefault("Tyr's Hand");
