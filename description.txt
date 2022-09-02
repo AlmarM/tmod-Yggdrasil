@@ -12,8 +12,7 @@ At a glance:
 - Some structure generations (in the snow biome)
 
 NOTE:
-- If you want to help, feel free to reach out! (Good spriters would be nice to have)
-- This is an alpha version of the mod! (meaning that there are bugs)
+- Thank you for supporting us during our journey. The mode will now sunset for a while.
 
 Feedback is more than welcome on our forum thread here (search for Yggdrasil):
 https://forums.terraria.org/index.php?threads/yggdrasil.93660/
@@ -23,7 +22,7 @@ https://discord.gg/ZCb8824q4b
 
 Lyker & resP
 
-0.3.1 - Lots of code refactor and a few tweaks
+0.3.1 - Last tiny update for a while
 New Content
 - New Moldy Cheese Soup (someone asked for more moldy stuff so, why not?)
 - New Toy Wooden Sword (it's good if you don't want to spam click at the start of the game)
