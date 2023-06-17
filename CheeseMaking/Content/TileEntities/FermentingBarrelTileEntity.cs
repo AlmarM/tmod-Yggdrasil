@@ -1,9 +1,12 @@
 using System.IO;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Yggdrasil.CheeseMaking;
+using Yggdrasil.CheeseMaking.Content.Items;
 using Yggdrasil.CheeseMaking.Content.Tiles;
 using Yggdrasil.Utils;
 
@@ -17,7 +20,7 @@ public class FermentingBarrelTileEntity : ModTileEntity
 
     public bool IsFull => _storedAmount == 5;
 
-    public bool IsDone => _storedTime >= TimeUtils.MinutesToTicks(24);
+    public bool IsDone => _storedTime >= TimeUtils.SecondsToTicks(10);
 
     public override bool IsTileValidForEntity(int x, int y)
     {
@@ -46,25 +49,18 @@ public class FermentingBarrelTileEntity : ModTileEntity
         }
     }
 
-    public override void OnKill()
-    {
-        Main.NewText("killed");
-
-        base.OnKill();
-    }
-
     public override void NetSend(BinaryWriter writer)
     {
-        Main.NewText("NetSend");
-
-        base.NetSend(writer);
+        writer.Write(_firstItemType);
+        writer.Write(_storedAmount);
+        writer.Write(_storedTime);
     }
 
     public override void NetReceive(BinaryReader reader)
     {
-        Main.NewText("NetReceive");
-
-        base.NetReceive(reader);
+        _firstItemType = reader.ReadInt32();
+        _storedAmount = reader.ReadInt32();
+        _storedTime = reader.ReadInt32();
     }
 
     public override void SaveData(TagCompound tag)
@@ -116,7 +112,44 @@ public class FermentingBarrelTileEntity : ModTileEntity
 
         if (IsDone)
         {
-            // do something
+            var fermentingBarrelTile = ModContent.GetInstance<FermentingBarrelTile>();
+            fermentingBarrelTile.SetState(Position.X, Position.Y, FermentingBarrelState.Open);
         }
+    }
+
+    public bool RightClick()
+    {
+        if (IsDone)
+        {
+            var position = new Vector2(Position.X * 16, Position.Y * 16);
+
+            for (var i = 0; i < 8; i++)
+            {
+                Item.NewItem(null, position, 32, 32, ModContent.ItemType<Curd>());
+            }
+
+            _firstItemType = -1;
+            _storedAmount = 0;
+            _storedTime = 0;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool Get(int i, int j, out FermentingBarrelTileEntity entity)
+    {
+        Tile tile = Main.tile[i, j];
+        Point16 topLeft = TileUtils.GetTopLeftPoint(i, j, tile.TileFrameX, tile.TileFrameY);
+
+        if (!TileUtils.TryGetTileEntityAs<FermentingBarrelTileEntity>(topLeft.X, topLeft.Y, out var foundEntity))
+        {
+            entity = null;
+            return false;
+        }
+
+        entity = foundEntity;
+        return true;
     }
 }

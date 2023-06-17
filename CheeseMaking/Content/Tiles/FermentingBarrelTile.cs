@@ -8,7 +8,6 @@ using Terraria.ObjectData;
 using Yggdrasil.Assets.CheeseMaking.Content.TileEntities;
 using Yggdrasil.CheeseMaking.Content.Items;
 using Yggdrasil.Content.Tiles;
-using Yggdrasil.Utils;
 
 namespace Yggdrasil.CheeseMaking.Content.Tiles;
 
@@ -57,12 +56,7 @@ public class FermentingBarrelTile : YggdrasilTile
             return;
         }
 
-        Tile tile = Main.tile[i, j];
-        Point16 topLeft = TileUtils.GetTopLeftPoint(i, j, tile.TileFrameX, tile.TileFrameY);
-
-        Main.NewText(topLeft);
-
-        if (!TileUtils.TryGetTileEntityAs<FermentingBarrelTileEntity>(topLeft.X, topLeft.Y, out var entity))
+        if (!FermentingBarrelTileEntity.Get(i, j, out var entity))
         {
             return;
         }
@@ -71,8 +65,6 @@ public class FermentingBarrelTile : YggdrasilTile
         {
             localPlayer.HeldItem.stack--;
         }
-
-        Main.NewText(Main.time);
     }
 
     public bool IsAcceptedItem(int itemType)
@@ -87,6 +79,16 @@ public class FermentingBarrelTile : YggdrasilTile
         return (FermentingBarrelState)(tile.TileFrameX / 36);
     }
 
+    public override bool RightClick(int i, int j)
+    {
+        if (!FermentingBarrelTileEntity.Get(i, j, out var entity))
+        {
+            return false;
+        }
+
+        return entity.RightClick();
+    }
+
     public void SetState(int i, int j, FermentingBarrelState state)
     {
         if (!Enum.IsDefined(typeof(FermentingBarrelState), state))
@@ -94,8 +96,8 @@ public class FermentingBarrelTile : YggdrasilTile
             return;
         }
 
-        var stateIntegral = (int)state + 1;
-        var baseX = (short)(stateIntegral * 18);
+        var stateIntegral = (int)state;
+        var baseX = (short)(stateIntegral * 36);
         var rightX = (short)(baseX + 18);
 
         Main.tile[i, j].TileFrameX = baseX;
